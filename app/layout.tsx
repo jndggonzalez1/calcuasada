@@ -37,6 +37,12 @@ export default function RootLayout({
             </div>
           </div>
         </header>
+        <nav className="bg-orange-600 text-white print:hidden">
+          <div className="max-w-lg mx-auto px-4 flex gap-1">
+            <Link href="/" className="px-3 py-2 text-sm font-semibold hover:bg-orange-700 rounded-b transition-colors">Calculadora</Link>
+            <Link href="/acerca" className="px-3 py-2 text-sm font-semibold hover:bg-orange-700 rounded-b transition-colors">Acerca</Link>
+          </div>
+        </nav>
         <main className="max-w-lg mx-auto px-4 py-6 space-y-6">
           {children}
         </main>
@@ -45,7 +51,7 @@ export default function RootLayout({
             <Link href="/acerca" className="hover:text-orange-500 transition-colors">Acerca</Link>
             <Link href="/privacidad" className="hover:text-orange-500 transition-colors">Privacidad</Link>
           </div>
-          <p>Hecho con 🥩 en México · Calcuasada 2025</p>
+          <p>Hecho con 🥩 en México · Calcuasada 2026</p>
         </footer>
       </body>
     </html>
