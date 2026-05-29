@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -23,6 +22,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es-MX">
+      <head>
+        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+        <script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1068311584605438" crossOrigin="anonymous" />
+      </head>
       <body className="min-h-screen">
         <header className="bg-orange-500 text-white py-4 px-4 shadow-md print:hidden">
           <div className="max-w-lg mx-auto flex items-center gap-3">
@@ -40,11 +43,6 @@ export default function RootLayout({
           Hecho con 🥩 en México · Calcuasada 2025
         </footer>
       </body>
-      <Script
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1068311584605438"
-        crossOrigin="anonymous"
-        strategy="afterInteractive"
-      />
     </html>
   );
 }
