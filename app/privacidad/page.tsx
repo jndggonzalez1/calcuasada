@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import AdBanner from "../components/AdBanner";
 
 export const metadata: Metadata = {
   title: "Aviso de Privacidad — Calcuasada",
@@ -71,12 +72,16 @@ export default function PrivacidadPage() {
         </p>
       </section>
 
+      <AdBanner />
+
       <section className="space-y-2">
         <h2 className="text-base font-bold text-gray-900">6. Cambios a este aviso</h2>
         <p className="text-sm">
           Podemos actualizar este aviso de privacidad en cualquier momento. Cualquier cambio será publicado en esta misma página con la fecha de actualización correspondiente.
         </p>
       </section>
+
+      <AdBanner />
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import AdBanner from "../components/AdBanner";
 
 export const metadata: Metadata = {
   title: "Acerca de Calcuasada",
@@ -41,12 +42,16 @@ export default function AcercaPage() {
         <p className="text-sm font-bold text-orange-500">— Yeyito, Nuevo León 🤘</p>
       </section>
 
+      <AdBanner />
+
       <section className="space-y-2">
         <h2 className="text-base font-black text-gray-900">¿Por qué es gratis?</h2>
         <p className="text-sm">
           Calcuasada es completamente gratuita y siempre lo será. El sitio se sostiene con publicidad de Google AdSense. Eso es todo — sin suscripciones, sin datos personales, sin rollo.
         </p>
       </section>
+
+      <AdBanner />
     </div>
   );
 }
