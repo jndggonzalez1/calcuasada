@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -39,8 +40,12 @@ export default function RootLayout({
         <main className="max-w-lg mx-auto px-4 py-6 space-y-6">
           {children}
         </main>
-        <footer className="text-center text-xs text-gray-400 py-8 print:hidden">
-          Hecho con 🥩 en México · Calcuasada 2025
+        <footer className="text-center text-xs text-gray-400 py-8 print:hidden space-y-2">
+          <div className="flex justify-center gap-4">
+            <Link href="/acerca" className="hover:text-orange-500 transition-colors">Acerca</Link>
+            <Link href="/privacidad" className="hover:text-orange-500 transition-colors">Privacidad</Link>
+          </div>
+          <p>Hecho con 🥩 en México · Calcuasada 2025</p>
         </footer>
       </body>
     </html>
