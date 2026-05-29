@@ -129,6 +129,10 @@ app/
 - Autenticación con GitHub via Personal Access Token (fine-grained) en la URL del remote
 - Primer push de todos los archivos del proyecto
 
+### Sesión 3 (mayo 2026) — Navegación y cierre
+- Nav bar rediseñada: botones centrados con estilo pill (rounded-full, border) en lugar de texto plano
+- CLAUDE.md creado como manual vivo del proyecto para futuras sesiones
+
 ### Sesión 2 (mayo 2026) — Contenido y páginas
 - AdSense agregado primero con `next/script`, luego movido a `<script>` directo en `<head>`
 - Secciones de contenido agregadas a la página principal: cómo usar, tips Monterrey, FAQ

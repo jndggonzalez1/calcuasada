@@ -37,10 +37,10 @@ export default function RootLayout({
             </div>
           </div>
         </header>
-        <nav className="bg-orange-600 text-white print:hidden">
-          <div className="max-w-lg mx-auto px-4 flex gap-1">
-            <Link href="/" className="px-3 py-2 text-sm font-semibold hover:bg-orange-700 rounded-b transition-colors">Calculadora</Link>
-            <Link href="/acerca" className="px-3 py-2 text-sm font-semibold hover:bg-orange-700 rounded-b transition-colors">Acerca</Link>
+        <nav className="bg-orange-600 print:hidden">
+          <div className="max-w-lg mx-auto px-4 flex justify-center gap-2 py-2">
+            <Link href="/" className="px-5 py-1.5 text-sm font-bold text-white bg-orange-500 rounded-full border-2 border-white/30 hover:bg-orange-400 transition-colors">Calculadora</Link>
+            <Link href="/acerca" className="px-5 py-1.5 text-sm font-bold text-white bg-orange-500 rounded-full border-2 border-white/30 hover:bg-orange-400 transition-colors">Acerca</Link>
           </div>
         </nav>
         <main className="max-w-lg mx-auto px-4 py-6 space-y-6">
