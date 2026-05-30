@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -28,9 +29,16 @@ export default function RootLayout({
         <script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1068311584605438" crossOrigin="anonymous" />
       </head>
       <body className="min-h-screen">
-        <header className="bg-carbon text-white py-4 px-4 shadow-lg print:hidden">
+        <header className="bg-carbon text-white py-3 px-4 shadow-lg print:hidden">
           <div className="max-w-lg mx-auto flex items-center gap-3">
-            <span className="text-3xl">🥩🔥</span>
+            <Image
+              src="/logo.png"
+              alt="Calcuasada logo"
+              width={56}
+              height={56}
+              className="rounded-xl flex-shrink-0"
+              priority
+            />
             <div>
               <p className="text-xl font-black leading-tight tracking-tight">Calcuasada</p>
               <p className="text-white/50 text-xs">Calculadora de carne asada para México</p>
