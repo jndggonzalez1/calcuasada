@@ -30,7 +30,7 @@ export default function RootLayout({
       <body className="min-h-screen">
         <header className="bg-carbon text-white py-4 px-4 shadow-lg print:hidden">
           <div className="max-w-lg mx-auto flex items-center gap-3">
-            <span className="text-3xl">🔥</span>
+            <span className="text-3xl">🥩🔥</span>
             <div>
               <p className="text-xl font-black leading-tight tracking-tight">Calcuasada</p>
               <p className="text-white/50 text-xs">Calculadora de carne asada para México</p>

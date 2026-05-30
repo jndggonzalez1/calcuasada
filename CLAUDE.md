@@ -71,8 +71,8 @@ app/
 - `/calculadora/[personas]` — páginas SEO estáticas para búsquedas como "carne asada para 20 personas"
 
 ### Layout global
-- Header naranja con logo 🥩 y nombre Calcuasada
-- Barra de navegación debajo del header: links a Calculadora y Acerca
+- Header negro carbón (`#1E1A17`) con logo 🥩🔥 y nombre Calcuasada
+- Barra de navegación debajo del header (carbón profundo): links a Calculadora y Acerca como pills minimalistas
 - Footer con copyright 2026, links a Acerca y Privacidad
 - AdSense: `<script>` directo en `<head>` para visibilidad del crawler de Google
 
@@ -96,7 +96,7 @@ app/
 
 - Todo el contenido del sitio en **español mexicano** (no neutro, no de España)
 - Diseño **mobile first**
-- Esquema de color **naranja** (`orange-500` como color principal)
+- Esquema de color: paleta **"Tierra y Brasa"** — header negro carbón, fondo crema/masa, acento rojo ladrillo/guajillo (`#B83A2A`). NO usar naranja genérico de Tailwind.
 - El usuario debe obtener su respuesta en menos de 15 segundos
 - Sin cuentas de usuario, sin base de datos, sin backend
 - Simple, rápido y directo
@@ -114,6 +114,7 @@ app/
 | Página /privacidad | ✅ Listo |
 | Nav bar y footer con links | ✅ Listo |
 | AdSense script en `<head>` | ✅ Listo |
+| Rediseño temático "Tierra y Brasa" | ✅ Listo |
 | Repositorio en GitHub | ✅ Listo (`main`) |
 | Deploy en Vercel | ✅ Configurado (auto-deploy desde `main`) |
 | Aprobación de Google AdSense | ⏳ Pendiente (1–7 días tras envío) |
@@ -122,6 +123,15 @@ app/
 ---
 
 ## Historial de sesiones
+
+### Sesión 4 (mayo 2026) — Rediseño temático
+- Rediseño visual completo: concepto "Tierra y Brasa"
+- Header cambiado de naranja a negro carbón (`#1E1A17`), ícono 🥩🔥
+- Fondo del sitio cambiado de gris frío a crema/masa (`#FAF5EE`)
+- Acento principal: rojo ladrillo/guajillo (`#B83A2A`) en lugar de `orange-500`
+- Tokens de color definidos en `globals.css` con `@theme inline` de Tailwind v4: `brasa`, `brasa-light`, `brasa-mid`, `carbon`, `carbon-mid`, `masa`
+- Nav pills estilizados para fondo oscuro (texto blanco translúcido con borde sutil)
+- Push a `main`, deployado en Vercel
 
 ### Sesión 1 (mayo 2026) — Setup inicial
 - Creación del repo en GitHub (`jndggonzalez1/calcuasada`)
