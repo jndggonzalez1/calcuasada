@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import {
   calcularResultados,
   calcularExtras,
@@ -38,6 +38,22 @@ const PRICE_LABELS: Record<string, string> = {
   queso: "Queso para asar ($/kg)",
 };
 
+interface ActiveItem {
+  key: string;
+  displayLabel: string;
+  textLabel: string;
+  value: number;
+  unit: string;
+}
+
+function formatMXN(n: number) {
+  return n.toLocaleString("es-MX", { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+}
+
+function splitQty(total: number, count: number): number {
+  return Math.ceil((total / count) * 100) / 100;
+}
+
 interface Props {
   defaultAdultos?: number;
   defaultNinos?: number;
@@ -69,6 +85,12 @@ export default function Calculadora({
   const [sliderAdultos, setSliderAdultos] = useState(50);
   const [sliderNinos, setSliderNinos] = useState(50);
 
+  // Distribuidor state
+  const [distribuidorOpen, setDistribuidorOpen] = useState(false);
+  const [personaNombre, setPersonaNombre] = useState("");
+  const [personas, setPersonas] = useState<string[]>([]);
+  const [assignments, setAssignments] = useState<Record<string, string[]>>({});
+
   const toggleRow = (key: keyof Results) =>
     setDisabledRows((prev) => {
       const next = new Set(prev);
@@ -89,7 +111,7 @@ export default function Calculadora({
   const ninas = Math.round(ninos * sliderNinos / 100);
   const ninosMasc = ninos - ninas;
 
-  const tortillasKg = results.tortillas * 0.03; // ~30g per tortilla
+  const tortillasKg = results.tortillas * 0.03;
   const total =
     (isEnabled("carne") ? results.carne * prices.carne : 0) +
     (isEnabled("salchicha") ? results.salchicha * prices.salchicha : 0) +
@@ -100,13 +122,87 @@ export default function Calculadora({
     (extras.pollo ?? 0) * prices.pollo +
     (extras.queso ?? 0) * prices.queso;
 
-  const formatMXN = (n: number) =>
-    n.toLocaleString("es-MX", { minimumFractionDigits: 0, maximumFractionDigits: 0 });
-
   const toggleAddOn = (key: keyof AddOns) =>
     setAddOns((prev) => ({ ...prev, [key]: !prev[key] }));
 
+  const activeItems = useMemo<ActiveItem[]>(() => {
+    const enabled = (key: keyof Results) => !disabledRows.has(key);
+    const items: ActiveItem[] = [];
+    if (enabled("carne")) items.push({ key: "carne", displayLabel: "🥩 Carne de res", textLabel: "Carne de res", value: results.carne, unit: "kg" });
+    if (enabled("salchicha")) items.push({ key: "salchicha", displayLabel: "🌭 Salchicha para asar", textLabel: "Salchicha para asar", value: results.salchicha, unit: "kg" });
+    if (enabled("tortillas")) items.push({ key: "tortillas", displayLabel: "🫓 Tortillas", textLabel: "Tortillas", value: results.tortillas, unit: "pzas" });
+    if (enabled("cebollas")) items.push({ key: "cebollas", displayLabel: "🧅 Cebollas", textLabel: "Cebollas", value: results.cebollas, unit: "pzas" });
+    if (enabled("limones")) items.push({ key: "limones", displayLabel: "🍋 Limones", textLabel: "Limones", value: results.limones, unit: "pzas" });
+    if (enabled("aguacates")) items.push({ key: "aguacates", displayLabel: "🥑 Aguacates", textLabel: "Aguacates", value: results.aguacates, unit: "pzas" });
+    if (enabled("salsa")) items.push({ key: "salsa", displayLabel: "🫙 Salsa", textLabel: "Salsa", value: results.salsa, unit: "litros" });
+    if (enabled("carbon")) items.push({ key: "carbon", displayLabel: "🪨 Carbón", textLabel: "Carbón", value: results.carbon, unit: "kg" });
+    if (enabled("hielo")) items.push({ key: "hielo", displayLabel: "🧊 Hielo", textLabel: "Hielo", value: results.hielo, unit: "kg" });
+    if (extras.cerveza) {
+      items.push({
+        key: "cerveza",
+        displayLabel: "🍺 Cerveza",
+        textLabel: "Cerveza",
+        value: cervezaTipo === "caguamas" ? extras.cerveza : cervezaLatas,
+        unit: cervezaTipo === "caguamas" ? "caguamas" : "latas",
+      });
+    }
+    if (extras.refrescos) items.push({ key: "refrescos", displayLabel: "🥤 Refrescos", textLabel: "Refrescos", value: extras.refrescos!, unit: "botellas" });
+    if (extras.botanas) items.push({ key: "botanas", displayLabel: "🍿 Botanas", textLabel: "Botanas", value: extras.botanas!, unit: "bolsas" });
+    if (extras.queso) items.push({ key: "queso", displayLabel: "🧀 Queso para asar", textLabel: "Queso para asar", value: extras.queso!, unit: "kg" });
+    if (extras.pollo) items.push({ key: "pollo", displayLabel: "🍗 Pollo", textLabel: "Pollo", value: extras.pollo!, unit: "kg" });
+    if (extras.hamburguesas) items.push({ key: "hamburguesas", displayLabel: "🍔 Hamburguesas", textLabel: "Hamburguesas", value: extras.hamburguesas!, unit: "pzas" });
+    return items;
+  }, [results, extras, disabledRows, cervezaTipo, cervezaLatas]);
+
+  const distribuidorActivo = distribuidorOpen && personas.length >= 2;
+  const todosAsignados =
+    !distribuidorActivo ||
+    activeItems.every((item) => (assignments[item.key] ?? []).length > 0);
+
+  const addPersona = () => {
+    const nombre = personaNombre.trim();
+    if (!nombre || personas.length >= 8 || personas.includes(nombre)) return;
+    setPersonas((prev) => [...prev, nombre]);
+    setPersonaNombre("");
+    setAssignments({});
+  };
+
+  const removePersona = (nombre: string) => {
+    setPersonas((prev) => prev.filter((p) => p !== nombre));
+    setAssignments({});
+  };
+
+  const toggleAssignment = (itemKey: string, persona: string) => {
+    setAssignments((prev) => {
+      const current = prev[itemKey] ?? [];
+      const next = current.includes(persona)
+        ? current.filter((p) => p !== persona)
+        : [...current, persona];
+      return { ...prev, [itemKey]: next };
+    });
+  };
+
   const buildShareText = useCallback(() => {
+    if (distribuidorActivo && todosAsignados) {
+      const totalPersonas = adultos + ninos;
+      const lines: string[] = [`Lista de Calcuasada para ${totalPersonas} personas`, ""];
+      personas.forEach((persona) => {
+        const personaItems = activeItems
+          .filter((item) => (assignments[item.key] ?? []).includes(persona))
+          .map((item) => {
+            const count = (assignments[item.key] ?? []).length;
+            const qty = splitQty(item.value, count);
+            return `• ${item.textLabel}: ${qty} ${item.unit}`;
+          });
+        if (personaItems.length > 0) {
+          lines.push(`🛒 ${persona}:`);
+          personaItems.forEach((l) => lines.push(l));
+          lines.push("");
+        }
+      });
+      lines.push("Calculado en calcuasada.mx");
+      return lines.join("\n");
+    }
     const lines = [
       `🥩 Calcuasada — Lista para ${adultos} adultos y ${ninos} niños (${tipo})`,
       "",
@@ -130,14 +226,20 @@ export default function Calculadora({
     lines.push("", `💰 Costo estimado: $${formatMXN(total)} MXN`);
     lines.push("", "Calculado en calcuasada.mx");
     return lines.join("\n");
-  }, [adultos, ninos, tipo, results, extras, total]);
+  }, [adultos, ninos, tipo, results, extras, total, distribuidorActivo, todosAsignados, personas, assignments, activeItems]);
+
+  const warnAsignacion = () => {
+    alert("Faltan ingredientes por asignar. Asegúrate de que toda la lista esté cubierta.");
+  };
 
   const handleWhatsApp = () => {
+    if (distribuidorActivo && !todosAsignados) { warnAsignacion(); return; }
     const text = encodeURIComponent(buildShareText());
     window.open(`https://wa.me/?text=${text}`, "_blank");
   };
 
   const handlePDF = async () => {
+    if (distribuidorActivo && !todosAsignados) { warnAsignacion(); return; }
     const { jsPDF } = await import("jspdf");
     const doc = new jsPDF();
     const text = buildShareText();
@@ -145,6 +247,23 @@ export default function Calculadora({
     doc.setFontSize(12);
     doc.text(lines, 15, 20);
     doc.save("calcuasada-lista.pdf");
+  };
+
+  const handlePrint = () => {
+    if (distribuidorActivo && !todosAsignados) { warnAsignacion(); return; }
+    if (distribuidorActivo && todosAsignados) {
+      const text = buildShareText();
+      const win = window.open("", "_blank");
+      if (win) {
+        win.document.write(
+          `<pre style="font-family:sans-serif;padding:24px;white-space:pre-wrap;font-size:14px">${text}</pre>`
+        );
+        win.document.close();
+        win.print();
+      }
+      return;
+    }
+    window.print();
   };
 
   return (
@@ -388,10 +507,148 @@ export default function Calculadora({
         </div>
       </section>
 
+      {/* DISTRIBUIDOR */}
+      <section className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden print:hidden">
+        <button
+          onClick={() => setDistribuidorOpen((prev) => !prev)}
+          className="w-full flex items-center gap-2 p-5 text-left hover:bg-gray-50 transition-colors"
+        >
+          <span className="flex-1 font-bold text-gray-800 text-sm">
+            Distribuir lista de compras entre tus amigos
+          </span>
+          <span
+            title="Divide la lista entre varias personas para que cada quien sepa qué comprar"
+            onClick={(e) => e.stopPropagation()}
+            className="w-5 h-5 rounded-full bg-gray-200 text-gray-500 text-xs flex items-center justify-center font-bold flex-shrink-0 cursor-help select-none"
+          >
+            ?
+          </span>
+          <span className="text-gray-400 text-xs ml-1">
+            {distribuidorOpen ? "▲" : "▼"}
+          </span>
+        </button>
+
+        {distribuidorOpen && (
+          <div className="px-5 pb-5 space-y-4 border-t border-gray-100">
+            {/* Add person */}
+            <div className="flex gap-2 mt-4">
+              <input
+                type="text"
+                value={personaNombre}
+                onChange={(e) => setPersonaNombre(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && addPersona()}
+                placeholder="Nombre de la persona"
+                maxLength={30}
+                className="flex-1 border border-gray-300 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brasa"
+              />
+              <button
+                onClick={addPersona}
+                disabled={personas.length >= 8}
+                className="bg-brasa text-white px-4 py-2 rounded-xl text-sm font-medium hover:bg-brasa/90 disabled:opacity-40 transition-all"
+              >
+                Agregar persona
+              </button>
+            </div>
+
+            {personas.length > 0 && (
+              <div className="flex flex-wrap gap-2">
+                {personas.map((p) => (
+                  <div
+                    key={p}
+                    className="flex items-center gap-1 bg-brasa-light border border-brasa-mid rounded-full px-3 py-1"
+                  >
+                    <span className="text-sm text-brasa font-medium">{p}</span>
+                    <button
+                      onClick={() => removePersona(p)}
+                      className="text-brasa/50 hover:text-brasa text-xs ml-1 font-bold leading-none"
+                      aria-label={`Quitar a ${p}`}
+                    >
+                      ✕
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {personas.length === 1 && (
+              <p className="text-xs text-gray-400 text-center">
+                Agrega al menos una persona más para distribuir la lista.
+              </p>
+            )}
+
+            {personas.length >= 2 && (
+              <div className="space-y-3">
+                <p className="text-sm font-medium text-gray-600">¿Quién compra qué?</p>
+                <div className="divide-y divide-gray-50">
+                  {activeItems.map((item) => {
+                    const assignedTo = assignments[item.key] ?? [];
+                    const isAssigned = assignedTo.length > 0;
+                    return (
+                      <div key={item.key} className="py-3">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className={`text-sm font-medium ${isAssigned ? "text-gray-700" : "text-gray-400"}`}>
+                            {item.displayLabel}
+                          </span>
+                          <span className="text-sm text-gray-400">
+                            {item.value} {item.unit}
+                          </span>
+                        </div>
+                        <div className="flex flex-wrap gap-2">
+                          {personas.map((p) => {
+                            const checked = assignedTo.includes(p);
+                            return (
+                              <label
+                                key={p}
+                                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border cursor-pointer text-sm transition-all ${
+                                  checked
+                                    ? "bg-brasa text-white border-brasa"
+                                    : "bg-white text-gray-600 border-gray-300 hover:border-brasa/50"
+                                }`}
+                              >
+                                <input
+                                  type="checkbox"
+                                  checked={checked}
+                                  onChange={() => toggleAssignment(item.key, p)}
+                                  className="sr-only"
+                                />
+                                {p}
+                                {checked && assignedTo.length > 0 && (
+                                  <span className="text-xs opacity-75">
+                                    ({splitQty(item.value, assignedTo.length)} {item.unit})
+                                  </span>
+                                )}
+                              </label>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {!todosAsignados && (
+                  <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 text-sm text-amber-700 flex items-start gap-2">
+                    <span className="flex-shrink-0">⚠️</span>
+                    <span>Faltan ingredientes por asignar. Asegúrate de que toda la lista esté cubierta.</span>
+                  </div>
+                )}
+
+                {todosAsignados && (
+                  <div className="bg-green-50 border border-green-200 rounded-xl p-3 text-sm text-green-700 flex items-center gap-2">
+                    <span>✅</span>
+                    <span>Lista completa. Ya puedes compartir o imprimir la distribución.</span>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        )}
+      </section>
+
       {/* ACTION BUTTONS */}
       <section className="grid grid-cols-3 gap-3 print:hidden">
         <button
-          onClick={() => window.print()}
+          onClick={handlePrint}
           className="flex flex-col items-center gap-1 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-3 px-2 rounded-xl text-sm transition-all"
         >
           <span className="text-xl">🖨️</span>
