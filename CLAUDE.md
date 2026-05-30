@@ -115,6 +115,9 @@ app/
 | Nav bar y footer con links | ✅ Listo |
 | AdSense script en `<head>` | ✅ Listo |
 | Rediseño temático "Tierra y Brasa" | ✅ Listo |
+| Toggle por ingrediente en lista de compras | ✅ Listo |
+| Selector caguamas/latas para cerveza | ✅ Listo |
+| Sliders hombres/mujeres y niños/niñas | ✅ Listo |
 | Repositorio en GitHub | ✅ Listo (`main`) |
 | Deploy en Vercel | ✅ Configurado (auto-deploy desde `main`) |
 | Aprobación de Google AdSense | ⏳ Pendiente (1–7 días tras envío) |
@@ -123,6 +126,16 @@ app/
 ---
 
 ## Historial de sesiones
+
+### Sesión 5 (mayo 2026) — Mejoras a la calculadora
+- Toggle por ingrediente en la lista de compras: switch izquierdo que apaga/prende cada ítem
+- Texto por persona en gris tenue debajo de cada ingrediente (dinámico según tipo ligero/normal/tragones)
+- El estimador de costo excluye ingredientes apagados
+- Cerveza: toggle Caguamas / Latas con tagline "No puede haber carnita asada sin cervecita 🍻"
+- En modo latas: muestra número de latas + equivalente en sixpacks (≈ X sixpacks)
+- Sliders de proporción hombres/mujeres y niños/niñas debajo de cada input, centrados al 50/50 por defecto
+- Cajita resumen al final del form mostrando: X hombres · X mujeres · X niños · X niñas · Total N participantes
+- Fix: posición del círculo del switch corregida con `left-1` explícito
 
 ### Sesión 4 (mayo 2026) — Rediseño temático
 - Rediseño visual completo: concepto "Tierra y Brasa"
