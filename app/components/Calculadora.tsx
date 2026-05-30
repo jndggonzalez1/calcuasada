@@ -19,7 +19,7 @@ const EVENT_TYPES: { value: EventType; label: string; desc: string }[] = [
 ];
 
 const ADD_ON_LABELS: Record<keyof AddOns, string> = {
-  cerveza: "Cerveza (caguamas 940ml)",
+  cerveza: "🍺 Cerveza",
   refrescos: "Refrescos (botellas 2L)",
   botanas: "Botanas (bolsas de papas)",
   queso: "Queso para asar",
@@ -65,6 +65,7 @@ export default function Calculadora({
   );
   const [customPrices, setCustomPrices] = useState({ ...DEFAULT_PRICES });
   const [disabledRows, setDisabledRows] = useState<Set<keyof Results>>(new Set());
+  const [cervezaTipo, setCervezaTipo] = useState<"caguamas" | "latas">("caguamas");
 
   const toggleRow = (key: keyof Results) =>
     setDisabledRows((prev) => {
@@ -77,6 +78,9 @@ export default function Calculadora({
   const results = calcularResultados(adultos, ninos, tipo);
   const extras = calcularExtras(adultos, ninos, addOns);
   const prices = priceTab === "promedio" ? DEFAULT_PRICES : customPrices;
+
+  const cervezaLatas = Math.ceil((extras.cerveza ?? 0) * 940 / 355);
+  const cervezaSixpacks = Math.ceil(cervezaLatas / 6);
 
   const tortillasKg = results.tortillas * 0.03; // ~30g per tortilla
   const total =
@@ -206,30 +210,80 @@ export default function Calculadora({
       <section className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 print:shadow-none print:border-0">
         <h2 className="text-lg font-bold text-gray-800 mb-4">Extras opcionales</h2>
         <div className="space-y-2">
-          {(Object.keys(ADD_ON_LABELS) as (keyof AddOns)[]).map((key) => (
-            <label
-              key={key}
-              className="flex items-center gap-3 p-2 rounded-xl cursor-pointer hover:bg-gray-50"
-            >
+          {/* Cerveza — tratamiento especial */}
+          <div>
+            <label className="flex items-center gap-3 p-2 rounded-xl cursor-pointer hover:bg-gray-50">
               <input
                 type="checkbox"
-                checked={addOns[key]}
-                onChange={() => toggleAddOn(key)}
+                checked={addOns.cerveza}
+                onChange={() => toggleAddOn("cerveza")}
                 className="w-5 h-5 accent-brasa rounded"
               />
-              <span className="text-sm text-gray-700">{ADD_ON_LABELS[key]}</span>
-              {addOns[key] && (
+              <span className="text-sm text-gray-700">{ADD_ON_LABELS.cerveza}</span>
+              {addOns.cerveza && (
                 <span className="ml-auto font-bold text-brasa text-sm">
-                  {key === "cerveza" && `${extras.cerveza} caguamas`}
-                  {key === "refrescos" && `${extras.refrescos} botellas`}
-                  {key === "botanas" && `${extras.botanas} bolsas`}
-                  {key === "queso" && `${extras.queso} kg`}
-                  {key === "pollo" && `${extras.pollo} kg`}
-                  {key === "hamburguesas" && `${extras.hamburguesas} pzas`}
+                  {cervezaTipo === "caguamas"
+                    ? `${extras.cerveza} caguamas`
+                    : `${cervezaLatas} latas`}
                 </span>
               )}
             </label>
-          ))}
+            {addOns.cerveza && (
+              <div className="px-2 pt-1 pb-2 space-y-2">
+                <p className="text-xs text-gray-400 text-center italic">
+                  No puede haber carnita asada sin cervecita para acompañarla 🍻
+                </p>
+                <div className="flex justify-center">
+                  <div className="flex bg-gray-100 rounded-full p-0.5">
+                    <button
+                      onClick={() => setCervezaTipo("caguamas")}
+                      className={`px-4 py-1 rounded-full text-xs font-semibold transition-all ${cervezaTipo === "caguamas" ? "bg-white shadow-sm text-gray-800" : "text-gray-500 hover:text-gray-700"}`}
+                    >
+                      Caguamas
+                    </button>
+                    <button
+                      onClick={() => setCervezaTipo("latas")}
+                      className={`px-4 py-1 rounded-full text-xs font-semibold transition-all ${cervezaTipo === "latas" ? "bg-white shadow-sm text-gray-800" : "text-gray-500 hover:text-gray-700"}`}
+                    >
+                      Latas
+                    </button>
+                  </div>
+                </div>
+                {cervezaTipo === "latas" && (
+                  <p className="text-xs text-gray-400 text-center">
+                    ≈ {cervezaSixpacks} {cervezaSixpacks === 1 ? "sixpack" : "sixpacks"}
+                  </p>
+                )}
+              </div>
+            )}
+          </div>
+
+          {/* Resto de extras */}
+          {(Object.keys(ADD_ON_LABELS) as (keyof AddOns)[])
+            .filter((key) => key !== "cerveza")
+            .map((key) => (
+              <label
+                key={key}
+                className="flex items-center gap-3 p-2 rounded-xl cursor-pointer hover:bg-gray-50"
+              >
+                <input
+                  type="checkbox"
+                  checked={addOns[key]}
+                  onChange={() => toggleAddOn(key)}
+                  className="w-5 h-5 accent-brasa rounded"
+                />
+                <span className="text-sm text-gray-700">{ADD_ON_LABELS[key]}</span>
+                {addOns[key] && (
+                  <span className="ml-auto font-bold text-brasa text-sm">
+                    {key === "refrescos" && `${extras.refrescos} botellas`}
+                    {key === "botanas" && `${extras.botanas} bolsas`}
+                    {key === "queso" && `${extras.queso} kg`}
+                    {key === "pollo" && `${extras.pollo} kg`}
+                    {key === "hamburguesas" && `${extras.hamburguesas} pzas`}
+                  </span>
+                )}
+              </label>
+            ))}
         </div>
       </section>
 
