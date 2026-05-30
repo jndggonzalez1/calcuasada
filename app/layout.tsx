@@ -29,20 +29,17 @@ export default function RootLayout({
         <script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1068311584605438" crossOrigin="anonymous" />
       </head>
       <body className="min-h-screen">
-        <header className="bg-carbon text-white py-3 px-4 shadow-lg print:hidden">
-          <div className="max-w-lg mx-auto flex items-center gap-3">
+        <header className="bg-carbon text-white py-5 px-4 shadow-lg print:hidden">
+          <div className="max-w-lg mx-auto flex flex-col items-center gap-2">
             <Image
               src="/logo.png"
               alt="Calcuasada logo"
-              width={56}
-              height={56}
-              className="rounded-xl flex-shrink-0"
+              width={100}
+              height={100}
+              className="rounded-2xl"
               priority
             />
-            <div>
-              <p className="text-xl font-black leading-tight tracking-tight">Calcuasada</p>
-              <p className="text-white/50 text-xs">Calculadora de carne asada para México</p>
-            </div>
+            <p className="text-white/50 text-sm">Calculadora de carne asada para México</p>
           </div>
         </header>
         <nav className="bg-carbon-mid border-b border-white/5 print:hidden">
