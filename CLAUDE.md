@@ -32,20 +32,24 @@
 
 ```
 app/
-  layout.tsx                  # Root layout: header, nav, footer, AdSense <script>
+  layout.tsx                  # Root layout: header con logo, nav, footer, AdSense <script>
+  icon.png                    # Favicon del browser tab (logo de Calcuasada)
   page.tsx                    # Página principal: calculadora + secciones de contenido
   globals.css
   components/
     Calculadora.tsx            # Componente principal de la calculadora
     AdBanner.tsx               # Placeholder de anuncio de AdSense
   lib/
-    calculator.ts              # Lógica de cálculo de cantidades
+    calculator.ts              # Lógica de cálculo (usa calcuasada-config.ts)
+    calcuasada-config.ts       # Todas las constantes: proteínas, acompañantes, precios
   calculadora/
     [personas]/page.tsx        # Páginas SEO estáticas: /calculadora/10, /15, /20...
   acerca/
     page.tsx                   # Página "Acerca de" con nota personal de Yeyito
   privacidad/
     page.tsx                   # Aviso de privacidad (LFPDPPP + AdSense)
+public/
+  logo.png                    # Logo de Calcuasada (fondo transparente, usado en header)
 ```
 
 ---
@@ -53,12 +57,17 @@ app/
 ## Lo que ya está construido
 
 ### Calculadora principal (`/`)
-- Input de número de personas
-- Selector de nivel de hambre: Ligero, Normal, Tragones
-- Output: lista de compras con 9 ítems (carne, tortillas, limones, carbón, hielo, etc.)
-- Extras opcionales con checkboxes: cerveza, refrescos, botanas, queso, pollo, hamburguesas
+- 2 inputs: Adultos (default 6) y Niños/niñas, con slider ♂/♀ bajo Adultos
+- Selector de nivel de apetito: Ligero, Normal, Tragones
+- Proteínas como checkboxes en el form (Carne de res ON por default, Pollo/Salchicha/Queso OFF)
+- Lógica dinámica de pool de proteínas: gramos por tipo de persona × apetito × 14 combinaciones
+- Acompañantes calculados por tipo de persona (hombre/mujer/niño) con multiplicadores por apetito
+- Cerveza calculada en latas por tipo de persona, mostrada como six-packs o cajas
+- Botanas: reduce proteína en 5% (multiplicador 0.95)
+- 3 validaciones inline: sin personas, sin proteínas, solo queso
+- Distribuidor de lista entre amigos (hasta 8 personas, asignación por ítem, split automático)
 - Estimador de costo con modo promedio y precio personalizado
-- Botones de imprimir, PDF y compartir por WhatsApp
+- Botones de imprimir, PDF y compartir por WhatsApp (desactivados si no hay personas/proteínas)
 
 ### Secciones de contenido en la página principal
 - "Cómo usar la calculadora" — 4 pasos
@@ -71,7 +80,8 @@ app/
 - `/calculadora/[personas]` — páginas SEO estáticas para búsquedas como "carne asada para 20 personas"
 
 ### Layout global
-- Header negro carbón (`#1E1A17`) con logo 🥩🔥 y nombre Calcuasada
+- Header negro carbón (`#1E1A17`) con logo real de Calcuasada (PNG 56×56, fondo transparente) y nombre
+- Favicon del tab del browser: `app/icon.png` (detectado automáticamente por Next.js App Router)
 - Barra de navegación debajo del header (carbón profundo): links a Calculadora y Acerca como pills minimalistas
 - Footer con copyright 2026, links a Acerca y Privacidad
 - AdSense: `<script>` directo en `<head>` para visibilidad del crawler de Google
@@ -89,6 +99,9 @@ app/
 - **Sin `gh` CLI ni Homebrew:** La máquina de desarrollo no tiene `gh` ni `brew`. Los pushes se hacen con `git` directamente usando token en la URL del remote: `https://jndggonzalez1:TOKEN@github.com/jndggonzalez1/calcuasada.git`
 - **Todo el contenido en español mexicano:** Textos, metadatos, FAQ, tips — siempre en español de México, no neutro ni de España.
 - **Mobile first:** El diseño está centrado en móvil con `max-w-lg mx-auto`.
+- **Favicon via `app/icon.png`:** Next.js App Router detecta automáticamente `icon.png` en el directorio `app/`. NO crear `favicon.ico` manualmente — fallará si el PNG no es RGBA. Dejar que Next.js lo sirva solo.
+- **Constantes en `calcuasada-config.ts`:** Todos los valores numéricos (gramos de proteína, multiplicadores, precios) están en `/app/lib/calcuasada-config.ts`. Para ajustar cantidades, editar solo ese archivo.
+- **Proteínas: gramos por tipo de persona** — Ligero: hombre 200g / mujer 150g / niño 100g. Normal: 300/230/150. Tragones: 400/320/200. Estos valores fueron calibrados iterativamente por el dueño.
 
 ---
 
@@ -108,6 +121,10 @@ app/
 | Ítem | Estado |
 |------|--------|
 | Calculadora funcional | ✅ Listo |
+| Lógica dinámica de proteínas por tipo de persona | ✅ Listo |
+| Distribuidor de lista entre amigos | ✅ Listo |
+| Inputs Adultos + Niños con slider ♂/♀ | ✅ Listo |
+| Logo en header y favicon del browser | ✅ Listo |
 | Páginas SEO estáticas | ✅ Listo |
 | FAQ, tips, cómo usar | ✅ Listo |
 | Página /acerca | ✅ Listo |
@@ -115,17 +132,31 @@ app/
 | Nav bar y footer con links | ✅ Listo |
 | AdSense script en `<head>` | ✅ Listo |
 | Rediseño temático "Tierra y Brasa" | ✅ Listo |
-| Toggle por ingrediente en lista de compras | ✅ Listo |
-| Selector caguamas/latas para cerveza | ✅ Listo |
-| Sliders hombres/mujeres y niños/niñas | ✅ Listo |
+| Constantes centralizadas en calcuasada-config.ts | ✅ Listo |
 | Repositorio en GitHub | ✅ Listo (`main`) |
 | Deploy en Vercel | ✅ Configurado (auto-deploy desde `main`) |
-| Aprobación de Google AdSense | ⏳ Pendiente (1–7 días tras envío) |
+| Aprobación de Google AdSense | ⏳ Pendiente |
 | Google Search Console indexando | ⏳ En progreso |
 
 ---
 
 ## Historial de sesiones
+
+### Sesión 6 (mayo 2026) — Refactor mayor + logo
+- **Feature: Distribuidor de lista** — sección colapsable entre estimador de costo y botones de acción. Hasta 8 personas, asigna qué compra cada quien, divide cantidades (ceil), valida cobertura total antes de exportar. WhatsApp/PDF/Imprimir generan texto agrupado por persona si está activo y válido.
+- **Refactor completo de la calculadora:**
+  - 3 inputs separados (hombres/mujeres/niños) → 2 inputs (adultos con slider ♂/♀ + niños). Default 6 adultos.
+  - Proteínas movidas de "extras" al form como checkboxes: Carne de res ON, resto OFF por default
+  - Eliminado: hamburguesas, toggle caguamas/latas, sliders separados por sexo
+  - Pool dinámico de proteínas: gramos por tipo de persona × nivel de apetito, distribuidos según 14 combinaciones activas
+  - Acompañantes recalculados por tipo de persona (hombre/mujer/niño) con multiplicadores propios
+  - Cerveza: latas por tipo de persona por nivel, redondeado a six-pack, mostrado como six-packs o cajas
+  - Botanas: multiplica proteína total × 0.95
+  - 3 validaciones inline (no alerts): sin personas, sin proteínas, solo queso
+  - Constantes centralizadas en `/app/lib/calcuasada-config.ts`
+- **Ajuste de gramos de proteína** — valores reducidos: Ligero 200/150/100g, Normal 300/230/150g, Tragones 400/320/200g (hombre/mujer/niño). Los valores originales eran demasiado altos.
+- **Logo en header** — reemplaza el emoji 🥩🔥 con el logo real PNG (56×56, fondo transparente)
+- **Favicon del browser tab** — `app/icon.png` detectado automáticamente por Next.js App Router. Nota: no crear `favicon.ico` manualmente (falla si no es RGBA)
 
 ### Sesión 5 (mayo 2026) — Mejoras a la calculadora
 - Toggle por ingrediente en la lista de compras: switch izquierdo que apaga/prende cada ítem
