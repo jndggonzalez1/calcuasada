@@ -5,8 +5,10 @@ import {
   calcularResultados,
   calcularExtras,
   DEFAULT_PRICES,
+  MULTIPLIERS,
   type EventType,
   type AddOns,
+  type Results,
 } from "../lib/calculator";
 import AdBanner from "./AdBanner";
 
@@ -62,6 +64,15 @@ export default function Calculadora({
     "promedio"
   );
   const [customPrices, setCustomPrices] = useState({ ...DEFAULT_PRICES });
+  const [disabledRows, setDisabledRows] = useState<Set<keyof Results>>(new Set());
+
+  const toggleRow = (key: keyof Results) =>
+    setDisabledRows((prev) => {
+      const next = new Set(prev);
+      if (next.has(key)) next.delete(key); else next.add(key);
+      return next;
+    });
+  const isEnabled = (key: keyof Results) => !disabledRows.has(key);
 
   const results = calcularResultados(adultos, ninos, tipo);
   const extras = calcularExtras(adultos, ninos, addOns);
@@ -69,11 +80,11 @@ export default function Calculadora({
 
   const tortillasKg = results.tortillas * 0.03; // ~30g per tortilla
   const total =
-    results.carne * prices.carne +
-    results.salchicha * prices.salchicha +
-    tortillasKg * prices.tortillas +
-    results.carbon * prices.carbon +
-    results.hielo * prices.hielo +
+    (isEnabled("carne") ? results.carne * prices.carne : 0) +
+    (isEnabled("salchicha") ? results.salchicha * prices.salchicha : 0) +
+    (isEnabled("tortillas") ? tortillasKg * prices.tortillas : 0) +
+    (isEnabled("carbon") ? results.carbon * prices.carbon : 0) +
+    (isEnabled("hielo") ? results.hielo * prices.hielo : 0) +
     (extras.cerveza ?? 0) * prices.cerveza +
     (extras.pollo ?? 0) * prices.pollo +
     (extras.queso ?? 0) * prices.queso;
@@ -179,15 +190,15 @@ export default function Calculadora({
       <section className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 print:shadow-none print:border-0">
         <h2 className="text-lg font-bold text-gray-800 mb-4">Lista de compras</h2>
         <div className="divide-y divide-gray-50">
-          <ResultRow label="🥩 Carne de res" value={results.carne} unit="kg" />
-          <ResultRow label="🌭 Salchicha para asar" value={results.salchicha} unit="kg" />
-          <ResultRow label="🫓 Tortillas" value={results.tortillas} unit="pzas" />
-          <ResultRow label="🧅 Cebollas" value={results.cebollas} unit="pzas" />
-          <ResultRow label="🍋 Limones" value={results.limones} unit="pzas" />
-          <ResultRow label="🥑 Aguacates" value={results.aguacates} unit="pzas" />
-          <ResultRow label="🫙 Salsa" value={results.salsa} unit="litros" />
-          <ResultRow label="🪨 Carbón" value={results.carbon} unit="kg" />
-          <ResultRow label="🧊 Hielo" value={results.hielo} unit="kg" />
+          <ResultRow label="🥩 Carne de res" perPerson={perPersonaText("carne", tipo)} value={results.carne} unit="kg" enabled={isEnabled("carne")} onToggle={() => toggleRow("carne")} />
+          <ResultRow label="🌭 Salchicha para asar" perPerson={perPersonaText("salchicha", tipo)} value={results.salchicha} unit="kg" enabled={isEnabled("salchicha")} onToggle={() => toggleRow("salchicha")} />
+          <ResultRow label="🫓 Tortillas" perPerson={perPersonaText("tortillas", tipo)} value={results.tortillas} unit="pzas" enabled={isEnabled("tortillas")} onToggle={() => toggleRow("tortillas")} />
+          <ResultRow label="🧅 Cebollas" perPerson={perPersonaText("cebollas", tipo)} value={results.cebollas} unit="pzas" enabled={isEnabled("cebollas")} onToggle={() => toggleRow("cebollas")} />
+          <ResultRow label="🍋 Limones" perPerson={perPersonaText("limones", tipo)} value={results.limones} unit="pzas" enabled={isEnabled("limones")} onToggle={() => toggleRow("limones")} />
+          <ResultRow label="🥑 Aguacates" perPerson={perPersonaText("aguacates", tipo)} value={results.aguacates} unit="pzas" enabled={isEnabled("aguacates")} onToggle={() => toggleRow("aguacates")} />
+          <ResultRow label="🫙 Salsa" perPerson={perPersonaText("salsa", tipo)} value={results.salsa} unit="litros" enabled={isEnabled("salsa")} onToggle={() => toggleRow("salsa")} />
+          <ResultRow label="🪨 Carbón" perPerson={perPersonaText("carbon", tipo)} value={results.carbon} unit="kg" enabled={isEnabled("carbon")} onToggle={() => toggleRow("carbon")} />
+          <ResultRow label="🧊 Hielo" perPerson={perPersonaText("hielo", tipo)} value={results.hielo} unit="kg" enabled={isEnabled("hielo")} onToggle={() => toggleRow("hielo")} />
         </div>
       </section>
 
@@ -308,20 +319,51 @@ export default function Calculadora({
 
 function ResultRow({
   label,
+  perPerson,
   value,
   unit,
+  enabled,
+  onToggle,
 }: {
   label: string;
+  perPerson: string;
   value: number;
   unit: string;
+  enabled: boolean;
+  onToggle: () => void;
 }) {
   return (
-    <div className="flex items-center justify-between py-3">
-      <span className="text-gray-700">{label}</span>
-      <span className="text-2xl font-black text-gray-900 tabular-nums">
+    <div className={`flex items-center gap-3 py-3 transition-opacity ${!enabled ? "opacity-35" : ""}`}>
+      <button
+        onClick={onToggle}
+        className={`relative w-10 h-6 rounded-full transition-colors flex-shrink-0 ${enabled ? "bg-brasa" : "bg-gray-300"}`}
+        aria-label={enabled ? "Desactivar" : "Activar"}
+      >
+        <span className={`absolute top-1 w-4 h-4 rounded-full bg-white shadow-sm transition-transform ${enabled ? "translate-x-5" : "translate-x-1"}`} />
+      </button>
+      <div className="flex-1 min-w-0">
+        <p className={`text-gray-700 text-sm leading-tight ${!enabled ? "line-through" : ""}`}>{label}</p>
+        <p className="text-xs text-gray-400 mt-0.5">{perPerson}</p>
+      </div>
+      <span className="text-2xl font-black text-gray-900 tabular-nums flex-shrink-0">
         {value}{" "}
         <span className="text-sm font-medium text-gray-500">{unit}</span>
       </span>
     </div>
   );
+}
+
+function perPersonaText(key: keyof Results, tipo: EventType): string {
+  const m = MULTIPLIERS[tipo];
+  switch (key) {
+    case "carne":    return `~${m.carne * 1000}g por persona`;
+    case "salchicha": return `~${m.salchicha * 1000}g por persona`;
+    case "tortillas": return `~${m.tortillas} por persona`;
+    case "cebollas":  return `~1 cada ${Math.round(1 / m.cebollas)} personas`;
+    case "limones":   return `~${m.limones} por persona`;
+    case "aguacates": return `~1 cada ${Math.round(1 / m.aguacates)} personas`;
+    case "salsa":     return `~${m.salsa * 1000}ml por persona`;
+    case "carbon":    return `~${m.carbon * 1000}g por persona`;
+    case "hielo":     return `~${m.hielo} kg por persona`;
+  }
 }
