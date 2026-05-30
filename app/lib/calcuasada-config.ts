@@ -2,9 +2,9 @@ export type EventType = "ligero" | "normal" | "tragones";
 
 // Gramos de proteína base por tipo de persona según nivel de apetito
 export const BASE_PROTEIN_G: Record<EventType, { hombre: number; mujer: number; nino: number }> = {
-  ligero:   { hombre: 300, mujer: 230, nino: 150 },
-  normal:   { hombre: 400, mujer: 320, nino: 200 },
-  tragones: { hombre: 550, mujer: 430, nino: 280 },
+  ligero:   { hombre: 200, mujer: 150, nino: 100 },
+  normal:   { hombre: 300, mujer: 230, nino: 150 },
+  tragones: { hombre: 400, mujer: 320, nino: 200 },
 };
 
 // Proporción de la proteína total asignada a cada proteína activa
