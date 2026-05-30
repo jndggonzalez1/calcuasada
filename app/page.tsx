@@ -126,14 +126,14 @@ export default function HomePage() {
       <AdBanner />
 
       {/* Cómo usar */}
-      <section className="bg-orange-50 rounded-2xl p-5">
+      <section className="bg-brasa-light rounded-2xl p-5">
         <h2 className="text-lg font-black text-gray-900 mb-4">
           ¿Cómo usar la calculadora?
         </h2>
         <ol className="space-y-3">
           {pasos.map((paso) => (
             <li key={paso.num} className="flex gap-3">
-              <span className="flex-shrink-0 w-7 h-7 rounded-full bg-orange-500 text-white text-sm font-black flex items-center justify-center">
+              <span className="flex-shrink-0 w-7 h-7 rounded-full bg-brasa text-white text-sm font-black flex items-center justify-center">
                 {paso.num}
               </span>
               <div>

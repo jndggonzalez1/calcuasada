@@ -1,13 +1,20 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f9fafb;
-  --foreground: #111827;
+  --background: #FAF5EE;
+  --foreground: #2D1A0E;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-brasa: #B83A2A;
+  --color-brasa-hover: #9E3022;
+  --color-brasa-light: #FDF0EC;
+  --color-brasa-mid: #DBA898;
+  --color-carbon: #1E1A17;
+  --color-carbon-mid: #2C2520;
+  --color-masa: #FAF5EE;
 }
 
 body {

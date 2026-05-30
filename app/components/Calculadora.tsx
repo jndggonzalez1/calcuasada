@@ -138,7 +138,7 @@ export default function Calculadora({
               min={0}
               value={adultos}
               onChange={(e) => setAdultos(Math.max(0, parseInt(e.target.value) || 0))}
-              className="border border-gray-300 rounded-xl px-4 py-3 text-xl font-bold text-center focus:outline-none focus:ring-2 focus:ring-orange-400"
+              className="border border-gray-300 rounded-xl px-4 py-3 text-xl font-bold text-center focus:outline-none focus:ring-2 focus:ring-brasa"
             />
           </label>
           <label className="flex flex-col gap-1">
@@ -148,7 +148,7 @@ export default function Calculadora({
               min={0}
               value={ninos}
               onChange={(e) => setNinos(Math.max(0, parseInt(e.target.value) || 0))}
-              className="border border-gray-300 rounded-xl px-4 py-3 text-xl font-bold text-center focus:outline-none focus:ring-2 focus:ring-orange-400"
+              className="border border-gray-300 rounded-xl px-4 py-3 text-xl font-bold text-center focus:outline-none focus:ring-2 focus:ring-brasa"
             />
           </label>
         </div>
@@ -161,8 +161,8 @@ export default function Calculadora({
               onClick={() => setTipo(value)}
               className={`rounded-xl border-2 p-3 text-center transition-all ${
                 tipo === value
-                  ? "border-orange-500 bg-orange-50 text-orange-700"
-                  : "border-gray-200 text-gray-600 hover:border-orange-300"
+                  ? "border-brasa bg-brasa-light text-brasa"
+                  : "border-gray-200 text-gray-600 hover:border-brasa/40"
               }`}
             >
               <div className="font-bold text-sm">{label}</div>
@@ -204,11 +204,11 @@ export default function Calculadora({
                 type="checkbox"
                 checked={addOns[key]}
                 onChange={() => toggleAddOn(key)}
-                className="w-5 h-5 accent-orange-500 rounded"
+                className="w-5 h-5 accent-brasa rounded"
               />
               <span className="text-sm text-gray-700">{ADD_ON_LABELS[key]}</span>
               {addOns[key] && (
-                <span className="ml-auto font-bold text-orange-600 text-sm">
+                <span className="ml-auto font-bold text-brasa text-sm">
                   {key === "cerveza" && `${extras.cerveza} caguamas`}
                   {key === "refrescos" && `${extras.refrescos} botellas`}
                   {key === "botanas" && `${extras.botanas} bolsas`}
@@ -232,7 +232,7 @@ export default function Calculadora({
               onClick={() => setPriceTab(tab)}
               className={`flex-1 py-2 rounded-xl text-sm font-medium transition-all ${
                 priceTab === tab
-                  ? "bg-orange-500 text-white"
+                  ? "bg-brasa text-white"
                   : "bg-gray-100 text-gray-600 hover:bg-gray-200"
               }`}
             >
@@ -266,13 +266,13 @@ export default function Calculadora({
           </div>
         )}
 
-        <div className="bg-orange-50 border border-orange-200 rounded-xl p-4 text-center">
-          <p className="text-sm text-orange-700 mb-1">Tu carne asada costará aproximadamente</p>
-          <p className="text-4xl font-black text-orange-600">
+        <div className="bg-brasa-light border border-brasa-mid rounded-xl p-4 text-center">
+          <p className="text-sm text-brasa mb-1">Tu carne asada costará aproximadamente</p>
+          <p className="text-4xl font-black text-brasa">
             ${formatMXN(total)}{" "}
             <span className="text-xl font-bold">MXN</span>
           </p>
-          <p className="text-xs text-orange-500 mt-1">
+          <p className="text-xs text-brasa/70 mt-1">
             ${formatMXN(total / Math.max(adultos + ninos, 1))} por persona
           </p>
         </div>
