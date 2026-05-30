@@ -66,6 +66,8 @@ export default function Calculadora({
   const [customPrices, setCustomPrices] = useState({ ...DEFAULT_PRICES });
   const [disabledRows, setDisabledRows] = useState<Set<keyof Results>>(new Set());
   const [cervezaTipo, setCervezaTipo] = useState<"caguamas" | "latas">("caguamas");
+  const [sliderAdultos, setSliderAdultos] = useState(50);
+  const [sliderNinos, setSliderNinos] = useState(50);
 
   const toggleRow = (key: keyof Results) =>
     setDisabledRows((prev) => {
@@ -81,6 +83,11 @@ export default function Calculadora({
 
   const cervezaLatas = Math.ceil((extras.cerveza ?? 0) * 940 / 355);
   const cervezaSixpacks = Math.ceil(cervezaLatas / 6);
+
+  const mujeres = Math.round(adultos * sliderAdultos / 100);
+  const hombres = adultos - mujeres;
+  const ninas = Math.round(ninos * sliderNinos / 100);
+  const ninosMasc = ninos - ninas;
 
   const tortillasKg = results.tortillas * 0.03; // ~30g per tortilla
   const total =
@@ -145,27 +152,65 @@ export default function Calculadora({
       {/* FORM */}
       <section className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 print:shadow-none print:border-0">
         <h2 className="text-lg font-bold text-gray-800 mb-4">¿Cuántos van?</h2>
-        <div className="grid grid-cols-2 gap-4 mb-5">
-          <label className="flex flex-col gap-1">
-            <span className="text-sm font-medium text-gray-600">Adultos</span>
+        <div className="grid grid-cols-2 gap-4 mb-3">
+          <div className="flex flex-col gap-1">
+            <label htmlFor="adultos" className="text-sm font-medium text-gray-600">Adultos</label>
             <input
+              id="adultos"
               type="number"
               min={0}
               value={adultos}
               onChange={(e) => setAdultos(Math.max(0, parseInt(e.target.value) || 0))}
               className="border border-gray-300 rounded-xl px-4 py-3 text-xl font-bold text-center focus:outline-none focus:ring-2 focus:ring-brasa"
             />
-          </label>
-          <label className="flex flex-col gap-1">
-            <span className="text-sm font-medium text-gray-600">Niños</span>
+            <div className="mt-1">
+              <input
+                type="range"
+                min={0}
+                max={100}
+                value={sliderAdultos}
+                onChange={(e) => setSliderAdultos(Number(e.target.value))}
+                className="w-full accent-brasa"
+                disabled={adultos === 0}
+              />
+              <div className="flex justify-between text-xs text-gray-400 mt-0.5">
+                <span>♂ {hombres}</span>
+                <span>{mujeres} ♀</span>
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col gap-1">
+            <label htmlFor="ninos" className="text-sm font-medium text-gray-600">Niños</label>
             <input
+              id="ninos"
               type="number"
               min={0}
               value={ninos}
               onChange={(e) => setNinos(Math.max(0, parseInt(e.target.value) || 0))}
               className="border border-gray-300 rounded-xl px-4 py-3 text-xl font-bold text-center focus:outline-none focus:ring-2 focus:ring-brasa"
             />
-          </label>
+            <div className="mt-1">
+              <input
+                type="range"
+                min={0}
+                max={100}
+                value={sliderNinos}
+                onChange={(e) => setSliderNinos(Number(e.target.value))}
+                className="w-full accent-brasa"
+                disabled={ninos === 0}
+              />
+              <div className="flex justify-between text-xs text-gray-400 mt-0.5">
+                <span>♂ {ninosMasc}</span>
+                <span>{ninas} ♀</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-gray-50 rounded-xl px-4 py-3 mb-4 text-sm text-gray-500 text-center leading-relaxed">
+          <span className="font-semibold text-gray-700">{hombres} hombres · {mujeres} mujeres · {ninosMasc} niños · {ninas} niñas</span>
+          <br />
+          <span className="text-xs">Total: <span className="font-bold text-gray-700">{adultos + ninos}</span> participantes</span>
         </div>
 
         <p className="text-sm font-medium text-gray-600 mb-2">Tipo de carne asada</p>
