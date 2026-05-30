@@ -90,8 +90,7 @@ interface ActiveItem {
 // ── Component props ───────────────────────────────────────────────────────────
 
 interface Props {
-  defaultHombres?: number;
-  defaultMujeres?: number;
+  defaultAdultos?: number;
   defaultNinos?: number;
   defaultTipo?: EventType;
 }
@@ -99,14 +98,13 @@ interface Props {
 // ── Main component ────────────────────────────────────────────────────────────
 
 export default function Calculadora({
-  defaultHombres = 5,
-  defaultMujeres = 5,
+  defaultAdultos = 6,
   defaultNinos = 0,
   defaultTipo = "normal",
 }: Props) {
-  const [hombres, setHombres] = useState(defaultHombres);
-  const [mujeres, setMujeres] = useState(defaultMujeres);
+  const [adultos, setAdultos] = useState(defaultAdultos);
   const [ninos, setNinos] = useState(defaultNinos);
+  const [sliderAdultos, setSliderAdultos] = useState(50); // % de mujeres
   const [tipo, setTipo] = useState<EventType>(defaultTipo);
   const [proteinas, setProteinas] = useState<Proteinas>({
     res: true, pollo: false, salchicha: false, queso: false,
@@ -126,7 +124,9 @@ export default function Calculadora({
 
   // ── Derived values ──────────────────────────────────────────────────────────
 
-  const totalPersonas = hombres + mujeres + ninos;
+  const mujeres = Math.round(adultos * sliderAdultos / 100);
+  const hombres = adultos - mujeres;
+  const totalPersonas = adultos + ninos;
   const sinPersonas   = totalPersonas === 0;
   const sinProteinas  = !proteinas.res && !proteinas.pollo && !proteinas.salchicha && !proteinas.queso;
   const soloQueso     = proteinas.queso && !proteinas.res && !proteinas.pollo && !proteinas.salchicha;
@@ -232,7 +232,7 @@ export default function Calculadora({
     }
 
     const lines: string[] = [
-      `🥩 Calcuasada — Lista para ${hombres} hombres, ${mujeres} mujeres y ${ninos} niños/niñas`,
+      `🥩 Calcuasada — Lista para ${adultos} adultos (${hombres}♂ ${mujeres}♀) y ${ninos} niños/niñas`,
       `Nivel: ${tipo.charAt(0).toUpperCase() + tipo.slice(1)}`,
       "",
     ];
@@ -307,25 +307,45 @@ export default function Calculadora({
       <section className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 print:shadow-none print:border-0">
         <h2 className="text-lg font-bold text-gray-800 mb-4">¿Cuántos van?</h2>
 
-        {/* 3 person inputs */}
-        <div className="grid grid-cols-3 gap-3 mb-3">
-          {([
-            { id: "hombres", label: "Hombres adultos", val: hombres, set: setHombres },
-            { id: "mujeres", label: "Mujeres adultas", val: mujeres, set: setMujeres },
-            { id: "ninos",   label: "Niños/niñas",     val: ninos,   set: setNinos   },
-          ] as const).map(({ id, label, val, set }) => (
-            <div key={id} className="flex flex-col gap-1">
-              <label htmlFor={id} className="text-xs font-medium text-gray-600 leading-tight">{label}</label>
+        {/* Adultos + Niños inputs */}
+        <div className="grid grid-cols-2 gap-4 mb-3">
+          <div className="flex flex-col gap-1">
+            <label htmlFor="adultos" className="text-sm font-medium text-gray-600">Adultos</label>
+            <input
+              id="adultos"
+              type="number"
+              min={0}
+              value={adultos}
+              onChange={e => setAdultos(Math.max(0, parseInt(e.target.value) || 0))}
+              className="border border-gray-300 rounded-xl px-4 py-3 text-xl font-bold text-center focus:outline-none focus:ring-2 focus:ring-brasa"
+            />
+            <div className="mt-1">
               <input
-                id={id}
-                type="number"
+                type="range"
                 min={0}
-                value={val}
-                onChange={e => (set as (n: number) => void)(Math.max(0, parseInt(e.target.value) || 0))}
-                className="border border-gray-300 rounded-xl px-2 py-3 text-xl font-bold text-center focus:outline-none focus:ring-2 focus:ring-brasa"
+                max={100}
+                value={sliderAdultos}
+                onChange={e => setSliderAdultos(Number(e.target.value))}
+                className="w-full accent-brasa"
+                disabled={adultos === 0}
               />
+              <div className="flex justify-between text-xs text-gray-400 mt-0.5">
+                <span>♂ {hombres}</span>
+                <span>{mujeres} ♀</span>
+              </div>
             </div>
-          ))}
+          </div>
+          <div className="flex flex-col gap-1">
+            <label htmlFor="ninos" className="text-sm font-medium text-gray-600">Niños/niñas</label>
+            <input
+              id="ninos"
+              type="number"
+              min={0}
+              value={ninos}
+              onChange={e => setNinos(Math.max(0, parseInt(e.target.value) || 0))}
+              className="border border-gray-300 rounded-xl px-4 py-3 text-xl font-bold text-center focus:outline-none focus:ring-2 focus:ring-brasa"
+            />
+          </div>
         </div>
 
         {/* Summary */}

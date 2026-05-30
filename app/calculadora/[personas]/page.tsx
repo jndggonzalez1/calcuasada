@@ -36,8 +36,6 @@ export default async function PersonasPage({
   }
 
   const r = calcularParaPersonas(n);
-  const hombres = Math.round(n / 2);
-  const mujeres = n - hombres;
 
   return (
     <>
@@ -58,7 +56,7 @@ export default async function PersonasPage({
         </p>
       </div>
 
-      <Calculadora defaultHombres={hombres} defaultMujeres={mujeres} defaultNinos={0} defaultTipo="normal" />
+      <Calculadora defaultAdultos={n} defaultNinos={0} defaultTipo="normal" />
 
       <AdBanner />
     </>
