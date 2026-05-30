@@ -1,130 +1,144 @@
-export type EventType = "ligero" | "normal" | "tragones";
+import type { EventType } from "./calcuasada-config";
+import {
+  BASE_PROTEIN_G,
+  PROTEIN_DISTRIBUTION,
+  BOTANAS_PROTEIN_MULTIPLIER,
+  BASE_ACOMPS,
+  ACOMP_MULTIPLIERS,
+  CERVEZA_LATAS,
+} from "./calcuasada-config";
 
-export interface Multipliers {
-  carne: number;
-  salchicha: number;
-  tortillas: number;
-  cebollas: number;
-  limones: number;
-  aguacates: number;
-  salsa: number;
-  carbon: number;
-  hielo: number;
+export type { EventType } from "./calcuasada-config";
+export { DEFAULT_PRICES } from "./calcuasada-config";
+
+export interface Proteinas {
+  res: boolean;
+  pollo: boolean;
+  salchicha: boolean;
+  queso: boolean;
 }
 
-export const MULTIPLIERS: Record<EventType, Multipliers> = {
-  ligero: {
-    carne: 0.25,
-    salchicha: 0.1,
-    tortillas: 6,
-    cebollas: 0.3,
-    limones: 1,
-    aguacates: 0.3,
-    salsa: 0.05,
-    carbon: 0.5,
-    hielo: 0.8,
-  },
-  normal: {
-    carne: 0.35,
-    salchicha: 0.15,
-    tortillas: 8,
-    cebollas: 0.4,
-    limones: 1.5,
-    aguacates: 0.4,
-    salsa: 0.07,
-    carbon: 0.7,
-    hielo: 1.0,
-  },
-  tragones: {
-    carne: 0.5,
-    salchicha: 0.2,
-    tortillas: 12,
-    cebollas: 0.5,
-    limones: 2,
-    aguacates: 0.5,
-    salsa: 0.1,
-    carbon: 1.0,
-    hielo: 1.5,
-  },
-};
-
-export interface Results {
-  carne: number;
-  salchicha: number;
-  tortillas: number;
-  cebollas: number;
-  limones: number;
-  aguacates: number;
-  salsa: number;
-  carbon: number;
-  hielo: number;
-}
-
-export function calcularResultados(
-  adultos: number,
-  ninos: number,
-  tipo: EventType
-): Results {
-  const personas = adultos + ninos * 0.5;
-  const m = MULTIPLIERS[tipo];
-  return {
-    carne: round2(personas * m.carne),
-    salchicha: round2(personas * m.salchicha),
-    tortillas: Math.ceil(personas * m.tortillas),
-    cebollas: Math.ceil(personas * m.cebollas),
-    limones: Math.ceil(personas * m.limones),
-    aguacates: Math.ceil(personas * m.aguacates),
-    salsa: round2(personas * m.salsa),
-    carbon: round2(personas * m.carbon),
-    hielo: round2(personas * m.hielo),
-  };
-}
-
-function round2(n: number) {
-  return Math.round(n * 100) / 100;
-}
-
-export interface AddOns {
+export interface Extras {
   cerveza: boolean;
   refrescos: boolean;
   botanas: boolean;
-  queso: boolean;
-  pollo: boolean;
-  hamburguesas: boolean;
 }
 
-export interface AddOnResults {
-  cerveza?: number;
-  refrescos?: number;
-  botanas?: number;
-  queso?: number;
-  pollo?: number;
-  hamburguesas?: number;
+export interface Results {
+  res?: number;         // kg, redondeado a 0.1
+  pollo?: number;       // kg, redondeado a 0.1
+  salchicha?: number;   // kg, redondeado a 0.1
+  queso?: number;       // kg, redondeado a 0.1
+  tortillas: number;    // pzas, múltiplo de 10
+  cebolla: number;      // pzas, entero (ceil)
+  limon: number;        // pzas, entero (ceil)
+  aguacate: number;     // pzas, entero (ceil)
+  salsa: number;        // ml, redondeado a 250/500/1000+
+  carbon: number;       // kg, nearest 0.5
+  hielo: number;        // kg, nearest 0.5
+  cerveza?: number;     // latas, múltiplo de 6
+  refrescos?: number;   // botellas 2L
 }
 
-export function calcularExtras(
-  adultos: number,
+// ── Rounding helpers ─────────────────────────────────────────────────────────
+
+function roundToTen(n: number): number {
+  return Math.ceil(n / 10) * 10;
+}
+
+function roundToHalf(n: number): number {
+  return Math.ceil(n * 2) / 2;
+}
+
+function roundSalsa(ml: number): number {
+  if (ml <= 250) return 250;
+  if (ml <= 500) return 500;
+  return Math.ceil(ml / 1000) * 1000;
+}
+
+function roundProteinKg(grams: number): number {
+  return Math.round(grams / 100) / 10;
+}
+
+// ── Main calculation ──────────────────────────────────────────────────────────
+
+export function calcular(
+  hombres: number,
+  mujeres: number,
   ninos: number,
-  addOns: AddOns
-): AddOnResults {
-  const totalPersonas = adultos + ninos;
-  const result: AddOnResults = {};
-  if (addOns.cerveza) result.cerveza = Math.ceil(adultos / 2);
-  if (addOns.refrescos) result.refrescos = Math.ceil(totalPersonas / 4);
-  if (addOns.botanas) result.botanas = Math.ceil(totalPersonas / 6);
-  if (addOns.queso) result.queso = round2(totalPersonas * 0.1);
-  if (addOns.pollo) result.pollo = round2(totalPersonas * 0.2);
-  if (addOns.hamburguesas) result.hamburguesas = Math.ceil(adultos / 2);
-  return result;
+  tipo: EventType,
+  proteinas: Proteinas,
+  extras: Extras
+): Results {
+  const baseG = BASE_PROTEIN_G[tipo];
+  const totalGrams = hombres * baseG.hombre + mujeres * baseG.mujer + ninos * baseG.nino;
+  const adjustedGrams =
+    totalGrams * (extras.botanas ? BOTANAS_PROTEIN_MULTIPLIER.on : BOTANAS_PROTEIN_MULTIPLIER.off);
+
+  const parts: string[] = [];
+  if (proteinas.res) parts.push("res");
+  if (proteinas.pollo) parts.push("pollo");
+  if (proteinas.salchicha) parts.push("salchicha");
+  if (proteinas.queso) parts.push("queso");
+  const dist = parts.length > 0 ? PROTEIN_DISTRIBUTION[parts.join("_")] : null;
+
+  const m = ACOMP_MULTIPLIERS;
+  const b = BASE_ACOMPS;
+
+  const tortillasRaw =
+    (hombres * b.tortillas.hombre + mujeres * b.tortillas.mujer + ninos * b.tortillas.nino) * m.tortillas[tipo];
+  const cebollaRaw =
+    (hombres * b.cebolla.hombre + mujeres * b.cebolla.mujer + ninos * b.cebolla.nino) * m.cebolla[tipo];
+  let limonRaw =
+    (hombres * b.limon.hombre + mujeres * b.limon.mujer + ninos * b.limon.nino) * m.limon[tipo];
+  if (extras.cerveza) limonRaw *= 1.15;
+  const aguacateRaw =
+    (hombres * b.aguacate.hombre + mujeres * b.aguacate.mujer + ninos * b.aguacate.nino) * m.aguacate[tipo];
+  const salsaRaw =
+    (hombres * b.salsa.hombre + mujeres * b.salsa.mujer + ninos * b.salsa.nino) * m.salsa[tipo];
+  const carbonRaw =
+    (hombres * b.carbon.hombre + mujeres * b.carbon.mujer + ninos * b.carbon.nino) * m.carbon[tipo];
+  let hieloRaw =
+    (hombres * b.hielo.hombre + mujeres * b.hielo.mujer + ninos * b.hielo.nino) * m.hielo[tipo];
+  if (extras.cerveza) hieloRaw *= 1.4;
+
+  const cervezaRates = CERVEZA_LATAS[tipo];
+  const cervezaLatasRaw = hombres * cervezaRates.hombre + mujeres * cervezaRates.mujer;
+  const totalPersonas = hombres + mujeres + ninos;
+
+  return {
+    res:      dist && proteinas.res      ? roundProteinKg(adjustedGrams * dist.res)      : undefined,
+    pollo:    dist && proteinas.pollo    ? roundProteinKg(adjustedGrams * dist.pollo)    : undefined,
+    salchicha:dist && proteinas.salchicha? roundProteinKg(adjustedGrams * dist.salchicha): undefined,
+    queso:    dist && proteinas.queso    ? roundProteinKg(adjustedGrams * dist.queso)    : undefined,
+    tortillas: roundToTen(tortillasRaw),
+    cebolla:   Math.ceil(cebollaRaw),
+    limon:     Math.ceil(limonRaw),
+    aguacate:  Math.ceil(aguacateRaw),
+    salsa:     roundSalsa(salsaRaw),
+    carbon:    roundToHalf(carbonRaw),
+    hielo:     roundToHalf(hieloRaw),
+    cerveza:   extras.cerveza   ? Math.ceil(cervezaLatasRaw / 6) * 6         : undefined,
+    refrescos: extras.refrescos ? Math.ceil(totalPersonas / 4)               : undefined,
+  };
 }
 
-export const DEFAULT_PRICES: Record<string, number> = {
-  carne: 280,
-  salchicha: 120,
-  tortillas: 30,
-  carbon: 35,
-  hielo: 25,
-  cerveza: 35,
-  pollo: 90,
-  queso: 180,
-};
+// ── Compatibility helper for SEO static pages ────────────────────────────────
+
+export function calcularParaPersonas(n: number) {
+  const hombres = Math.round(n / 2);
+  const mujeres = n - hombres;
+  const r = calcular(
+    hombres, mujeres, 0, "normal",
+    { res: true, pollo: false, salchicha: false, queso: false },
+    { cerveza: false, refrescos: false, botanas: false }
+  );
+  return {
+    res:      r.res ?? 0,
+    tortillas: r.tortillas,
+    limon:    r.limon,
+    aguacate: r.aguacate,
+    carbon:   r.carbon,
+    hielo:    r.hielo,
+  };
+}

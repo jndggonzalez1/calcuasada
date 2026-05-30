@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Calculadora from "../../components/Calculadora";
 import AdBanner from "../../components/AdBanner";
-import { calcularResultados } from "../../lib/calculator";
+import { calcularParaPersonas } from "../../lib/calculator";
 
 const PERSONAS_VALIDAS = [10, 15, 20, 25, 30, 40, 50];
 
@@ -35,7 +35,9 @@ export default async function PersonasPage({
     notFound();
   }
 
-  const results = calcularResultados(n, 0, "normal");
+  const r = calcularParaPersonas(n);
+  const hombres = Math.round(n / 2);
+  const mujeres = n - hombres;
 
   return (
     <>
@@ -48,15 +50,15 @@ export default async function PersonasPage({
         <p className="text-gray-600 text-sm mt-2 leading-relaxed">
           Para una carne asada de <strong>{n} personas</strong> en modo Normal
           necesitas aproximadamente{" "}
-          <strong>{results.carne} kg de carne de res</strong>,{" "}
-          {results.tortillas} tortillas, {results.limones} limones,{" "}
-          {results.aguacates} aguacates, {results.carbon} kg de carbón y{" "}
-          {results.hielo} kg de hielo. Ajusta las cantidades según si comes
+          <strong>{r.res} kg de carne de res</strong>,{" "}
+          {r.tortillas} tortillas, {r.limon} limones,{" "}
+          {r.aguacate} aguacates, {r.carbon} kg de carbón y{" "}
+          {r.hielo} kg de hielo. Ajusta las cantidades según si comes
           ligero o son unos tragones con la calculadora de abajo.
         </p>
       </div>
 
-      <Calculadora defaultAdultos={n} defaultNinos={0} defaultTipo="normal" />
+      <Calculadora defaultHombres={hombres} defaultMujeres={mujeres} defaultNinos={0} defaultTipo="normal" />
 
       <AdBanner />
     </>
