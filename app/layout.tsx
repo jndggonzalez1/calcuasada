@@ -35,8 +35,8 @@ export default function RootLayout({
         <header
           className="py-5 px-4 print:hidden"
           style={{
-            background: 'linear-gradient(180deg, #D4C8BC 0%, #B09888 45%, #8C7262 100%)',
-            boxShadow: '0 4px 14px rgba(0,0,0,0.22), inset 0 1px 0 rgba(255,255,255,0.55)',
+            background: 'linear-gradient(180deg, #E2E2E6 0%, #C8C8CE 40%, #B0B0B8 100%)',
+            boxShadow: '0 4px 14px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.85)',
           }}
         >
           <div className="max-w-lg mx-auto flex flex-col items-center gap-2">
@@ -47,7 +47,7 @@ export default function RootLayout({
               height={100}
               priority
             />
-            <p className="text-sm font-medium" style={{ color: 'rgba(50,25,10,0.6)', textShadow: '0 1px 0 rgba(255,255,255,0.4)' }}>
+            <p className="text-sm font-medium" style={{ color: 'rgba(40,30,20,0.55)', textShadow: '0 1px 0 rgba(255,255,255,0.7)' }}>
               Calculadora de carne asada para México
             </p>
           </div>
@@ -55,9 +55,9 @@ export default function RootLayout({
         <nav
           className="border-b print:hidden"
           style={{
-            background: 'linear-gradient(180deg, #9A8070 0%, #7E6656 100%)',
-            borderColor: 'rgba(0,0,0,0.18)',
-            boxShadow: '0 2px 6px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.18)',
+            background: 'linear-gradient(180deg, #C84030 0%, #A83020 100%)',
+            borderColor: 'rgba(0,0,0,0.2)',
+            boxShadow: '0 2px 6px rgba(0,0,0,0.22), inset 0 1px 0 rgba(255,255,255,0.18)',
           }}
         >
           <div className="max-w-lg mx-auto px-4 flex justify-center gap-2 py-2">
