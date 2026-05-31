@@ -639,36 +639,8 @@ export default function Calculadora({
               <span className="text-amber-600 text-xl font-black leading-none">{distribuidorOpen ? "▲" : "▼"}</span>
             </button>
 
-            {/* Botones de acción */}
-            <div className="grid grid-cols-3 gap-3 p-4 border-b border-gray-100">
-              <button
-                onClick={handlePrint}
-                disabled={!puedeCalcular}
-                className="flex flex-col items-center gap-1 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-3 px-2 rounded-xl text-sm transition-all disabled:opacity-40"
-              >
-                <span className="text-xl">🖨️</span>
-                Imprimir lista
-              </button>
-              <button
-                onClick={handlePDF}
-                disabled={!puedeCalcular}
-                className="flex flex-col items-center gap-1 bg-red-50 hover:bg-red-100 text-red-700 font-medium py-3 px-2 rounded-xl text-sm transition-all disabled:opacity-40"
-              >
-                <span className="text-xl">📄</span>
-                Descargar PDF
-              </button>
-              <button
-                onClick={handleWhatsApp}
-                disabled={!puedeCalcular}
-                className="flex flex-col items-center gap-1 bg-green-50 hover:bg-green-100 text-green-700 font-medium py-3 px-2 rounded-xl text-sm transition-all disabled:opacity-40"
-              >
-                <span className="text-xl">💬</span>
-                Compartir por WhatsApp
-              </button>
-            </div>
-
             {distribuidorOpen && (
-              <div className="px-5 pb-5 space-y-4 border-t border-gray-100">
+              <div className="px-5 pb-5 space-y-4 border-b border-amber-100 bg-amber-50/40">
                 <div className="flex gap-2 mt-4">
                   <input
                     type="text"
@@ -776,6 +748,35 @@ export default function Calculadora({
                 )}
               </div>
             )}
+
+            {/* Botones de acción */}
+            <div className="grid grid-cols-3 gap-3 p-4 border-b border-gray-100">
+              <button
+                onClick={handlePrint}
+                disabled={!puedeCalcular}
+                className="flex flex-col items-center gap-1 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-3 px-2 rounded-xl text-sm transition-all disabled:opacity-40"
+              >
+                <span className="text-xl">🖨️</span>
+                Imprimir lista
+              </button>
+              <button
+                onClick={handlePDF}
+                disabled={!puedeCalcular}
+                className="flex flex-col items-center gap-1 bg-red-50 hover:bg-red-100 text-red-700 font-medium py-3 px-2 rounded-xl text-sm transition-all disabled:opacity-40"
+              >
+                <span className="text-xl">📄</span>
+                Descargar PDF
+              </button>
+              <button
+                onClick={handleWhatsApp}
+                disabled={!puedeCalcular}
+                className="flex flex-col items-center gap-1 bg-green-50 hover:bg-green-100 text-green-700 font-medium py-3 px-2 rounded-xl text-sm transition-all disabled:opacity-40"
+              >
+                <span className="text-xl">💬</span>
+                Compartir por WhatsApp
+              </button>
+            </div>
+
           </section>
         </>
       )}
