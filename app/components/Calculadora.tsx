@@ -50,12 +50,7 @@ function formatSalsa(ml: number): string {
 function formatCerveza(latas: number): string {
   if (!latas) return "";
   const sixpacks = latas / 6;
-  if (latas < 24) return `${sixpacks} ${sixpacks === 1 ? "six-pack" : "six-packs"}`;
-  const cajas = Math.floor(latas / 24);
-  const restLatas = latas % 24;
-  if (restLatas === 0) return `${cajas} ${cajas === 1 ? "caja" : "cajas"} (${latas} latas)`;
-  const restSixpacks = restLatas / 6;
-  return `${cajas} ${cajas === 1 ? "caja" : "cajas"} + ${restSixpacks} six-packs (${latas} latas)`;
+  return `${sixpacks} ${sixpacks === 1 ? "six-pack" : "six-packs"} (${latas} latas)`;
 }
 
 function splitQty(total: number, count: number): number {
@@ -667,7 +662,7 @@ export default function Calculadora({
             >
               <span className="text-base">👥</span>
               <span className="flex-1 font-bold text-gray-800 text-sm">
-                Distribuir lista entre tus amigos
+                Distribuir compras entre tus amigos
               </span>
               <span className="text-gray-400 text-xs">{distribuidorOpen ? "▲" : "▼"}</span>
             </button>
