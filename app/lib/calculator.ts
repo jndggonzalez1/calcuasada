@@ -36,6 +36,7 @@ export interface Results {
   salsa: number;        // ml, redondeado a 250/500/1000+
   carbon: number;       // kg, nearest 0.5
   hielo: number;        // kg, nearest 0.5
+  frijoles: number;     // ollas, entero (ceil)
   cerveza?: number;     // latas, múltiplo de 6
   refrescos?: number;   // botellas 2L
 }
@@ -98,6 +99,8 @@ export function calcular(
     (hombres * b.salsa.hombre + mujeres * b.salsa.mujer + ninos * b.salsa.nino) * m.salsa[tipo];
   const carbonRaw =
     (hombres * b.carbon.hombre + mujeres * b.carbon.mujer + ninos * b.carbon.nino) * m.carbon[tipo];
+  const frijolesRaw =
+    (hombres * b.frijoles.hombre + mujeres * b.frijoles.mujer + ninos * b.frijoles.nino) * m.frijoles[tipo];
   let hieloRaw =
     (hombres * b.hielo.hombre + mujeres * b.hielo.mujer + ninos * b.hielo.nino) * m.hielo[tipo];
   if (extras.cerveza) hieloRaw *= 1.4;
@@ -118,6 +121,7 @@ export function calcular(
     salsa:     roundSalsa(salsaRaw),
     carbon:    roundToHalf(carbonRaw),
     hielo:     roundToHalf(hieloRaw),
+    frijoles:  Math.ceil(frijolesRaw),
     cerveza:   extras.cerveza   ? Math.ceil(cervezaLatasRaw / 6) * 6         : undefined,
     refrescos: extras.refrescos ? Math.ceil(totalPersonas / 4)               : undefined,
   };

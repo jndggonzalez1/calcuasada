@@ -30,13 +30,14 @@ export const BOTANAS_PROTEIN_MULTIPLIER = { off: 1.00, on: 0.95 };
 
 // Cantidades base de acompañantes por tipo de persona a nivel Normal
 export const BASE_ACOMPS = {
-  tortillas: { hombre: 7,    mujer: 5,    nino: 3    }, // pzas
-  cebolla:   { hombre: 0.33, mujer: 0.25, nino: 0.15 }, // pzas
-  limon:     { hombre: 1.0,  mujer: 0.8,  nino: 0.5  }, // pzas
-  aguacate:  { hombre: 0.25, mujer: 0.20, nino: 0.15 }, // pzas
+  tortillas: { hombre: 3.5,  mujer: 3.0,  nino: 2.0  }, // pzas — 3-4 por persona
+  cebolla:   { hombre: 0.25, mujer: 0.20, nino: 0.10 }, // pzas — 1 grande cada 4-5 personas
+  limon:     { hombre: 0.8,  mujer: 0.6,  nino: 0.3  }, // pzas — ~1 kg cada 10 personas
+  aguacate:  { hombre: 0.40, mujer: 0.35, nino: 0.20 }, // pzas — 1 cada 2-3 personas
   salsa:     { hombre: 70,   mujer: 60,   nino: 30   }, // ml
   carbon:    { hombre: 0.5,  mujer: 0.5,  nino: 0.25 }, // kg
   hielo:     { hombre: 1.0,  mujer: 1.0,  nino: 0.5  }, // kg
+  frijoles:  { hombre: 0.10, mujer: 0.08, nino: 0.05 }, // ollas — 1 cada 8-10 personas
 };
 
 // Multiplicadores de acompañantes por nivel de apetito
@@ -48,6 +49,7 @@ export const ACOMP_MULTIPLIERS: Record<string, Record<EventType, number>> = {
   salsa:     { ligero: 0.75, normal: 1.00, tragones: 1.35 },
   carbon:    { ligero: 0.85, normal: 1.00, tragones: 1.20 },
   hielo:     { ligero: 0.90, normal: 1.00, tragones: 1.20 },
+  frijoles:  { ligero: 0.80, normal: 1.00, tragones: 1.25 },
 };
 
 // Latas de cerveza por tipo de persona según nivel de apetito (niños = 0 siempre)

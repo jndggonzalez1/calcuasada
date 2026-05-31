@@ -134,7 +134,7 @@ export default function Calculadora({
 
   const results = calcular(hombres, mujeres, ninos, tipo, proteinas, extras);
   const prices  = priceTab === "promedio" ? DEFAULT_PRICES : customPrices;
-  const bolsas  = extras.botanas ? Math.ceil(totalPersonas / 6) : 0;
+  const bolsas  = extras.botanas ? Math.ceil(totalPersonas / 5) : 0;
 
   const isRowEnabled = (key: string) => !disabledRows.has(key);
   const toggleRow    = (key: string) =>
@@ -171,6 +171,7 @@ export default function Calculadora({
     if (isRowEnabled("salsa"))     items.push({ key: "salsa",     displayLabel: "🫙 Salsa",     textLabel: "Salsa",     value: results.salsa,     unit: "ml"   });
     if (isRowEnabled("carbon"))    items.push({ key: "carbon",    displayLabel: "🪨 Carbón",    textLabel: "Carbón",    value: results.carbon,    unit: "kg"   });
     if (isRowEnabled("hielo"))     items.push({ key: "hielo",     displayLabel: "🧊 Hielo",     textLabel: "Hielo",     value: results.hielo,     unit: "kg"   });
+    if (isRowEnabled("frijoles"))  items.push({ key: "frijoles",  displayLabel: "🫘 Frijoles",  textLabel: "Frijoles",  value: results.frijoles,  unit: "ollas"});
     if (results.cerveza)  items.push({ key: "cerveza",  displayLabel: "🍺 Cerveza",  textLabel: "Cerveza",  value: results.cerveza,  unit: "latas"   });
     if (results.refrescos)items.push({ key: "refrescos",displayLabel: "🥤 Refrescos",textLabel: "Refrescos",value: results.refrescos!,unit: "botellas"});
     if (extras.botanas && bolsas > 0) items.push({ key: "botanas", displayLabel: "🍿 Botanas", textLabel: "Botanas", value: bolsas, unit: "bolsas" });
