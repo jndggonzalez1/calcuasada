@@ -85,6 +85,7 @@ public/
 - Barra de navegación debajo del header (carbón profundo): links a Calculadora y Acerca como pills minimalistas
 - Footer con copyright 2026, links a Acerca y Privacidad
 - AdSense: `<script>` directo en `<head>` para visibilidad del crawler de Google
+- Google Analytics: tag G-G1VZBVG477 en `<head>` directo, aplica a todas las páginas automáticamente
 
 ### Anuncios
 - `AdBanner` colocado en: inicio de página, después de la calculadora, entre secciones, y en páginas /acerca y /privacidad
@@ -214,3 +215,4 @@ public/
 4. Al cerrar la sesión, actualizar la sección "Historial de sesiones" y "Estado actual" con lo que se hizo
 5. No agregar funcionalidades no solicitadas — el proyecto es intencionalmente simple
 6. Para hacer push usar git con token en la URL (no hay `gh` CLI disponible)
+7. **Google Analytics (G-G1VZBVG477) ya está en `app/layout.tsx` y aplica a TODAS las páginas automáticamente.** No agregar el tag manualmente en páginas individuales — el layout raíz lo cubre todo. Si se crea un layout anidado nuevo, verificar que herede del raíz y no necesite el tag por separado.
