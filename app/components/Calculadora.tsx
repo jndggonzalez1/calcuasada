@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo, useRef } from "react";
 import {
   calcular,
   DEFAULT_PRICES,
@@ -116,6 +116,10 @@ export default function Calculadora({
   const [personaNombre, setPersonaNombre] = useState("");
   const [personas, setPersonas] = useState<string[]>([]);
   const [assignments, setAssignments] = useState<Record<string, string[]>>({});
+
+  // Share image state
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
   // ── Derived values ──────────────────────────────────────────────────────────
 
@@ -305,12 +309,35 @@ export default function Calculadora({
   const handlePDF = async () => {
     if (!puedeCalcular) return;
     if (distribuidorActivo && !todosAsignados) { warnAsignacion(); return; }
-    const { jsPDF } = await import("jspdf");
-    const doc = new jsPDF();
-    const lines = doc.splitTextToSize(buildShareText(), 180);
-    doc.setFontSize(12);
-    doc.text(lines, 15, 20);
-    doc.save("calcuasada-lista.pdf");
+    const html2canvas = (await import("html2canvas")).default;
+    const el = cardRef.current;
+    if (!el) return;
+    const canvas = await html2canvas(el, { scale: 2, useCORS: true, backgroundColor: "#FDF9F4", logging: false });
+    setPreviewUrl(canvas.toDataURL("image/png"));
+  };
+
+  const handleShareImage = async () => {
+    if (!previewUrl) return;
+    const res = await fetch(previewUrl);
+    const blob = await res.blob();
+    const file = new File([blob], "calcuasada-lista.png", { type: "image/png" });
+    if (navigator.share && navigator.canShare({ files: [file] })) {
+      try { await navigator.share({ files: [file], title: "Lista de carne asada — Calcuasada" }); }
+      catch { /* usuario canceló */ }
+    } else {
+      const a = document.createElement("a");
+      a.href = previewUrl;
+      a.download = "calcuasada-lista.png";
+      a.click();
+    }
+  };
+
+  const handleDownloadImage = () => {
+    if (!previewUrl) return;
+    const a = document.createElement("a");
+    a.href = previewUrl;
+    a.download = "calcuasada-lista.png";
+    a.click();
   };
 
   const handlePrint = () => {
@@ -762,10 +789,10 @@ export default function Calculadora({
               <button
                 onClick={handlePDF}
                 disabled={!puedeCalcular}
-                className="flex flex-col items-center gap-1 bg-red-50 hover:bg-red-100 text-red-700 font-medium py-3 px-2 rounded-xl text-sm transition-all disabled:opacity-40"
+                className="flex flex-col items-center gap-1 bg-orange-50 hover:bg-orange-100 text-orange-700 font-medium py-3 px-2 rounded-xl text-sm transition-all disabled:opacity-40"
               >
-                <span className="text-xl">📄</span>
-                Descargar PDF
+                <span className="text-xl">🖼️</span>
+                Compartir imagen
               </button>
               <button
                 onClick={handleWhatsApp}
@@ -781,6 +808,123 @@ export default function Calculadora({
         </>
       )}
 
+
+      {/* Hidden card for image generation — off-screen, always rendered */}
+      <div
+        ref={cardRef}
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          left: "-9999px",
+          top: "0",
+          width: "440px",
+          fontFamily: "'Helvetica Neue', Arial, sans-serif",
+          backgroundColor: "#FDF9F4",
+          borderRadius: "20px",
+          overflow: "hidden",
+        }}
+      >
+        {/* Header */}
+        <div style={{ background: "linear-gradient(135deg, #E8460A 0%, #C73B08 100%)", padding: "24px 28px 20px" }}>
+          <div style={{ color: "white", fontSize: "26px", fontWeight: "900", letterSpacing: "-0.5px" }}>
+            🔥 Calcuasada
+          </div>
+          <div style={{ color: "rgba(255,255,255,0.88)", fontSize: "14px", marginTop: "6px" }}>
+            Lista para {totalPersonas} {totalPersonas === 1 ? "persona" : "personas"}&nbsp;·&nbsp;
+            {tipo === "ligero" ? "Ligero" : tipo === "tragones" ? "Tragones" : "Normal"}
+          </div>
+          {ninos > 0 && (
+            <div style={{ color: "rgba(255,255,255,0.7)", fontSize: "12px", marginTop: "2px" }}>
+              {adultos} adultos · {ninos} niños
+            </div>
+          )}
+        </div>
+
+        {/* Items */}
+        <div style={{ padding: "8px 0" }}>
+          {activeItems.map((item, i) => (
+            <div
+              key={item.key}
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                padding: "10px 28px",
+                backgroundColor: i % 2 === 0 ? "#FFFCF9" : "#FDF9F4",
+                borderBottom: "1px solid #F0EDE8",
+              }}
+            >
+              <span style={{ color: "#3D3530", fontSize: "14px", fontWeight: "500" }}>{item.displayLabel}</span>
+              <span style={{ color: "#C73B08", fontSize: "14px", fontWeight: "700" }}>
+                {item.key === "cerveza"
+                  ? formatCerveza(item.value)
+                  : item.key === "salsa"
+                  ? formatSalsa(item.value)
+                  : `${item.value} ${item.unit}`}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        {/* Footer */}
+        <div style={{
+          padding: "14px 28px",
+          backgroundColor: "#1A1A1A",
+          color: "#888",
+          fontSize: "12px",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}>
+          <span>calcuasada.com</span>
+          <span style={{ color: "#E8460A", fontWeight: "700" }}>🔥</span>
+        </div>
+      </div>
+
+      {/* Preview modal */}
+      {previewUrl && (
+        <div
+          onClick={() => setPreviewUrl(null)}
+          style={{
+            position: "fixed",
+            inset: 0,
+            backgroundColor: "rgba(0,0,0,0.85)",
+            zIndex: 9999,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "16px",
+          }}
+        >
+          <div
+            onClick={e => e.stopPropagation()}
+            style={{ maxWidth: "440px", width: "100%", borderRadius: "20px", overflow: "hidden", boxShadow: "0 8px 40px rgba(0,0,0,0.5)" }}
+          >
+            <img src={previewUrl} alt="Lista de carne asada" style={{ width: "100%", display: "block" }} />
+            <div style={{ backgroundColor: "#1A1A1A", padding: "16px", display: "flex", gap: "10px" }}>
+              <button
+                onClick={handleShareImage}
+                style={{ flex: 1, backgroundColor: "#E8460A", color: "white", border: "none", borderRadius: "12px", padding: "13px 10px", fontSize: "15px", fontWeight: "700", cursor: "pointer" }}
+              >
+                📤 Compartir
+              </button>
+              <button
+                onClick={handleDownloadImage}
+                style={{ flex: 1, backgroundColor: "#2D2D2D", color: "white", border: "1px solid #444", borderRadius: "12px", padding: "13px 10px", fontSize: "15px", fontWeight: "700", cursor: "pointer" }}
+              >
+                ⬇️ Descargar
+              </button>
+            </div>
+          </div>
+          <button
+            onClick={() => setPreviewUrl(null)}
+            style={{ marginTop: "20px", color: "rgba(255,255,255,0.7)", background: "none", border: "1px solid rgba(255,255,255,0.25)", borderRadius: "50%", width: "40px", height: "40px", fontSize: "18px", cursor: "pointer" }}
+          >
+            ✕
+          </button>
+        </div>
+      )}
 
     </div>
   );
