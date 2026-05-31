@@ -32,24 +32,38 @@ export default function RootLayout({
         <script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1068311584605438" crossOrigin="anonymous" />
       </head>
       <body className="min-h-screen">
-        <header className="bg-carbon text-white py-5 px-4 shadow-lg print:hidden">
+        <header
+          className="py-5 px-4 print:hidden"
+          style={{
+            background: 'linear-gradient(180deg, #D4C8BC 0%, #B09888 45%, #8C7262 100%)',
+            boxShadow: '0 4px 14px rgba(0,0,0,0.22), inset 0 1px 0 rgba(255,255,255,0.55)',
+          }}
+        >
           <div className="max-w-lg mx-auto flex flex-col items-center gap-2">
             <Image
               src="/logo.png"
               alt="Calcuasada logo"
               width={100}
               height={100}
-              className="rounded-2xl"
               priority
             />
-            <p className="text-white/50 text-sm">Calculadora de carne asada para México</p>
+            <p className="text-sm font-medium" style={{ color: 'rgba(50,25,10,0.6)', textShadow: '0 1px 0 rgba(255,255,255,0.4)' }}>
+              Calculadora de carne asada para México
+            </p>
           </div>
         </header>
-        <nav className="bg-carbon-mid border-b border-white/5 print:hidden">
+        <nav
+          className="border-b print:hidden"
+          style={{
+            background: 'linear-gradient(180deg, #9A8070 0%, #7E6656 100%)',
+            borderColor: 'rgba(0,0,0,0.18)',
+            boxShadow: '0 2px 6px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.18)',
+          }}
+        >
           <div className="max-w-lg mx-auto px-4 flex justify-center gap-2 py-2">
-            <Link href="/" className="px-5 py-1.5 text-sm font-semibold text-white/70 rounded-full border border-white/15 hover:text-white hover:border-white/30 hover:bg-white/5 transition-all">Calculadora</Link>
-            <Link href="/guias" className="px-5 py-1.5 text-sm font-semibold text-white/70 rounded-full border border-white/15 hover:text-white hover:border-white/30 hover:bg-white/5 transition-all">Guías</Link>
-            <Link href="/acerca" className="px-5 py-1.5 text-sm font-semibold text-white/70 rounded-full border border-white/15 hover:text-white hover:border-white/30 hover:bg-white/5 transition-all">Acerca</Link>
+            <Link href="/" className="nav-pill-3d px-5 py-1.5 text-sm font-semibold">Calculadora</Link>
+            <Link href="/guias" className="nav-pill-3d px-5 py-1.5 text-sm font-semibold">Guías</Link>
+            <Link href="/acerca" className="nav-pill-3d px-5 py-1.5 text-sm font-semibold">Acerca</Link>
           </div>
         </nav>
         <main className="max-w-lg mx-auto px-4 py-6 space-y-6">
