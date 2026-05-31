@@ -70,7 +70,7 @@ export default function GuiasPage() {
             <div className="flex gap-4 items-start">
               {g.image ? (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={g.image} alt="" className="w-12 h-12 rounded-xl object-cover flex-shrink-0 bg-gray-900" />
+                <img src={g.image} alt="" className="w-12 h-12 rounded-xl object-cover flex-shrink-0" />
               ) : (
                 <span className="text-3xl flex-shrink-0">{g.emoji}</span>
               )}
