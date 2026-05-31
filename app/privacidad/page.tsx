@@ -42,7 +42,7 @@ export default function PrivacidadPage() {
             href="https://policies.google.com/privacy"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-orange-500 underline"
+            className="text-brasa underline"
           >
             policies.google.com/privacy
           </a>
@@ -53,7 +53,7 @@ export default function PrivacidadPage() {
             href="https://adssettings.google.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-orange-500 underline"
+            className="text-brasa underline"
           >
             adssettings.google.com
           </a>

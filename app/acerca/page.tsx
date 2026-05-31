@@ -15,7 +15,7 @@ export default function AcercaPage() {
         <p className="text-gray-500 text-sm">La calculadora de carne asada hecha en México, para México</p>
       </div>
 
-      <section className="bg-orange-50 rounded-2xl p-5 space-y-3">
+      <section className="bg-brasa-light rounded-2xl p-5 space-y-3">
         <h2 className="text-base font-black text-gray-900">¿Qué es Calcuasada?</h2>
         <p className="text-sm">
           Calcuasada es una herramienta gratuita que te ayuda a calcular exactamente cuánta carne, tortillas, limones, carbón, hielo y más necesitas para tu carne asada, sin importar si son 5 personas o 200.
@@ -39,7 +39,7 @@ export default function AcercaPage() {
         <p className="text-sm leading-relaxed">
           Si te sirvió, cuéntaselo a alguien más. Y si tienes alguna sugerencia, con gusto la escucho.
         </p>
-        <p className="text-sm font-bold text-orange-500">— Yeyito, Nuevo León 🤘</p>
+        <p className="text-sm font-bold text-brasa">— Yeyito, Nuevo León 🤘</p>
       </section>
 
       <AdBanner />
