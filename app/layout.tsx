@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import CookieBanner from "./components/CookieBanner";
+import NavLink from "./components/NavLink";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -35,8 +36,8 @@ export default function RootLayout({
         <header
           className="py-5 px-4 print:hidden"
           style={{
-            background: 'linear-gradient(180deg, #5DBE8A 0%, #3A9E6A 40%, #267A4E 100%)',
-            boxShadow: '0 4px 14px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.45)',
+            background: '#FAF7F2',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
           }}
         >
           <div className="max-w-lg mx-auto flex flex-col items-center gap-2">
@@ -48,7 +49,7 @@ export default function RootLayout({
               priority
               className="-mb-7"
             />
-            <p className="text-sm font-medium" style={{ color: 'rgba(255,255,255,0.75)', textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>
+            <p className="text-sm font-medium" style={{ color: '#1A1A1A', opacity: 0.55 }}>
               Calculadora de carne asada para México
             </p>
           </div>
@@ -56,27 +57,27 @@ export default function RootLayout({
         <nav
           className="border-b print:hidden"
           style={{
-            background: 'linear-gradient(180deg, #C84030 0%, #A83020 100%)',
-            borderColor: 'rgba(0,0,0,0.2)',
-            boxShadow: '0 2px 6px rgba(0,0,0,0.22), inset 0 1px 0 rgba(255,255,255,0.18)',
+            background: '#2D2D2D',
+            borderColor: 'rgba(0,0,0,0.25)',
+            boxShadow: '0 2px 6px rgba(0,0,0,0.2)',
           }}
         >
           <div className="max-w-lg mx-auto px-4 flex justify-center gap-2 py-2">
-            <Link href="/" className="nav-pill-3d px-5 py-1.5 text-sm font-semibold">Calculadora</Link>
-            <Link href="/guias" className="nav-pill-3d px-5 py-1.5 text-sm font-semibold">Guías</Link>
-            <Link href="/acerca" className="nav-pill-3d px-5 py-1.5 text-sm font-semibold">Acerca</Link>
+            <NavLink href="/">Calculadora</NavLink>
+            <NavLink href="/guias">Guías</NavLink>
+            <NavLink href="/acerca">Acerca</NavLink>
           </div>
         </nav>
         <main className="max-w-lg mx-auto px-4 py-6 space-y-6">
           {children}
         </main>
         <CookieBanner />
-        <footer className="text-center text-xs text-gray-400 py-8 print:hidden space-y-2">
+        <footer className="text-center text-xs py-8 print:hidden space-y-2" style={{ background: '#1A1A1A', color: 'rgba(255,255,255,0.55)' }}>
           <div className="flex justify-center gap-4 flex-wrap">
-            <Link href="/guias" className="hover:text-brasa transition-colors">Guías</Link>
-            <Link href="/acerca" className="hover:text-brasa transition-colors">Acerca</Link>
-            <Link href="/contacto" className="hover:text-brasa transition-colors">Contacto</Link>
-            <Link href="/privacidad" className="hover:text-brasa transition-colors">Privacidad</Link>
+            <Link href="/guias" className="hover:text-white transition-colors">Guías</Link>
+            <Link href="/acerca" className="hover:text-white transition-colors">Acerca</Link>
+            <Link href="/contacto" className="hover:text-white transition-colors">Contacto</Link>
+            <Link href="/privacidad" className="hover:text-white transition-colors">Privacidad</Link>
           </div>
           <p>Hecho con 🥩 en México · Calcuasada 2026</p>
         </footer>
