@@ -221,18 +221,19 @@ export default function Calculadora({
     ].join("\n");
     const footer = `✅ Lista generada gratis en calcuasada.com — ¿Cuánto necesitas tú? Calcúlalo en segundos 👆`;
 
-    const fmtItem = (item: ActiveItem): string => {
+    const fmtActiveItem = (item: ActiveItem, qty?: number): string => {
+      const v = qty ?? item.value;
       let val: string;
-      if (item.key === "salsa")    val = formatSalsa(item.value);
-      else if (item.key === "cerveza") val = formatCerveza(item.value);
-      else val = `${item.value} ${item.unit}`;
+      if (item.key === "salsa")    val = formatSalsa(v);
+      else if (item.key === "cerveza") val = formatCerveza(v);
+      else val = `${v} ${item.unit}`;
       return `• ${item.displayLabel}: ${val}`;
     };
 
+    // Modo distribuidor: usa activeItems filtrado por asignaciones
     if (distribuidorActivo && todosAsignados) {
       const lines: string[] = [
-        header,
-        "",
+        header, "",
         `👥 Lista dividida entre ${personas.length} personas. Cada quien sabe qué le toca comprar:`,
       ];
       personas.forEach(persona => {
@@ -240,9 +241,7 @@ export default function Calculadora({
           .filter(item => (assignments[item.key] ?? []).includes(persona))
           .map(item => {
             const count = (assignments[item.key] ?? []).length;
-            const qty = splitQty(item.value, count);
-            const fakeItem: ActiveItem = { ...item, value: qty };
-            return fmtItem(fakeItem);
+            return fmtActiveItem(item, splitQty(item.value, count));
           });
         if (personaItems.length > 0) {
           lines.push("", `🛒 ${persona}:`);
@@ -253,32 +252,42 @@ export default function Calculadora({
       return lines.join("\n");
     }
 
+    // Modo normal: agrupa activeItems por categoría (respeta toggles del usuario)
+    const proteinKeys  = new Set(["res", "pollo", "salchicha", "queso"]);
+    const bebidaKeys   = new Set(["cerveza", "refrescos"]);
+    const botanaKeys   = new Set(["botanas"]);
+
+    const proteinas    = activeItems.filter(i => proteinKeys.has(i.key));
+    const acompanantes = activeItems.filter(i => !proteinKeys.has(i.key) && !bebidaKeys.has(i.key) && !botanaKeys.has(i.key));
+    const bebidas      = activeItems.filter(i => bebidaKeys.has(i.key));
+    const botanaItems  = activeItems.filter(i => botanaKeys.has(i.key));
+
     const lines: string[] = [header, ""];
 
-    if (results.res || results.pollo || results.salchicha || results.queso) {
+    if (proteinas.length > 0) {
       lines.push("🥩 PROTEÍNAS:");
-      if (results.res)       lines.push(`• 🥩 Carne de res: ${results.res} kg`);
-      if (results.pollo)     lines.push(`• 🍗 Pollo: ${results.pollo} kg`);
-      if (results.salchicha) lines.push(`• 🌭 Salchicha para asar: ${results.salchicha} kg`);
-      if (results.queso)     lines.push(`• 🧀 Queso para asar: ${results.queso} kg`);
+      proteinas.forEach(i => lines.push(fmtActiveItem(i)));
+      lines.push("");
+    }
+    if (acompanantes.length > 0) {
+      lines.push("🛒 ACOMPAÑANTES:");
+      acompanantes.forEach(i => lines.push(fmtActiveItem(i)));
+      lines.push("");
+    }
+    if (bebidas.length > 0) {
+      lines.push("🍺 BEBIDAS:");
+      bebidas.forEach(i => lines.push(fmtActiveItem(i)));
+      lines.push("");
+    }
+    if (botanaItems.length > 0) {
+      lines.push("🍿 BOTANAS:");
+      botanaItems.forEach(i => lines.push(fmtActiveItem(i)));
       lines.push("");
     }
 
-    lines.push("🛒 ACOMPAÑANTES Y EXTRAS:");
-    if (results.tortillas) lines.push(`• 🫓 Tortillas: ${results.tortillas} pzas`);
-    if (results.cebolla)   lines.push(`• 🧅 Cebolla: ${results.cebolla} pzas`);
-    if (results.limon)     lines.push(`• 🍋 Limones: ${results.limon} pzas`);
-    if (results.aguacate)  lines.push(`• 🥑 Aguacates: ${results.aguacate} pzas`);
-    if (results.salsa)     lines.push(`• 🫙 Salsa: ${formatSalsa(results.salsa)}`);
-    if (results.carbon)    lines.push(`• 🪨 Carbón: ${results.carbon} kg`);
-    if (results.hielo)     lines.push(`• 🧊 Hielo: ${results.hielo} kg`);
-    if (results.cerveza)   lines.push(`• 🍺 Cerveza: ${formatCerveza(results.cerveza)}`);
-    if (results.refrescos) lines.push(`• 🥤 Refrescos: ${results.refrescos} botellas`);
-    if (extras.botanas && bolsas > 0) lines.push(`• 🍿 Botanas: ${bolsas} bolsas`);
-
-    lines.push("", `💰 Costo estimado: $${formatMXN(total)} MXN`, "", footer);
+    lines.push(`💰 Costo estimado: $${formatMXN(total)} MXN`, "", footer);
     return lines.join("\n");
-  }, [hombres, mujeres, ninos, tipo, results, extras, bolsas, total, totalPersonas, distribuidorActivo, todosAsignados, personas, assignments, activeItems]);
+  }, [hombres, mujeres, ninos, tipo, total, totalPersonas, distribuidorActivo, todosAsignados, personas, assignments, activeItems]);
 
   // ── Action handlers ─────────────────────────────────────────────────────────
 
