@@ -118,10 +118,11 @@ function perPersonaHint(key: string, value: number, total: number): string {
 
 // ── Label renderer (replaces 🌭 with custom sausage image) ───────────────────
 
-function renderLabel(label: string, salchichaUrl: string, salsaUrl = "") {
+function renderLabel(label: string, salchichaUrl: string, salsaUrl = "", refrescoUrl = "") {
   const replacements: [string, string][] = [
     ["🌭", salchichaUrl],
     ["🫙", salsaUrl],
+    ["🥤", refrescoUrl],
   ];
   const parts: React.ReactNode[] = [label];
   for (const [emoji, url] of replacements) {
@@ -201,6 +202,7 @@ export default function Calculadora({
   const [logoDataUrl, setLogoDataUrl] = useState<string>("");
   const [salchichaDataUrl, setSalchichaDataUrl] = useState<string>("");
   const [salsaDataUrl, setSalsaDataUrl] = useState<string>("");
+  const [refrescoDataUrl, setRefrescoDataUrl] = useState<string>("");
 
   useEffect(() => {
     const loadImg = (src: string, set: (v: string) => void) =>
@@ -212,6 +214,7 @@ export default function Calculadora({
     loadImg("/logo.png", setLogoDataUrl);
     loadImg("/salchicha.png", setSalchichaDataUrl);
     loadImg("/salsa.png", setSalsaDataUrl);
+    loadImg("/refresco.png", setRefrescoDataUrl);
   }, []);
 
   // ── Derived values ──────────────────────────────────────────────────────────
@@ -619,7 +622,7 @@ export default function Calculadora({
                 className="w-4 h-4 accent-brasa"
               />
               <span className={`text-sm font-medium leading-tight ${proteinas[key] ? "text-brasa" : "text-gray-600"}`}>
-                {renderLabel(label, salchichaDataUrl, salsaDataUrl)}
+                {renderLabel(label, salchichaDataUrl, salsaDataUrl, refrescoDataUrl)}
               </span>
             </label>
           ))}
@@ -663,7 +666,7 @@ export default function Calculadora({
                 <div className="divide-y divide-gray-50 mb-4">
                   {results.res       && <ProteinRow label="🥩 Carne de res"      value={results.res} />}
                   {results.pollo     && <ProteinRow label="🍗 Pollo"              value={results.pollo} />}
-                  {results.salchicha && <ProteinRow label={renderLabel("🌭 Salchicha para asar", salchichaDataUrl, salsaDataUrl)} value={results.salchicha} />}
+                  {results.salchicha && <ProteinRow label={renderLabel("🌭 Salchicha para asar", salchichaDataUrl, salsaDataUrl, refrescoDataUrl)} value={results.salchicha} />}
                   {results.queso     && <ProteinRow label="🧀 Queso para asar"    value={results.queso} />}
                 </div>
               </>
@@ -884,7 +887,7 @@ export default function Calculadora({
                           <div key={item.key} className="py-3">
                             <div className="flex items-center justify-between mb-2">
                               <span className={`text-sm font-medium ${assignedTo.length > 0 ? "text-gray-700" : "text-gray-400"}`}>
-                                {renderLabel(item.displayLabel, salchichaDataUrl)}
+                                {renderLabel(item.displayLabel, salchichaDataUrl, salsaDataUrl, refrescoDataUrl)}
                               </span>
                               <span className="text-sm text-gray-400">
                                 {item.key === "salsa" ? formatSalsa(item.value) : `${item.value} ${item.unit}`}
@@ -995,12 +998,12 @@ export default function Calculadora({
               items: activeItems
                 .filter(item => (assignments[item.key] ?? []).includes(persona))
                 .map(item => ({
-                  label: renderLabel(item.displayLabel, salchichaDataUrl),
+                  label: renderLabel(item.displayLabel, salchichaDataUrl, salsaDataUrl, refrescoDataUrl),
                   val: fmtVal(item, splitQty(item.value, (assignments[item.key] ?? []).length)),
                 })),
             }))
           : ([
-              { title: "🥩 PROTEÍNAS",     titleBg: "#FFF0EB", titleColor: "#C73B08", items: activeItems.filter(i => proteinKeysC.has(i.key)).map(i => ({ label: renderLabel(i.displayLabel, salchichaDataUrl, salsaDataUrl), val: fmtVal(i) })) },
+              { title: "🥩 PROTEÍNAS",     titleBg: "#FFF0EB", titleColor: "#C73B08", items: activeItems.filter(i => proteinKeysC.has(i.key)).map(i => ({ label: renderLabel(i.displayLabel, salchichaDataUrl, salsaDataUrl, refrescoDataUrl), val: fmtVal(i) })) },
               { title: "🛒 ACOMPAÑANTES",  titleBg: "#F0F7F0", titleColor: "#2E6B2E", items: activeItems.filter(i => !proteinKeysC.has(i.key) && !bebidaKeysC.has(i.key) && !botanaKeysC.has(i.key)).map(i => ({ label: i.displayLabel, val: fmtVal(i) })) },
               { title: "🍺 BEBIDAS",        titleBg: "#EFF4FF", titleColor: "#1A56A0", items: activeItems.filter(i => bebidaKeysC.has(i.key)).map(i => ({ label: i.displayLabel, val: fmtVal(i) })) },
               { title: "🍿 BOTANAS",        titleBg: "#FFFBE6", titleColor: "#A0780A", items: activeItems.filter(i => botanaKeysC.has(i.key)).map(i => ({ label: i.displayLabel, val: fmtVal(i) })) },
