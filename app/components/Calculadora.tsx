@@ -171,6 +171,7 @@ export default function Calculadora({
 
   // Tier de res
   const [tierRes, setTierRes] = useState<TierResId>("confiable");
+  const [tierDetail, setTierDetail] = useState<string | null>(null);
 
   const handleTierRes = (id: TierResId) => {
     setTierRes(id);
@@ -535,31 +536,52 @@ export default function Calculadora({
             <div className="grid grid-cols-2 gap-2">
               {TIERS_RES.map(tier => {
                 const selected = tierRes === tier.id;
+                const open = tierDetail === tier.id;
                 return (
-                  <button
+                  <div
                     key={tier.id}
-                    onClick={() => handleTierRes(tier.id)}
-                    className={`text-left rounded-lg border-2 px-2 py-1.5 transition-all ${
-                      selected
-                        ? "border-brasa bg-brasa-light"
-                        : "border-gray-200 hover:border-brasa/40 bg-white"
+                    className={`rounded-lg border-2 transition-all ${
+                      selected ? "border-brasa bg-brasa-light" : "border-gray-200 bg-white"
                     }`}
                   >
-                    <div className="flex items-center justify-between gap-1 mb-0.5">
-                      <span className={`font-black leading-tight ${selected ? "text-brasa" : "text-gray-700"}`} style={{ fontSize: "11px" }}>
-                        {tier.emoji} {tier.label}
-                      </span>
-                      <span className={`font-bold shrink-0 ${selected ? "text-brasa" : "text-gray-400"}`} style={{ fontSize: "10px" }}>
-                        ~${tier.precioKg}/kg
-                      </span>
-                    </div>
-                    <div className={`leading-tight mb-0.5 ${selected ? "text-brasa/80" : "text-gray-500"}`} style={{ fontSize: "9px" }}>
-                      {tier.cortes.join(" · ")}
-                    </div>
-                    <div className={`leading-tight italic ${selected ? "text-brasa/60" : "text-gray-400"}`} style={{ fontSize: "9px" }}>
-                      {tier.desc}
-                    </div>
-                  </button>
+                    <button
+                      onClick={() => handleTierRes(tier.id)}
+                      className="w-full text-left px-2 py-1.5"
+                    >
+                      <div className="flex items-center justify-between gap-1">
+                        <span className={`font-black leading-tight ${selected ? "text-brasa" : "text-gray-700"}`} style={{ fontSize: "11px" }}>
+                          {tier.emoji} {tier.label}
+                        </span>
+                        <div className="flex items-center gap-1 shrink-0">
+                          <span className={`font-bold ${selected ? "text-brasa" : "text-gray-400"}`} style={{ fontSize: "10px" }}>
+                            ~${tier.precioKg}/kg
+                          </span>
+                          <button
+                            onClick={e => { e.stopPropagation(); setTierDetail(open ? null : tier.id); }}
+                            className={`w-4 h-4 rounded-full flex items-center justify-center transition-colors ${
+                              open
+                                ? selected ? "bg-brasa text-white" : "bg-gray-400 text-white"
+                                : selected ? "bg-brasa/20 text-brasa" : "bg-gray-200 text-gray-500"
+                            }`}
+                            style={{ fontSize: "9px", fontWeight: 900, lineHeight: 1 }}
+                            aria-label="Ver detalles"
+                          >
+                            {open ? "✕" : "?"}
+                          </button>
+                        </div>
+                      </div>
+                    </button>
+                    {open && (
+                      <div className={`px-2 pb-1.5 border-t ${selected ? "border-brasa/20" : "border-gray-100"}`}>
+                        <div className={`leading-tight mt-1 mb-0.5 ${selected ? "text-brasa/80" : "text-gray-500"}`} style={{ fontSize: "9px" }}>
+                          {tier.cortes.join(" · ")}
+                        </div>
+                        <div className={`leading-tight italic ${selected ? "text-brasa/60" : "text-gray-400"}`} style={{ fontSize: "9px" }}>
+                          {tier.desc}
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 );
               })}
             </div>
