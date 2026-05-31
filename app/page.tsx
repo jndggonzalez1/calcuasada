@@ -1,35 +1,13 @@
 import type { Metadata } from "next";
 import Calculadora from "./components/Calculadora";
 import AdBanner from "./components/AdBanner";
+import ComoUsarAccordion from "./components/ComoUsarAccordion";
 
 export const metadata: Metadata = {
   title: "Calcuasada — Calculadora de Carne Asada para México",
   description:
     "¿Cuánta carne asada necesitas? Calcula carne, tortillas, limones, carbón, hielo y más según el número de personas. Gratis, rápido y en español.",
 };
-
-const pasos = [
-  {
-    num: "1",
-    titulo: "Pon cuántos van",
-    desc: "Escribe cuántos adultos y niños van. Ajusta el slider para indicar cuántos son hombres y cuántas mujeres.",
-  },
-  {
-    num: "2",
-    titulo: "Elige el tipo de carne asada",
-    desc: "Selecciona si tu raza come ligero, normal o si son tragones. La lista cambia automáticamente.",
-  },
-  {
-    num: "3",
-    titulo: "Escoge las proteínas y extras",
-    desc: "Activa res, pollo, salchicha o queso según lo que vayas a poner. También puedes agregar cerveza, botanas y más.",
-  },
-  {
-    num: "4",
-    titulo: "Comparte o distribuye la lista",
-    desc: "Descarga el PDF, imprime o manda la lista por WhatsApp. También puedes dividir quién compra qué entre tus amigos.",
-  },
-];
 
 const tips = [
   {
@@ -121,29 +99,11 @@ export default function HomePage() {
         </p>
       </div>
 
+      <ComoUsarAccordion />
+
       <Calculadora />
 
       <AdBanner />
-
-      {/* Cómo usar */}
-      <section className="bg-brasa-light rounded-2xl p-5">
-        <h2 className="text-lg font-black text-gray-900 mb-4">
-          ¿Cómo usar la calculadora?
-        </h2>
-        <ol className="space-y-3">
-          {pasos.map((paso) => (
-            <li key={paso.num} className="flex gap-3">
-              <span className="flex-shrink-0 w-7 h-7 rounded-full bg-brasa text-white text-sm font-black flex items-center justify-center">
-                {paso.num}
-              </span>
-              <div>
-                <p className="font-bold text-gray-900 text-sm">{paso.titulo}</p>
-                <p className="text-gray-500 text-xs mt-0.5">{paso.desc}</p>
-              </div>
-            </li>
-          ))}
-        </ol>
-      </section>
 
       {/* Tips */}
       <section>
