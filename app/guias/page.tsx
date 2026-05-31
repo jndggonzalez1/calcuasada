@@ -2,13 +2,22 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import AdBanner from "../components/AdBanner";
 
+type Guia = {
+  slug: string;
+  emoji?: string;
+  image?: string;
+  titulo: string;
+  desc: string;
+  tiempo: string;
+};
+
 export const metadata: Metadata = {
   title: "Guías de Carne Asada — Calcuasada",
   description:
     "Guías completas para hacer la mejor carne asada: cortes, carbón, lista de compras y más. Todo en español mexicano, gratis.",
 };
 
-const guias = [
+const guias: Guia[] = [
   {
     slug: "carne-asada-perfecta-monterrey",
     emoji: "🥩",
@@ -32,7 +41,7 @@ const guias = [
   },
   {
     slug: "como-hacer-brisket-ahumado",
-    emoji: "💨",
+    image: "/smoker.png",
     titulo: "Cómo hacer brisket ahumado paso a paso",
     desc: "Temperatura ideal, cuánto tiempo tarda, cómo envolver, cuándo está listo y cómo cortarlo. Todo lo que necesitas saber.",
     tiempo: "12 min de lectura",
@@ -59,7 +68,12 @@ export default function GuiasPage() {
             className="block bg-white border border-gray-100 rounded-2xl p-5 shadow-sm hover:shadow-md hover:border-brasa/30 transition-all group"
           >
             <div className="flex gap-4 items-start">
-              <span className="text-3xl flex-shrink-0">{g.emoji}</span>
+              {g.image ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={g.image} alt="" className="w-12 h-12 rounded-xl object-cover flex-shrink-0 bg-gray-900" />
+              ) : (
+                <span className="text-3xl flex-shrink-0">{g.emoji}</span>
+              )}
               <div className="space-y-1 min-w-0">
                 <h2 className="text-base font-black text-gray-900 group-hover:text-brasa transition-colors leading-snug">
                   {g.titulo}
