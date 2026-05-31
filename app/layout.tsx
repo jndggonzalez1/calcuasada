@@ -43,8 +43,8 @@ export default function RootLayout({
             <Image
               src="/logo.png"
               alt="Calcuasada logo"
-              width={100}
-              height={100}
+              width={140}
+              height={140}
               priority
             />
             <p className="text-sm font-medium" style={{ color: 'rgba(40,30,20,0.55)', textShadow: '0 1px 0 rgba(255,255,255,0.7)' }}>
