@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useMemo, useRef } from "react";
+import { useState, useCallback, useMemo, useRef, useEffect } from "react";
 import {
   calcular,
   DEFAULT_PRICES,
@@ -120,6 +120,18 @@ export default function Calculadora({
   // Share image state
   const cardRef = useRef<HTMLDivElement>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [logoDataUrl, setLogoDataUrl] = useState<string>("");
+
+  useEffect(() => {
+    fetch("/logo.png")
+      .then(r => r.blob())
+      .then(blob => {
+        const reader = new FileReader();
+        reader.onload = () => setLogoDataUrl(reader.result as string);
+        reader.readAsDataURL(blob);
+      })
+      .catch(() => {});
+  }, []);
 
   // ── Derived values ──────────────────────────────────────────────────────────
 
@@ -809,77 +821,115 @@ export default function Calculadora({
       )}
 
 
-      {/* Hidden card for image generation — off-screen, always rendered */}
-      <div
-        ref={cardRef}
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          left: "-9999px",
-          top: "0",
-          width: "440px",
-          fontFamily: "'Helvetica Neue', Arial, sans-serif",
-          backgroundColor: "#FDF9F4",
-          borderRadius: "20px",
-          overflow: "hidden",
-        }}
-      >
-        {/* Header */}
-        <div style={{ background: "linear-gradient(135deg, #E8460A 0%, #C73B08 100%)", padding: "24px 28px 20px" }}>
-          <div style={{ color: "white", fontSize: "26px", fontWeight: "900", letterSpacing: "-0.5px" }}>
-            🔥 Calcuasada
-          </div>
-          <div style={{ color: "rgba(255,255,255,0.88)", fontSize: "14px", marginTop: "6px" }}>
-            Lista para {totalPersonas} {totalPersonas === 1 ? "persona" : "personas"}&nbsp;·&nbsp;
-            {tipo === "ligero" ? "Ligero" : tipo === "tragones" ? "Tragones" : "Normal"}
-          </div>
-          {ninos > 0 && (
-            <div style={{ color: "rgba(255,255,255,0.7)", fontSize: "12px", marginTop: "2px" }}>
-              {adultos} adultos · {ninos} niños
-            </div>
-          )}
-        </div>
+      {/* Hidden card for image generation — off-screen, always rendered with latest data */}
+      {(() => {
+        const nivelLabel = tipo === "ligero" ? "Ligero" : tipo === "tragones" ? "Tragones" : "Normal";
+        const fmtVal = (item: ActiveItem, qty?: number) => {
+          const v = qty ?? item.value;
+          if (item.key === "salsa") return formatSalsa(v);
+          if (item.key === "cerveza") return formatCerveza(v);
+          return `${v} ${item.unit}`;
+        };
+        const proteinKeysC = new Set(["res", "pollo", "salchicha", "queso"]);
+        const bebidaKeysC  = new Set(["cerveza", "refrescos"]);
+        const botanaKeysC  = new Set(["botanas"]);
 
-        {/* Items */}
-        <div style={{ padding: "8px 0" }}>
-          {activeItems.map((item, i) => (
-            <div
-              key={item.key}
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                padding: "10px 28px",
-                backgroundColor: i % 2 === 0 ? "#FFFCF9" : "#FDF9F4",
-                borderBottom: "1px solid #F0EDE8",
-              }}
-            >
-              <span style={{ color: "#3D3530", fontSize: "14px", fontWeight: "500" }}>{item.displayLabel}</span>
-              <span style={{ color: "#C73B08", fontSize: "14px", fontWeight: "700" }}>
-                {item.key === "cerveza"
-                  ? formatCerveza(item.value)
-                  : item.key === "salsa"
-                  ? formatSalsa(item.value)
-                  : `${item.value} ${item.unit}`}
-              </span>
-            </div>
-          ))}
-        </div>
+        type CardSection = { title: string; titleBg: string; titleColor: string; items: { label: string; val: string }[] };
+        const sections: CardSection[] = distribuidorActivo && todosAsignados
+          ? personas.map(persona => ({
+              title: `🛒 ${persona}`,
+              titleBg: "#FFF3ED",
+              titleColor: "#C73B08",
+              items: activeItems
+                .filter(item => (assignments[item.key] ?? []).includes(persona))
+                .map(item => ({
+                  label: item.displayLabel,
+                  val: fmtVal(item, splitQty(item.value, (assignments[item.key] ?? []).length)),
+                })),
+            }))
+          : ([
+              { title: "🥩 PROTEÍNAS",     titleBg: "#FFF0EB", titleColor: "#C73B08", items: activeItems.filter(i => proteinKeysC.has(i.key)).map(i => ({ label: i.displayLabel, val: fmtVal(i) })) },
+              { title: "🛒 ACOMPAÑANTES",  titleBg: "#F0F7F0", titleColor: "#2E6B2E", items: activeItems.filter(i => !proteinKeysC.has(i.key) && !bebidaKeysC.has(i.key) && !botanaKeysC.has(i.key)).map(i => ({ label: i.displayLabel, val: fmtVal(i) })) },
+              { title: "🍺 BEBIDAS",        titleBg: "#EFF4FF", titleColor: "#1A56A0", items: activeItems.filter(i => bebidaKeysC.has(i.key)).map(i => ({ label: i.displayLabel, val: fmtVal(i) })) },
+              { title: "🍿 BOTANAS",        titleBg: "#FFFBE6", titleColor: "#A0780A", items: activeItems.filter(i => botanaKeysC.has(i.key)).map(i => ({ label: i.displayLabel, val: fmtVal(i) })) },
+            ] as CardSection[]).filter(s => s.items.length > 0);
 
-        {/* Footer */}
-        <div style={{
-          padding: "14px 28px",
-          backgroundColor: "#1A1A1A",
-          color: "#888",
-          fontSize: "12px",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}>
-          <span>calcuasada.com</span>
-          <span style={{ color: "#E8460A", fontWeight: "700" }}>🔥</span>
-        </div>
-      </div>
+        return (
+          <div
+            ref={cardRef}
+            aria-hidden="true"
+            style={{ position: "absolute", left: "-9999px", top: "0", width: "440px", fontFamily: "'Helvetica Neue', Arial, sans-serif", backgroundColor: "#FDF9F4" }}
+          >
+            {/* Header */}
+            <div style={{ background: "linear-gradient(135deg, #E8460A 0%, #B83A08 100%)", padding: "22px 24px", display: "flex", alignItems: "center", gap: "16px" }}>
+              {logoDataUrl && (
+                <img src={logoDataUrl} alt="" style={{ width: "64px", height: "64px", objectFit: "contain", flexShrink: 0 }} />
+              )}
+              <div>
+                <div style={{ color: "white", fontSize: "24px", fontWeight: "900", letterSpacing: "-0.5px", lineHeight: 1.1 }}>Calcuasada</div>
+                <div style={{ color: "rgba(255,255,255,0.9)", fontSize: "13px", marginTop: "5px" }}>
+                  Lista para <strong style={{ color: "white" }}>{totalPersonas} personas</strong> · {nivelLabel}
+                </div>
+                {ninos > 0 && (
+                  <div style={{ color: "rgba(255,255,255,0.7)", fontSize: "12px", marginTop: "2px" }}>
+                    {adultos} adultos · {ninos} niños
+                  </div>
+                )}
+                {distribuidorActivo && todosAsignados && (
+                  <div style={{ color: "rgba(255,255,255,0.75)", fontSize: "12px", marginTop: "2px" }}>
+                    Distribuido entre {personas.length} personas
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Sections */}
+            <div style={{ padding: "12px 0 4px" }}>
+              {sections.map((section, si) => (
+                <div key={si} style={{ marginBottom: "4px" }}>
+                  {/* Section header */}
+                  <div style={{ backgroundColor: section.titleBg, padding: "6px 24px", marginBottom: "2px" }}>
+                    <span style={{ color: section.titleColor, fontSize: "11px", fontWeight: "800", letterSpacing: "0.5px", textTransform: "uppercase" as const }}>
+                      {section.title}
+                    </span>
+                  </div>
+                  {/* Section items */}
+                  {section.items.map((item, ii) => (
+                    <div
+                      key={ii}
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        padding: "9px 24px",
+                        backgroundColor: ii % 2 === 0 ? "#FFFCF9" : "#FAF7F2",
+                        borderBottom: ii < section.items.length - 1 ? "1px solid #F0EDE8" : "none",
+                      }}
+                    >
+                      <span style={{ color: "#3D3530", fontSize: "13px" }}>{item.label}</span>
+                      <span style={{ color: "#C73B08", fontSize: "13px", fontWeight: "700" }}>{item.val}</span>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+
+            {/* Total estimado (solo modo normal) */}
+            {!distribuidorActivo && total > 0 && (
+              <div style={{ margin: "8px 24px 4px", padding: "10px 16px", backgroundColor: "#FFF3ED", borderRadius: "10px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <span style={{ color: "#7A3A1A", fontSize: "13px", fontWeight: "600" }}>💰 Estimado total</span>
+                <span style={{ color: "#C73B08", fontSize: "15px", fontWeight: "900" }}>${formatMXN(total)} MXN</span>
+              </div>
+            )}
+
+            {/* Footer */}
+            <div style={{ marginTop: "12px", padding: "12px 24px", backgroundColor: "#1A1A1A", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <span style={{ color: "#888", fontSize: "12px" }}>calcuasada.com</span>
+              <span style={{ color: "#E8460A", fontSize: "12px", fontWeight: "700" }}>Hecho con 🔥 Calcuasada</span>
+            </div>
+          </div>
+        );
+      })()}
 
       {/* Preview modal */}
       {previewUrl && (
