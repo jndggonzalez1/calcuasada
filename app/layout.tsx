@@ -46,6 +46,7 @@ export default function RootLayout({
               width={140}
               height={140}
               priority
+              className="-mb-7"
             />
             <p className="text-sm font-medium" style={{ color: 'rgba(40,30,20,0.55)', textShadow: '0 1px 0 rgba(255,255,255,0.7)' }}>
               Calculadora de carne asada para México
