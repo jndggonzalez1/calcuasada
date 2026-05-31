@@ -110,7 +110,7 @@ public/
 
 - Todo el contenido del sitio en **español mexicano** (no neutro, no de España)
 - Diseño **mobile first**
-- Esquema de color: paleta **"Tierra y Brasa"** — header negro carbón, fondo crema/masa, acento rojo ladrillo/guajillo (`#B83A2A`). NO usar naranja genérico de Tailwind.
+- Esquema de color: **header crema `#FAF7F2`**, nav carbón `#2D2D2D`, acento naranja `#E8460A`, fondo crema `#FDF9F4`, footer oscuro `#1A1A1A`. NO usar naranja genérico de Tailwind.
 - El usuario debe obtener su respuesta en menos de 15 segundos
 - Sin cuentas de usuario, sin base de datos, sin backend
 - Simple, rápido y directo
@@ -133,7 +133,12 @@ public/
 | Página /privacidad | ✅ Listo |
 | Página /contacto (hola@calcuasada.com) | ✅ Listo |
 | Nav bar y footer con links (Guías, Acerca, Contacto, Privacidad) | ✅ Listo |
-| Sección /guias con 3 artículos SEO completos | ✅ Listo |
+| Sección /guias con 4 artículos SEO (+ brisket ahumado) | ✅ Listo |
+| Sección /termometro — temperaturas internas de cocción | ✅ Listo |
+| Nuevo color scheme: header crema, nav carbón, acento #E8460A | ✅ Listo |
+| NavLink client component con active state en nav | ✅ Listo |
+| Logo 180px con transparencia top/bottom compensada | ✅ Listo |
+| Sección "Compartir y distribuir" unificada en calculadora | ✅ Listo |
 | AdSense script en `<head>` | ✅ Listo |
 | ads.txt en /public | ✅ Listo |
 | sitemap.xml generado por Next.js | ✅ Listo |
@@ -154,6 +159,25 @@ public/
 ---
 
 ## Historial de sesiones
+
+### Sesión 8 (mayo 2026) — Rediseño visual, guía brisket y sección Termómetro
+- **Guía de brisket ahumado** — nueva página `/guias/como-hacer-brisket-ahumado`: temperatura, madera, cómo envolver, probe tender, errores comunes, resumen 9 pasos. Imagen del smoker PNG como header de la guía y thumbnail en el índice.
+- **Logo transparente** — reemplazado `public/logo.png` con versión que tiene canal alpha (la anterior era RGB sin transparencia y mostraba fondo negro).
+- **Nuevo color scheme completo:**
+  - Header: crema `#FAF7F2` con sombra suave
+  - Nav bar: carbón oscuro `#2D2D2D`
+  - Acento principal: naranja `#E8460A` (antes rojo `#B83A2A`)
+  - Fondo de página: `#FDF9F4`
+  - Footer: `#1A1A1A` con texto blanco
+  - Tokens actualizados en `globals.css`
+- **NavLink client component** — `app/components/NavLink.tsx` usa `usePathname` para resaltar el link activo en naranja `#E8460A` automáticamente.
+- **Logo más grande** — de 100px → 140px → 180px. Márgenes negativos `-mt-4 -mb-9` para compensar transparencia arriba y abajo del PNG.
+- **Sección "Compartir y distribuir"** — distribuidor de amigos + 3 botones (Imprimir, PDF, WhatsApp) agrupados en una sola tarjeta con header naranja y descripción visible. Ya no están sueltos al final.
+- **Cerveza siempre en six-packs** — eliminada la lógica de conversión a cajas. Ahora siempre muestra "X six-packs (Y latas)".
+- **Texto "Distribuir compras entre tus amigos"** — corregido desde "Distribuir lista".
+- **"Cómo usar la calculadora"** — 4 pasos reescritos: refleja que es en tiempo real (sin botón calcular), menciona proteínas/extras y compartir/distribuir.
+- **Página /acerca reescrita** — más personal y divertida: menciona amor por arrachera/costilla/brisket, el clásico debate familiar de cuánta carne, lista de funciones actualizadas. Texto corregido: "asada" → "carne asada", sin mención de fútbol ni Sabritas.
+- **Sección /termometro** — nueva página completa con referencia de temperaturas internas: res (con "Al punto" ⭐ favorito de Yeyito entre medio y tres cuartos), pollo, cerdo y cordero. Card resumen con las 3 temperaturas clave. Botón 🌡️ Temps en nav. Entrada en sitemap.
 
 ### Sesión 7 (mayo 2026) — Contenido SEO, AdSense y ajustes de calculadora
 - **Header rediseñado** — logo centrado y más grande (100×100), sin texto "Calcuasada" (ya está en el logo), subtítulo abajo
