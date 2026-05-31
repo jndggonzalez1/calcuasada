@@ -627,6 +627,18 @@ export default function Calculadora({
               </div>
             </div>
 
+            {/* Distribuidor colapsable */}
+            <button
+              onClick={() => setDistribuidorOpen(prev => !prev)}
+              className="w-full flex items-center gap-3 px-5 py-4 text-left bg-amber-50 hover:bg-amber-100 border-b border-amber-200 transition-colors"
+            >
+              <span className="text-xl">👥</span>
+              <span className="flex-1 font-bold text-amber-900 text-sm">
+                Distribuir compras entre tus amigos
+              </span>
+              <span className="text-amber-600 text-xl font-black leading-none">{distribuidorOpen ? "▲" : "▼"}</span>
+            </button>
+
             {/* Botones de acción */}
             <div className="grid grid-cols-3 gap-3 p-4 border-b border-gray-100">
               <button
@@ -654,18 +666,6 @@ export default function Calculadora({
                 Compartir por WhatsApp
               </button>
             </div>
-
-            {/* Distribuidor colapsable */}
-            <button
-              onClick={() => setDistribuidorOpen(prev => !prev)}
-              className="w-full flex items-center gap-2 px-5 py-3.5 text-left hover:bg-gray-50 transition-colors"
-            >
-              <span className="text-base">👥</span>
-              <span className="flex-1 font-bold text-gray-800 text-sm">
-                Distribuir compras entre tus amigos
-              </span>
-              <span className="text-gray-400 text-xs">{distribuidorOpen ? "▲" : "▼"}</span>
-            </button>
 
             {distribuidorOpen && (
               <div className="px-5 pb-5 space-y-4 border-t border-gray-100">
