@@ -16,7 +16,7 @@ export default function BrisketPage() {
       <img
         src="/smoker.png"
         alt="Offset smoker para brisket ahumado"
-        className="w-full rounded-2xl"
+        className="w-48 mx-auto block"
       />
 
       <div className="text-center space-y-2">
