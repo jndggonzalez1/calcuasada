@@ -125,23 +125,59 @@ public/
 | Lógica dinámica de proteínas por tipo de persona | ✅ Listo |
 | Distribuidor de lista entre amigos | ✅ Listo |
 | Inputs Adultos + Niños con slider ♂/♀ | ✅ Listo |
-| Logo en header y favicon del browser | ✅ Listo |
+| Logo en header centrado, sin texto duplicado | ✅ Listo |
+| Favicon del browser | ✅ Listo |
 | Páginas SEO estáticas | ✅ Listo |
-| FAQ, tips, cómo usar | ✅ Listo |
+| FAQ mejorado (8 preguntas variadas, sin repetición) | ✅ Listo |
 | Página /acerca | ✅ Listo |
 | Página /privacidad | ✅ Listo |
-| Nav bar y footer con links | ✅ Listo |
+| Página /contacto (hola@calcuasada.com) | ✅ Listo |
+| Nav bar y footer con links (Guías, Acerca, Contacto, Privacidad) | ✅ Listo |
+| Sección /guias con 3 artículos SEO completos | ✅ Listo |
 | AdSense script en `<head>` | ✅ Listo |
+| ads.txt en /public | ✅ Listo |
+| sitemap.xml generado por Next.js | ✅ Listo |
+| robots.txt | ✅ Listo |
+| Cookie banner (localStorage, no reaparece) | ✅ Listo |
+| Google Analytics G-G1VZBVG477 en `<head>` | ✅ Listo |
+| Mensaje WhatsApp mejorado (emojis, secciones, dinámico) | ✅ Listo |
+| Fix WhatsApp en desktop (popup blocker) | ✅ Listo |
+| Frijoles en calculadora (🫘, 1 olla cada 8-10 personas) | ✅ Listo |
+| Cantidades de acompañantes calibradas | ✅ Listo |
 | Rediseño temático "Tierra y Brasa" | ✅ Listo |
 | Constantes centralizadas en calcuasada-config.ts | ✅ Listo |
 | Repositorio en GitHub | ✅ Listo (`main`) |
 | Deploy en Vercel | ✅ Configurado (auto-deploy desde `main`) |
-| Aprobación de Google AdSense | ⏳ Pendiente |
-| Google Search Console indexando | ⏳ En progreso |
+| Aprobación de Google AdSense | ⏳ Pendiente (falta Search Console + esperar indexación) |
+| Google Search Console — enviar sitemap | ⏳ Pendiente (acción manual de Yeyito) |
 
 ---
 
 ## Historial de sesiones
+
+### Sesión 7 (mayo 2026) — Contenido SEO, AdSense y ajustes de calculadora
+- **Header rediseñado** — logo centrado y más grande (100×100), sin texto "Calcuasada" (ya está en el logo), subtítulo abajo
+- **Sección /guias** — índice + 3 artículos completos (600+ palabras c/u): carne asada estilo Monterrey, cuánto carbón, lista de compras completa. Enlace en nav y footer.
+- **Página /contacto** — hola@calcuasada.com
+- **Cumplimiento AdSense:**
+  - `ads.txt` en `/public` con publisher ID
+  - `sitemap.xml` generado via `app/sitemap.ts` (todas las páginas)
+  - `robots.txt` via `app/robots.ts` apuntando al sitemap
+  - Cookie banner (fijo abajo, se cierra con localStorage, no reaparece)
+  - Aviso de privacidad: fecha corregida a 2026, email y link a /contacto
+- **Google Analytics** — tag G-G1VZBVG477 en `<head>` del layout raíz (cubre todas las páginas automáticamente)
+- **AdBanner limpiado** — sin texto ni borde "Anuncio", solo espacio invisible del color del fondo
+- **Colores corregidos** — eliminado todo `orange-50`/`orange-500` viejo de /acerca y /privacidad
+- **WhatsApp mejorado** — mensaje con emojis por ítem, secciones (PROTEÍNAS / ACOMPAÑANTES / BEBIDAS), header con personas y nivel, footer con CTA. Fix de popup blocker en desktop usando `<a>` dinámico en lugar de `window.open`. Mensaje 100% dinámico basado en `activeItems`.
+- **FAQ reescrito** — 8 preguntas variadas sin repetición: arrachera vs costilla, campechana, temperatura de parrilla, cerveza, sobras, niños, distribuidor
+- **Guía de carbón corregida** — eliminado modelo "1 kg por persona" (era excesivo), reemplazado con tabla realista por tamaño de asador (3–9 kg total), explicación de que el asador manda
+- **Cantidades de acompañantes calibradas:**
+  - Tortillas: 7/5/3 → 3.5/3/2 por persona (3-4 por persona)
+  - Cebolla: 0.33/0.25/0.15 → 0.25/0.20/0.10 (1 cada 4-5 personas)
+  - Limones: 1.0/0.8/0.5 → 0.8/0.6/0.3 (~1 kg cada 10 personas)
+  - Aguacates: 0.25/0.20/0.15 → 0.40/0.35/0.20 (1 cada 2-3 personas)
+- **Frijoles agregados** — nuevo acompañante 🫘 en calculadora: 1 olla cada 8-10 personas, con toggle, aparece en lista y en WhatsApp
+- **Papas (botanas)** — ajustado de 1/6 a 1/5 personas
 
 ### Sesión 6 (mayo 2026) — Refactor mayor + logo
 - **Feature: Distribuidor de lista** — sección colapsable entre estimador de costo y botones de acción. Hasta 8 personas, asigna qué compra cada quien, divide cantidades (ceil), valida cobertura total antes de exportar. WhatsApp/PDF/Imprimir generan texto agrupado por persona si está activo y válido.
