@@ -29,19 +29,19 @@ export default function AcercaPage() {
       <section className="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm space-y-3">
         <h2 className="text-base font-black text-gray-900">Una nota personal 🤙</h2>
         <p className="text-sm leading-relaxed">
-          Qué onda, soy <strong>Yeyito</strong>, de Nuevo León. Y si hay algo que me apasiona en esta vida — además del fútbol y las papas Sabritas — es la carne asada. La arrachera, la costilla, el filete, la campechana, el brisket bien ahumado. Todo. Si huele a carbón y sal de grano, ya me tienes.
+          Qué onda, soy <strong>Yeyito</strong>, de Nuevo León. Y si hay algo que me apasiona en esta vida es la carne asada. La arrachera, la costilla, el filete, la campechana, el brisket bien ahumado. Todo. Si huele a carbón y sal de grano, ya me tienes.
         </p>
         <p className="text-sm leading-relaxed">
-          Hice Calcuasada porque en cada asada familiar terminábamos con el mismo debate de siempre: ¿cuánta carne compramos? Unos decían 3 kilos, otros 5, mi tío juraba que con 2 era suficiente para 15 personas (spoiler: no era suficiente). Al final siempre había drama, o nos faltaba o desperdiciábamos.
+          Hice Calcuasada porque en cada carne asada familiar terminábamos con el mismo debate de siempre: ¿cuánta carne compramos? Unos decían 3 kilos, otros 5, mi tío juraba que con 2 era suficiente para 15 personas (spoiler: no era suficiente). Al final siempre había drama, o nos faltaba o desperdiciábamos.
         </p>
         <p className="text-sm leading-relaxed">
           Un día dije: ya, voy a hacer algo que calcule esto bien, en español, pensado para México, y que cualquiera pueda usar sin necesidad de ser ingeniero. Así nació esto.
         </p>
         <p className="text-sm leading-relaxed">
-          Hoy la calculadora ya tiene de todo: proteínas a escoger (res, pollo, salchicha, queso), acompañantes calibrados, cerveza en six-packs, frijoles, estimador de costos, distribuidor de lista entre los cuates y hasta guías para hacer un brisket o una asada al estilo Monterrey. Todo gratis, todo en español, todo pensado para que te puedas enfocar en lo que importa: convivir y comer bien.
+          Hoy la calculadora ya tiene de todo: proteínas a escoger (res, pollo, salchicha, queso), acompañantes calibrados, cerveza en six-packs, frijoles, estimador de costos, distribuidor de lista entre los cuates y hasta guías para hacer un brisket o una carne asada al estilo Monterrey. Todo gratis, todo en español, todo pensado para que te puedas enfocar en lo que importa: convivir y comer bien.
         </p>
         <p className="text-sm leading-relaxed">
-          Si te sirvió, cuéntaselo a alguien que esté planeando una asada. Y si tienes sugerencias, con gusto las escucho.
+          Si te sirvió, cuéntaselo a alguien que esté planeando una carne asada. Y si tienes sugerencias, con gusto las escucho.
         </p>
         <p className="text-sm font-bold text-brasa">— Yeyito, Nuevo León 🤘🥩</p>
       </section>

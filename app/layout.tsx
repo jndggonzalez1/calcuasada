@@ -35,8 +35,8 @@ export default function RootLayout({
         <header
           className="py-5 px-4 print:hidden"
           style={{
-            background: 'linear-gradient(180deg, #E2E2E6 0%, #C8C8CE 40%, #B0B0B8 100%)',
-            boxShadow: '0 4px 14px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.85)',
+            background: 'linear-gradient(180deg, #5DBE8A 0%, #3A9E6A 40%, #267A4E 100%)',
+            boxShadow: '0 4px 14px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.45)',
           }}
         >
           <div className="max-w-lg mx-auto flex flex-col items-center gap-2">
@@ -48,7 +48,7 @@ export default function RootLayout({
               priority
               className="-mb-7"
             />
-            <p className="text-sm font-medium" style={{ color: 'rgba(40,30,20,0.55)', textShadow: '0 1px 0 rgba(255,255,255,0.7)' }}>
+            <p className="text-sm font-medium" style={{ color: 'rgba(255,255,255,0.75)', textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>
               Calculadora de carne asada para México
             </p>
           </div>
