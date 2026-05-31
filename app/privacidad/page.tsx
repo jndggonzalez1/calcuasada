@@ -10,12 +10,14 @@ export default function PrivacidadPage() {
   return (
     <div className="prose prose-sm max-w-none text-gray-700 space-y-6">
       <h1 className="text-2xl font-black text-gray-900">Aviso de Privacidad</h1>
-      <p className="text-xs text-gray-400">Última actualización: mayo 2025</p>
+      <p className="text-xs text-gray-400">Última actualización: mayo 2026</p>
 
       <section className="space-y-2">
         <h2 className="text-base font-bold text-gray-900">1. Responsable del sitio</h2>
         <p className="text-sm">
-          Calcuasada (<strong>calcuasada.com</strong>) es un sitio web operado de manera personal desde Nuevo León, México. Si tienes alguna duda sobre este aviso, puedes contactarnos a través de la información disponible en el sitio.
+          Calcuasada (<strong>calcuasada.com</strong>) es un sitio web operado de manera personal desde Nuevo León, México. Si tienes alguna duda sobre este aviso, puedes escribirnos a{" "}
+          <a href="mailto:hola@calcuasada.com" className="text-brasa underline">hola@calcuasada.com</a>{" "}
+          o visitar nuestra página de <a href="/contacto" className="text-brasa underline">contacto</a>.
         </p>
       </section>
 

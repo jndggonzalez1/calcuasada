@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import CookieBanner from "./components/CookieBanner";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -52,6 +53,7 @@ export default function RootLayout({
         <main className="max-w-lg mx-auto px-4 py-6 space-y-6">
           {children}
         </main>
+        <CookieBanner />
         <footer className="text-center text-xs text-gray-400 py-8 print:hidden space-y-2">
           <div className="flex justify-center gap-4 flex-wrap">
             <Link href="/guias" className="hover:text-brasa transition-colors">Guías</Link>
