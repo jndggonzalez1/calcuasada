@@ -23,10 +23,11 @@ export default function CuantoCarbonPage() {
       <div className="bg-brasa-light border border-brasa/20 rounded-2xl p-5 space-y-2">
         <p className="text-sm font-black text-gray-900">Regla rápida:</p>
         <ul className="text-sm space-y-1 list-disc list-inside text-gray-700">
-          <li>Evento de 2–3 horas: <strong>1 kg de carbón por persona</strong></li>
-          <li>Evento de 4–5 horas: <strong>1.5 kg de carbón por persona</strong></li>
-          <li>Evento de 6+ horas: <strong>2 kg de carbón por persona</strong></li>
-          <li>Siempre compra 20% extra por si acaso</li>
+          <li>Asador chico (hasta 8 personas): <strong>3–4 kg en total</strong></li>
+          <li>Asador mediano (hasta 15 personas): <strong>4–6 kg en total</strong></li>
+          <li>Asador grande (hasta 25 personas): <strong>6–9 kg en total</strong></li>
+          <li>Más de 25 personas: necesitas dos asadores</li>
+          <li>Compra siempre un kilo extra por las dudas</li>
         </ul>
       </div>
 
@@ -43,79 +44,81 @@ export default function CuantoCarbonPage() {
       <AdBanner />
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">Fórmula base: kg de carbón por persona</h2>
+        <h2 className="text-lg font-black text-gray-900">El asador manda, no el número de personas</h2>
         <p className="text-sm leading-relaxed">
-          El punto de partida es siempre el número de personas. Como regla general, para una carne asada de duración normal (3 a 4 horas), calcula <strong>1 a 1.5 kg de carbón por persona adulta</strong>. Los niños prácticamente no afectan el consumo de carbón, así que no los cuentes por separado.
+          El error más común al calcular carbón es pensar que se escala directamente con el número de personas. No funciona así. El carbón lo consume el asador — su tamaño determina cuánto necesitas para alcanzar y mantener temperatura. Si tienes 8 o 15 personas con el mismo asador mediano, el consumo de carbón es prácticamente igual porque la superficie que calentar es la misma.
         </p>
         <p className="text-sm leading-relaxed">
-          Esta regla asume que estás usando un asador de tamaño estándar (mediano, para 8 a 15 personas) y carbón de buena calidad. Si tu asador es más grande o usas carbón industrial de menor calidad, ajusta hacia arriba.
+          Lo que sí cambia con más personas es el tiempo de cocción — tienes que hacer más tandas — y eso sí consume más carbón. Pero la base siempre es el asador, no la cuenta de invitados.
         </p>
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-lg font-black text-gray-900">Tabla de carbón por número de personas</h2>
-        <p className="text-sm leading-relaxed">Esta tabla ya incluye el 20% extra de margen de seguridad:</p>
+        <h2 className="text-lg font-black text-gray-900">Cuánto carbón según el tamaño de tu asador</h2>
+        <p className="text-sm leading-relaxed">Con carbón mesquite de buena calidad, estos son los rangos reales:</p>
+
+        <div className="space-y-3">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-2">
+            <h3 className="text-sm font-black text-gray-900">Asador chico — hasta 8 personas</h3>
+            <p className="text-sm text-gray-600">Una parrillada estándar de 2–3 horas consume <strong>3–4 kg</strong> de mesquite. Si van a seguir echando carne hasta la noche, sube a 5–6 kg.</p>
+          </div>
+          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-2">
+            <h3 className="text-sm font-black text-gray-900">Asador mediano — 8 a 15 personas</h3>
+            <p className="text-sm text-gray-600">El más común en casas. Para una tarde de 3–4 horas necesitas <strong>4–6 kg</strong>. Si la reunión se extiende o hay muchos cortes gruesos como costilla, lleva 7–8 kg.</p>
+          </div>
+          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-2">
+            <h3 className="text-sm font-black text-gray-900">Asador grande — 15 a 25 personas</h3>
+            <p className="text-sm text-gray-600">Requiere más carbón para calentar toda la superficie. Calcula <strong>6–9 kg</strong> para una sesión normal. Ten un costal de respaldo.</p>
+          </div>
+          <div className="bg-brasa-light border border-brasa/20 rounded-xl p-4 space-y-2">
+            <h3 className="text-sm font-black text-gray-900">Más de 25 personas — dos asadores</h3>
+            <p className="text-sm text-gray-600">Con más de 25 personas un solo asador se convierte en un cuello de botella. Lo correcto es tener dos asadores medianos funcionando en paralelo. Cada uno consume lo suyo — suma los kilos de cada uno por separado.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="text-lg font-black text-gray-900">Tabla de referencia rápida</h2>
 
         <div className="overflow-x-auto">
           <table className="w-full text-xs border-collapse bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100">
             <thead>
               <tr className="bg-carbon text-white">
                 <th className="text-left py-3 px-3 font-bold">Personas</th>
+                <th className="text-left py-3 px-3 font-bold">Asador</th>
                 <th className="text-left py-3 px-3 font-bold">2–3 horas</th>
                 <th className="text-left py-3 px-3 font-bold">4–5 horas</th>
-                <th className="text-left py-3 px-3 font-bold">6+ horas</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
               <tr className="hover:bg-gray-50">
-                <td className="py-2.5 px-3 font-bold">10 personas</td>
-                <td className="py-2.5 px-3">12 kg</td>
-                <td className="py-2.5 px-3">18 kg</td>
-                <td className="py-2.5 px-3">24 kg</td>
+                <td className="py-2.5 px-3 font-bold">hasta 8</td>
+                <td className="py-2.5 px-3">Chico</td>
+                <td className="py-2.5 px-3">3–4 kg</td>
+                <td className="py-2.5 px-3">5–6 kg</td>
               </tr>
               <tr className="hover:bg-gray-50">
-                <td className="py-2.5 px-3 font-bold">20 personas</td>
-                <td className="py-2.5 px-3">24 kg</td>
-                <td className="py-2.5 px-3">36 kg</td>
-                <td className="py-2.5 px-3">48 kg</td>
+                <td className="py-2.5 px-3 font-bold">8 a 15</td>
+                <td className="py-2.5 px-3">Mediano</td>
+                <td className="py-2.5 px-3">4–6 kg</td>
+                <td className="py-2.5 px-3">7–8 kg</td>
               </tr>
               <tr className="hover:bg-gray-50">
-                <td className="py-2.5 px-3 font-bold">30 personas</td>
-                <td className="py-2.5 px-3">36 kg</td>
-                <td className="py-2.5 px-3">54 kg</td>
-                <td className="py-2.5 px-3">72 kg</td>
+                <td className="py-2.5 px-3 font-bold">15 a 25</td>
+                <td className="py-2.5 px-3">Grande</td>
+                <td className="py-2.5 px-3">6–9 kg</td>
+                <td className="py-2.5 px-3">9–12 kg</td>
               </tr>
               <tr className="hover:bg-gray-50">
-                <td className="py-2.5 px-3 font-bold">50 personas</td>
-                <td className="py-2.5 px-3">60 kg</td>
-                <td className="py-2.5 px-3">90 kg</td>
-                <td className="py-2.5 px-3">120 kg</td>
+                <td className="py-2.5 px-3 font-bold">25 a 40</td>
+                <td className="py-2.5 px-3">2 medianos</td>
+                <td className="py-2.5 px-3">8–12 kg</td>
+                <td className="py-2.5 px-3">12–16 kg</td>
               </tr>
             </tbody>
           </table>
         </div>
-        <p className="text-xs text-gray-500">Calculado con carbón mesquite de buena calidad en asador mediano.</p>
-      </section>
-
-      <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">Cómo varía según el tamaño del asador</h2>
-        <p className="text-sm leading-relaxed">
-          El tamaño del asador afecta directamente cuánto carbón necesitas. Un asador grande requiere más carbón para mantener temperatura pareja en toda la superficie, aunque no necesariamente cocines más carne.
-        </p>
-        <div className="space-y-3">
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm">
-            <h3 className="text-sm font-black text-gray-900">Asador chico (hasta 8 personas)</h3>
-            <p className="text-sm text-gray-600 mt-1">Se calienta rápido y mantiene temperatura con poco carbón. Usa la fórmula base sin ajuste.</p>
-          </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm">
-            <h3 className="text-sm font-black text-gray-900">Asador mediano (8 a 20 personas)</h3>
-            <p className="text-sm text-gray-600 mt-1">El estándar para el que están calculadas estas tablas. Sin ajuste necesario.</p>
-          </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm">
-            <h3 className="text-sm font-black text-gray-900">Asador grande o industrial (20+ personas)</h3>
-            <p className="text-sm text-gray-600 mt-1">Aumenta la cantidad base en un 30% — la superficie mayor requiere más carbón para mantener temperatura uniforme.</p>
-          </div>
-        </div>
+        <p className="text-xs text-gray-500">Con carbón mesquite. Si usas carbón de encino suma ~15%. Si es carbón industrial suma ~40%.</p>
       </section>
 
       <AdBanner />
