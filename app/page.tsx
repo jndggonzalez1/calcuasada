@@ -68,42 +68,42 @@ const faqs = [
   {
     pregunta: "¿Cuánta carne asada necesito por persona?",
     respuesta:
-      "Lo estándar es 300–350 gramos por persona para adultos con buen apetito. Si hay niños o la gente come poco, puedes bajar a 200 gramos. Nuestra calculadora ajusta automáticamente según el nivel de hambre.",
+      "Depende del apetito: en modo Normal calcula 300 g para hombre y 230 g para mujer. Si son tragones, sube a 400 g y 320 g respectivamente. La calculadora ajusta todo esto automáticamente según cuántos son y cómo comen.",
   },
   {
-    pregunta: "¿Cuántas tortillas de harina necesito por persona?",
+    pregunta: "¿Cuál es la diferencia entre arrachera y costilla para la parrilla?",
     respuesta:
-      "Calcula entre 4 y 6 tortillas por persona. Si la carne es el plato fuerte y hay guarniciones, con 4 está bien. Si la raza es de esas que hacen tacos grandes, sube a 6.",
+      "La arrachera es más suave, se cocina rápido (5–7 min por lado) y es fácil de manejar. La costilla tiene más grasa y sabor pero requiere más tiempo y control del fuego. La mejor opción es mezclar las dos — campechana — para tener lo mejor de ambas.",
   },
   {
-    pregunta: "¿Cuánto carbón necesito para la carne asada?",
+    pregunta: "¿Puedo incluir pollo, salchicha o queso además de la carne?",
     respuesta:
-      "Aproximadamente 1 kg de carbón por cada 4–5 personas. Si la parrillada va a durar más de 2 horas o el asador es grande, calcula 1 kg por cada 3 personas para no quedarte sin brasa.",
+      "Sí. La calculadora tiene checkboxes para agregar pollo, salchicha para asar y queso. Cuando activas varias proteínas, calcula los gramos de cada una de forma proporcional para que alcance parejo sin pasarte de presupuesto.",
   },
   {
-    pregunta: "¿Cuántos limones necesito?",
+    pregunta: "¿Cómo sé si la parrilla está lista para poner la carne?",
     respuesta:
-      "Medio limón por persona como mínimo, pero siempre compra de más. Los limones se usan en la carne, en las bebidas, en el guacamole y en mil cosas más. Una red de 1 kg para 10 personas no está de más.",
+      "Usa la prueba de la mano: coloca la palma a 10 cm de la parrilla. Si solo aguantas 1–2 segundos, el fuego está listo para arrachera. Si aguantas 3–4 segundos, está perfecto para costilla. Si aguantas más, el carbón necesita más tiempo.",
   },
   {
-    pregunta: "¿Cuánto hielo necesito para una carne asada?",
+    pregunta: "¿Cuánta cerveza necesito para una carne asada?",
     respuesta:
-      "De 1 a 1.5 kg de hielo por persona dependiendo del calor. En verano, especialmente en el norte del país, siempre cal calcular de más. Es mejor que sobre a que se te acabe el hielo a mitad de la tarde.",
+      "La calculadora calcula la cerveza según el tipo de persona y el nivel de la reunión. Como referencia rápida: un hombre consume en promedio 3–4 latas en una tarde normal. La calculadora te dice el total en latas y lo convierte a six-packs o cajas para que sea fácil de comprar.",
   },
   {
-    pregunta: "¿Cuánta carne necesito para 20 personas?",
+    pregunta: "¿Qué hago si sobra carne al final?",
     respuesta:
-      "Para 20 personas con buen apetito necesitas alrededor de 6–7 kg de carne. Nuestra calculadora te da el desglose exacto con todos los demás ingredientes incluidos.",
+      "La carne asada sobrante aguanta 3–4 días en el refri bien tapada. Puedes recalentarla en comal a fuego medio con un chorrito de agua para que no se reseque, o usarla para hacer quesadillas, tacos de guisado o hasta burritos al día siguiente.",
   },
   {
-    pregunta: "¿Cuánta carne necesito para 50 personas?",
+    pregunta: "¿La calculadora sirve si van niños?",
     respuesta:
-      "Para 50 personas calcula entre 15 y 17 kg de carne. A esa escala también conviene tener más de un asador y calcular bien el carbón — mínimo 10–12 kg.",
+      "Sí. Hay un campo específico para niños — la calculadora les asigna porciones más chicas (100–200 g según apetito) y ajusta todos los demás ingredientes en proporción. Así no compras de más pensando en los niños.",
   },
   {
-    pregunta: "¿La calculadora funciona para cualquier tamaño de reunión?",
+    pregunta: "¿Cómo funciona el distribuidor de lista entre amigos?",
     respuesta:
-      "Sí, funciona desde 2 personas hasta eventos grandes. Solo pon el número de invitados y el nivel de apetito y la calculadora hace el resto. No importa si son 5 o 200.",
+      "Es una sección que aparece después de calcular. Agregas los nombres de quienes van a comprar y arrastras cada ingrediente al que le toca comprarlo. La app divide las cantidades automáticamente si un ingrediente lo compran entre varios. Al final puedes compartir la lista por WhatsApp para que cada quien sepa qué le toca.",
   },
 ];
 
