@@ -211,53 +211,74 @@ export default function Calculadora({
   // ── Share text ──────────────────────────────────────────────────────────────
 
   const buildShareText = useCallback(() => {
+    const nivelLabel = tipo === "ligero" ? "Ligero" : tipo === "tragones" ? "Tragones" : "Normal";
+    const ninosLine = ninos > 0 ? ` · ${ninos} niños` : "";
+    const header = [
+      `🔥 Lista de carne asada para ${totalPersonas} personas — Calcuasada`,
+      `Nivel de hambre: ${nivelLabel}`,
+      `${hombres} hombres · ${mujeres} mujeres${ninosLine}`,
+      `Aquí está todo lo que necesitan comprar para que no falte nada:`,
+    ].join("\n");
+    const footer = `✅ Lista generada gratis en calcuasada.com — ¿Cuánto necesitas tú? Calcúlalo en segundos 👆`;
+
+    const fmtItem = (item: ActiveItem): string => {
+      let val: string;
+      if (item.key === "salsa")    val = formatSalsa(item.value);
+      else if (item.key === "cerveza") val = formatCerveza(item.value);
+      else val = `${item.value} ${item.unit}`;
+      return `• ${item.displayLabel}: ${val}`;
+    };
+
     if (distribuidorActivo && todosAsignados) {
-      const lines: string[] = [`Lista de Calcuasada para ${totalPersonas} personas`, ""];
+      const lines: string[] = [
+        header,
+        "",
+        `👥 Lista dividida entre ${personas.length} personas. Cada quien sabe qué le toca comprar:`,
+      ];
       personas.forEach(persona => {
         const personaItems = activeItems
           .filter(item => (assignments[item.key] ?? []).includes(persona))
           .map(item => {
             const count = (assignments[item.key] ?? []).length;
             const qty = splitQty(item.value, count);
-            return `• ${item.textLabel}: ${qty} ${item.unit}`;
+            const fakeItem: ActiveItem = { ...item, value: qty };
+            return fmtItem(fakeItem);
           });
         if (personaItems.length > 0) {
-          lines.push(`🛒 ${persona}:`);
+          lines.push("", `🛒 ${persona}:`);
           personaItems.forEach(l => lines.push(l));
-          lines.push("");
         }
       });
-      lines.push("Calculado en calcuasada.mx");
+      lines.push("", footer);
       return lines.join("\n");
     }
 
-    const lines: string[] = [
-      `🥩 Calcuasada — Lista para ${adultos} adultos (${hombres}♂ ${mujeres}♀) y ${ninos} niños/niñas`,
-      `Nivel: ${tipo.charAt(0).toUpperCase() + tipo.slice(1)}`,
-      "",
-    ];
+    const lines: string[] = [header, ""];
+
     if (results.res || results.pollo || results.salchicha || results.queso) {
-      lines.push("PROTEÍNAS:");
-      if (results.res)       lines.push(`• Carne de res: ${results.res} kg`);
-      if (results.pollo)     lines.push(`• Pollo: ${results.pollo} kg`);
-      if (results.salchicha) lines.push(`• Salchicha para asar: ${results.salchicha} kg`);
-      if (results.queso)     lines.push(`• Queso para asar: ${results.queso} kg`);
+      lines.push("🥩 PROTEÍNAS:");
+      if (results.res)       lines.push(`• 🥩 Carne de res: ${results.res} kg`);
+      if (results.pollo)     lines.push(`• 🍗 Pollo: ${results.pollo} kg`);
+      if (results.salchicha) lines.push(`• 🌭 Salchicha para asar: ${results.salchicha} kg`);
+      if (results.queso)     lines.push(`• 🧀 Queso para asar: ${results.queso} kg`);
       lines.push("");
     }
-    lines.push("ACOMPAÑANTES:");
-    lines.push(`• Tortillas: ${results.tortillas} pzas`);
-    lines.push(`• Cebolla: ${results.cebolla} pzas`);
-    lines.push(`• Limones: ${results.limon} pzas`);
-    lines.push(`• Aguacates: ${results.aguacate} pzas`);
-    lines.push(`• Salsa: ${formatSalsa(results.salsa)}`);
-    lines.push(`• Carbón: ${results.carbon} kg`);
-    lines.push(`• Hielo: ${results.hielo} kg`);
-    if (results.cerveza)  lines.push(`• Cerveza: ${formatCerveza(results.cerveza)}`);
-    if (results.refrescos)lines.push(`• Refrescos: ${results.refrescos} botellas`);
-    if (extras.botanas && bolsas > 0) lines.push(`• Botanas: ${bolsas} bolsas`);
-    lines.push("", `💰 Costo estimado: $${formatMXN(total)} MXN`, "", "Calculado en calcuasada.mx");
+
+    lines.push("🛒 ACOMPAÑANTES Y EXTRAS:");
+    if (results.tortillas) lines.push(`• 🫓 Tortillas: ${results.tortillas} pzas`);
+    if (results.cebolla)   lines.push(`• 🧅 Cebolla: ${results.cebolla} pzas`);
+    if (results.limon)     lines.push(`• 🍋 Limones: ${results.limon} pzas`);
+    if (results.aguacate)  lines.push(`• 🥑 Aguacates: ${results.aguacate} pzas`);
+    if (results.salsa)     lines.push(`• 🫙 Salsa: ${formatSalsa(results.salsa)}`);
+    if (results.carbon)    lines.push(`• 🪨 Carbón: ${results.carbon} kg`);
+    if (results.hielo)     lines.push(`• 🧊 Hielo: ${results.hielo} kg`);
+    if (results.cerveza)   lines.push(`• 🍺 Cerveza: ${formatCerveza(results.cerveza)}`);
+    if (results.refrescos) lines.push(`• 🥤 Refrescos: ${results.refrescos} botellas`);
+    if (extras.botanas && bolsas > 0) lines.push(`• 🍿 Botanas: ${bolsas} bolsas`);
+
+    lines.push("", `💰 Costo estimado: $${formatMXN(total)} MXN`, "", footer);
     return lines.join("\n");
-  }, [hombres, mujeres, ninos, tipo, results, extras, bolsas, total, distribuidorActivo, todosAsignados, personas, assignments, activeItems]);
+  }, [hombres, mujeres, ninos, tipo, results, extras, bolsas, total, totalPersonas, distribuidorActivo, todosAsignados, personas, assignments, activeItems]);
 
   // ── Action handlers ─────────────────────────────────────────────────────────
 
