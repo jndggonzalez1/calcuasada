@@ -118,16 +118,26 @@ function perPersonaHint(key: string, value: number, total: number): string {
 
 // ── Label renderer (replaces 🌭 with custom sausage image) ───────────────────
 
-function renderLabel(label: string, salchichaUrl: string) {
-  if (!label.includes("🌭") || !salchichaUrl) return <>{label}</>;
-  const [before, after] = label.split("🌭");
-  return (
-    <>
-      {before}
-      <img src={salchichaUrl} alt="" style={{ display: "inline-block", width: "1.15em", height: "1.15em", verticalAlign: "-0.2em", objectFit: "contain" }} />
-      {after}
-    </>
-  );
+function renderLabel(label: string, salchichaUrl: string, salsaUrl = "") {
+  const replacements: [string, string][] = [
+    ["🌭", salchichaUrl],
+    ["🫙", salsaUrl],
+  ];
+  const parts: React.ReactNode[] = [label];
+  for (const [emoji, url] of replacements) {
+    if (!url) continue;
+    const next: React.ReactNode[] = [];
+    for (const part of parts) {
+      if (typeof part !== "string" || !part.includes(emoji)) { next.push(part); continue; }
+      const segments = part.split(emoji);
+      segments.forEach((seg, i) => {
+        if (i > 0) next.push(<img key={`${emoji}-${i}`} src={url} alt="" style={{ display: "inline-block", width: "1.15em", height: "1.15em", verticalAlign: "-0.2em", objectFit: "contain" }} />);
+        if (seg) next.push(seg);
+      });
+    }
+    parts.splice(0, parts.length, ...next);
+  }
+  return <>{parts}</>;
 }
 
 // ── Distribuidor types ────────────────────────────────────────────────────────
@@ -190,6 +200,7 @@ export default function Calculadora({
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [logoDataUrl, setLogoDataUrl] = useState<string>("");
   const [salchichaDataUrl, setSalchichaDataUrl] = useState<string>("");
+  const [salsaDataUrl, setSalsaDataUrl] = useState<string>("");
 
   useEffect(() => {
     const loadImg = (src: string, set: (v: string) => void) =>
@@ -200,6 +211,7 @@ export default function Calculadora({
       }).catch(() => {});
     loadImg("/logo.png", setLogoDataUrl);
     loadImg("/salchicha.png", setSalchichaDataUrl);
+    loadImg("/salsa.png", setSalsaDataUrl);
   }, []);
 
   // ── Derived values ──────────────────────────────────────────────────────────
@@ -607,7 +619,7 @@ export default function Calculadora({
                 className="w-4 h-4 accent-brasa"
               />
               <span className={`text-sm font-medium leading-tight ${proteinas[key] ? "text-brasa" : "text-gray-600"}`}>
-                {renderLabel(label, salchichaDataUrl)}
+                {renderLabel(label, salchichaDataUrl, salsaDataUrl)}
               </span>
             </label>
           ))}
@@ -651,7 +663,7 @@ export default function Calculadora({
                 <div className="divide-y divide-gray-50 mb-4">
                   {results.res       && <ProteinRow label="🥩 Carne de res"      value={results.res} />}
                   {results.pollo     && <ProteinRow label="🍗 Pollo"              value={results.pollo} />}
-                  {results.salchicha && <ProteinRow label={renderLabel("🌭 Salchicha para asar", salchichaDataUrl)} value={results.salchicha} />}
+                  {results.salchicha && <ProteinRow label={renderLabel("🌭 Salchicha para asar", salchichaDataUrl, salsaDataUrl)} value={results.salchicha} />}
                   {results.queso     && <ProteinRow label="🧀 Queso para asar"    value={results.queso} />}
                 </div>
               </>
@@ -988,7 +1000,7 @@ export default function Calculadora({
                 })),
             }))
           : ([
-              { title: "🥩 PROTEÍNAS",     titleBg: "#FFF0EB", titleColor: "#C73B08", items: activeItems.filter(i => proteinKeysC.has(i.key)).map(i => ({ label: renderLabel(i.displayLabel, salchichaDataUrl), val: fmtVal(i) })) },
+              { title: "🥩 PROTEÍNAS",     titleBg: "#FFF0EB", titleColor: "#C73B08", items: activeItems.filter(i => proteinKeysC.has(i.key)).map(i => ({ label: renderLabel(i.displayLabel, salchichaDataUrl, salsaDataUrl), val: fmtVal(i) })) },
               { title: "🛒 ACOMPAÑANTES",  titleBg: "#F0F7F0", titleColor: "#2E6B2E", items: activeItems.filter(i => !proteinKeysC.has(i.key) && !bebidaKeysC.has(i.key) && !botanaKeysC.has(i.key)).map(i => ({ label: i.displayLabel, val: fmtVal(i) })) },
               { title: "🍺 BEBIDAS",        titleBg: "#EFF4FF", titleColor: "#1A56A0", items: activeItems.filter(i => bebidaKeysC.has(i.key)).map(i => ({ label: i.displayLabel, val: fmtVal(i) })) },
               { title: "🍿 BOTANAS",        titleBg: "#FFFBE6", titleColor: "#A0780A", items: activeItems.filter(i => botanaKeysC.has(i.key)).map(i => ({ label: i.displayLabel, val: fmtVal(i) })) },
