@@ -55,7 +55,7 @@ const TIERS_RES = [
     id: "mamalonafifi",
     emoji: "👑",
     label: "Mamalona fifí",
-    desc: "Sin miedo al ticket: cortes premium, importados o de carnicería high-end.",
+    desc: "Sin miedo al ticket: cortes premium o importados.",
     cortes: ["Ribeye", "New York", "Brisket importado"],
     precioKg: 850,
   },
@@ -541,7 +541,7 @@ export default function Calculadora({
                     <div className={`text-xs leading-tight mb-1 ${selected ? "text-brasa/80" : "text-gray-500"}`}>
                       {tier.cortes.join(" · ")}
                     </div>
-                    <div className={`text-xs leading-tight italic ${selected ? "text-brasa/60" : "text-gray-400"}`}>
+                    <div className={`leading-tight italic ${selected ? "text-brasa/60" : "text-gray-400"}`} style={{ fontSize: "10px" }}>
                       {tier.desc}
                     </div>
                   </button>
