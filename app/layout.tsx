@@ -26,6 +26,8 @@ export default function RootLayout({
   return (
     <html lang="es-MX">
       <head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-G1VZBVG477" />
+        <script dangerouslySetInnerHTML={{ __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-G1VZBVG477');` }} />
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
         <script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1068311584605438" crossOrigin="anonymous" />
       </head>
