@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useMemo, useRef, useEffect } from "react";
+import React, { useState, useCallback, useMemo, useRef, useEffect } from "react";
 import {
   calcular,
   DEFAULT_PRICES,
@@ -116,6 +116,20 @@ function perPersonaHint(key: string, value: number, total: number): string {
   }
 }
 
+// ── Label renderer (replaces 🌭 with custom sausage image) ───────────────────
+
+function renderLabel(label: string, salchichaUrl: string) {
+  if (!label.includes("🌭") || !salchichaUrl) return <>{label}</>;
+  const [before, after] = label.split("🌭");
+  return (
+    <>
+      {before}
+      <img src={salchichaUrl} alt="" style={{ display: "inline-block", width: "1.15em", height: "1.15em", verticalAlign: "-0.2em", objectFit: "contain" }} />
+      {after}
+    </>
+  );
+}
+
 // ── Distribuidor types ────────────────────────────────────────────────────────
 
 interface ActiveItem {
@@ -174,16 +188,17 @@ export default function Calculadora({
   const cardRef = useRef<HTMLDivElement>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [logoDataUrl, setLogoDataUrl] = useState<string>("");
+  const [salchichaDataUrl, setSalchichaDataUrl] = useState<string>("");
 
   useEffect(() => {
-    fetch("/logo.png")
-      .then(r => r.blob())
-      .then(blob => {
+    const loadImg = (src: string, set: (v: string) => void) =>
+      fetch(src).then(r => r.blob()).then(blob => {
         const reader = new FileReader();
-        reader.onload = () => setLogoDataUrl(reader.result as string);
+        reader.onload = () => set(reader.result as string);
         reader.readAsDataURL(blob);
-      })
-      .catch(() => {});
+      }).catch(() => {});
+    loadImg("/logo.png", setLogoDataUrl);
+    loadImg("/salchicha.png", setSalchichaDataUrl);
   }, []);
 
   // ── Derived values ──────────────────────────────────────────────────────────
@@ -570,7 +585,7 @@ export default function Calculadora({
                 className="w-4 h-4 accent-brasa"
               />
               <span className={`text-sm font-medium leading-tight ${proteinas[key] ? "text-brasa" : "text-gray-600"}`}>
-                {label}
+                {renderLabel(label, salchichaDataUrl)}
               </span>
             </label>
           ))}
@@ -614,7 +629,7 @@ export default function Calculadora({
                 <div className="divide-y divide-gray-50 mb-4">
                   {results.res       && <ProteinRow label="🥩 Carne de res"      value={results.res} />}
                   {results.pollo     && <ProteinRow label="🍗 Pollo"              value={results.pollo} />}
-                  {results.salchicha && <ProteinRow label="🌭 Salchicha para asar"value={results.salchicha} />}
+                  {results.salchicha && <ProteinRow label={renderLabel("🌭 Salchicha para asar", salchichaDataUrl)} value={results.salchicha} />}
                   {results.queso     && <ProteinRow label="🧀 Queso para asar"    value={results.queso} />}
                 </div>
               </>
@@ -835,7 +850,7 @@ export default function Calculadora({
                           <div key={item.key} className="py-3">
                             <div className="flex items-center justify-between mb-2">
                               <span className={`text-sm font-medium ${assignedTo.length > 0 ? "text-gray-700" : "text-gray-400"}`}>
-                                {item.displayLabel}
+                                {renderLabel(item.displayLabel, salchichaDataUrl)}
                               </span>
                               <span className="text-sm text-gray-400">
                                 {item.key === "salsa" ? formatSalsa(item.value) : `${item.value} ${item.unit}`}
@@ -937,7 +952,7 @@ export default function Calculadora({
         const bebidaKeysC  = new Set(["cerveza", "refrescos"]);
         const botanaKeysC  = new Set(["botanas"]);
 
-        type CardSection = { title: string; titleBg: string; titleColor: string; items: { label: string; val: string }[] };
+        type CardSection = { title: string; titleBg: string; titleColor: string; items: { label: React.ReactNode; val: string }[] };
         const sections: CardSection[] = distribuidorActivo && todosAsignados
           ? personas.map(persona => ({
               title: `🛒 ${persona}`,
@@ -946,12 +961,12 @@ export default function Calculadora({
               items: activeItems
                 .filter(item => (assignments[item.key] ?? []).includes(persona))
                 .map(item => ({
-                  label: item.displayLabel,
+                  label: renderLabel(item.displayLabel, salchichaDataUrl),
                   val: fmtVal(item, splitQty(item.value, (assignments[item.key] ?? []).length)),
                 })),
             }))
           : ([
-              { title: "🥩 PROTEÍNAS",     titleBg: "#FFF0EB", titleColor: "#C73B08", items: activeItems.filter(i => proteinKeysC.has(i.key)).map(i => ({ label: i.displayLabel, val: fmtVal(i) })) },
+              { title: "🥩 PROTEÍNAS",     titleBg: "#FFF0EB", titleColor: "#C73B08", items: activeItems.filter(i => proteinKeysC.has(i.key)).map(i => ({ label: renderLabel(i.displayLabel, salchichaDataUrl), val: fmtVal(i) })) },
               { title: "🛒 ACOMPAÑANTES",  titleBg: "#F0F7F0", titleColor: "#2E6B2E", items: activeItems.filter(i => !proteinKeysC.has(i.key) && !bebidaKeysC.has(i.key) && !botanaKeysC.has(i.key)).map(i => ({ label: i.displayLabel, val: fmtVal(i) })) },
               { title: "🍺 BEBIDAS",        titleBg: "#EFF4FF", titleColor: "#1A56A0", items: activeItems.filter(i => bebidaKeysC.has(i.key)).map(i => ({ label: i.displayLabel, val: fmtVal(i) })) },
               { title: "🍿 BOTANAS",        titleBg: "#FFFBE6", titleColor: "#A0780A", items: activeItems.filter(i => botanaKeysC.has(i.key)).map(i => ({ label: i.displayLabel, val: fmtVal(i) })) },
@@ -1085,7 +1100,7 @@ export default function Calculadora({
 
 // ── Sub-components ────────────────────────────────────────────────────────────
 
-function ProteinRow({ label, value }: { label: string; value: number }) {
+function ProteinRow({ label, value }: { label: React.ReactNode; value: number }) {
   return (
     <div className="flex items-center gap-3 py-3">
       <div className="flex-1">
@@ -1107,7 +1122,7 @@ function ResultRow({
   enabled,
   onToggle,
 }: {
-  label: string;
+  label: React.ReactNode;
   perPerson: string;
   value: number;
   unit: string;
