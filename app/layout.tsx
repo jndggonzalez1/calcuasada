@@ -34,7 +34,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen">
         <header
-          className="py-5 px-4 print:hidden"
+          className="pb-4 pt-2 px-4 print:hidden"
           style={{
             background: '#FAF7F2',
             boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
@@ -44,10 +44,10 @@ export default function RootLayout({
             <Image
               src="/logo.png"
               alt="Calcuasada logo"
-              width={140}
-              height={140}
+              width={180}
+              height={180}
               priority
-              className="-mb-7"
+              className="-mt-4 -mb-9"
             />
             <p className="text-sm font-medium" style={{ color: '#1A1A1A', opacity: 0.55 }}>
               Calculadora de carne asada para México

@@ -621,23 +621,55 @@ export default function Calculadora({
             </div>
           </section>
 
-          {/* ── DISTRIBUIDOR ── */}
-          <section className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden print:hidden">
+          {/* ── COMPARTIR Y DISTRIBUIR ── */}
+          <section className="bg-white rounded-2xl shadow-sm border border-brasa/20 overflow-hidden print:hidden">
+            {/* Header de la sección */}
+            <div className="bg-brasa-light px-5 py-3 border-b border-brasa/15 flex items-center gap-2">
+              <span className="text-lg">📤</span>
+              <div>
+                <p className="font-black text-gray-900 text-sm">Compartir y distribuir</p>
+                <p className="text-xs text-gray-500">Manda la lista o divide quién compra qué entre los cuates</p>
+              </div>
+            </div>
+
+            {/* Botones de acción */}
+            <div className="grid grid-cols-3 gap-3 p-4 border-b border-gray-100">
+              <button
+                onClick={handlePrint}
+                disabled={!puedeCalcular}
+                className="flex flex-col items-center gap-1 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-3 px-2 rounded-xl text-sm transition-all disabled:opacity-40"
+              >
+                <span className="text-xl">🖨️</span>
+                Imprimir lista
+              </button>
+              <button
+                onClick={handlePDF}
+                disabled={!puedeCalcular}
+                className="flex flex-col items-center gap-1 bg-red-50 hover:bg-red-100 text-red-700 font-medium py-3 px-2 rounded-xl text-sm transition-all disabled:opacity-40"
+              >
+                <span className="text-xl">📄</span>
+                Descargar PDF
+              </button>
+              <button
+                onClick={handleWhatsApp}
+                disabled={!puedeCalcular}
+                className="flex flex-col items-center gap-1 bg-green-50 hover:bg-green-100 text-green-700 font-medium py-3 px-2 rounded-xl text-sm transition-all disabled:opacity-40"
+              >
+                <span className="text-xl">💬</span>
+                Compartir por WhatsApp
+              </button>
+            </div>
+
+            {/* Distribuidor colapsable */}
             <button
               onClick={() => setDistribuidorOpen(prev => !prev)}
-              className="w-full flex items-center gap-2 p-5 text-left hover:bg-gray-50 transition-colors"
+              className="w-full flex items-center gap-2 px-5 py-3.5 text-left hover:bg-gray-50 transition-colors"
             >
+              <span className="text-base">👥</span>
               <span className="flex-1 font-bold text-gray-800 text-sm">
-                Distribuir lista de compras entre tus amigos
+                Distribuir lista entre tus amigos
               </span>
-              <span
-                title="Divide la lista entre varias personas para que cada quien sepa qué comprar"
-                onClick={e => e.stopPropagation()}
-                className="w-5 h-5 rounded-full bg-gray-200 text-gray-500 text-xs flex items-center justify-center font-bold flex-shrink-0 cursor-help select-none"
-              >
-                ?
-              </span>
-              <span className="text-gray-400 text-xs ml-1">{distribuidorOpen ? "▲" : "▼"}</span>
+              <span className="text-gray-400 text-xs">{distribuidorOpen ? "▲" : "▼"}</span>
             </button>
 
             {distribuidorOpen && (
@@ -753,33 +785,6 @@ export default function Calculadora({
         </>
       )}
 
-      {/* ── ACTION BUTTONS ── */}
-      <section className="grid grid-cols-3 gap-3 print:hidden">
-        <button
-          onClick={handlePrint}
-          disabled={!puedeCalcular}
-          className="flex flex-col items-center gap-1 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-3 px-2 rounded-xl text-sm transition-all disabled:opacity-40"
-        >
-          <span className="text-xl">🖨️</span>
-          Imprimir lista
-        </button>
-        <button
-          onClick={handlePDF}
-          disabled={!puedeCalcular}
-          className="flex flex-col items-center gap-1 bg-red-50 hover:bg-red-100 text-red-700 font-medium py-3 px-2 rounded-xl text-sm transition-all disabled:opacity-40"
-        >
-          <span className="text-xl">📄</span>
-          Descargar PDF
-        </button>
-        <button
-          onClick={handleWhatsApp}
-          disabled={!puedeCalcular}
-          className="flex flex-col items-center gap-1 bg-green-50 hover:bg-green-100 text-green-700 font-medium py-3 px-2 rounded-xl text-sm transition-all disabled:opacity-40"
-        >
-          <span className="text-xl">💬</span>
-          Compartir por WhatsApp
-        </button>
-      </section>
 
     </div>
   );
