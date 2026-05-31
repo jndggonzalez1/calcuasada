@@ -32,7 +32,7 @@ const guias = [
   },
   {
     slug: "como-hacer-brisket-ahumado",
-    emoji: "🫀",
+    emoji: "💨",
     titulo: "Cómo hacer brisket ahumado paso a paso",
     desc: "Temperatura ideal, cuánto tiempo tarda, cómo envolver, cuándo está listo y cómo cortarlo. Todo lo que necesitas saber.",
     tiempo: "12 min de lectura",
