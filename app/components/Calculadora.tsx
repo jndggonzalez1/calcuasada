@@ -26,6 +26,39 @@ const PROTEIN_OPTIONS: { key: keyof Proteinas; label: string }[] = [
   { key: "queso",    label: "🧀 Queso para asar" },
 ];
 
+const TIERS_RES = [
+  {
+    id: "economico",
+    emoji: "💰",
+    label: "Económico",
+    cortes: ["Diezmillo", "Retazo", "Bistec"],
+    precioKg: 150,
+  },
+  {
+    id: "confiable",
+    emoji: "⭐",
+    label: "La confiable",
+    cortes: ["Arrachera", "Falda", "Picaña"],
+    precioKg: 280,
+  },
+  {
+    id: "especial",
+    emoji: "🔥",
+    label: "Especial",
+    cortes: ["Costilla", "T-bone", "Sirloin"],
+    precioKg: 400,
+  },
+  {
+    id: "premium",
+    emoji: "👑",
+    label: "Premium",
+    cortes: ["Ribeye", "New York", "Brisket"],
+    precioKg: 550,
+  },
+] as const;
+
+type TierResId = typeof TIERS_RES[number]["id"];
+
 const PRICE_LABELS: Record<string, string> = {
   res:       "Carne de res ($/kg)",
   pollo:     "Pollo ($/kg)",
@@ -118,6 +151,15 @@ export default function Calculadora({
   const [customPrices, setCustomPrices] = useState({ ...DEFAULT_PRICES });
   const [disabledRows, setDisabledRows] = useState<Set<string>>(new Set());
 
+  // Tier de res
+  const [tierRes, setTierRes] = useState<TierResId>("confiable");
+
+  const handleTierRes = (id: TierResId) => {
+    setTierRes(id);
+    const tier = TIERS_RES.find(t => t.id === id)!;
+    setCustomPrices(prev => ({ ...prev, res: tier.precioKg }));
+  };
+
   // Distribuidor state
   const [distribuidorOpen, setDistribuidorOpen] = useState(false);
   const [personaNombre, setPersonaNombre] = useState("");
@@ -151,7 +193,12 @@ export default function Calculadora({
   const puedeCalcular = !sinPersonas && !sinProteinas;
 
   const results = calcular(hombres, mujeres, ninos, tipo, proteinas, extras);
-  const prices  = priceTab === "promedio" ? DEFAULT_PRICES : customPrices;
+  const activeTier = TIERS_RES.find(t => t.id === tierRes)!;
+  const basePrices = priceTab === "promedio" ? DEFAULT_PRICES : customPrices;
+  const prices: Record<string, number> = {
+    ...basePrices,
+    ...(proteinas.res ? { res: priceTab === "promedio" ? activeTier.precioKg : customPrices.res } : {}),
+  };
   const bolsas  = extras.botanas ? Math.ceil(totalPersonas / 5) : 0;
 
   const isRowEnabled = (key: string) => !disabledRows.has(key);
@@ -461,6 +508,41 @@ export default function Calculadora({
             </button>
           ))}
         </div>
+
+        {/* Tier de carne de res */}
+        {proteinas.res && (
+          <div className="mb-4">
+            <p className="text-xs font-medium text-gray-500 mb-2 uppercase tracking-wide">Tipo de corte de res</p>
+            <div className="grid grid-cols-2 gap-2">
+              {TIERS_RES.map(tier => {
+                const selected = tierRes === tier.id;
+                return (
+                  <button
+                    key={tier.id}
+                    onClick={() => handleTierRes(tier.id)}
+                    className={`text-left rounded-xl border-2 px-3 py-2.5 transition-all ${
+                      selected
+                        ? "border-brasa bg-brasa-light"
+                        : "border-gray-200 hover:border-brasa/40 bg-white"
+                    }`}
+                  >
+                    <div className="flex items-center justify-between mb-1">
+                      <span className={`text-xs font-black ${selected ? "text-brasa" : "text-gray-700"}`}>
+                        {tier.emoji} {tier.label}
+                      </span>
+                      <span className={`text-xs font-bold ${selected ? "text-brasa" : "text-gray-400"}`}>
+                        ~${tier.precioKg}/kg
+                      </span>
+                    </div>
+                    <div className={`text-xs leading-tight ${selected ? "text-brasa/70" : "text-gray-400"}`}>
+                      {tier.cortes.join(" · ")}
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
 
         {/* Protein toggles */}
         <p className="text-sm font-medium text-gray-600 mb-2">Proteínas</p>
