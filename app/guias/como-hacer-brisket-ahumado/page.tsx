@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import AdBanner from "../../components/AdBanner";
 
 export const metadata: Metadata = {
@@ -13,16 +12,12 @@ export default function BrisketPage() {
   return (
     <article className="space-y-6 text-gray-700">
 
-      <div className="rounded-2xl overflow-hidden bg-gray-900">
-        <Image
-          src="/smoker.png"
-          alt="Offset smoker para brisket ahumado"
-          width={1344}
-          height={896}
-          className="w-full object-cover"
-          priority
-        />
-      </div>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/smoker.png"
+        alt="Offset smoker para brisket ahumado"
+        className="w-full rounded-2xl"
+      />
 
       <div className="text-center space-y-2">
         <p className="text-xs font-semibold text-brasa uppercase tracking-wider">Guía completa</p>
