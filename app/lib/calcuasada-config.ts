@@ -62,17 +62,17 @@ export const CERVEZA_LATAS: Record<EventType, { hombre: number; mujer: number; n
 // Precios de mercado en MXN (referencia, ajustables)
 export const DEFAULT_PRICES: Record<string, number> = {
   res:       280, // $/kg
-  pollo:      90, // $/kg
+  pollo:     120, // $/kg
   salchicha: 120, // $/kg
-  queso:     180, // $/kg
-  tortillas:  30, // $/kg  (~30g por tortilla)
+  queso:     190, // $/kg
+  tortillas:  25, // $/kg  (~30g por tortilla)
   cebolla:     8, // $/pza
   limon:       2, // $/pza
   aguacate:   22, // $/pza
   salsa:      45, // $/L
   carbon:     35, // $/kg
-  hielo:      25, // $/kg
+  hielo:      15, // $/kg
   frijoles:   28, // $/L de frijol de olla
   cerveza:    20, // $/lata
-  refrescos:  30, // $/botella 2L
+  refrescos:  40, // $/botella 2L
 };
