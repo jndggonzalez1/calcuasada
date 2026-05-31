@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/guias/carne-asada-perfecta-monterrey`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/guias/cuanto-carbon-necesito-carne-asada`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/guias/lista-compras-carne-asada-completa`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${base}/guias/como-hacer-brisket-ahumado`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/calculadora/10`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/calculadora/15`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/calculadora/20`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },

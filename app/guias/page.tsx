@@ -30,6 +30,13 @@ const guias = [
     desc: "Desde la carne hasta las bolsas de basura — todo lo que necesitas comprar para que no se te olvide nada.",
     tiempo: "7 min de lectura",
   },
+  {
+    slug: "como-hacer-brisket-ahumado",
+    emoji: "🫀",
+    titulo: "Cómo hacer brisket ahumado paso a paso",
+    desc: "Temperatura ideal, cuánto tiempo tarda, cómo envolver, cuándo está listo y cómo cortarlo. Todo lo que necesitas saber.",
+    tiempo: "12 min de lectura",
+  },
 ];
 
 export default function GuiasPage() {
