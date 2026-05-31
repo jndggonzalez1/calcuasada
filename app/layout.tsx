@@ -65,6 +65,7 @@ export default function RootLayout({
           <div className="max-w-lg mx-auto px-4 flex justify-center gap-2 py-2">
             <NavLink href="/">Calculadora</NavLink>
             <NavLink href="/guias">Guías</NavLink>
+            <NavLink href="/termometro">🌡️ Temps</NavLink>
             <NavLink href="/acerca">Acerca</NavLink>
           </div>
         </nav>
