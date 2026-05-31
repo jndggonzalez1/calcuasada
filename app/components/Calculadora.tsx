@@ -680,7 +680,7 @@ export default function Calculadora({
               <ResultRow label="🍋 Limones"   perPerson={perPersonaHint("limon",     results.limon,     totalPersonas)} value={results.limon}     unit="pzas" enabled={isRowEnabled("limon")}     onToggle={() => toggleRow("limon")} />
               <ResultRow label="🥑 Aguacates" perPerson={perPersonaHint("aguacate",  results.aguacate,  totalPersonas)} value={results.aguacate}  unit="pzas" enabled={isRowEnabled("aguacate")}  onToggle={() => toggleRow("aguacate")} />
               <ResultRow
-                label="🫙 Salsa"
+                label={renderLabel("🫙 Salsa", salchichaDataUrl, salsaDataUrl, refrescoDataUrl)}
                 perPerson={perPersonaHint("salsa", results.salsa, totalPersonas)}
                 value={results.salsa >= 1000 ? results.salsa / 1000 : results.salsa}
                 unit={results.salsa >= 1000 ? "L" : "ml"}
@@ -729,7 +729,7 @@ export default function Calculadora({
                   onChange={() => setExtras(prev => ({ ...prev, refrescos: !prev.refrescos }))}
                   className="w-5 h-5 accent-brasa rounded"
                 />
-                <span className="text-sm text-gray-700">🥤 Refrescos (botellas 2L)</span>
+                <span className="text-sm text-gray-700">{renderLabel("🥤 Refrescos (botellas 2L)", salchichaDataUrl, salsaDataUrl, refrescoDataUrl)}</span>
                 {extras.refrescos && results.refrescos && (
                   <span className="ml-auto font-bold text-brasa text-sm">{results.refrescos} botellas</span>
                 )}
