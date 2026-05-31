@@ -36,7 +36,7 @@ export interface Results {
   salsa: number;        // ml, redondeado a 250/500/1000+
   carbon: number;       // kg, nearest 0.5
   hielo: number;        // kg, nearest 0.5
-  frijoles: number;     // ollas, entero (ceil)
+  frijoles: number;     // litros, nearest 0.5
   cerveza?: number;     // latas, múltiplo de 6
   refrescos?: number;   // botellas 2L
 }
@@ -121,7 +121,7 @@ export function calcular(
     salsa:     roundSalsa(salsaRaw),
     carbon:    roundToHalf(carbonRaw),
     hielo:     roundToHalf(hieloRaw),
-    frijoles:  Math.ceil(frijolesRaw),
+    frijoles:  roundToHalf(frijolesRaw),
     cerveza:   extras.cerveza   ? Math.ceil(cervezaLatasRaw / 6) * 6         : undefined,
     refrescos: extras.refrescos ? Math.ceil(totalPersonas / 4)               : undefined,
   };

@@ -37,7 +37,7 @@ export const BASE_ACOMPS = {
   salsa:     { hombre: 70,   mujer: 60,   nino: 30   }, // ml
   carbon:    { hombre: 0.5,  mujer: 0.5,  nino: 0.25 }, // kg
   hielo:     { hombre: 1.0,  mujer: 1.0,  nino: 0.5  }, // kg
-  frijoles:  { hombre: 0.10, mujer: 0.08, nino: 0.05 }, // ollas — 1 cada 8-10 personas
+  frijoles:  { hombre: 0.20, mujer: 0.16, nino: 0.10 }, // litros — ~1L cada 5 personas
 };
 
 // Multiplicadores de acompañantes por nivel de apetito
@@ -61,12 +61,18 @@ export const CERVEZA_LATAS: Record<EventType, { hombre: number; mujer: number; n
 
 // Precios de mercado en MXN (referencia, ajustables)
 export const DEFAULT_PRICES: Record<string, number> = {
-  res:       280,
-  pollo:      90,
-  salchicha: 120,
-  queso:     180,
-  tortillas:  30,
-  carbon:     35,
-  hielo:      25,
-  cerveza:    20, // por lata
+  res:       280, // $/kg
+  pollo:      90, // $/kg
+  salchicha: 120, // $/kg
+  queso:     180, // $/kg
+  tortillas:  30, // $/kg  (~30g por tortilla)
+  cebolla:     8, // $/pza
+  limon:       2, // $/pza
+  aguacate:   22, // $/pza
+  salsa:      45, // $/L
+  carbon:     35, // $/kg
+  hielo:      25, // $/kg
+  frijoles:   28, // $/L de frijol de olla
+  cerveza:    20, // $/lata
+  refrescos:  30, // $/botella 2L
 };

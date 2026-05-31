@@ -29,12 +29,18 @@ const PROTEIN_OPTIONS: { key: keyof Proteinas; label: string }[] = [
 const PRICE_LABELS: Record<string, string> = {
   res:       "Carne de res ($/kg)",
   pollo:     "Pollo ($/kg)",
-  salchicha: "Salchicha para asar ($/kg)",
+  salchicha: "Salchicha ($/kg)",
   queso:     "Queso para asar ($/kg)",
   tortillas: "Tortillas ($/kg)",
+  cebolla:   "Cebolla ($/pza)",
+  limon:     "Limones ($/pza)",
+  aguacate:  "Aguacate ($/pza)",
+  salsa:     "Salsa ($/litro)",
   carbon:    "Carbón ($/kg)",
   hielo:     "Hielo ($/kg)",
+  frijoles:  "Frijoles de olla ($/litro)",
   cerveza:   "Cerveza ($/lata)",
+  refrescos: "Refrescos ($/botella 2L)",
 };
 
 // ── Formatters ────────────────────────────────────────────────────────────────
@@ -68,6 +74,7 @@ function perPersonaHint(key: string, value: number, total: number): string {
     case "salsa":     return `~${Math.round(pp)} ml por persona`;
     case "carbon":    return `~${pp.toFixed(1)} kg por persona`;
     case "hielo":     return `~${pp.toFixed(1)} kg por persona`;
+    case "frijoles":  return `~${pp.toFixed(2)} L por persona`;
     default: return "";
   }
 }
@@ -161,9 +168,15 @@ export default function Calculadora({
       (results.salchicha ?? 0) * prices.salchicha +
       (results.queso     ?? 0) * prices.queso +
       (isRowEnabled("tortillas") ? (results.tortillas * 0.03) * prices.tortillas : 0) +
-      (isRowEnabled("carbon")    ? results.carbon * prices.carbon : 0) +
-      (isRowEnabled("hielo")     ? results.hielo  * prices.hielo  : 0) +
-      (results.cerveza ?? 0) * prices.cerveza
+      (isRowEnabled("cebolla")   ? results.cebolla   * prices.cebolla   : 0) +
+      (isRowEnabled("limon")     ? results.limon     * prices.limon     : 0) +
+      (isRowEnabled("aguacate")  ? results.aguacate  * prices.aguacate  : 0) +
+      (isRowEnabled("salsa")     ? (results.salsa / 1000) * prices.salsa : 0) +
+      (isRowEnabled("carbon")    ? results.carbon    * prices.carbon    : 0) +
+      (isRowEnabled("hielo")     ? results.hielo     * prices.hielo     : 0) +
+      (isRowEnabled("frijoles")  ? results.frijoles  * prices.frijoles  : 0) +
+      (results.cerveza   ?? 0) * prices.cerveza +
+      (results.refrescos ?? 0) * prices.refrescos
     : 0;
 
   // ── Active items for distribuidor ───────────────────────────────────────────
@@ -182,7 +195,7 @@ export default function Calculadora({
     if (isRowEnabled("salsa"))     items.push({ key: "salsa",     displayLabel: "🫙 Salsa",     textLabel: "Salsa",     value: results.salsa,     unit: "ml"   });
     if (isRowEnabled("carbon"))    items.push({ key: "carbon",    displayLabel: "🪨 Carbón",    textLabel: "Carbón",    value: results.carbon,    unit: "kg"   });
     if (isRowEnabled("hielo"))     items.push({ key: "hielo",     displayLabel: "🧊 Hielo",     textLabel: "Hielo",     value: results.hielo,     unit: "kg"   });
-    if (isRowEnabled("frijoles"))  items.push({ key: "frijoles",  displayLabel: "🫘 Frijoles",  textLabel: "Frijoles",  value: results.frijoles,  unit: "ollas"});
+    if (isRowEnabled("frijoles"))  items.push({ key: "frijoles",  displayLabel: "🫘 Frijoles",  textLabel: "Frijoles",  value: results.frijoles,  unit: "L"    });
     if (results.cerveza)  items.push({ key: "cerveza",  displayLabel: "🍺 Cerveza",  textLabel: "Cerveza",  value: results.cerveza,  unit: "latas"   });
     if (results.refrescos)items.push({ key: "refrescos",displayLabel: "🥤 Refrescos",textLabel: "Refrescos",value: results.refrescos!,unit: "botellas"});
     if (extras.botanas && bolsas > 0) items.push({ key: "botanas", displayLabel: "🍿 Botanas", textLabel: "Botanas", value: bolsas, unit: "bolsas" });
@@ -533,8 +546,9 @@ export default function Calculadora({
                 enabled={isRowEnabled("salsa")}
                 onToggle={() => toggleRow("salsa")}
               />
-              <ResultRow label="🪨 Carbón" perPerson={perPersonaHint("carbon", results.carbon, totalPersonas)} value={results.carbon} unit="kg" enabled={isRowEnabled("carbon")} onToggle={() => toggleRow("carbon")} />
-              <ResultRow label="🧊 Hielo"  perPerson={perPersonaHint("hielo",  results.hielo,  totalPersonas)} value={results.hielo}  unit="kg" enabled={isRowEnabled("hielo")}  onToggle={() => toggleRow("hielo")} />
+              <ResultRow label="🪨 Carbón"  perPerson={perPersonaHint("carbon",   results.carbon,   totalPersonas)} value={results.carbon}   unit="kg" enabled={isRowEnabled("carbon")}   onToggle={() => toggleRow("carbon")} />
+              <ResultRow label="🧊 Hielo"   perPerson={perPersonaHint("hielo",    results.hielo,    totalPersonas)} value={results.hielo}    unit="kg" enabled={isRowEnabled("hielo")}    onToggle={() => toggleRow("hielo")} />
+              <ResultRow label="🫘 Frijoles" perPerson={perPersonaHint("frijoles", results.frijoles, totalPersonas)} value={results.frijoles} unit="L"  enabled={isRowEnabled("frijoles")} onToggle={() => toggleRow("frijoles")} />
             </div>
           </section>
 
