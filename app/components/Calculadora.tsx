@@ -28,32 +28,36 @@ const PROTEIN_OPTIONS: { key: keyof Proteinas; label: string }[] = [
 
 const TIERS_RES = [
   {
-    id: "economico",
+    id: "rendidora",
     emoji: "💰",
-    label: "Económico",
+    label: "Rendidora",
+    desc: "Pa' que alcance sin que duela tanto.",
     cortes: ["Diezmillo", "Retazo", "Bistec"],
-    precioKg: 150,
+    precioKg: 250,
   },
   {
     id: "confiable",
     emoji: "⭐",
     label: "La confiable",
+    desc: "Buena carne para una carne asada bien armada.",
     cortes: ["Arrachera", "Falda", "Picaña"],
-    precioKg: 280,
+    precioKg: 390,
   },
   {
-    id: "especial",
+    id: "mamalona",
     emoji: "🔥",
-    label: "Especial",
+    label: "Mamalona",
+    desc: "Cortes buenos para lucirse sin irse tan extremo.",
     cortes: ["Costilla", "T-bone", "Sirloin"],
-    precioKg: 400,
+    precioKg: 600,
   },
   {
-    id: "premium",
+    id: "mamalonafifi",
     emoji: "👑",
-    label: "Premium",
-    cortes: ["Ribeye", "New York", "Brisket"],
-    precioKg: 550,
+    label: "Mamalona fifí",
+    desc: "Sin miedo al ticket: cortes premium, importados o de carnicería high-end.",
+    cortes: ["Ribeye", "New York", "Brisket importado"],
+    precioKg: 850,
   },
 ] as const;
 
@@ -534,8 +538,11 @@ export default function Calculadora({
                         ~${tier.precioKg}/kg
                       </span>
                     </div>
-                    <div className={`text-xs leading-tight ${selected ? "text-brasa/70" : "text-gray-400"}`}>
+                    <div className={`text-xs leading-tight mb-1 ${selected ? "text-brasa/80" : "text-gray-500"}`}>
                       {tier.cortes.join(" · ")}
+                    </div>
+                    <div className={`text-xs leading-tight italic ${selected ? "text-brasa/60" : "text-gray-400"}`}>
+                      {tier.desc}
                     </div>
                   </button>
                 );
