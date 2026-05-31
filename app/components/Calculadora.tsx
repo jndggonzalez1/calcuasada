@@ -297,7 +297,13 @@ export default function Calculadora({
   const handleWhatsApp = () => {
     if (!puedeCalcular) return;
     if (distribuidorActivo && !todosAsignados) { warnAsignacion(); return; }
-    window.open(`https://wa.me/?text=${encodeURIComponent(buildShareText())}`, "_blank");
+    const a = document.createElement("a");
+    a.href = `https://wa.me/?text=${encodeURIComponent(buildShareText())}`;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   };
 
   const handlePDF = async () => {
