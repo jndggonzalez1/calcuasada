@@ -524,24 +524,24 @@ export default function Calculadora({
                   <button
                     key={tier.id}
                     onClick={() => handleTierRes(tier.id)}
-                    className={`text-left rounded-xl border-2 px-3 py-2.5 transition-all ${
+                    className={`text-left rounded-lg border-2 px-2 py-1.5 transition-all ${
                       selected
                         ? "border-brasa bg-brasa-light"
                         : "border-gray-200 hover:border-brasa/40 bg-white"
                     }`}
                   >
-                    <div className="flex items-center justify-between mb-1">
-                      <span className={`text-xs font-black ${selected ? "text-brasa" : "text-gray-700"}`}>
+                    <div className="flex items-center justify-between gap-1 mb-0.5">
+                      <span className={`font-black leading-tight ${selected ? "text-brasa" : "text-gray-700"}`} style={{ fontSize: "11px" }}>
                         {tier.emoji} {tier.label}
                       </span>
-                      <span className={`text-xs font-bold ${selected ? "text-brasa" : "text-gray-400"}`}>
+                      <span className={`font-bold shrink-0 ${selected ? "text-brasa" : "text-gray-400"}`} style={{ fontSize: "10px" }}>
                         ~${tier.precioKg}/kg
                       </span>
                     </div>
-                    <div className={`leading-tight mb-1 ${selected ? "text-brasa/80" : "text-gray-500"}`} style={{ fontSize: "10px" }}>
+                    <div className={`leading-tight mb-0.5 ${selected ? "text-brasa/80" : "text-gray-500"}`} style={{ fontSize: "9px" }}>
                       {tier.cortes.join(" · ")}
                     </div>
-                    <div className={`leading-tight italic ${selected ? "text-brasa/60" : "text-gray-400"}`} style={{ fontSize: "10px" }}>
+                    <div className={`leading-tight italic ${selected ? "text-brasa/60" : "text-gray-400"}`} style={{ fontSize: "9px" }}>
                       {tier.desc}
                     </div>
                   </button>
