@@ -6,6 +6,7 @@ import NavLink from "./components/NavLink";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.calcuasada.com"),
   title: "Calcuasada — Calculadora de Carne Asada",
   description:
     "Calcula exactamente cuánta carne, tortillas, limones, carbón y más necesitas para tu carne asada. Gratis, en español, para México.",
