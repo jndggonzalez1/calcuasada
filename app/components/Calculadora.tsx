@@ -15,6 +15,7 @@ import AdBanner from "./AdBanner";
 
 const STORAGE_KEY = "calcuasada-state";
 const HISTORIAL_KEY = "calcuasada-historial";
+const PRICE_KEYS = ["res","pollo","salchicha","queso","tortillas","cebolla","limon","aguacate","salsa","carbon","hielo","frijoles","cerveza","refrescos"] as const;
 
 function readSaved(persistState: boolean): Record<string, unknown> {
   if (!persistState || typeof window === "undefined") return {};
@@ -22,6 +23,43 @@ function readSaved(persistState: boolean): Record<string, unknown> {
     const raw = localStorage.getItem(STORAGE_KEY);
     return raw ? (JSON.parse(raw) as Record<string, unknown>) : {};
   } catch { return {}; }
+}
+
+// ── URL params (compartir link con estado completo) ───────────────────────────
+
+function readUrlParams(): Record<string, string> | null {
+  if (typeof window === "undefined") return null;
+  const p = new URLSearchParams(window.location.search);
+  if (!p.has("adultos")) return null;
+  return Object.fromEntries(p.entries());
+}
+
+function buildShareUrl(s: {
+  adultos: number; ninos: number; sliderAdultos: number; tipo: EventType;
+  proteinas: Proteinas; extras: Extras; tierRes: string; salsaCasera: boolean;
+  disabledRows: Set<string>; priceTab: string; customPrices: Record<string, number>;
+}): string {
+  const p = new URLSearchParams();
+  p.set("adultos", String(s.adultos));
+  if (s.ninos > 0)          p.set("ninos", String(s.ninos));
+  if (s.sliderAdultos !== 50) p.set("sl", String(s.sliderAdultos));
+  p.set("tipo", s.tipo);
+  p.set("res",       s.proteinas.res       ? "1" : "0");
+  p.set("pollo",     s.proteinas.pollo     ? "1" : "0");
+  p.set("salchicha", s.proteinas.salchicha ? "1" : "0");
+  p.set("queso",     s.proteinas.queso     ? "1" : "0");
+  if (s.tierRes !== "confiable") p.set("tier", s.tierRes);
+  if (s.extras.cerveza)   p.set("cerveza",   "1");
+  if (s.extras.refrescos) p.set("refrescos", "1");
+  if (s.extras.botanas)   p.set("botanas",   "1");
+  if (s.salsaCasera)      p.set("casera",    "1");
+  const off = [...s.disabledRows];
+  if (off.length) p.set("off", off.join(","));
+  if (s.priceTab === "personalizado") {
+    p.set("tab", "custom");
+    PRICE_KEYS.forEach(k => p.set(`p_${k}`, String(s.customPrices[k] ?? 0)));
+  }
+  return `${window.location.origin}/?${p.toString()}`;
 }
 
 // ── Historial types ───────────────────────────────────────────────────────────
@@ -216,52 +254,85 @@ export default function Calculadora({
   defaultTipo = "normal",
   persistState = false,
 }: Props) {
-  // Lee localStorage una sola vez en el primer render (antes del save effect)
+  // URL params tienen prioridad máxima; localStorage es fallback
+  const urlParamsRef = useRef<Record<string, string> | null | undefined>(undefined);
+  if (urlParamsRef.current === undefined) urlParamsRef.current = readUrlParams();
+  const urlP = urlParamsRef.current;
+
   const savedRef = useRef<Record<string, unknown> | undefined>(undefined);
   const saved = (() => {
     if (savedRef.current !== undefined) return savedRef.current;
-    savedRef.current = readSaved(persistState);
+    savedRef.current = urlP ? {} : readSaved(persistState);
     return savedRef.current;
   })();
 
-  const [adultos, setAdultos] = useState(() =>
-    typeof saved.adultos === "number" ? saved.adultos : defaultAdultos
-  );
-  const [ninos, setNinos] = useState(() =>
-    typeof saved.ninos === "number" ? saved.ninos : defaultNinos
-  );
-  const [sliderAdultos, setSliderAdultos] = useState(() =>
-    typeof saved.sliderAdultos === "number" ? saved.sliderAdultos : 50
-  );
-  const [tipo, setTipo] = useState<EventType>(() =>
-    (saved.tipo as EventType) ?? defaultTipo
-  );
-  const [proteinas, setProteinas] = useState<Proteinas>(() =>
-    (saved.proteinas as Proteinas) ?? { res: true, pollo: false, salchicha: false, queso: false }
-  );
-  const [extras, setExtras] = useState<Extras>(() =>
-    (saved.extras as Extras) ?? { cerveza: false, refrescos: false, botanas: false }
-  );
-  const [priceTab, setPriceTab] = useState<"promedio" | "personalizado">(() =>
-    (saved.priceTab as "promedio" | "personalizado") ?? "promedio"
-  );
-  const [customPrices, setCustomPrices] = useState(() =>
-    saved.customPrices ? { ...DEFAULT_PRICES, ...(saved.customPrices as object) } : { ...DEFAULT_PRICES }
-  );
-  const [disabledRows, setDisabledRows] = useState<Set<string>>(() =>
-    Array.isArray(saved.disabledRows) ? new Set(saved.disabledRows as string[]) : new Set()
-  );
+  const VALID_TIPOS = new Set(["ligero", "normal", "tragones"]);
+  const VALID_TIERS = new Set(["rendidora", "confiable", "mamalona", "mamalonafifi"]);
+
+  const [adultos, setAdultos] = useState(() => {
+    if (urlP?.adultos !== undefined) return Math.max(0, parseInt(urlP.adultos) || 0);
+    return typeof saved.adultos === "number" ? saved.adultos : defaultAdultos;
+  });
+  const [ninos, setNinos] = useState(() => {
+    if (urlP?.ninos !== undefined) return Math.max(0, parseInt(urlP.ninos) || 0);
+    return typeof saved.ninos === "number" ? saved.ninos : defaultNinos;
+  });
+  const [sliderAdultos, setSliderAdultos] = useState(() => {
+    if (urlP?.sl !== undefined) return Math.min(100, Math.max(0, parseInt(urlP.sl) || 50));
+    return typeof saved.sliderAdultos === "number" ? saved.sliderAdultos : 50;
+  });
+  const [tipo, setTipo] = useState<EventType>(() => {
+    if (urlP?.tipo && VALID_TIPOS.has(urlP.tipo)) return urlP.tipo as EventType;
+    return (saved.tipo as EventType) ?? defaultTipo;
+  });
+  const [proteinas, setProteinas] = useState<Proteinas>(() => {
+    if (urlP) {
+      const anyProt = urlP.res === "1" || urlP.pollo === "1" || urlP.salchicha === "1" || urlP.queso === "1";
+      return {
+        res:       !anyProt || urlP.res === "1",
+        pollo:     urlP.pollo === "1",
+        salchicha: urlP.salchicha === "1",
+        queso:     urlP.queso === "1",
+      };
+    }
+    return (saved.proteinas as Proteinas) ?? { res: true, pollo: false, salchicha: false, queso: false };
+  });
+  const [extras, setExtras] = useState<Extras>(() => {
+    if (urlP) return { cerveza: urlP.cerveza === "1", refrescos: urlP.refrescos === "1", botanas: urlP.botanas === "1" };
+    return (saved.extras as Extras) ?? { cerveza: false, refrescos: false, botanas: false };
+  });
+  const [priceTab, setPriceTab] = useState<"promedio" | "personalizado">(() => {
+    if (urlP?.tab === "custom") return "personalizado";
+    return (saved.priceTab as "promedio" | "personalizado") ?? "promedio";
+  });
+  const [customPrices, setCustomPrices] = useState(() => {
+    if (urlP?.tab === "custom") {
+      const prices = { ...DEFAULT_PRICES };
+      PRICE_KEYS.forEach(k => {
+        const v = parseFloat(urlP[`p_${k}`] ?? "");
+        if (!isNaN(v) && v >= 0) prices[k] = v;
+      });
+      return prices;
+    }
+    return saved.customPrices ? { ...DEFAULT_PRICES, ...(saved.customPrices as object) } : { ...DEFAULT_PRICES };
+  });
+  const [disabledRows, setDisabledRows] = useState<Set<string>>(() => {
+    if (urlP?.off !== undefined) return new Set(urlP.off.split(",").filter(Boolean));
+    return Array.isArray(saved.disabledRows) ? new Set(saved.disabledRows as string[]) : new Set();
+  });
 
   // Tier de res
-  const [tierRes, setTierRes] = useState<TierResId>(() =>
-    (saved.tierRes as TierResId) ?? "confiable"
-  );
+  const [tierRes, setTierRes] = useState<TierResId>(() => {
+    if (urlP?.tier && VALID_TIERS.has(urlP.tier)) return urlP.tier as TierResId;
+    return (saved.tierRes as TierResId) ?? "confiable";
+  });
   const [tierDetail, setTierDetail] = useState<number | null>(null);
 
   // Salsa casera toggle
-  const [salsaCasera, setSalsaCasera] = useState(() =>
-    typeof saved.salsaCasera === "boolean" ? saved.salsaCasera : false
-  );
+  const [salsaCasera, setSalsaCasera] = useState(() => {
+    if (urlP) return urlP.casera === "1";
+    return typeof saved.salsaCasera === "boolean" ? saved.salsaCasera : false;
+  });
 
   const handleTierRes = (id: TierResId) => {
     setTierRes(id);
@@ -342,6 +413,22 @@ export default function Calculadora({
       await navigator.clipboard.writeText(buildShareText());
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
+    } catch {}
+  };
+
+  // #1 — Copiar link con estado completo
+  const [linkCopied, setLinkCopied] = useState(false);
+
+  const handleCopyLink = async () => {
+    if (!puedeCalcular) return;
+    const url = buildShareUrl({
+      adultos, ninos, sliderAdultos, tipo, proteinas, extras,
+      tierRes, salsaCasera, disabledRows, priceTab, customPrices,
+    });
+    try {
+      await navigator.clipboard.writeText(url);
+      setLinkCopied(true);
+      setTimeout(() => setLinkCopied(false), 3000);
     } catch {}
   };
 
@@ -1127,6 +1214,29 @@ export default function Calculadora({
                 <p className="font-black text-gray-900 text-sm">Compartir y distribuir</p>
                 <p className="text-xs text-gray-500">Manda la lista o divide quién compra qué entre los cuates</p>
               </div>
+            </div>
+
+            {/* Botón compartir link */}
+            <div className="px-4 pt-3 pb-2 border-b border-gray-100">
+              <button
+                onClick={handleCopyLink}
+                disabled={!puedeCalcular}
+                className={`w-full flex items-center justify-center gap-2 font-semibold py-2.5 px-4 rounded-xl text-sm transition-all disabled:opacity-40 ${
+                  linkCopied
+                    ? "bg-brasa-light text-brasa border border-brasa/30"
+                    : "bg-brasa text-white hover:bg-brasa/90"
+                }`}
+              >
+                <span>{linkCopied ? "✅" : "🔗"}</span>
+                {linkCopied
+                  ? "¡Link copiado! Mándalo a tus cuates"
+                  : "Copiar link con toda la configuración"}
+              </button>
+              {linkCopied && (
+                <p className="text-center text-xs text-gray-400 mt-1.5">
+                  Incluye personas, proteínas, presupuesto y todo lo que tienes configurado
+                </p>
+              )}
             </div>
 
             {/* Distribuidor colapsable */}
