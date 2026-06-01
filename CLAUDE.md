@@ -133,7 +133,7 @@ public/
 | Página /privacidad | ✅ Listo |
 | Página /contacto (hola@calcuasada.com) | ✅ Listo |
 | Nav bar y footer con links (Guías, Acerca, Contacto, Privacidad) | ✅ Listo |
-| Sección /guias con 4 artículos SEO (+ brisket ahumado) | ✅ Listo |
+| Sección /guias con 5 artículos SEO (+ brisket ahumado + salsa verde) | ✅ Listo |
 | Sección /termometro — temperaturas + técnica de la mano | ✅ Listo |
 | Nuevo color scheme: header crema, nav carbón, acento #E8460A | ✅ Listo |
 | NavLink client component con active state y whitespace-nowrap | ✅ Listo |
@@ -156,11 +156,27 @@ public/
 | Repositorio en GitHub | ✅ Listo (`main`) |
 | Deploy en Vercel | ✅ Configurado (auto-deploy desde `main`) |
 | Aprobación de Google AdSense | ⏳ Pendiente (falta Search Console + esperar indexación) |
-| Google Search Console — enviar sitemap | ⏳ Pendiente (acción manual de Yeyito) |
+| Salsa casera: toggle Comprada/Casera con ingredientes escalados | ✅ Listo |
+| Guía /guias/salsa-verde-carne-asada con receta completa | ✅ Listo |
+| Cebolla salsa fusionada con cebolla carne en reportes compartir | ✅ Listo |
+| Títulos de sección del form centrados con recuadro brasa-light | ✅ Listo |
+| Guía Monterrey: ribeye, técnica sellado, precios actualizados | ✅ Listo |
+| sitemap y robots.txt corregidos a www.calcuasada.com | ✅ Listo |
+| metadataBase agregado al layout (www.calcuasada.com) | ✅ Listo |
+| Google Search Console — reindexar URLs con redirect error | ⏳ Pendiente (acción manual de Yeyito — ya corregido el sitemap) |
+| Aprobación de Google AdSense | ⏳ Pendiente (falta Search Console + esperar indexación) |
 
 ---
 
 ## Historial de sesiones
+
+### Sesión 10 (mayo 2026) — Salsa casera, SEO fix, guía Monterrey y UX form
+- **Fix Search Console** — sitemap y robots.txt cambiados de `calcuasada.com` a `www.calcuasada.com`. `metadataBase` agregado al layout. Yeyito debe reindexar las 5 URLs afectadas manualmente.
+- **Salsa casera** — toggle Comprada/Casera en el item de salsa de la lista de compras. En modo Casera muestra ingredientes escalados al # de personas (tomatillos, chiles, cebolla, ajo, cilantro — sin sal). Cebolla salsa fusionada con la cebolla de la carne en activeItems (reportes), con nota "+X pedazo(s) para salsa". Costo de salsa casera = $33.50 por receta (7 personas), escalado automáticamente.
+- **Precio salsa comprada** — actualizado de $45/L a $100/L ($1 cada 10g, bote 300g = $30).
+- **Guía salsa verde** — nueva página `/guias/salsa-verde-carne-asada` con receta completa, tips, recomendación especial de Yeyito (grasa de la carne), y link de vuelta a la calculadora. Usa `/salsa.png` como thumbnail en el índice de guías. Incluida en sitemap.
+- **Guía Monterrey actualizada** — ribeye agregado como corte premium (favorito de Yeyito, $800–$1,200/kg), reordenado a 2° lugar (después de arrachera). Nueva sección "Técnica del sellado": fuego alto para sellar → fuego lento para cocer. Precios actualizados: arrachera $320–$450, costilla $500–$650, agujas $150–$220. Error nuevo en errores comunes: no sellar antes de bajar el fuego.
+- **Títulos del form centrados** — ¿Cuántos van?, Tipo de carne asada, Tipo de corte de res (presupuesto) y Proteínas ahora tienen recuadro `brasa-light` con borde naranja y texto centrado.
 
 ### Sesión 9 (mayo 2026) — UX calculadora, compartir imagen, tiers de res y emojis personalizados
 - **Distribuidor reordenado** — se mueve arriba de los botones de compartir, fondo ámbar, flecha más notoria. El formulario de agregar personas también sube arriba de los botones.
