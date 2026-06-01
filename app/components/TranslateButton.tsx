@@ -34,7 +34,12 @@ export default function TranslateButton() {
   return (
     <button
       onClick={switchLanguage}
-      className="nav-pill-3d text-xs font-semibold px-2 py-1 whitespace-nowrap"
+      className="text-xs font-semibold px-2 py-1 whitespace-nowrap rounded-full border"
+      style={{
+        background: '#2D2D2D',
+        color: 'rgba(255,255,255,0.88)',
+        borderColor: 'rgba(0,0,0,0.2)',
+      }}
       title={lang === 'es' ? 'Switch to English' : 'Cambiar a Español'}
     >
       🌐 {lang === 'es' ? 'EN' : 'ES'}
