@@ -32,12 +32,10 @@ export default function ComoUsarAccordion() {
     <div className="rounded-2xl border border-brasa/20 overflow-hidden">
       <button
         onClick={() => setOpen(prev => !prev)}
-        className="w-full flex items-center justify-between px-5 py-3.5 bg-brasa-light hover:bg-brasa/10 transition-colors text-left"
+        className="w-full flex items-center justify-center gap-3 px-5 py-3.5 bg-brasa-light hover:bg-brasa/10 transition-colors"
       >
-        <div className="flex items-center gap-2">
-          <span className="text-base">📋</span>
-          <span className="font-bold text-gray-800 text-sm">¿Cómo usar la calculadora?</span>
-        </div>
+        <span className="text-base">📋</span>
+        <span className="font-bold text-gray-800 text-sm">¿Cómo usar la calculadora?</span>
         <span className="text-brasa text-lg font-black leading-none">{open ? "▲" : "▼"}</span>
       </button>
 

@@ -587,11 +587,11 @@ export default function Calculadora({
                       </div>
                     </button>
                     {open && (
-                      <div className={`px-2 pb-1.5 border-t ${selected ? "border-brasa/20" : "border-gray-100"}`}>
-                        <div className={`leading-tight mt-1 mb-0.5 ${selected ? "text-brasa/80" : "text-gray-500"}`} style={{ fontSize: "9px" }}>
+                      <div className={`px-2 pb-2 pt-1.5 border-t text-center ${selected ? "border-brasa/20" : "border-gray-100"}`}>
+                        <div className={`leading-tight mb-1 ${selected ? "text-brasa/80" : "text-gray-500"}`} style={{ fontSize: "11px" }}>
                           {tier.cortes.join(" · ")}
                         </div>
-                        <div className={`leading-tight italic ${selected ? "text-brasa/60" : "text-gray-400"}`} style={{ fontSize: "9px" }}>
+                        <div className={`leading-tight italic ${selected ? "text-brasa/60" : "text-gray-400"}`} style={{ fontSize: "11px" }}>
                           {tier.desc}
                         </div>
                       </div>
