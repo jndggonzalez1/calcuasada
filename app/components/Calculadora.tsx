@@ -182,7 +182,7 @@ export default function Calculadora({
 
   // Tier de res
   const [tierRes, setTierRes] = useState<TierResId>("confiable");
-  const [tierDetail, setTierDetail] = useState<string | null>(null);
+  const [tierDetail, setTierDetail] = useState<number | null>(null);
 
   const handleTierRes = (id: TierResId) => {
     setTierRes(id);
@@ -549,9 +549,10 @@ export default function Calculadora({
           <div className="mb-4">
             <p className="text-xs font-medium text-gray-500 mb-2 uppercase tracking-wide">Tipo de corte de res</p>
             <div className="grid grid-cols-2 gap-2 items-start">
-              {TIERS_RES.map(tier => {
+              {TIERS_RES.map((tier, idx) => {
                 const selected = tierRes === tier.id;
-                const open = tierDetail === tier.id;
+                const row = Math.floor(idx / 2);
+                const open = tierDetail === row;
                 return (
                   <div
                     key={tier.id}
@@ -572,7 +573,7 @@ export default function Calculadora({
                             ~${tier.precioKg}/kg
                           </span>
                           <button
-                            onClick={e => { e.stopPropagation(); setTierDetail(open ? null : tier.id); }}
+                            onClick={e => { e.stopPropagation(); setTierDetail(open ? null : row); }}
                             className={`w-4 h-4 rounded-full flex items-center justify-center transition-colors ${
                               open
                                 ? selected ? "bg-brasa text-white" : "bg-gray-400 text-white"
