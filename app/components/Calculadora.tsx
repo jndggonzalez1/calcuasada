@@ -294,16 +294,20 @@ export default function Calculadora({
     if (results.salchicha) items.push({ key: "salchicha", displayLabel: "🌭 Salchicha para asar",textLabel:"Salchicha para asar",value: results.salchicha, unit: "kg"  });
     if (results.queso)     items.push({ key: "queso",     displayLabel: "🧀 Queso para asar",   textLabel: "Queso para asar",  value: results.queso,     unit: "kg"     });
     if (isRowEnabled("tortillas")) items.push({ key: "tortillas", displayLabel: "🫓 Tortillas", textLabel: "Tortillas", value: results.tortillas, unit: "pzas" });
-    if (isRowEnabled("cebolla"))   items.push({ key: "cebolla",   displayLabel: "🧅 Cebolla",   textLabel: "Cebolla",   value: results.cebolla,   unit: "pzas" });
+    if (isRowEnabled("cebolla")) {
+      const salsaNote = (salsaCasera && isRowEnabled("salsa") && salsaIngredientes)
+        ? ` (+${salsaIngredientes.cebolla} pedazo${salsaIngredientes.cebolla > 1 ? "s" : ""} para salsa)`
+        : "";
+      items.push({ key: "cebolla", displayLabel: `🧅 Cebolla${salsaNote}`, textLabel: `Cebolla${salsaNote}`, value: results.cebolla, unit: "pzas" });
+    }
     if (isRowEnabled("limon"))     items.push({ key: "limon",     displayLabel: "🍋 Limones",   textLabel: "Limones",   value: results.limon,     unit: "pzas" });
     if (isRowEnabled("aguacate"))  items.push({ key: "aguacate",  displayLabel: "🥑 Aguacates", textLabel: "Aguacates", value: results.aguacate,  unit: "pzas" });
     if (isRowEnabled("salsa")) {
       if (salsaCasera && salsaIngredientes) {
-        items.push({ key: "tomatillos",     displayLabel: "🍅 Tomatillos",            textLabel: "Tomatillos",            value: salsaIngredientes.tomatillos, unit: "pzas"      });
-        items.push({ key: "chiles_serrano", displayLabel: "🌶️ Chiles serranos",       textLabel: "Chiles serranos",       value: salsaIngredientes.chiles,     unit: "pzas"      });
-        items.push({ key: "cebolla_salsa",  displayLabel: "🧅 Cebolla blanca (salsa)",textLabel: "Cebolla blanca (salsa)",value: salsaIngredientes.cebolla,    unit: "pedazo(s)" });
-        items.push({ key: "ajo_salsa",      displayLabel: "🧄 Ajo",                   textLabel: "Ajo",                   value: salsaIngredientes.ajo,        unit: "diente(s)" });
-        items.push({ key: "cilantro_salsa", displayLabel: "🌿 Cilantro",              textLabel: "Cilantro",              value: salsaIngredientes.cilantro,   unit: "puñito(s)" });
+        items.push({ key: "tomatillos",     displayLabel: "🍅 Tomatillos",      textLabel: "Tomatillos",      value: salsaIngredientes.tomatillos, unit: "pzas"      });
+        items.push({ key: "chiles_serrano", displayLabel: "🌶️ Chiles serranos", textLabel: "Chiles serranos", value: salsaIngredientes.chiles,     unit: "pzas"      });
+        items.push({ key: "ajo_salsa",      displayLabel: "🧄 Ajo",             textLabel: "Ajo",             value: salsaIngredientes.ajo,        unit: "diente(s)" });
+        items.push({ key: "cilantro_salsa", displayLabel: "🌿 Cilantro",        textLabel: "Cilantro",        value: salsaIngredientes.cilantro,   unit: "puñito(s)" });
       } else {
         items.push({ key: "salsa", displayLabel: "🫙 Salsa", textLabel: "Salsa", value: results.salsa, unit: "ml" });
       }

@@ -48,7 +48,7 @@ const guias: Guia[] = [
   },
   {
     slug: "salsa-verde-carne-asada",
-    emoji: "🫙",
+    image: "/salsa.png",
     titulo: "Salsa verde para carne asada — receta fácil y buenísima",
     desc: "Tomatillo tatemado en el asador, chile serrano, ajo y cilantro. La salsa de la casa para que acompañe todo lo que salga de la parrilla.",
     tiempo: "5 min de lectura",
