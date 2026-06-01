@@ -165,10 +165,16 @@ public/
 | metadataBase agregado al layout (www.calcuasada.com) | ✅ Listo |
 | Google Search Console — reindexar URLs con redirect error | ⏳ Pendiente (acción manual de Yeyito — ya corregido el sitemap) |
 | Aprobación de Google AdSense | ⏳ Pendiente (falta Search Console + esperar indexación) |
+| Botón de traducción ES/EN (Google Translate) en esquina superior derecha | ✅ Listo |
+| Título sección tiers de res: "¿Qué tipo de carne asada es? (presupuesto)" | ✅ Listo |
 
 ---
 
 ## Historial de sesiones
+
+### Sesión 11 (junio 2026) — Traducción ES/EN y ajuste de título
+- **Botón de traducción** — `TranslateButton.tsx` client component en esquina superior derecha del header crema. Usa Google Translate vía cookie `googtrans`. Al picar "🌐 EN" traduce toda la página al inglés; al picar "🌐 ES" regresa al español recargando sin cookie. El banner feo de Google Translate está oculto con CSS en `globals.css`. Script de Google Translate agregado al `<head>` del layout.
+- **Título tiers de res** — cambiado de "Tipo de corte de res (presupuesto)" a "¿Qué tipo de carne asada es? (presupuesto)" para mayor coherencia con el tono conversacional del form.
 
 ### Sesión 10 (mayo 2026) — Salsa casera, SEO fix, guía Monterrey y UX form
 - **Fix Search Console** — sitemap y robots.txt cambiados de `calcuasada.com` a `www.calcuasada.com`. `metadataBase` agregado al layout. Yeyito debe reindexar las 5 URLs afectadas manualmente.
