@@ -508,7 +508,7 @@ export default function Calculadora({
 
       {/* ── FORM ── */}
       <section className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 print:shadow-none print:border-0">
-        <h2 className="text-sm font-bold text-gray-600 mb-4 text-center bg-gray-50 border border-gray-200 rounded-lg py-1.5 px-3">¿Cuántos van?</h2>
+        <h2 className="text-sm font-bold text-gray-600 mb-4 text-center bg-brasa-light border border-brasa/20 rounded-lg py-1.5 px-3 text-brasa">¿Cuántos van?</h2>
 
         {/* Adultos + Niños inputs */}
         <div className="grid grid-cols-2 gap-4 mb-3">
@@ -563,7 +563,7 @@ export default function Calculadora({
         </div>
 
         {/* Appetite selector */}
-        <p className="text-sm font-bold text-gray-600 mb-2 text-center bg-gray-50 border border-gray-200 rounded-lg py-1.5 px-3">Tipo de carne asada</p>
+        <p className="text-sm font-bold text-gray-600 mb-2 text-center bg-brasa-light border border-brasa/20 rounded-lg py-1.5 px-3 text-brasa">Tipo de carne asada</p>
         <div className="grid grid-cols-3 gap-2 mb-4">
           {EVENT_TYPES.map(({ value, label, desc }) => (
             <button
@@ -584,7 +584,7 @@ export default function Calculadora({
         {/* Tier de carne de res */}
         {proteinas.res && (
           <div className="mb-4">
-            <p className="text-sm font-bold text-gray-600 mb-2 text-center bg-gray-50 border border-gray-200 rounded-lg py-1.5 px-3">Tipo de corte de res <span className="font-normal text-gray-400 text-xs">(presupuesto)</span></p>
+            <p className="text-sm font-bold text-gray-600 mb-2 text-center bg-brasa-light border border-brasa/20 rounded-lg py-1.5 px-3 text-brasa">Tipo de corte de res <span className="font-normal text-gray-400 text-xs">(presupuesto)</span></p>
             <div className="grid grid-cols-2 gap-2 items-start">
               {TIERS_RES.map((tier, idx) => {
                 const selected = tierRes === tier.id;
@@ -642,7 +642,7 @@ export default function Calculadora({
         )}
 
         {/* Protein toggles */}
-        <p className="text-sm font-bold text-gray-600 mb-2 text-center bg-gray-50 border border-gray-200 rounded-lg py-1.5 px-3">Proteínas</p>
+        <p className="text-sm font-bold text-gray-600 mb-2 text-center bg-brasa-light border border-brasa/20 rounded-lg py-1.5 px-3 text-brasa">Proteínas</p>
         <div className="grid grid-cols-2 gap-2">
           {PROTEIN_OPTIONS.map(({ key, label }) => (
             <label
