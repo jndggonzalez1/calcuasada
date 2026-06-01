@@ -237,6 +237,27 @@ export default function Calculadora({
     setCustomPrices(prev => ({ ...prev, res: tier.precioKg }));
   };
 
+  const handleReset = () => {
+    setAdultos(defaultAdultos);
+    setNinos(defaultNinos);
+    setSliderAdultos(50);
+    setTipo(defaultTipo);
+    setProteinas({ res: true, pollo: false, salchicha: false, queso: false });
+    setExtras({ cerveza: false, refrescos: false, botanas: false });
+    setPriceTab("promedio");
+    setCustomPrices({ ...DEFAULT_PRICES });
+    setDisabledRows(new Set());
+    setTierRes("confiable");
+    setSalsaCasera(false);
+    setDistribuidorOpen(false);
+    setPersonas([]);
+    setAssignments({});
+    setPersonaNombre("");
+    if (persistState) {
+      try { localStorage.removeItem(STORAGE_KEY); } catch {}
+    }
+  };
+
   // Distribuidor state
   const [distribuidorOpen, setDistribuidorOpen] = useState(false);
   const [personaNombre, setPersonaNombre] = useState("");
@@ -560,7 +581,16 @@ export default function Calculadora({
 
       {/* ── FORM ── */}
       <section className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 print:shadow-none print:border-0">
-        <h2 className="text-sm font-bold text-gray-600 mb-4 text-center bg-brasa-light border border-brasa/20 rounded-lg py-1.5 px-3 text-brasa">¿Cuántos van?</h2>
+        <div className="flex items-center justify-between mb-4 gap-2">
+          <h2 className="flex-1 text-sm font-bold text-center bg-brasa-light border border-brasa/20 rounded-lg py-1.5 px-3 text-brasa">¿Cuántos van?</h2>
+          <button
+            onClick={handleReset}
+            className="text-xs text-gray-400 hover:text-brasa transition-colors whitespace-nowrap flex-shrink-0"
+            title="Limpiar todo y empezar de nuevo"
+          >
+            🗑 Limpiar
+          </button>
+        </div>
 
         {/* Adultos + Niños inputs */}
         <div className="grid grid-cols-2 gap-4 mb-3">
