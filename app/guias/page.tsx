@@ -46,6 +46,13 @@ const guias: Guia[] = [
     desc: "Temperatura ideal, cuánto tiempo tarda, cómo envolver, cuándo está listo y cómo cortarlo. Todo lo que necesitas saber.",
     tiempo: "12 min de lectura",
   },
+  {
+    slug: "salsa-verde-carne-asada",
+    emoji: "🫙",
+    titulo: "Salsa verde para carne asada — receta fácil y buenísima",
+    desc: "Tomatillo tatemado en el asador, chile serrano, ajo y cilantro. La salsa de la casa para que acompañe todo lo que salga de la parrilla.",
+    tiempo: "5 min de lectura",
+  },
 ];
 
 export default function GuiasPage() {

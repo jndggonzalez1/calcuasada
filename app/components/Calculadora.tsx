@@ -184,6 +184,9 @@ export default function Calculadora({
   const [tierRes, setTierRes] = useState<TierResId>("confiable");
   const [tierDetail, setTierDetail] = useState<number | null>(null);
 
+  // Salsa casera toggle
+  const [salsaCasera, setSalsaCasera] = useState(false);
+
   const handleTierRes = (id: TierResId) => {
     setTierRes(id);
     const tier = TIERS_RES.find(t => t.id === id)!;
@@ -236,6 +239,18 @@ export default function Calculadora({
   };
   const bolsas  = extras.botanas ? Math.ceil(totalPersonas / 5) : 0;
 
+  const salsaIngredientes = useMemo(() => {
+    if (totalPersonas === 0) return null;
+    const batches = totalPersonas / 7;
+    return {
+      tomatillos: Math.max(4, Math.ceil(8 * batches)),
+      chiles:     Math.max(1, Math.ceil(2 * batches)),
+      cebolla:    Math.max(1, Math.ceil(batches)),
+      ajo:        Math.max(1, Math.ceil(batches)),
+      cilantro:   Math.max(1, Math.ceil(batches)),
+    };
+  }, [totalPersonas]);
+
   const isRowEnabled = (key: string) => !disabledRows.has(key);
   const toggleRow    = (key: string) =>
     setDisabledRows(prev => {
@@ -253,7 +268,7 @@ export default function Calculadora({
       (isRowEnabled("cebolla")   ? results.cebolla   * prices.cebolla   : 0) +
       (isRowEnabled("limon")     ? results.limon     * prices.limon     : 0) +
       (isRowEnabled("aguacate")  ? results.aguacate  * prices.aguacate  : 0) +
-      (isRowEnabled("salsa")     ? (results.salsa / 1000) * prices.salsa : 0) +
+      (isRowEnabled("salsa") && !salsaCasera ? (results.salsa / 1000) * prices.salsa : 0) +
       (isRowEnabled("carbon")    ? results.carbon    * prices.carbon    : 0) +
       (isRowEnabled("hielo")     ? results.hielo     * prices.hielo     : 0) +
       (isRowEnabled("frijoles")  ? results.frijoles  * prices.frijoles  : 0) +
@@ -274,7 +289,17 @@ export default function Calculadora({
     if (isRowEnabled("cebolla"))   items.push({ key: "cebolla",   displayLabel: "🧅 Cebolla",   textLabel: "Cebolla",   value: results.cebolla,   unit: "pzas" });
     if (isRowEnabled("limon"))     items.push({ key: "limon",     displayLabel: "🍋 Limones",   textLabel: "Limones",   value: results.limon,     unit: "pzas" });
     if (isRowEnabled("aguacate"))  items.push({ key: "aguacate",  displayLabel: "🥑 Aguacates", textLabel: "Aguacates", value: results.aguacate,  unit: "pzas" });
-    if (isRowEnabled("salsa"))     items.push({ key: "salsa",     displayLabel: "🫙 Salsa",     textLabel: "Salsa",     value: results.salsa,     unit: "ml"   });
+    if (isRowEnabled("salsa")) {
+      if (salsaCasera && salsaIngredientes) {
+        items.push({ key: "tomatillos",     displayLabel: "🍅 Tomatillos",            textLabel: "Tomatillos",            value: salsaIngredientes.tomatillos, unit: "pzas"      });
+        items.push({ key: "chiles_serrano", displayLabel: "🌶️ Chiles serranos",       textLabel: "Chiles serranos",       value: salsaIngredientes.chiles,     unit: "pzas"      });
+        items.push({ key: "cebolla_salsa",  displayLabel: "🧅 Cebolla blanca (salsa)",textLabel: "Cebolla blanca (salsa)",value: salsaIngredientes.cebolla,    unit: "pedazo(s)" });
+        items.push({ key: "ajo_salsa",      displayLabel: "🧄 Ajo",                   textLabel: "Ajo",                   value: salsaIngredientes.ajo,        unit: "diente(s)" });
+        items.push({ key: "cilantro_salsa", displayLabel: "🌿 Cilantro",              textLabel: "Cilantro",              value: salsaIngredientes.cilantro,   unit: "puñito(s)" });
+      } else {
+        items.push({ key: "salsa", displayLabel: "🫙 Salsa", textLabel: "Salsa", value: results.salsa, unit: "ml" });
+      }
+    }
     if (isRowEnabled("carbon"))    items.push({ key: "carbon",    displayLabel: "🪨 Carbón",    textLabel: "Carbón",    value: results.carbon,    unit: "kg"   });
     if (isRowEnabled("hielo"))     items.push({ key: "hielo",     displayLabel: "🧊 Hielo",     textLabel: "Hielo",     value: results.hielo,     unit: "kg"   });
     if (isRowEnabled("frijoles"))  items.push({ key: "frijoles",  displayLabel: "🫘 Frijoles",  textLabel: "Frijoles",  value: results.frijoles,  unit: "L"    });
@@ -680,14 +705,65 @@ export default function Calculadora({
               <ResultRow label="🧅 Cebolla"   perPerson={perPersonaHint("cebolla",   results.cebolla,   totalPersonas)} value={results.cebolla}   unit="pzas" enabled={isRowEnabled("cebolla")}   onToggle={() => toggleRow("cebolla")} />
               <ResultRow label="🍋 Limones"   perPerson={perPersonaHint("limon",     results.limon,     totalPersonas)} value={results.limon}     unit="pzas" enabled={isRowEnabled("limon")}     onToggle={() => toggleRow("limon")} />
               <ResultRow label="🥑 Aguacates" perPerson={perPersonaHint("aguacate",  results.aguacate,  totalPersonas)} value={results.aguacate}  unit="pzas" enabled={isRowEnabled("aguacate")}  onToggle={() => toggleRow("aguacate")} />
-              <ResultRow
-                label={renderLabel("🫙 Salsa", salchichaDataUrl, salsaDataUrl, refrescoDataUrl)}
-                perPerson={perPersonaHint("salsa", results.salsa, totalPersonas)}
-                value={results.salsa >= 1000 ? results.salsa / 1000 : results.salsa}
-                unit={results.salsa >= 1000 ? "L" : "ml"}
-                enabled={isRowEnabled("salsa")}
-                onToggle={() => toggleRow("salsa")}
-              />
+              {/* Salsa — con toggle Comprada / Casera */}
+              <div className={`py-3 transition-opacity ${!isRowEnabled("salsa") ? "opacity-35" : ""}`}>
+                <div className="flex items-start gap-3">
+                  <button
+                    onClick={() => toggleRow("salsa")}
+                    className={`relative w-10 h-6 rounded-full transition-colors flex-shrink-0 mt-0.5 ${isRowEnabled("salsa") ? "bg-brasa" : "bg-gray-300"}`}
+                    aria-label={isRowEnabled("salsa") ? "Desactivar" : "Activar"}
+                  >
+                    <span className={`absolute top-1 left-1 w-4 h-4 rounded-full bg-white shadow-sm transition-transform ${isRowEnabled("salsa") ? "translate-x-4" : "translate-x-0"}`} />
+                  </button>
+                  <div className="flex-1 min-w-0">
+                    <p className={`text-gray-700 text-sm leading-tight ${!isRowEnabled("salsa") ? "line-through" : ""}`}>
+                      {renderLabel("🫙 Salsa", salchichaDataUrl, salsaDataUrl, refrescoDataUrl)}
+                    </p>
+                    {!salsaCasera && (
+                      <p className="text-xs text-gray-400 mt-0.5">{perPersonaHint("salsa", results.salsa, totalPersonas)}</p>
+                    )}
+                    {isRowEnabled("salsa") && (
+                      <div className="flex gap-1 mt-1.5">
+                        <button
+                          onClick={() => setSalsaCasera(false)}
+                          className={`px-2.5 py-0.5 rounded-full text-xs font-semibold transition-all ${!salsaCasera ? "bg-brasa text-white" : "bg-gray-100 text-gray-500 hover:bg-gray-200"}`}
+                        >
+                          Comprada
+                        </button>
+                        <button
+                          onClick={() => setSalsaCasera(true)}
+                          className={`px-2.5 py-0.5 rounded-full text-xs font-semibold transition-all ${salsaCasera ? "bg-brasa text-white" : "bg-gray-100 text-gray-500 hover:bg-gray-200"}`}
+                        >
+                          Casera
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                  {!salsaCasera && (
+                    <span className="text-2xl font-black text-gray-900 tabular-nums flex-shrink-0">
+                      {results.salsa >= 1000 ? results.salsa / 1000 : results.salsa}{" "}
+                      <span className="text-sm font-medium text-gray-500">{results.salsa >= 1000 ? "L" : "ml"}</span>
+                    </span>
+                  )}
+                </div>
+                {salsaCasera && isRowEnabled("salsa") && salsaIngredientes && (
+                  <div className="ml-13 mt-2 pl-1 border-l-2 border-brasa/20 space-y-0.5">
+                    <p className="text-xs font-semibold text-gray-500 mb-1">Ingredientes para la salsa verde:</p>
+                    {[
+                      `🍅 ${salsaIngredientes.tomatillos} tomatillos`,
+                      `🌶️ ${salsaIngredientes.chiles} chile${salsaIngredientes.chiles > 1 ? "s" : ""} serrano`,
+                      `🧅 ${salsaIngredientes.cebolla} pedazo${salsaIngredientes.cebolla > 1 ? "s" : ""} de cebolla blanca`,
+                      `🧄 ${salsaIngredientes.ajo} diente${salsaIngredientes.ajo > 1 ? "s" : ""} de ajo`,
+                      `🌿 ${salsaIngredientes.cilantro} puñito${salsaIngredientes.cilantro > 1 ? "s" : ""} de cilantro`,
+                    ].map(line => (
+                      <p key={line} className="text-xs text-gray-600">{line}</p>
+                    ))}
+                    <a href="/guias/salsa-verde-carne-asada" className="inline-block mt-1.5 text-xs text-brasa font-semibold hover:underline">
+                      Ver receta completa →
+                    </a>
+                  </div>
+                )}
+              </div>
               <ResultRow label="🪨 Carbón"  perPerson={perPersonaHint("carbon",   results.carbon,   totalPersonas)} value={results.carbon}   unit="kg" enabled={isRowEnabled("carbon")}   onToggle={() => toggleRow("carbon")} />
               <ResultRow label="🧊 Hielo"   perPerson={perPersonaHint("hielo",    results.hielo,    totalPersonas)} value={results.hielo}    unit="kg" enabled={isRowEnabled("hielo")}    onToggle={() => toggleRow("hielo")} />
               <ResultRow label="🫘 Frijoles" perPerson={perPersonaHint("frijoles", results.frijoles, totalPersonas)} value={results.frijoles} unit="L"  enabled={isRowEnabled("frijoles")} onToggle={() => toggleRow("frijoles")} />
@@ -762,7 +838,10 @@ export default function Calculadora({
 
           {/* ── COST ESTIMATOR ── */}
           <section className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 print:shadow-none print:border-0">
-            <h2 className="text-lg font-bold text-gray-800 mb-4">Estimador de costo</h2>
+            <h2 className="text-lg font-bold text-gray-800 mb-2">Estimador de costo</h2>
+            <p className="text-xs text-gray-400 mb-4">
+              Recuerda que necesitas condimentos para tu cocinada — no olvides tener sal, pimienta o tu sazonador de preferencia.
+            </p>
             <div className="flex gap-2 mb-4 print:hidden">
               {(["promedio", "personalizado"] as const).map(tab => (
                 <button
