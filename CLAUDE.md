@@ -123,22 +123,27 @@ public/
 |------|--------|
 | Calculadora funcional | ✅ Listo |
 | Lógica dinámica de proteínas por tipo de persona | ✅ Listo |
-| Distribuidor de lista entre amigos | ✅ Listo |
+| Distribuidor de lista entre amigos (arriba de botones, fondo ámbar) | ✅ Listo |
 | Inputs Adultos + Niños con slider ♂/♀ | ✅ Listo |
 | Logo en header centrado, sin texto duplicado | ✅ Listo |
 | Favicon del browser | ✅ Listo |
 | Páginas SEO estáticas | ✅ Listo |
-| FAQ mejorado (8 preguntas variadas, sin repetición) | ✅ Listo |
+| FAQ 9 preguntas (nueva: cómo saber si está lista la carne) | ✅ Listo |
 | Página /acerca | ✅ Listo |
 | Página /privacidad | ✅ Listo |
 | Página /contacto (hola@calcuasada.com) | ✅ Listo |
 | Nav bar y footer con links (Guías, Acerca, Contacto, Privacidad) | ✅ Listo |
 | Sección /guias con 4 artículos SEO (+ brisket ahumado) | ✅ Listo |
-| Sección /termometro — temperaturas internas de cocción | ✅ Listo |
+| Sección /termometro — temperaturas + técnica de la mano | ✅ Listo |
 | Nuevo color scheme: header crema, nav carbón, acento #E8460A | ✅ Listo |
-| NavLink client component con active state en nav | ✅ Listo |
+| NavLink client component con active state y whitespace-nowrap | ✅ Listo |
 | Logo 180px con transparencia top/bottom compensada | ✅ Listo |
-| Sección "Compartir y distribuir" unificada en calculadora | ✅ Listo |
+| Compartir imagen (reemplaza PDF): card diseñada + modal share/download | ✅ Listo |
+| 4 tiers de corte de res (Rendidora/Confiable/Mamalona/Fifí) | ✅ Listo |
+| Emojis PNG personalizados: salchicha, salsa, refresco | ✅ Listo |
+| Precios personalizados: 14 variables completas | ✅ Listo |
+| Frijoles en litros (0.5L), ~0.1L/persona, en acompañantes | ✅ Listo |
+| "Cómo usar" como acordeón colapsable arriba del form | ✅ Listo |
 | AdSense script en `<head>` | ✅ Listo |
 | ads.txt en /public | ✅ Listo |
 | sitemap.xml generado por Next.js | ✅ Listo |
@@ -146,9 +151,6 @@ public/
 | Cookie banner (localStorage, no reaparece) | ✅ Listo |
 | Google Analytics G-G1VZBVG477 en `<head>` | ✅ Listo |
 | Mensaje WhatsApp mejorado (emojis, secciones, dinámico) | ✅ Listo |
-| Fix WhatsApp en desktop (popup blocker) | ✅ Listo |
-| Frijoles en calculadora (🫘, 1 olla cada 8-10 personas) | ✅ Listo |
-| Cantidades de acompañantes calibradas | ✅ Listo |
 | Rediseño temático "Tierra y Brasa" | ✅ Listo |
 | Constantes centralizadas en calcuasada-config.ts | ✅ Listo |
 | Repositorio en GitHub | ✅ Listo (`main`) |
@@ -159,6 +161,20 @@ public/
 ---
 
 ## Historial de sesiones
+
+### Sesión 9 (mayo 2026) — UX calculadora, compartir imagen, tiers de res y emojis personalizados
+- **Distribuidor reordenado** — se mueve arriba de los botones de compartir, fondo ámbar, flecha más notoria. El formulario de agregar personas también sube arriba de los botones.
+- **Compartir imagen** — reemplaza el PDF por generación de imagen con html2canvas. Card diseñada con logo real, header naranja, secciones por categoría (proteínas/acompañantes/bebidas) y vista de distribución por persona cuando está activo el distribuidor. Modal con `maxHeight: 80vh`, imagen con scroll y botones 📤 Compartir / ⬇️ Descargar siempre visibles. Web Share API en móvil.
+- **4 tiers de corte de res** — aparecen bajo el selector de tipo de carne asada, solo cuando "Carne de res" está activa. Rendidora $250/kg, La confiable $390/kg (default), Mamalona $600/kg, Mamalona fifí $850/kg. Botón `?` despliega detalles (cortes + descripción) para ambos cards de la misma fila simultáneamente. Integrado al estimador de costo.
+- **Precios personalizados completos** — ahora incluye las 14 variables: res, pollo, salchicha, queso, tortillas, cebolla, limón, aguacate, salsa, carbón, hielo, frijoles, cerveza, refrescos. Total calcula todos los ítems.
+- **Precios ajustados** — pollo $120, queso $190, tortillas $25, hielo $15, refrescos $40.
+- **Frijoles en litros** — cambiado de "ollas" a litros con incrementos de 0.5L. Base: ~0.1L por persona (hombre 0.12/mujer 0.10/niño 0.06). Ahora aparece en la sección de acompañantes con toggle.
+- **Emojis PNG personalizados** — `renderLabel()` helper reemplaza 🌭→salchicha.png, 🫙→salsa.png, 🥤→refresco.png en toda la UI. Tamaño 1.7em con verticalAlign compensado. Precarga base64 al montar.
+- **"Cómo usar" como acordeón** — `ComoUsarAccordion.tsx` client component, colapsable, centrado, se ubica entre el título y la calculadora.
+- **FAQ primer pregunta** — "¿Cómo sé si ya está lista la carne?" con respuesta sobre termómetro y finger test. Botones pill que navegan a `/termometro#temperaturas` y `/termometro#tecnica-mano`.
+- **Técnica de la mano en /termometro** — nueva sección `id="tecnica-mano"` con tabla de 5 gestos → término. Sección de res tiene `id="temperaturas"`.
+- **Título del termómetro** — emoji 🌡️ separado del h1 para evitar wrap en móvil.
+- **Nav fix** — `whitespace-nowrap` en NavLink, padding reducido a `px-3` y gap a `gap-1` para que los 4 links quepan en móvil sin cortarse.
 
 ### Sesión 8 (mayo 2026) — Rediseño visual, guía brisket y sección Termómetro
 - **Guía de brisket ahumado** — nueva página `/guias/como-hacer-brisket-ahumado`: temperatura, madera, cómo envolver, probe tender, errores comunes, resumen 9 pasos. Imagen del smoker PNG como header de la guía y thumbnail en el índice.
