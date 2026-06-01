@@ -117,7 +117,7 @@ public/
 
 ---
 
-## Estado actual (mayo 2026)
+## Estado actual (junio 2026)
 
 | Ítem | Estado |
 |------|--------|
@@ -155,22 +155,37 @@ public/
 | Constantes centralizadas en calcuasada-config.ts | ✅ Listo |
 | Repositorio en GitHub | ✅ Listo (`main`) |
 | Deploy en Vercel | ✅ Configurado (auto-deploy desde `main`) |
-| Aprobación de Google AdSense | ⏳ Pendiente (falta Search Console + esperar indexación) |
 | Salsa casera: toggle Comprada/Casera con ingredientes escalados | ✅ Listo |
 | Guía /guias/salsa-verde-carne-asada con receta completa | ✅ Listo |
-| Cebolla salsa fusionada con cebolla carne en reportes compartir | ✅ Listo |
-| Títulos de sección del form centrados con recuadro brasa-light | ✅ Listo |
-| Guía Monterrey: ribeye, técnica sellado, precios actualizados | ✅ Listo |
-| sitemap y robots.txt corregidos a www.calcuasada.com | ✅ Listo |
-| metadataBase agregado al layout (www.calcuasada.com) | ✅ Listo |
-| Google Search Console — reindexar URLs con redirect error | ⏳ Pendiente (acción manual de Yeyito — ya corregido el sitemap) |
-| Aprobación de Google AdSense | ⏳ Pendiente (falta Search Console + esperar indexación) |
 | Botón de traducción ES/EN (Google Translate) en esquina superior derecha | ✅ Listo |
 | Título sección tiers de res: "¿Qué tipo de carne asada es? (presupuesto)" | ✅ Listo |
+| localStorage: estado persiste entre navegación (lazy useState initializers) | ✅ Listo |
+| Traducción siempre arranca en español (sessionStorage + script en `<head>`) | ✅ Listo |
+| Fix: six-packs siempre entero (Math.ceil) | ✅ Listo |
+| Fix: customPrices merge con DEFAULT_PRICES al cargar localStorage viejo | ✅ Listo |
+| Botón 🗑 Limpiar con doble-click para confirmar (evita accidentes) | ✅ Listo |
+| Botón 📋 Copiar lista al portapapeles con feedback visual | ✅ Listo |
+| 💾 Guardar configuración + 📂 Historial (hasta 3 entradas, tiempo relativo) | ✅ Listo |
+| 🔗 Copiar link con estado completo (~337 chars, incluye precios y toggles) | ✅ Listo |
+| /privacidad: sección de localStorage explicada (renumeradas secciones) | ✅ Listo |
+| Google Search Console — reindexar URLs con redirect error | ⏳ Pendiente (acción manual de Yeyito) |
+| Aprobación de Google AdSense | ⏳ Pendiente (esperar indexación) |
 
 ---
 
 ## Historial de sesiones
+
+### Sesión 12 (junio 2026) — localStorage, bugs, UX y compartir link
+
+- **localStorage con lazy initializers** — El estado de la calculadora (adultos, niños, slider, tipo, proteínas, tier, extras, precios, filas desactivadas, salsa casera) se persiste en `localStorage` key `"calcuasada-state"`. Se usa lazy `useState` initializers en lugar de `useEffect` para evitar race condition que sobreescribía con defaults en el primer render. Solo aplica en la página principal (`persistState` prop). Las páginas SEO no cargan localStorage.
+- **Fix traducción ES/EN** — El cookie `googtrans` persistía entre sesiones y causaba que la página abriera en inglés. Fix: script en `<head>` limpia el cookie a menos que `sessionStorage.getItem('calcuasada_lang_en')` exista. `TranslateButton.tsx` actualizado para setear/limpiar esa clave de sessionStorage.
+- **Fix six-packs fraccionados** — `formatCerveza` usaba `latas/6` crudo. Fix: `Math.ceil(latas/6)`.
+- **Fix customPrices stale** — Al cargar `customPrices` de localStorage viejo (sin campo `frijoles`), el merge era incompleto. Fix: `{ ...DEFAULT_PRICES, ...saved.customPrices }` en lugar de solo `saved.customPrices`.
+- **Botón Limpiar con confirmación** — Primer click muestra "¿Seguro? →" en rojo por 3s, segundo click ejecuta el reset. Borra localStorage también.
+- **📋 Copiar lista** — Nuevo botón en la grid de compartir. Copia el texto de `buildShareText()` al clipboard. Grid cambia de 3 columnas a 2×2.
+- **💾 Historial de configuraciones** — Key `"calcuasada-historial"` en localStorage, hasta 3 entradas. Botón "💾 Guardar" en el header del form. Acordeón "📂 Configuraciones guardadas" solo aparece si hay entradas. Cada entrada muestra `"N personas · Tipo · proteínas · hace Xh"`. Un click carga la configuración.
+- **🔗 Compartir link con estado completo** — Función `buildShareUrl()` genera URL con todos los params: adultos, ninos, sl, tipo, res/pollo/salchicha/queso, tier, cerveza/refrescos/botanas, casera, off (filas desactivadas), tab=custom + p_* (14 precios). ~337 chars con todo. Al abrir, `readUrlParams()` lee los params y los lazy initializers los usan con prioridad sobre localStorage. Botón naranja destacado en la sección de compartir.
+- **Aviso de privacidad** — Nueva sección 3 "Almacenamiento local (localStorage)" en `/privacidad`. Secciones renumeradas hasta 7.
 
 ### Sesión 11 (junio 2026) — Traducción ES/EN y ajuste de título
 - **Botón de traducción** — `TranslateButton.tsx` client component en esquina superior derecha del header crema. Usa Google Translate vía cookie `googtrans`. Al picar "🌐 EN" traduce toda la página al inglés; al picar "🌐 ES" regresa al español recargando sin cookie. El banner feo de Google Translate está oculto con CSS en `globals.css`. Script de Google Translate agregado al `<head>` del layout.
