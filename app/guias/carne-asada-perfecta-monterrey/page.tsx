@@ -57,6 +57,19 @@ export default function CarneAsadaMonterreyPage() {
             </p>
           </div>
 
+          <div className="bg-white border border-brasa/30 rounded-xl p-4 shadow-sm space-y-2">
+            <div className="flex items-center gap-2 mb-1">
+              <h3 className="text-base font-black text-gray-900">Ribeye — el favorito de Yeyito</h3>
+              <span className="text-xs bg-brasa text-white font-bold px-2 py-0.5 rounded-full">Premium</span>
+            </div>
+            <p className="text-sm leading-relaxed">
+              El ribeye es el corte más marmoleado que existe — esa red de grasa entre la fibra de la carne es lo que lo convierte en algo especial. A las brasas, esa grasa se derrite, se mezcla con el humo del carbón y el resultado es un sabor que no se parece a ningún otro corte. Es caro — espera pagar entre $800 y $1,200 pesos el kilo — pero cuando lo pruebas entiendes por qué. No es para cada carne asada, pero cuando toca, toca. Sella fuerte a fuego muy alto 2 minutos por lado, luego pásalo a fuego medio-bajo y déjalo terminar despacio. La diferencia en suavidad es increíble.
+            </p>
+            <p className="text-xs text-brasa font-semibold italic">
+              &ldquo;El ribeye es un elixir. Caro, sí. Pero es el rey del asador.&rdquo; — Yeyito
+            </p>
+          </div>
+
           <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-2">
             <h3 className="text-base font-black text-gray-900">Costilla de res — para los que saben</h3>
             <p className="text-sm leading-relaxed">
@@ -68,19 +81,6 @@ export default function CarneAsadaMonterreyPage() {
             <h3 className="text-base font-black text-gray-900">Agujas norteñas — el secreto del barrio</h3>
             <p className="text-sm leading-relaxed">
               Las agujas son el corte más económico de los tres y también el menos conocido fuera del norte. Vienen del cuello del animal y tienen bastante grasa y hueso, lo que les da un sabor intenso cuando se hacen a las brasas. Son perfectas para complementar una campechana sin romper el presupuesto. Precio: entre $150 y $220 pesos el kilo.
-            </p>
-          </div>
-
-          <div className="bg-white border border-brasa/30 rounded-xl p-4 shadow-sm space-y-2">
-            <div className="flex items-center gap-2 mb-1">
-              <h3 className="text-base font-black text-gray-900">Ribeye — el favorito de Yeyito</h3>
-              <span className="text-xs bg-brasa text-white font-bold px-2 py-0.5 rounded-full">Premium</span>
-            </div>
-            <p className="text-sm leading-relaxed">
-              El ribeye es el corte más marmoleado que existe — esa red de grasa entre la fibra de la carne es lo que lo convierte en algo especial. A las brasas, esa grasa se derrite, se mezcla con el humo del carbón y el resultado es un sabor que no se parece a ningún otro corte. Es caro — espera pagar entre $800 y $1,200 pesos el kilo — pero cuando lo pruebas entiendes por qué. No es para cada carne asada, pero cuando toca, toca. Sella fuerte a fuego muy alto 2 minutos por lado, luego pásalo a fuego medio-bajo y déjalo terminar despacio. La diferencia en suavidad es increíble.
-            </p>
-            <p className="text-xs text-brasa font-semibold italic">
-              &ldquo;El ribeye es un elixir. Caro, sí. Pero es el rey del asador.&rdquo; — Yeyito
             </p>
           </div>
         </div>
@@ -104,6 +104,12 @@ export default function CarneAsadaMonterreyPage() {
                   <td className="py-2 pr-3">5–8 min/lado</td>
                   <td className="py-2">Fácil</td>
                 </tr>
+                <tr className="bg-brasa-light">
+                  <td className="py-2 pr-3 font-bold text-brasa">Ribeye ⭐</td>
+                  <td className="py-2 pr-3 text-brasa font-medium">$800–$1,200/kg</td>
+                  <td className="py-2 pr-3">4–6 min/lado</td>
+                  <td className="py-2">Media</td>
+                </tr>
                 <tr>
                   <td className="py-2 pr-3 font-medium">Costilla de res</td>
                   <td className="py-2 pr-3">$500–$650/kg</td>
@@ -115,12 +121,6 @@ export default function CarneAsadaMonterreyPage() {
                   <td className="py-2 pr-3">$150–$220/kg</td>
                   <td className="py-2 pr-3">10–15 min</td>
                   <td className="py-2">Fácil</td>
-                </tr>
-                <tr className="bg-brasa-light">
-                  <td className="py-2 pr-3 font-bold text-brasa">Ribeye ⭐</td>
-                  <td className="py-2 pr-3 text-brasa font-medium">$800–$1,200/kg</td>
-                  <td className="py-2 pr-3">4–6 min/lado</td>
-                  <td className="py-2">Media</td>
                 </tr>
               </tbody>
             </table>
