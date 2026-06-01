@@ -5,7 +5,7 @@ import AdBanner from "../../components/AdBanner";
 export const metadata: Metadata = {
   title: "Cómo hacer una carne asada perfecta al estilo Monterrey — Calcuasada",
   description:
-    "Guía completa para hacer carne asada estilo Monterrey: los mejores cortes, carbón mesquite, sal de grano, temperatura ideal y errores que debes evitar.",
+    "Guía completa para hacer carne asada estilo Monterrey: los mejores cortes, técnica de sellado, carbón mesquite, sal de grano y los errores que debes evitar.",
 };
 
 export default function CarneAsadaMonterreyPage() {
@@ -26,6 +26,7 @@ export default function CarneAsadaMonterreyPage() {
           <li>Usa arrachera o costilla de res como proteína principal</li>
           <li>El carbón mesquite marca la diferencia en sabor</li>
           <li>Sal de grano 20 minutos antes de poner la carne</li>
+          <li>Sella a fuego muy alto primero, luego termina a fuego lento — entre más despacio la cocines, más suave queda</li>
           <li>La parrilla lista cuando no puedas aguantar la mano a 10 cm por más de 2 segundos</li>
         </ul>
       </div>
@@ -52,21 +53,34 @@ export default function CarneAsadaMonterreyPage() {
           <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-2">
             <h3 className="text-base font-black text-gray-900">Arrachera — la reina de la parrilla</h3>
             <p className="text-sm leading-relaxed">
-              La arrachera es el corte por excelencia en el norte de México. Corresponde al diafragma del res, un músculo que trabaja constantemente y que por eso tiene mucho sabor. Es relativamente delgada, se cocina rápido (5 a 7 minutos por lado a fuego alto) y bien preparada queda jugosa y llena de sabor. Su precio es medio-alto — espera pagar entre $180 y $280 pesos el kilo dependiendo de si es nacional o importada. Pide arrachera "suavizada" en la carnicería, que ya viene lista para la parrilla sin tener que marinar.
+              La arrachera es el corte por excelencia en el norte de México. Corresponde al diafragma del res, un músculo que trabaja constantemente y que por eso tiene mucho sabor. Es relativamente delgada, se sella rápido a fuego alto y termina de cocer en minutos. Bien preparada queda jugosa y llena de sabor. Precio actual: entre $320 y $450 pesos el kilo dependiendo de si es nacional o importada. Pide arrachera "suavizada" en la carnicería, que ya viene lista para la parrilla sin tener que marinar.
             </p>
           </div>
 
           <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-2">
             <h3 className="text-base font-black text-gray-900">Costilla de res — para los que saben</h3>
             <p className="text-sm leading-relaxed">
-              La costilla es el corte favorito de los carnívoros serios. Tiene más grasa intramuscular que la arrachera, lo que se traduce en más sabor y más jugosidad. La desventaja es que requiere más tiempo en la parrilla — entre 15 y 25 minutos dependiendo del grosor — y hay que saber manejar el fuego para que no se queme por fuera y quede cruda por dentro. El precio es similar o ligeramente menor al de la arrachera. Pide costilla "corta" o "short rib" en la carnicería para piezas manejables.
+              La costilla es el corte favorito de los carnívoros serios. Tiene más grasa intramuscular que la arrachera, lo que se traduce en más sabor y más jugosidad. La clave con la costilla es la paciencia: sella bien a fuego alto, luego baja el calor y deja que se cocine despacio. Entre más lento, más suave y más jugosa queda. Precio: entre $500 y $650 pesos el kilo. Pide costilla "corta" o "short rib" en la carnicería para piezas manejables.
             </p>
           </div>
 
           <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-2">
             <h3 className="text-base font-black text-gray-900">Agujas norteñas — el secreto del barrio</h3>
             <p className="text-sm leading-relaxed">
-              Las agujas son el corte más económico de los tres y también el menos conocido fuera del norte. Vienen del cuello del animal y tienen bastante grasa y hueso, lo que les da un sabor intenso cuando se hacen a las brasas. Son perfectas para complementar una campechana sin romper el presupuesto. Precio: entre $90 y $150 pesos el kilo.
+              Las agujas son el corte más económico de los tres y también el menos conocido fuera del norte. Vienen del cuello del animal y tienen bastante grasa y hueso, lo que les da un sabor intenso cuando se hacen a las brasas. Son perfectas para complementar una campechana sin romper el presupuesto. Precio: entre $150 y $220 pesos el kilo.
+            </p>
+          </div>
+
+          <div className="bg-white border border-brasa/30 rounded-xl p-4 shadow-sm space-y-2">
+            <div className="flex items-center gap-2 mb-1">
+              <h3 className="text-base font-black text-gray-900">Ribeye — el favorito de Yeyito</h3>
+              <span className="text-xs bg-brasa text-white font-bold px-2 py-0.5 rounded-full">Premium</span>
+            </div>
+            <p className="text-sm leading-relaxed">
+              El ribeye es el corte más marmoleado que existe — esa red de grasa entre la fibra de la carne es lo que lo convierte en algo especial. A las brasas, esa grasa se derrite, se mezcla con el humo del carbón y el resultado es un sabor que no se parece a ningún otro corte. Es caro — espera pagar entre $800 y $1,200 pesos el kilo — pero cuando lo pruebas entiendes por qué. No es para cada carne asada, pero cuando toca, toca. Sella fuerte a fuego muy alto 2 minutos por lado, luego pásalo a fuego medio-bajo y déjalo terminar despacio. La diferencia en suavidad es increíble.
+            </p>
+            <p className="text-xs text-brasa font-semibold italic">
+              &ldquo;El ribeye es un elixir. Caro, sí. Pero es el rey del asador.&rdquo; — Yeyito
             </p>
           </div>
         </div>
@@ -86,21 +100,27 @@ export default function CarneAsadaMonterreyPage() {
               <tbody className="divide-y divide-gray-100">
                 <tr>
                   <td className="py-2 pr-3 font-medium">Arrachera</td>
-                  <td className="py-2 pr-3">$180–$280/kg</td>
-                  <td className="py-2 pr-3">5–7 min/lado</td>
+                  <td className="py-2 pr-3">$320–$450/kg</td>
+                  <td className="py-2 pr-3">5–8 min/lado</td>
                   <td className="py-2">Fácil</td>
                 </tr>
                 <tr>
                   <td className="py-2 pr-3 font-medium">Costilla de res</td>
-                  <td className="py-2 pr-3">$160–$250/kg</td>
-                  <td className="py-2 pr-3">15–25 min</td>
+                  <td className="py-2 pr-3">$500–$650/kg</td>
+                  <td className="py-2 pr-3">20–35 min</td>
                   <td className="py-2">Media</td>
                 </tr>
                 <tr>
                   <td className="py-2 pr-3 font-medium">Agujas norteñas</td>
-                  <td className="py-2 pr-3">$90–$150/kg</td>
+                  <td className="py-2 pr-3">$150–$220/kg</td>
                   <td className="py-2 pr-3">10–15 min</td>
                   <td className="py-2">Fácil</td>
+                </tr>
+                <tr className="bg-brasa-light">
+                  <td className="py-2 pr-3 font-bold text-brasa">Ribeye ⭐</td>
+                  <td className="py-2 pr-3 text-brasa font-medium">$800–$1,200/kg</td>
+                  <td className="py-2 pr-3">4–6 min/lado</td>
+                  <td className="py-2">Media</td>
                 </tr>
               </tbody>
             </table>
@@ -119,6 +139,36 @@ export default function CarneAsadaMonterreyPage() {
       </section>
 
       <AdBanner />
+
+      <section className="space-y-3">
+        <h2 className="text-lg font-black text-gray-900">La técnica del sellado: el secreto que cambia todo</h2>
+        <p className="text-sm leading-relaxed">
+          El error más común del asador principiante es poner la carne al fuego y ya — sin estrategia de temperatura. La técnica correcta tiene dos fases y la diferencia en el resultado es enorme.
+        </p>
+
+        <div className="space-y-3">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm">
+            <p className="text-sm font-black text-gray-900 mb-1">Fase 1 — Sellado a fuego muy alto</p>
+            <p className="text-sm leading-relaxed text-gray-600">
+              Pon la carne sobre el punto más caliente del asador — donde la mano no aguanta ni 2 segundos. Déjala sin mover 2 o 3 minutos. El objetivo es crear una costra bien dorada, con marcas de la parrilla, color oscuro en los bordes. Ese sellado le agrega textura, sabor quemadito y un color que le entra el hambre a cualquiera que lo vea. Dale vuelta y sella el otro lado igual.
+            </p>
+          </div>
+
+          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm">
+            <p className="text-sm font-black text-gray-900 mb-1">Fase 2 — Cocción lenta a fuego medio-bajo</p>
+            <p className="text-sm leading-relaxed text-gray-600">
+              Una vez sellada, pasa la carne a una zona de menor calor — donde la mano aguanta 5 a 6 segundos. Ahí termina de cocer despacio y por dentro. Entre más despacio la cocines, más suave queda. El calor fuerte sella el exterior rápido; el calor suave penetra sin estresar la fibra. Si tu asador tiene tapa, úsala en esta fase — el calor envuelve la carne por todos lados y el resultado es mucho más parejo.
+            </p>
+          </div>
+        </div>
+
+        <div className="bg-brasa-light border border-brasa/20 rounded-xl p-4">
+          <p className="text-xs font-bold text-brasa mb-1">Regla simple para recordar:</p>
+          <p className="text-sm text-gray-700">
+            Fuego alto para sellar → fuego lento para cocer. No al revés. Si empiezas a fuego bajo no hay sellado y la carne queda gris, seca y sin carácter.
+          </p>
+        </div>
+      </section>
 
       <section className="space-y-3">
         <h2 className="text-lg font-black text-gray-900">Carbón mesquite vs carbón normal: no hay comparación</h2>
@@ -156,9 +206,9 @@ export default function CarneAsadaMonterreyPage() {
         </p>
         <div className="bg-gray-50 rounded-xl p-4 space-y-2">
           <div className="text-xs space-y-1.5">
-            <div className="flex justify-between"><span className="font-bold">1–2 segundos</span><span className="text-gray-600">Fuego muy alto — ideal para sellar arrachera</span></div>
-            <div className="flex justify-between"><span className="font-bold">3–4 segundos</span><span className="text-gray-600">Fuego alto — para costilla y agujas</span></div>
-            <div className="flex justify-between"><span className="font-bold">5–6 segundos</span><span className="text-gray-600">Fuego medio — para mantener calor y cocer por dentro</span></div>
+            <div className="flex justify-between"><span className="font-bold">1–2 segundos</span><span className="text-gray-600">Fuego muy alto — para sellar cualquier corte</span></div>
+            <div className="flex justify-between"><span className="font-bold">3–4 segundos</span><span className="text-gray-600">Fuego alto — fase de cocción inicial</span></div>
+            <div className="flex justify-between"><span className="font-bold">5–6 segundos</span><span className="text-gray-600">Fuego medio — para terminar de cocer despacio</span></div>
             <div className="flex justify-between"><span className="font-bold">7+ segundos</span><span className="text-gray-600">Fuego bajo — ya se está apagando, necesitas más carbón</span></div>
           </div>
         </div>
@@ -180,6 +230,7 @@ export default function CarneAsadaMonterreyPage() {
         <h2 className="text-lg font-black text-gray-900">Errores comunes que arruinan la carne asada</h2>
         <ul className="text-sm space-y-2 leading-relaxed list-disc list-inside">
           <li><strong>Poner la carne antes de que el carbón esté listo.</strong> Si el carbón todavía tiene llama amarilla, la carne se cuece al vapor y no sella. Espera siempre a las brasas blancas.</li>
+          <li><strong>No sellar antes de bajar el fuego.</strong> La secuencia es fuego alto primero, fuego lento después. Al revés queda gris y sin carácter.</li>
           <li><strong>Mover la carne constantemente.</strong> Ponla, déjala, dale vuelta una sola vez. Cada vez que la mueves pierdes jugos.</li>
           <li><strong>Pinchar la carne con tenedor.</strong> Usa pinzas siempre. Pinchar hace que los jugos escapen y la carne quede seca.</li>
           <li><strong>Cortarla inmediatamente al sacarla.</strong> Deja reposar la carne 2 a 3 minutos antes de cortar — los jugos se redistribuyen y queda más jugosa.</li>
@@ -196,7 +247,7 @@ export default function CarneAsadaMonterreyPage() {
             <li>✅ <strong>Tabla de corte grande</strong> — para rebanar la carne sin que se escurra todo al suelo</li>
             <li>✅ <strong>Cuchillo filoso</strong> — un cuchillo malo aplasta la carne en lugar de cortarla</li>
             <li>✅ <strong>Brocha de silicón</strong> — para aceitar la parrilla y que no se pegue</li>
-            <li>✅ <strong>Asador con tapa</strong> — permite controlar mejor el calor, especialmente para costilla</li>
+            <li>✅ <strong>Asador con tapa</strong> — permite controlar mejor el calor, especialmente para cortes gruesos</li>
             <li>✅ <strong>Cubeta con arena o agua</strong> — para emergencias con el fuego</li>
             <li>✅ <strong>Guantes de horno</strong> — porque sí, el asador quema</li>
             <li>✅ <strong>Ventilador o cartón</strong> — para reavivar las brasas si bajan</li>
@@ -225,6 +276,10 @@ export default function CarneAsadaMonterreyPage() {
           <Link href="/guias/lista-compras-carne-asada-completa" className="block bg-white border border-gray-100 rounded-xl p-4 shadow-sm hover:border-brasa/30 transition-all">
             <p className="text-sm font-bold text-gray-900">🛒 Lista de compras completa para carne asada</p>
             <p className="text-xs text-gray-500 mt-1">Todo lo que necesitas comprar sin olvidar nada</p>
+          </Link>
+          <Link href="/termometro" className="block bg-white border border-gray-100 rounded-xl p-4 shadow-sm hover:border-brasa/30 transition-all">
+            <p className="text-sm font-bold text-gray-900">🌡️ Temperaturas internas de la carne</p>
+            <p className="text-xs text-gray-500 mt-1">Cuándo está lista la carne — con termómetro o con la técnica de la mano</p>
           </Link>
         </div>
       </section>
