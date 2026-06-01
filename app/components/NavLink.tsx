@@ -9,7 +9,7 @@ export default function NavLink({ href, children }: { href: string; children: Re
   return (
     <Link
       href={href}
-      className="nav-pill-3d px-5 py-1.5 text-sm font-semibold whitespace-nowrap"
+      className="nav-pill-3d px-3 py-1.5 text-sm font-semibold whitespace-nowrap"
       style={isActive ? {
         color: '#E8460A',
         background: 'rgba(255,255,255,0.95)',

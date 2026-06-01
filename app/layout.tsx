@@ -62,7 +62,7 @@ export default function RootLayout({
             boxShadow: '0 2px 6px rgba(0,0,0,0.2)',
           }}
         >
-          <div className="max-w-lg mx-auto px-4 flex justify-center gap-2 py-2">
+          <div className="max-w-lg mx-auto px-2 flex justify-center gap-1 py-2">
             <NavLink href="/">Calculadora</NavLink>
             <NavLink href="/guias">Guías</NavLink>
             <NavLink href="/termometro">🌡️ Temps</NavLink>
