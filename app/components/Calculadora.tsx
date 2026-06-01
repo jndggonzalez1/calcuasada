@@ -548,7 +548,7 @@ export default function Calculadora({
         {proteinas.res && (
           <div className="mb-4">
             <p className="text-xs font-medium text-gray-500 mb-2 uppercase tracking-wide">Tipo de corte de res</p>
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-2 gap-2 items-start">
               {TIERS_RES.map(tier => {
                 const selected = tierRes === tier.id;
                 const open = tierDetail === tier.id;
