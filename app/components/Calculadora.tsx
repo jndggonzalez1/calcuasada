@@ -14,6 +14,7 @@ import AdBanner from "./AdBanner";
 // ── LocalStorage ──────────────────────────────────────────────────────────────
 
 const STORAGE_KEY = "calcuasada-state";
+const HISTORIAL_KEY = "calcuasada-historial";
 
 function readSaved(persistState: boolean): Record<string, unknown> {
   if (!persistState || typeof window === "undefined") return {};
@@ -21,6 +22,37 @@ function readSaved(persistState: boolean): Record<string, unknown> {
     const raw = localStorage.getItem(STORAGE_KEY);
     return raw ? (JSON.parse(raw) as Record<string, unknown>) : {};
   } catch { return {}; }
+}
+
+// ── Historial types ───────────────────────────────────────────────────────────
+
+interface HistorialEntry {
+  adultos: number;
+  ninos: number;
+  sliderAdultos: number;
+  tipo: EventType;
+  proteinas: Proteinas;
+  extras: Extras;
+  tierRes: string;
+  salsaCasera: boolean;
+  savedAt: number;
+}
+
+function readHistorial(): HistorialEntry[] {
+  if (typeof window === "undefined") return [];
+  try {
+    const raw = localStorage.getItem(HISTORIAL_KEY);
+    return raw ? (JSON.parse(raw) as HistorialEntry[]) : [];
+  } catch { return []; }
+}
+
+function tiempoRelativo(ts: number): string {
+  const mins = Math.floor((Date.now() - ts) / 60000);
+  if (mins < 1) return "hace un momento";
+  if (mins < 60) return `hace ${mins} min`;
+  const hrs = Math.floor(mins / 60);
+  if (hrs < 24) return `hace ${hrs}h`;
+  return `hace ${Math.floor(hrs / 24)} día${Math.floor(hrs / 24) > 1 ? "s" : ""}`;
 }
 
 // ── Constants ─────────────────────────────────────────────────────────────────
@@ -237,7 +269,18 @@ export default function Calculadora({
     setCustomPrices(prev => ({ ...prev, res: tier.precioKg }));
   };
 
+  // #6 — Doble click para confirmar reset
+  const [resetPending, setResetPending] = useState(false);
+  const resetTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   const handleReset = () => {
+    if (!resetPending) {
+      setResetPending(true);
+      resetTimerRef.current = setTimeout(() => setResetPending(false), 3000);
+      return;
+    }
+    if (resetTimerRef.current) clearTimeout(resetTimerRef.current);
+    setResetPending(false);
     setAdultos(defaultAdultos);
     setNinos(defaultNinos);
     setSliderAdultos(50);
@@ -256,6 +299,50 @@ export default function Calculadora({
     if (persistState) {
       try { localStorage.removeItem(STORAGE_KEY); } catch {}
     }
+  };
+
+  // #5 — Historial de configuraciones guardadas
+  const [historial, setHistorial] = useState<HistorialEntry[]>(() => readHistorial());
+  const [historialOpen, setHistorialOpen] = useState(false);
+  const [savedFeedback, setSavedFeedback] = useState(false);
+
+  const handleGuardar = () => {
+    if (!puedeCalcular) return;
+    const entry: HistorialEntry = {
+      adultos, ninos, sliderAdultos, tipo, proteinas, extras,
+      tierRes, salsaCasera, savedAt: Date.now(),
+    };
+    const prev = readHistorial().filter(e => Date.now() - e.savedAt > 60000);
+    const updated = [entry, ...prev].slice(0, 3);
+    try { localStorage.setItem(HISTORIAL_KEY, JSON.stringify(updated)); } catch {}
+    setHistorial(updated);
+    setSavedFeedback(true);
+    setTimeout(() => setSavedFeedback(false), 2000);
+  };
+
+  const handleLoadHistorial = (entry: HistorialEntry) => {
+    setAdultos(entry.adultos);
+    setNinos(entry.ninos);
+    setSliderAdultos(entry.sliderAdultos);
+    setTipo(entry.tipo);
+    setProteinas(entry.proteinas);
+    setExtras(entry.extras);
+    setTierRes(entry.tierRes as TierResId);
+    setSalsaCasera(entry.salsaCasera);
+    setHistorialOpen(false);
+  };
+
+  // #4 — Copiar lista al portapapeles
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    if (!puedeCalcular) return;
+    if (distribuidorActivo && !todosAsignados) { warnAsignacion(); return; }
+    try {
+      await navigator.clipboard.writeText(buildShareText());
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {}
   };
 
   // Distribuidor state
@@ -581,16 +668,63 @@ export default function Calculadora({
 
       {/* ── FORM ── */}
       <section className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 print:shadow-none print:border-0">
-        <div className="flex items-center justify-between mb-4 gap-2">
+        <div className="flex items-center justify-between mb-3 gap-2">
           <h2 className="flex-1 text-sm font-bold text-center bg-brasa-light border border-brasa/20 rounded-lg py-1.5 px-3 text-brasa">¿Cuántos van?</h2>
-          <button
-            onClick={handleReset}
-            className="text-xs text-gray-400 hover:text-brasa transition-colors whitespace-nowrap flex-shrink-0"
-            title="Limpiar todo y empezar de nuevo"
-          >
-            🗑 Limpiar
-          </button>
+          <div className="flex items-center gap-2 flex-shrink-0">
+            <button
+              onClick={handleGuardar}
+              disabled={!puedeCalcular}
+              className="text-xs text-gray-400 hover:text-brasa transition-colors whitespace-nowrap disabled:opacity-30"
+              title="Guardar esta configuración"
+            >
+              {savedFeedback ? "✅ Guardado" : "💾 Guardar"}
+            </button>
+            <span className="text-gray-200">|</span>
+            <button
+              onClick={handleReset}
+              className={`text-xs whitespace-nowrap transition-all ${resetPending ? "text-red-500 font-semibold" : "text-gray-400 hover:text-brasa"}`}
+              title="Limpiar todo y empezar de nuevo"
+            >
+              {resetPending ? "¿Seguro? →" : "🗑 Limpiar"}
+            </button>
+          </div>
         </div>
+
+        {/* Historial de configuraciones guardadas */}
+        {historial.length > 0 && (
+          <div className="mb-3">
+            <button
+              onClick={() => setHistorialOpen(o => !o)}
+              className="w-full flex items-center justify-between text-xs text-gray-400 hover:text-gray-600 transition-colors px-1 py-1"
+            >
+              <span>📂 Configuraciones guardadas ({historial.length})</span>
+              <span>{historialOpen ? "▲" : "▼"}</span>
+            </button>
+            {historialOpen && (
+              <div className="mt-1 space-y-1">
+                {historial.map((entry, i) => {
+                  const protNames = (Object.keys(entry.proteinas) as (keyof Proteinas)[])
+                    .filter(k => entry.proteinas[k])
+                    .map(k => k === "res" ? "res" : k === "pollo" ? "pollo" : k === "salchicha" ? "salchicha" : "queso")
+                    .join("+");
+                  const totalP = entry.adultos + entry.ninos;
+                  const tipoLabel = entry.tipo === "ligero" ? "Ligero" : entry.tipo === "tragones" ? "Tragones" : "Normal";
+                  return (
+                    <button
+                      key={i}
+                      onClick={() => handleLoadHistorial(entry)}
+                      className="w-full text-left text-xs bg-gray-50 hover:bg-brasa-light border border-gray-200 hover:border-brasa/30 rounded-lg px-3 py-2 transition-all"
+                    >
+                      <span className="font-semibold text-gray-700">{totalP} personas</span>
+                      <span className="text-gray-400"> · {tipoLabel} · {protNames}</span>
+                      <span className="text-gray-300 ml-2">{tiempoRelativo(entry.savedAt)}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Adultos + Niños inputs */}
         <div className="grid grid-cols-2 gap-4 mb-3">
@@ -1118,14 +1252,22 @@ export default function Calculadora({
             )}
 
             {/* Botones de acción */}
-            <div className="grid grid-cols-3 gap-3 p-4 border-b border-gray-100">
+            <div className="grid grid-cols-2 gap-3 p-4 border-b border-gray-100">
               <button
-                onClick={handlePrint}
+                onClick={handleWhatsApp}
                 disabled={!puedeCalcular}
-                className="flex flex-col items-center gap-1 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-3 px-2 rounded-xl text-sm transition-all disabled:opacity-40"
+                className="flex flex-col items-center gap-1 bg-green-50 hover:bg-green-100 text-green-700 font-medium py-3 px-2 rounded-xl text-sm transition-all disabled:opacity-40"
               >
-                <span className="text-xl">🖨️</span>
-                Imprimir lista
+                <span className="text-xl">💬</span>
+                WhatsApp
+              </button>
+              <button
+                onClick={handleCopy}
+                disabled={!puedeCalcular}
+                className={`flex flex-col items-center gap-1 font-medium py-3 px-2 rounded-xl text-sm transition-all disabled:opacity-40 ${copied ? "bg-brasa-light text-brasa" : "bg-gray-100 hover:bg-gray-200 text-gray-700"}`}
+              >
+                <span className="text-xl">{copied ? "✅" : "📋"}</span>
+                {copied ? "¡Copiado!" : "Copiar lista"}
               </button>
               <button
                 onClick={handlePDF}
@@ -1136,12 +1278,12 @@ export default function Calculadora({
                 Compartir imagen
               </button>
               <button
-                onClick={handleWhatsApp}
+                onClick={handlePrint}
                 disabled={!puedeCalcular}
-                className="flex flex-col items-center gap-1 bg-green-50 hover:bg-green-100 text-green-700 font-medium py-3 px-2 rounded-xl text-sm transition-all disabled:opacity-40"
+                className="flex flex-col items-center gap-1 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-3 px-2 rounded-xl text-sm transition-all disabled:opacity-40"
               >
-                <span className="text-xl">💬</span>
-                Compartir por WhatsApp
+                <span className="text-xl">🖨️</span>
+                Imprimir lista
               </button>
             </div>
 
