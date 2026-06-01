@@ -69,7 +69,7 @@ export const DEFAULT_PRICES: Record<string, number> = {
   cebolla:     8, // $/pza
   limon:       2, // $/pza
   aguacate:   22, // $/pza
-  salsa:      45, // $/L
+  salsa:     100, // $/L  (~$1 cada 10g, bote 300g = $30)
   carbon:     35, // $/kg
   hielo:      15, // $/kg
   frijoles:   28, // $/L de frijol de olla

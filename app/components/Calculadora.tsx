@@ -63,6 +63,10 @@ const TIERS_RES = [
 
 type TierResId = typeof TIERS_RES[number]["id"];
 
+// Costo de ingredientes para salsa verde casera (por receta de 7 personas)
+// Tomatillos $23 + chiles serranos $2 + cebolla $2 + ajo $3 + cilantro $3 + sal $0.50
+const SALSA_CASERA_COSTO_RECETA = 33.50;
+
 const PRICE_LABELS: Record<string, string> = {
   res:       "Carne de res ($/kg)",
   pollo:     "Pollo ($/kg)",
@@ -268,7 +272,11 @@ export default function Calculadora({
       (isRowEnabled("cebolla")   ? results.cebolla   * prices.cebolla   : 0) +
       (isRowEnabled("limon")     ? results.limon     * prices.limon     : 0) +
       (isRowEnabled("aguacate")  ? results.aguacate  * prices.aguacate  : 0) +
-      (isRowEnabled("salsa") && !salsaCasera ? (results.salsa / 1000) * prices.salsa : 0) +
+      (isRowEnabled("salsa")
+        ? salsaCasera
+          ? SALSA_CASERA_COSTO_RECETA * (totalPersonas / 7)
+          : (results.salsa / 1000) * prices.salsa
+        : 0) +
       (isRowEnabled("carbon")    ? results.carbon    * prices.carbon    : 0) +
       (isRowEnabled("hielo")     ? results.hielo     * prices.hielo     : 0) +
       (isRowEnabled("frijoles")  ? results.frijoles  * prices.frijoles  : 0) +
