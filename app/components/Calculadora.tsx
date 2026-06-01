@@ -108,7 +108,7 @@ function formatSalsa(ml: number): string {
 
 function formatCerveza(latas: number): string {
   if (!latas) return "";
-  const sixpacks = latas / 6;
+  const sixpacks = Math.ceil(latas / 6);
   return `${sixpacks} ${sixpacks === 1 ? "six-pack" : "six-packs"} (${latas} latas)`;
 }
 
@@ -214,7 +214,7 @@ export default function Calculadora({
     (saved.priceTab as "promedio" | "personalizado") ?? "promedio"
   );
   const [customPrices, setCustomPrices] = useState(() =>
-    (saved.customPrices as typeof DEFAULT_PRICES) ?? { ...DEFAULT_PRICES }
+    saved.customPrices ? { ...DEFAULT_PRICES, ...(saved.customPrices as object) } : { ...DEFAULT_PRICES }
   );
   const [disabledRows, setDisabledRows] = useState<Set<string>>(() =>
     Array.isArray(saved.disabledRows) ? new Set(saved.disabledRows as string[]) : new Set()
