@@ -1,0 +1,43 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+
+function getCookie(name: string): string {
+  if (typeof document === 'undefined') return '';
+  const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+  return match ? decodeURIComponent(match[2]) : '';
+}
+
+export default function TranslateButton() {
+  const [lang, setLang] = useState<'es' | 'en'>('es');
+
+  useEffect(() => {
+    const cookie = getCookie('googtrans');
+    if (cookie && cookie.includes('/en')) setLang('en');
+  }, []);
+
+  const switchLanguage = () => {
+    const hostname = window.location.hostname;
+    if (lang === 'es') {
+      document.cookie = `googtrans=/es/en; domain=.${hostname}; path=/`;
+      document.cookie = `googtrans=/es/en; path=/`;
+      setLang('en');
+    } else {
+      const past = 'expires=Thu, 01 Jan 1970 00:00:00 GMT';
+      document.cookie = `googtrans=; ${past}; domain=.${hostname}; path=/`;
+      document.cookie = `googtrans=; ${past}; path=/`;
+      setLang('es');
+    }
+    window.location.reload();
+  };
+
+  return (
+    <button
+      onClick={switchLanguage}
+      className="nav-pill-3d text-xs font-semibold px-2 py-1 whitespace-nowrap"
+      title={lang === 'es' ? 'Switch to English' : 'Cambiar a Español'}
+    >
+      🌐 {lang === 'es' ? 'EN' : 'ES'}
+    </button>
+  );
+}

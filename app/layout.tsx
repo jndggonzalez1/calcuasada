@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import CookieBanner from "./components/CookieBanner";
 import NavLink from "./components/NavLink";
+import TranslateButton from "./components/TranslateButton";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -32,8 +33,12 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-G1VZBVG477');` }} />
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
         <script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1068311584605438" crossOrigin="anonymous" />
+        <script dangerouslySetInnerHTML={{ __html: `function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:'es',includedLanguages:'en',autoDisplay:false},'google_translate_element');}` }} />
+        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+        <script src="https://translate.googleapis.com/translate_a/element.js?cb=googleTranslateElementInit" />
       </head>
       <body className="min-h-screen">
+        <div id="google_translate_element" style={{ display: 'none' }} />
         <header
           className="pb-4 pt-2 px-4 print:hidden"
           style={{
@@ -63,11 +68,14 @@ export default function RootLayout({
             boxShadow: '0 2px 6px rgba(0,0,0,0.2)',
           }}
         >
-          <div className="max-w-lg mx-auto px-2 flex justify-center gap-1 py-2">
+          <div className="max-w-lg mx-auto px-2 relative flex justify-center gap-1 py-2">
             <NavLink href="/">Calculadora</NavLink>
             <NavLink href="/guias">Guías</NavLink>
             <NavLink href="/termometro">🌡️ Temps</NavLink>
             <NavLink href="/acerca">Acerca</NavLink>
+            <div className="absolute right-2 top-1/2 -translate-y-1/2">
+              <TranslateButton />
+            </div>
           </div>
         </nav>
         <main className="max-w-lg mx-auto px-4 py-6 space-y-6">

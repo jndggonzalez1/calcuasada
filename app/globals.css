@@ -52,6 +52,21 @@ body {
     inset 0 2px 4px rgba(0,0,0,0.25);
 }
 
+/* Google Translate — ocultar banner y barra superior */
+.goog-te-banner-frame,
+.goog-te-balloon-frame {
+  display: none !important;
+}
+.skiptranslate {
+  display: none !important;
+}
+body {
+  top: 0 !important;
+}
+.goog-te-combo {
+  display: none !important;
+}
+
 @media print {
   .print\:hidden {
     display: none !important;
