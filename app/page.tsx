@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Calculadora from "./components/Calculadora";
 import AdBanner from "./components/AdBanner";
 import ComoUsarAccordion from "./components/ComoUsarAccordion";
@@ -42,7 +43,22 @@ const tips = [
   },
 ];
 
-const faqs = [
+type FaqItem = {
+  pregunta: string;
+  respuesta: string;
+  links?: { label: string; href: string }[];
+};
+
+const faqs: FaqItem[] = [
+  {
+    pregunta: "¿Cómo sé si ya está lista la carne?",
+    respuesta:
+      "Lo ideal es usar un termómetro de cocina para medir la temperatura interna. Para res, el punto seguro empieza en 145°F (63°C) con 3 min de reposo. Si no tienes termómetro, puedes usar la técnica de la mano (finger test) para estimar el término según la firmeza de la carne.",
+    links: [
+      { label: "🌡️ Ver temperaturas internas", href: "/termometro#temperaturas" },
+      { label: "✋ Técnica de la mano", href: "/termometro#tecnica-mano" },
+    ],
+  },
   {
     pregunta: "¿Cuánta carne asada necesito por persona?",
     respuesta:
@@ -135,6 +151,19 @@ export default function HomePage() {
             <div key={faq.pregunta} className="border-b border-gray-100 pb-4 last:border-0">
               <p className="font-bold text-gray-900 text-sm">{faq.pregunta}</p>
               <p className="text-gray-500 text-xs mt-1">{faq.respuesta}</p>
+              {faq.links && (
+                <div className="flex flex-wrap gap-2 mt-2">
+                  {faq.links.map(link => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className="inline-flex items-center gap-1 text-xs font-semibold text-brasa bg-brasa-light border border-brasa/20 px-3 py-1.5 rounded-full hover:bg-brasa/10 transition-colors"
+                    >
+                      {link.label} →
+                    </Link>
+                  ))}
+                </div>
+              )}
             </div>
           ))}
         </div>

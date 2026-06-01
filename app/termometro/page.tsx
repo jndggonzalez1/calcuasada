@@ -73,7 +73,7 @@ export default function TermometroPage() {
       <AdBanner />
 
       {/* ── RES ── */}
-      <section className="space-y-3">
+      <section id="temperaturas" className="space-y-3">
         <h2 className="text-lg font-black text-gray-900">🥩 Res — términos de cocción</h2>
         <p className="text-xs text-gray-500 leading-relaxed">
           Aplica para arrachera, costilla, ribeye, New York, sirloin, vacío, picaña, filete, T-bone, porterhouse y cortes similares.
@@ -277,6 +277,36 @@ export default function TermometroPage() {
         <p className="text-xs text-gray-400 leading-relaxed bg-gray-50 rounded-xl p-3">
           Cortes enteros de cordero: mínimo <strong>145°F / 63°C</strong> con 3 min de reposo. Cordero molido: <strong>160°F / 71°C</strong>.
         </p>
+      </section>
+
+      {/* ── TÉCNICA DE LA MANO ── */}
+      <section id="tecnica-mano" className="space-y-3">
+        <h2 className="text-lg font-black text-gray-900">✋ Técnica de la mano (finger test)</h2>
+        <p className="text-sm leading-relaxed text-gray-600">
+          Si no tienes termómetro, puedes estimar el término de la carne comparando su firmeza con la parte carnosa de tu palma, justo debajo del pulgar. Junta suavemente el pulgar con cada dedo y toca esa zona — esa firmeza corresponde a un término aproximado.
+        </p>
+        <div className="space-y-2">
+          {[
+            { gesto: "Mano relajada",         termino: "Crudo / raw",                color: "bg-red-900",  text: "text-white" },
+            { gesto: "Pulgar + índice",        termino: "Rojo / rare",                color: "bg-red-600",  text: "text-white" },
+            { gesto: "Pulgar + dedo medio",    termino: "Medio rojo / medium rare",   color: "bg-red-400",  text: "text-white" },
+            { gesto: "Pulgar + dedo anular",   termino: "Medio / medium",             color: "bg-pink-400", text: "text-white" },
+            { gesto: "Pulgar + meñique",       termino: "Bien cocido / well done",    color: "bg-gray-300", text: "text-gray-800" },
+          ].map(({ gesto, termino, color, text }) => (
+            <div key={gesto} className="bg-white border border-gray-100 rounded-xl p-3.5 shadow-sm flex items-center gap-3">
+              <div className={`w-3 h-3 rounded-full ${color} flex-shrink-0`} />
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-bold text-gray-900">{gesto}</p>
+              </div>
+              <div className={`text-xs font-semibold px-2.5 py-1 rounded-full ${color} ${text}`}>
+                {termino}
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 text-xs text-amber-800 leading-relaxed">
+          <strong>Importante:</strong> esta técnica es una referencia rápida, no sustituye un termómetro. La firmeza puede variar según el grosor del corte, la cantidad de grasa y la temperatura del asador. Para mayor precisión y seguridad, usa siempre un termómetro de cocina.
+        </div>
       </section>
 
       {/* Nota de seguridad */}
