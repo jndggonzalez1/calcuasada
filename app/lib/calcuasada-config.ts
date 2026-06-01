@@ -37,7 +37,7 @@ export const BASE_ACOMPS = {
   salsa:     { hombre: 70,   mujer: 60,   nino: 30   }, // ml
   carbon:    { hombre: 0.5,  mujer: 0.5,  nino: 0.25 }, // kg
   hielo:     { hombre: 1.0,  mujer: 1.0,  nino: 0.5  }, // kg
-  frijoles:  { hombre: 0.20, mujer: 0.16, nino: 0.10 }, // litros — ~1L cada 5 personas
+  frijoles:  { hombre: 0.12, mujer: 0.10, nino: 0.06 }, // litros — ~0.1L por persona
 };
 
 // Multiplicadores de acompañantes por nivel de apetito

@@ -132,7 +132,7 @@ function renderLabel(label: string, salchichaUrl: string, salsaUrl = "", refresc
       if (typeof part !== "string" || !part.includes(emoji)) { next.push(part); continue; }
       const segments = part.split(emoji);
       segments.forEach((seg, i) => {
-        if (i > 0) next.push(<img key={`${emoji}-${i}`} src={url} alt="" style={{ display: "inline-block", width: "1.15em", height: "1.15em", verticalAlign: "-0.2em", objectFit: "contain" }} />);
+        if (i > 0) next.push(<img key={`${emoji}-${i}`} src={url} alt="" style={{ display: "inline-block", width: "1.7em", height: "1.7em", verticalAlign: "-0.35em", objectFit: "contain" }} />);
         if (seg) next.push(seg);
       });
     }
