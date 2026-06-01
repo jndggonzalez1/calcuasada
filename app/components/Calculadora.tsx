@@ -584,7 +584,7 @@ export default function Calculadora({
         {/* Tier de carne de res */}
         {proteinas.res && (
           <div className="mb-4">
-            <p className="text-sm font-bold text-gray-600 mb-2 text-center bg-brasa-light border border-brasa/20 rounded-lg py-1.5 px-3 text-brasa">Tipo de corte de res <span className="font-normal text-gray-400 text-xs">(presupuesto)</span></p>
+            <p className="text-sm font-bold text-gray-600 mb-2 text-center bg-brasa-light border border-brasa/20 rounded-lg py-1.5 px-3 text-brasa">¿Qué tipo de carne asada es? <span className="font-normal text-gray-400 text-xs">(presupuesto)</span></p>
             <div className="grid grid-cols-2 gap-2 items-start">
               {TIERS_RES.map((tier, idx) => {
                 const selected = tierRes === tier.id;
