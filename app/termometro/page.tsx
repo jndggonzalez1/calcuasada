@@ -14,8 +14,9 @@ export default function TermometroPage() {
 
       <div className="text-center space-y-2">
         <p className="text-xs font-semibold text-brasa uppercase tracking-wider">Referencia rápida</p>
-        <h1 className="text-2xl font-black text-gray-900 leading-tight">
-          🌡️ Temperaturas internas de cocción
+        <div className="text-3xl">🌡️</div>
+        <h1 className="text-xl font-black text-gray-900 leading-tight">
+          Temperaturas internas de cocción
         </h1>
         <p className="text-sm text-gray-500">La guía del parrillero que sí sabe lo que está haciendo</p>
       </div>
