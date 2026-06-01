@@ -1104,10 +1104,12 @@ export default function Calculadora({
         >
           <div
             onClick={e => e.stopPropagation()}
-            style={{ maxWidth: "440px", width: "100%", borderRadius: "20px", overflow: "hidden", boxShadow: "0 8px 40px rgba(0,0,0,0.5)" }}
+            style={{ maxWidth: "440px", width: "100%", borderRadius: "20px", overflow: "hidden", boxShadow: "0 8px 40px rgba(0,0,0,0.5)", display: "flex", flexDirection: "column", maxHeight: "80vh" }}
           >
-            <img src={previewUrl} alt="Lista de carne asada" style={{ width: "100%", display: "block" }} />
-            <div style={{ backgroundColor: "#1A1A1A", padding: "16px", display: "flex", gap: "10px" }}>
+            <div style={{ overflowY: "auto", flex: 1 }}>
+              <img src={previewUrl} alt="Lista de carne asada" style={{ width: "100%", display: "block" }} />
+            </div>
+            <div style={{ backgroundColor: "#1A1A1A", padding: "16px", display: "flex", gap: "10px", flexShrink: 0 }}>
               <button
                 onClick={handleShareImage}
                 style={{ flex: 1, backgroundColor: "#E8460A", color: "white", border: "none", borderRadius: "12px", padding: "13px 10px", fontSize: "15px", fontWeight: "700", cursor: "pointer" }}
