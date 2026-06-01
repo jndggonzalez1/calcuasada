@@ -21,11 +21,13 @@ export default function TranslateButton() {
     if (lang === 'es') {
       document.cookie = `googtrans=/es/en; domain=.${hostname}; path=/`;
       document.cookie = `googtrans=/es/en; path=/`;
+      sessionStorage.setItem('calcuasada_lang_en', '1');
       setLang('en');
     } else {
       const past = 'expires=Thu, 01 Jan 1970 00:00:00 GMT';
       document.cookie = `googtrans=; ${past}; domain=.${hostname}; path=/`;
       document.cookie = `googtrans=; ${past}; path=/`;
+      sessionStorage.removeItem('calcuasada_lang_en');
       setLang('es');
     }
     window.location.reload();

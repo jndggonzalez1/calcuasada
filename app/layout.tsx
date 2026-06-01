@@ -29,6 +29,8 @@ export default function RootLayout({
   return (
     <html lang="es-MX">
       <head>
+        {/* Limpia el cookie de traducción si el usuario no eligió inglés en esta sesión */}
+        <script dangerouslySetInnerHTML={{ __html: `(function(){if(!sessionStorage.getItem('calcuasada_lang_en')){var e='expires=Thu, 01 Jan 1970 00:00:00 GMT';document.cookie='googtrans=; '+e+'; path=/';document.cookie='googtrans=; '+e+'; domain=.'+location.hostname+'; path=/';}})();` }} />
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-G1VZBVG477" />
         <script dangerouslySetInnerHTML={{ __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-G1VZBVG477');` }} />
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
