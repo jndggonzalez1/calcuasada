@@ -11,6 +11,18 @@ import {
 } from "../lib/calculator";
 import AdBanner from "./AdBanner";
 
+// ── LocalStorage ──────────────────────────────────────────────────────────────
+
+const STORAGE_KEY = "calcuasada-state";
+
+function readSaved(persistState: boolean): Record<string, unknown> {
+  if (!persistState || typeof window === "undefined") return {};
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? (JSON.parse(raw) as Record<string, unknown>) : {};
+  } catch { return {}; }
+}
+
 // ── Constants ─────────────────────────────────────────────────────────────────
 
 const EVENT_TYPES: { value: EventType; label: string; desc: string }[] = [
@@ -161,6 +173,7 @@ interface Props {
   defaultAdultos?: number;
   defaultNinos?: number;
   defaultTipo?: EventType;
+  persistState?: boolean;
 }
 
 // ── Main component ────────────────────────────────────────────────────────────
@@ -169,27 +182,54 @@ export default function Calculadora({
   defaultAdultos = 6,
   defaultNinos = 0,
   defaultTipo = "normal",
+  persistState = false,
 }: Props) {
-  const [adultos, setAdultos] = useState(defaultAdultos);
-  const [ninos, setNinos] = useState(defaultNinos);
-  const [sliderAdultos, setSliderAdultos] = useState(50); // % de mujeres
-  const [tipo, setTipo] = useState<EventType>(defaultTipo);
-  const [proteinas, setProteinas] = useState<Proteinas>({
-    res: true, pollo: false, salchicha: false, queso: false,
-  });
-  const [extras, setExtras] = useState<Extras>({
-    cerveza: false, refrescos: false, botanas: false,
-  });
-  const [priceTab, setPriceTab] = useState<"promedio" | "personalizado">("promedio");
-  const [customPrices, setCustomPrices] = useState({ ...DEFAULT_PRICES });
-  const [disabledRows, setDisabledRows] = useState<Set<string>>(new Set());
+  // Lee localStorage una sola vez en el primer render (antes del save effect)
+  const savedRef = useRef<Record<string, unknown> | undefined>(undefined);
+  const saved = (() => {
+    if (savedRef.current !== undefined) return savedRef.current;
+    savedRef.current = readSaved(persistState);
+    return savedRef.current;
+  })();
+
+  const [adultos, setAdultos] = useState(() =>
+    typeof saved.adultos === "number" ? saved.adultos : defaultAdultos
+  );
+  const [ninos, setNinos] = useState(() =>
+    typeof saved.ninos === "number" ? saved.ninos : defaultNinos
+  );
+  const [sliderAdultos, setSliderAdultos] = useState(() =>
+    typeof saved.sliderAdultos === "number" ? saved.sliderAdultos : 50
+  );
+  const [tipo, setTipo] = useState<EventType>(() =>
+    (saved.tipo as EventType) ?? defaultTipo
+  );
+  const [proteinas, setProteinas] = useState<Proteinas>(() =>
+    (saved.proteinas as Proteinas) ?? { res: true, pollo: false, salchicha: false, queso: false }
+  );
+  const [extras, setExtras] = useState<Extras>(() =>
+    (saved.extras as Extras) ?? { cerveza: false, refrescos: false, botanas: false }
+  );
+  const [priceTab, setPriceTab] = useState<"promedio" | "personalizado">(() =>
+    (saved.priceTab as "promedio" | "personalizado") ?? "promedio"
+  );
+  const [customPrices, setCustomPrices] = useState(() =>
+    (saved.customPrices as typeof DEFAULT_PRICES) ?? { ...DEFAULT_PRICES }
+  );
+  const [disabledRows, setDisabledRows] = useState<Set<string>>(() =>
+    Array.isArray(saved.disabledRows) ? new Set(saved.disabledRows as string[]) : new Set()
+  );
 
   // Tier de res
-  const [tierRes, setTierRes] = useState<TierResId>("confiable");
+  const [tierRes, setTierRes] = useState<TierResId>(() =>
+    (saved.tierRes as TierResId) ?? "confiable"
+  );
   const [tierDetail, setTierDetail] = useState<number | null>(null);
 
   // Salsa casera toggle
-  const [salsaCasera, setSalsaCasera] = useState(false);
+  const [salsaCasera, setSalsaCasera] = useState(() =>
+    typeof saved.salsaCasera === "boolean" ? saved.salsaCasera : false
+  );
 
   const handleTierRes = (id: TierResId) => {
     setTierRes(id);
@@ -223,6 +263,18 @@ export default function Calculadora({
     loadImg("/salsa.png", setSalsaDataUrl);
     loadImg("/refresco.png", setRefrescoDataUrl);
   }, []);
+
+  // Guardar estado al cambiar cualquier campo
+  useEffect(() => {
+    if (!persistState) return;
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        adultos, ninos, sliderAdultos, tipo, proteinas, extras,
+        priceTab, customPrices, disabledRows: [...disabledRows],
+        tierRes, salsaCasera,
+      }));
+    } catch {}
+  }, [persistState, adultos, ninos, sliderAdultos, tipo, proteinas, extras, priceTab, customPrices, disabledRows, tierRes, salsaCasera]);
 
   // ── Derived values ──────────────────────────────────────────────────────────
 

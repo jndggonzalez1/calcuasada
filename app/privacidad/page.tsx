@@ -32,7 +32,14 @@ export default function PrivacidadPage() {
       </section>
 
       <section className="space-y-2">
-        <h2 className="text-base font-bold text-gray-900">3. Cookies y publicidad</h2>
+        <h2 className="text-base font-bold text-gray-900">3. Almacenamiento local (localStorage)</h2>
+        <p className="text-sm">
+          Usamos <strong>localStorage</strong> (almacenamiento local del navegador) para recordar tu configuración de la calculadora — por ejemplo, cuántas personas pusiste, qué proteínas seleccionaste y el nivel de apetito. Esta información <strong>nunca sale de tu dispositivo</strong> ni se comparte con nadie. Puedes borrarla en cualquier momento desde la configuración de tu navegador.
+        </p>
+      </section>
+
+      <section className="space-y-2">
+        <h2 className="text-base font-bold text-gray-900">4. Cookies y publicidad</h2>
         <p className="text-sm">
           Este sitio utiliza <strong>Google AdSense</strong> para mostrar anuncios. Google puede usar cookies para personalizar los anuncios que ves según tu historial de navegación. Esto está regulado por la política de privacidad de Google.
         </p>
@@ -61,14 +68,14 @@ export default function PrivacidadPage() {
       </section>
 
       <section className="space-y-2">
-        <h2 className="text-base font-bold text-gray-900">4. Uso de los datos</h2>
+        <h2 className="text-base font-bold text-gray-900">5. Uso de los datos</h2>
         <p className="text-sm">
           Los datos técnicos recopilados por servicios de terceros se usan únicamente para mejorar el funcionamiento del sitio y mostrar publicidad relevante. Calcuasada no vende ni comparte información personal con terceros.
         </p>
       </section>
 
       <section className="space-y-2">
-        <h2 className="text-base font-bold text-gray-900">5. Tus derechos</h2>
+        <h2 className="text-base font-bold text-gray-900">6. Tus derechos</h2>
         <p className="text-sm">
           De acuerdo con la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP) de México, tienes derecho de Acceso, Rectificación, Cancelación y Oposición (derechos ARCO) sobre tus datos personales. Al no recopilar datos personales directamente, estos derechos aplican principalmente ante los terceros mencionados en este aviso.
         </p>
@@ -77,7 +84,7 @@ export default function PrivacidadPage() {
       <AdBanner />
 
       <section className="space-y-2">
-        <h2 className="text-base font-bold text-gray-900">6. Cambios a este aviso</h2>
+        <h2 className="text-base font-bold text-gray-900">7. Cambios a este aviso</h2>
         <p className="text-sm">
           Podemos actualizar este aviso de privacidad en cualquier momento. Cualquier cambio será publicado en esta misma página con la fecha de actualización correspondiente.
         </p>
