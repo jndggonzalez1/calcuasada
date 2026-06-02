@@ -2,18 +2,13 @@
 
 import { useState, useEffect } from 'react';
 
-function getCookie(name: string): string {
-  if (typeof document === 'undefined') return '';
-  const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-  return match ? decodeURIComponent(match[2]) : '';
-}
-
 export default function TranslateButton() {
   const [lang, setLang] = useState<'es' | 'en'>('es');
 
   useEffect(() => {
-    const cookie = getCookie('googtrans');
-    if (cookie && cookie.includes('/en')) setLang('en');
+    try {
+      if (localStorage.getItem('calcuasada_lang_en')) setLang('en');
+    } catch {}
   }, []);
 
   const switchLanguage = () => {
@@ -21,13 +16,13 @@ export default function TranslateButton() {
     if (lang === 'es') {
       document.cookie = `googtrans=/es/en; domain=.${hostname}; path=/`;
       document.cookie = `googtrans=/es/en; path=/`;
-      sessionStorage.setItem('calcuasada_lang_en', '1');
+      try { localStorage.setItem('calcuasada_lang_en', '1'); } catch {}
       setLang('en');
     } else {
       const past = 'expires=Thu, 01 Jan 1970 00:00:00 GMT';
       document.cookie = `googtrans=; ${past}; domain=.${hostname}; path=/`;
       document.cookie = `googtrans=; ${past}; path=/`;
-      sessionStorage.removeItem('calcuasada_lang_en');
+      try { localStorage.removeItem('calcuasada_lang_en'); } catch {}
       setLang('es');
     }
     window.location.reload();

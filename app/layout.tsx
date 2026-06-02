@@ -30,7 +30,7 @@ export default function RootLayout({
     <html lang="es-MX">
       <head>
         {/* Limpia el cookie de traducción y bloquea init de GT si el usuario no eligió inglés */}
-        <script dangerouslySetInnerHTML={{ __html: `(function(){var w=!!sessionStorage.getItem('calcuasada_lang_en');window.__calcuasadaWantsEn=w;if(!w){var e='expires=Thu, 01 Jan 1970 00:00:00 GMT';document.cookie='googtrans=; '+e+'; path=/';document.cookie='googtrans=; '+e+'; domain=.'+location.hostname+'; path=/';}})();` }} />
+        <script dangerouslySetInnerHTML={{ __html: `(function(){var w=false;try{w=!!localStorage.getItem('calcuasada_lang_en');}catch(e){}window.__calcuasadaWantsEn=w;if(!w){var ex='expires=Thu, 01 Jan 1970 00:00:00 GMT';document.cookie='googtrans=; '+ex+'; path=/';document.cookie='googtrans=; '+ex+'; domain=.'+location.hostname+'; path=/';}})();` }} />
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-G1VZBVG477" />
         <script dangerouslySetInnerHTML={{ __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-G1VZBVG477');` }} />
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
