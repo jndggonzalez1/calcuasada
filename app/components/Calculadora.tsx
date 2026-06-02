@@ -148,9 +148,12 @@ const TIERS_RES = [
 
 type TierResId = typeof TIERS_RES[number]["id"];
 
-// Costo de ingredientes para salsa verde casera (por receta de 7 personas)
-// Tomatillos $23 + chiles serranos $2 + cebolla $2 + ajo $3 + cilantro $3 + sal $0.50
+// Costo de ingredientes para salsa tradicional casera (por receta de 7 personas)
+// Tomatillos $23 + chiles $2 + cebolla $2 + ajo $3 + cilantro $3 + sal $0.50
 const SALSA_CASERA_COSTO_RECETA = 33.50;
+// Costo de salsa de chile piquín con limón (por receta de 7 personas)
+// Piquín $15 + ajo $3 + limones extra $7
+const SALSA_PIQUIN_COSTO_RECETA = 25;
 
 const PRICE_LABELS: Record<string, string> = {
   res:       "Carne de res ($/kg)",
@@ -336,10 +339,11 @@ export default function Calculadora({
     if (urlP) return urlP.casera === "1";
     return typeof saved.salsaCasera === "boolean" ? saved.salsaCasera : false;
   });
-  const [tipoSalsa, setTipoSalsa] = useState<"verde" | "roja">(() => {
+  const [tipoSalsa, setTipoSalsa] = useState<"verde" | "roja" | "piquin">(() => {
     if (urlP?.salsat === "roja") return "roja";
+    if (urlP?.salsat === "piquin") return "piquin";
     const s = saved.tipoSalsa;
-    return s === "roja" ? "roja" : "verde";
+    return s === "roja" ? "roja" : s === "piquin" ? "piquin" : "verde";
   });
 
   const handleTierRes = (id: TierResId) => {
@@ -409,7 +413,7 @@ export default function Calculadora({
     setExtras(entry.extras);
     setTierRes(entry.tierRes as TierResId);
     setSalsaCasera(entry.salsaCasera);
-    setTipoSalsa(entry.tipoSalsa === "roja" ? "roja" : "verde");
+    setTipoSalsa(entry.tipoSalsa === "roja" ? "roja" : entry.tipoSalsa === "piquin" ? "piquin" : "verde");
     setHistorialOpen(false);
   };
 
@@ -503,23 +507,33 @@ export default function Calculadora({
   const salsaIngredientes = useMemo(() => {
     if (totalPersonas === 0) return null;
     const batches = totalPersonas / 7;
+    if (tipoSalsa === "piquin") {
+      return {
+        tipo: "piquin" as const,
+        piquin:  Math.max(2, Math.round(3.5 * batches)),  // cucharadas
+        limones: Math.max(3, Math.ceil(5.5 * batches)),   // extra para la salsa
+        ajo:     Math.max(1, Math.ceil(2 * batches)),
+        tomates: 0, chiles: 0, cebolla: 0, cilantro: 0,
+      };
+    }
     if (tipoSalsa === "roja") {
       return {
         tipo: "roja" as const,
-        tomates:  Math.max(4, Math.ceil(8 * batches)),   // jitomates
-        chiles:   Math.max(2, Math.ceil(3 * batches)),   // chiles de árbol
+        tomates:  Math.max(4, Math.ceil(8 * batches)),
+        chiles:   Math.max(2, Math.ceil(3 * batches)),
         cebolla:  Math.max(1, Math.ceil(batches)),
         ajo:      Math.max(1, Math.ceil(batches)),
-        cilantro: 0,
+        cilantro: 0, piquin: 0, limones: 0,
       };
     }
     return {
       tipo: "verde" as const,
-      tomates:  Math.max(4, Math.ceil(8 * batches)),   // tomatillos
-      chiles:   Math.max(1, Math.ceil(2 * batches)),   // chiles serranos
+      tomates:  Math.max(4, Math.ceil(8 * batches)),
+      chiles:   Math.max(1, Math.ceil(2 * batches)),
       cebolla:  Math.max(1, Math.ceil(batches)),
       ajo:      Math.max(1, Math.ceil(batches)),
       cilantro: Math.max(1, Math.ceil(batches)),
+      piquin: 0, limones: 0,
     };
   }, [totalPersonas, tipoSalsa]);
 
@@ -542,7 +556,7 @@ export default function Calculadora({
       (isRowEnabled("aguacate")  ? results.aguacate  * prices.aguacate  : 0) +
       (isRowEnabled("salsa")
         ? salsaCasera
-          ? SALSA_CASERA_COSTO_RECETA * (totalPersonas / 7)
+          ? (tipoSalsa === "piquin" ? SALSA_PIQUIN_COSTO_RECETA : SALSA_CASERA_COSTO_RECETA) * (totalPersonas / 7)
           : (results.salsa / 1000) * prices.salsa
         : 0) +
       (isRowEnabled("carbon")    ? results.carbon    * prices.carbon    : 0) +
@@ -563,7 +577,7 @@ export default function Calculadora({
     if (results.queso)     items.push({ key: "queso",     displayLabel: "🧀 Queso para asar",   textLabel: "Queso para asar",  value: results.queso,     unit: "kg"     });
     if (isRowEnabled("tortillas")) items.push({ key: "tortillas", displayLabel: "🫓 Tortillas", textLabel: "Tortillas", value: results.tortillas, unit: "pzas" });
     if (isRowEnabled("cebolla")) {
-      const salsaNote = (salsaCasera && isRowEnabled("salsa") && salsaIngredientes)
+      const salsaNote = (salsaCasera && isRowEnabled("salsa") && salsaIngredientes && salsaIngredientes.cebolla > 0)
         ? ` (+${salsaIngredientes.cebolla} pedazo${salsaIngredientes.cebolla > 1 ? "s" : ""} para salsa)`
         : "";
       items.push({ key: "cebolla", displayLabel: `🧅 Cebolla${salsaNote}`, textLabel: `Cebolla${salsaNote}`, value: results.cebolla, unit: "pzas" });
@@ -572,13 +586,19 @@ export default function Calculadora({
     if (isRowEnabled("aguacate"))  items.push({ key: "aguacate",  displayLabel: "🥑 Aguacates", textLabel: "Aguacates", value: results.aguacate,  unit: "pzas" });
     if (isRowEnabled("salsa")) {
       if (salsaCasera && salsaIngredientes) {
-        const tomLabel = salsaIngredientes.tipo === "roja" ? "Jitomates" : "Tomatillos";
-        const chileLabel = salsaIngredientes.tipo === "roja" ? "Chiles de árbol" : "Chiles serranos";
-        items.push({ key: "tomatillos",     displayLabel: `🍅 ${tomLabel}`,      textLabel: tomLabel,      value: salsaIngredientes.tomates, unit: "pzas"      });
-        items.push({ key: "chiles_serrano", displayLabel: `🌶️ ${chileLabel}`,    textLabel: chileLabel,    value: salsaIngredientes.chiles,  unit: "pzas"      });
-        items.push({ key: "ajo_salsa",      displayLabel: "🧄 Ajo",              textLabel: "Ajo",         value: salsaIngredientes.ajo,     unit: "diente(s)" });
-        if (salsaIngredientes.cilantro > 0)
-          items.push({ key: "cilantro_salsa", displayLabel: "🌿 Cilantro",       textLabel: "Cilantro",    value: salsaIngredientes.cilantro, unit: "puñito(s)" });
+        if (salsaIngredientes.tipo === "piquin") {
+          items.push({ key: "chiles_piquin",  displayLabel: "🌶️ Chile piquín",    textLabel: "Chile piquín",    value: salsaIngredientes.piquin,  unit: "cdas"      });
+          items.push({ key: "limones_salsa",  displayLabel: "🍋 Limones (salsa)",  textLabel: "Limones (salsa)", value: salsaIngredientes.limones, unit: "pzas"      });
+          items.push({ key: "ajo_salsa",      displayLabel: "🧄 Ajo (salsa)",      textLabel: "Ajo (salsa)",     value: salsaIngredientes.ajo,     unit: "diente(s)" });
+        } else {
+          const tomLabel   = salsaIngredientes.tipo === "roja" ? "Jitomates" : "Tomatillos";
+          const chileLabel = salsaIngredientes.tipo === "roja" ? "Chiles de árbol" : "Chiles serranos";
+          items.push({ key: "tomatillos",     displayLabel: `🍅 ${tomLabel}`,      textLabel: tomLabel,      value: salsaIngredientes.tomates, unit: "pzas"      });
+          items.push({ key: "chiles_serrano", displayLabel: `🌶️ ${chileLabel}`,    textLabel: chileLabel,    value: salsaIngredientes.chiles,  unit: "pzas"      });
+          items.push({ key: "ajo_salsa",      displayLabel: "🧄 Ajo",              textLabel: "Ajo",         value: salsaIngredientes.ajo,     unit: "diente(s)" });
+          if (salsaIngredientes.cilantro > 0)
+            items.push({ key: "cilantro_salsa", displayLabel: "🌿 Cilantro",       textLabel: "Cilantro",    value: salsaIngredientes.cilantro, unit: "puñito(s)" });
+        }
       } else {
         items.push({ key: "salsa", displayLabel: "🫙 Salsa", textLabel: "Salsa", value: results.salsa, unit: "ml" });
       }
@@ -1079,17 +1099,34 @@ export default function Calculadora({
                           <>
                             <span className="text-gray-300 self-center">·</span>
                             <button
-                              onClick={() => setTipoSalsa("verde")}
-                              className={`px-2.5 py-0.5 rounded-full text-xs font-semibold transition-all ${tipoSalsa === "verde" ? "bg-green-600 text-white" : "bg-gray-100 text-gray-500 hover:bg-gray-200"}`}
+                              onClick={() => { if (tipoSalsa === "piquin") setTipoSalsa("verde"); }}
+                              className={`px-2.5 py-0.5 rounded-full text-xs font-semibold transition-all ${tipoSalsa !== "piquin" ? "bg-brasa text-white" : "bg-gray-100 text-gray-500 hover:bg-gray-200"}`}
                             >
-                              🟢 Verde
+                              Tradicional
                             </button>
                             <button
-                              onClick={() => setTipoSalsa("roja")}
-                              className={`px-2.5 py-0.5 rounded-full text-xs font-semibold transition-all ${tipoSalsa === "roja" ? "bg-red-600 text-white" : "bg-gray-100 text-gray-500 hover:bg-gray-200"}`}
+                              onClick={() => setTipoSalsa("piquin")}
+                              className={`px-2.5 py-0.5 rounded-full text-xs font-semibold transition-all ${tipoSalsa === "piquin" ? "bg-red-700 text-white" : "bg-gray-100 text-gray-500 hover:bg-gray-200"}`}
                             >
-                              🔴 Roja
+                              🌶️ Piquín limón
                             </button>
+                            {tipoSalsa !== "piquin" && (
+                              <>
+                                <span className="text-gray-300 self-center">·</span>
+                                <button
+                                  onClick={() => setTipoSalsa("verde")}
+                                  className={`px-2.5 py-0.5 rounded-full text-xs font-semibold transition-all ${tipoSalsa === "verde" ? "bg-green-600 text-white" : "bg-gray-100 text-gray-500 hover:bg-gray-200"}`}
+                                >
+                                  🟢 Verde
+                                </button>
+                                <button
+                                  onClick={() => setTipoSalsa("roja")}
+                                  className={`px-2.5 py-0.5 rounded-full text-xs font-semibold transition-all ${tipoSalsa === "roja" ? "bg-red-600 text-white" : "bg-gray-100 text-gray-500 hover:bg-gray-200"}`}
+                                >
+                                  🔴 Roja
+                                </button>
+                              </>
+                            )}
                           </>
                         )}
                       </div>
@@ -1104,37 +1141,57 @@ export default function Calculadora({
                 </div>
                 {salsaCasera && isRowEnabled("salsa") && salsaIngredientes && (
                   <div className="ml-13 mt-2 pl-1 border-l-2 border-brasa/20 space-y-0.5">
-                    <p className="text-xs font-semibold text-gray-500 mb-1">
-                      Ingredientes para la salsa {tipoSalsa}:
-                    </p>
-                    {tipoSalsa === "verde" ? (
-                      <p className="text-xs text-gray-400 mb-1">
-                        Usa <span className="font-medium text-gray-600">tomatillos</span> (tomate verde, el chuerito con cascarita)
-                      </p>
+                    {salsaIngredientes.tipo === "piquin" ? (
+                      <>
+                        <p className="text-xs font-semibold text-gray-500 mb-1">Ingredientes para la salsa de piquín:</p>
+                        <p className="text-xs text-gray-400 mb-1">Ajo tostado en el asador, sin agua</p>
+                        {[
+                          `🌶️ ${salsaIngredientes.piquin} cda${salsaIngredientes.piquin > 1 ? "s" : ""} de chile piquín`,
+                          `🍋 ${salsaIngredientes.limones} limone${salsaIngredientes.limones > 1 ? "s" : ""} (extra para la salsa)`,
+                          `🧄 ${salsaIngredientes.ajo} diente${salsaIngredientes.ajo > 1 ? "s" : ""} de ajo`,
+                          `🧂 Sal al gusto`,
+                        ].map(line => (
+                          <p key={line} className="text-xs text-gray-600">{line}</p>
+                        ))}
+                        <a href="/guias/salsa-chile-piquin-limon" className="inline-block mt-1.5 text-xs text-brasa font-semibold hover:underline">
+                          Ver receta completa →
+                        </a>
+                      </>
                     ) : (
-                      <p className="text-xs text-gray-400 mb-1">
-                        Usa <span className="font-medium text-gray-600">jitomates</span> (tomate rojo maduro)
-                      </p>
-                    )}
-                    {[
-                      tipoSalsa === "verde"
-                        ? `🍅 ${salsaIngredientes.tomates} tomatillo${salsaIngredientes.tomates > 1 ? "s" : ""}`
-                        : `🍅 ${salsaIngredientes.tomates} jitomate${salsaIngredientes.tomates > 1 ? "s" : ""}`,
-                      tipoSalsa === "verde"
-                        ? `🌶️ ${salsaIngredientes.chiles} chile${salsaIngredientes.chiles > 1 ? "s" : ""} serrano`
-                        : `🌶️ ${salsaIngredientes.chiles} chile${salsaIngredientes.chiles > 1 ? "s" : ""} de árbol`,
-                      `🧅 ${salsaIngredientes.cebolla} pedazo${salsaIngredientes.cebolla > 1 ? "s" : ""} de cebolla blanca`,
-                      `🧄 ${salsaIngredientes.ajo} diente${salsaIngredientes.ajo > 1 ? "s" : ""} de ajo`,
-                      ...(salsaIngredientes.cilantro > 0
-                        ? [`🌿 ${salsaIngredientes.cilantro} puñito${salsaIngredientes.cilantro > 1 ? "s" : ""} de cilantro`]
-                        : []),
-                    ].map(line => (
-                      <p key={line} className="text-xs text-gray-600">{line}</p>
-                    ))}
-                    {tipoSalsa === "verde" && (
-                      <a href="/guias/salsa-verde-carne-asada" className="inline-block mt-1.5 text-xs text-brasa font-semibold hover:underline">
-                        Ver receta completa →
-                      </a>
+                      <>
+                        <p className="text-xs font-semibold text-gray-500 mb-1">
+                          Ingredientes para la salsa {salsaIngredientes.tipo}:
+                        </p>
+                        {salsaIngredientes.tipo === "verde" ? (
+                          <p className="text-xs text-gray-400 mb-1">
+                            Usa <span className="font-medium text-gray-600">tomatillos</span> (tomate verde, el chuerito con cascarita)
+                          </p>
+                        ) : (
+                          <p className="text-xs text-gray-400 mb-1">
+                            Usa <span className="font-medium text-gray-600">jitomates</span> (tomate rojo maduro)
+                          </p>
+                        )}
+                        {[
+                          salsaIngredientes.tipo === "verde"
+                            ? `🍅 ${salsaIngredientes.tomates} tomatillo${salsaIngredientes.tomates > 1 ? "s" : ""}`
+                            : `🍅 ${salsaIngredientes.tomates} jitomate${salsaIngredientes.tomates > 1 ? "s" : ""}`,
+                          salsaIngredientes.tipo === "verde"
+                            ? `🌶️ ${salsaIngredientes.chiles} chile${salsaIngredientes.chiles > 1 ? "s" : ""} serrano`
+                            : `🌶️ ${salsaIngredientes.chiles} chile${salsaIngredientes.chiles > 1 ? "s" : ""} de árbol`,
+                          `🧅 ${salsaIngredientes.cebolla} pedazo${salsaIngredientes.cebolla > 1 ? "s" : ""} de cebolla blanca`,
+                          `🧄 ${salsaIngredientes.ajo} diente${salsaIngredientes.ajo > 1 ? "s" : ""} de ajo`,
+                          ...(salsaIngredientes.cilantro > 0
+                            ? [`🌿 ${salsaIngredientes.cilantro} puñito${salsaIngredientes.cilantro > 1 ? "s" : ""} de cilantro`]
+                            : []),
+                        ].map(line => (
+                          <p key={line} className="text-xs text-gray-600">{line}</p>
+                        ))}
+                        {salsaIngredientes.tipo === "verde" && (
+                          <a href="/guias/salsa-verde-carne-asada" className="inline-block mt-1.5 text-xs text-brasa font-semibold hover:underline">
+                            Ver receta completa →
+                          </a>
+                        )}
+                      </>
                     )}
                   </div>
                 )}
