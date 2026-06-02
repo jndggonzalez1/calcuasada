@@ -67,6 +67,11 @@ body {
   display: none !important;
 }
 
+/* Texto alternativo en inglés — ocultar/mostrar según modo de GT */
+.en-only { display: none; }
+html.translated-ltr .es-only { display: none !important; }
+html.translated-ltr .en-only { display: inline !important; }
+
 @media print {
   .print\:hidden {
     display: none !important;

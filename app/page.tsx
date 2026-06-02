@@ -108,7 +108,8 @@ export default function HomePage() {
 
       <div className="text-center">
         <h1 className="text-2xl font-black text-gray-900">
-          Calculadora de Carne Asada
+          <span className="es-only">Calculadora de Carne Asada</span>
+          <span className="en-only">BBQ Calculator</span>
         </h1>
         <p className="text-gray-500 text-sm mt-1">
           Ingresa cuántos van y te decimos exactamente qué comprar

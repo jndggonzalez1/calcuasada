@@ -61,7 +61,8 @@ export default function RootLayout({
               className="-mt-4 -mb-9"
             />
             <p className="text-sm font-medium" style={{ color: '#1A1A1A', opacity: 0.55 }}>
-              Calculadora de carne asada para México
+              <span className="es-only">Calculadora de carne asada para México</span>
+              <span className="en-only">Mexican BBQ Calculator</span>
             </p>
           </div>
         </header>
