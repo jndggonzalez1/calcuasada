@@ -66,6 +66,7 @@ export default function RootLayout({
           </div>
         </header>
         <nav
+          translate="no"
           className="border-b print:hidden"
           style={{
             background: '#2D2D2D',
