@@ -29,13 +29,13 @@ export default function RootLayout({
   return (
     <html lang="es-MX">
       <head>
-        {/* Limpia el cookie de traducción si el usuario no eligió inglés en esta sesión */}
-        <script dangerouslySetInnerHTML={{ __html: `(function(){if(!sessionStorage.getItem('calcuasada_lang_en')){var e='expires=Thu, 01 Jan 1970 00:00:00 GMT';document.cookie='googtrans=; '+e+'; path=/';document.cookie='googtrans=; '+e+'; domain=.'+location.hostname+'; path=/';}})();` }} />
+        {/* Limpia el cookie de traducción y bloquea init de GT si el usuario no eligió inglés */}
+        <script dangerouslySetInnerHTML={{ __html: `(function(){var w=!!sessionStorage.getItem('calcuasada_lang_en');window.__calcuasadaWantsEn=w;if(!w){var e='expires=Thu, 01 Jan 1970 00:00:00 GMT';document.cookie='googtrans=; '+e+'; path=/';document.cookie='googtrans=; '+e+'; domain=.'+location.hostname+'; path=/';}})();` }} />
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-G1VZBVG477" />
         <script dangerouslySetInnerHTML={{ __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-G1VZBVG477');` }} />
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
         <script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1068311584605438" crossOrigin="anonymous" />
-        <script dangerouslySetInnerHTML={{ __html: `function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:'es',includedLanguages:'en',autoDisplay:false},'google_translate_element');}` }} />
+        <script dangerouslySetInnerHTML={{ __html: `function googleTranslateElementInit(){if(window.__calcuasadaWantsEn){new google.translate.TranslateElement({pageLanguage:'es',includedLanguages:'en',autoDisplay:false},'google_translate_element');}}` }} />
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
         <script src="https://translate.googleapis.com/translate_a/element.js?cb=googleTranslateElementInit" />
       </head>
