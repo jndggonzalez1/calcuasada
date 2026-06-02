@@ -53,6 +53,13 @@ const guias: Guia[] = [
     desc: "Tomatillo tatemado en el asador, chile serrano, ajo y cilantro. La salsa de la casa para que acompañe todo lo que salga de la parrilla.",
     tiempo: "5 min de lectura",
   },
+  {
+    slug: "salsa-chile-piquin-limon",
+    emoji: "🌶️",
+    titulo: "Salsa de chile piquín con limón — la favorita de Yeyito",
+    desc: "Chiles piquín enteros, limón, ajo tostado y sal. Sin licuadora, sin estufa. Picosita, ácida y perfecta para tacos de carne asada.",
+    tiempo: "5 min de lectura",
+  },
 ];
 
 export default function GuiasPage() {
