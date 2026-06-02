@@ -155,18 +155,24 @@ public/
 | Constantes centralizadas en calcuasada-config.ts | ✅ Listo |
 | Repositorio en GitHub | ✅ Listo (`main`) |
 | Deploy en Vercel | ✅ Configurado (auto-deploy desde `main`) |
-| Salsa casera: toggle Comprada/Casera con ingredientes escalados | ✅ Listo |
+| Salsa casera: Verde / Roja / Piquín limón con ingredientes escalados por tipo | ✅ Listo |
 | Guía /guias/salsa-verde-carne-asada con receta completa | ✅ Listo |
+| Guía /guias/salsa-roja-carne-asada con receta completa | ✅ Listo |
+| Guía /guias/salsa-chile-piquin-limon — favorita de Yeyito | ✅ Listo |
+| /guias: card único "Salsas" con 3 botones (Verde/Roja/Piquín) | ✅ Listo |
 | Botón de traducción ES/EN (Google Translate) en esquina superior derecha | ✅ Listo |
+| Fix traducción ES/EN: localStorage + bloqueo de GT init (no reversa sola) | ✅ Listo |
+| "BBQ Calculator" en inglés vía clases CSS es-only/en-only | ✅ Listo |
+| error.tsx — error boundary con botón "Recargar página" | ✅ Listo |
+| translate="no" en nav — evita que GT intercepte links de navegación | ✅ Listo |
 | Título sección tiers de res: "¿Qué tipo de carne asada es? (presupuesto)" | ✅ Listo |
 | localStorage: estado persiste entre navegación (lazy useState initializers) | ✅ Listo |
-| Traducción siempre arranca en español (sessionStorage + script en `<head>`) | ✅ Listo |
 | Fix: six-packs siempre entero (Math.ceil) | ✅ Listo |
 | Fix: customPrices merge con DEFAULT_PRICES al cargar localStorage viejo | ✅ Listo |
 | Botón 🗑 Limpiar con doble-click para confirmar (evita accidentes) | ✅ Listo |
 | Botón 📋 Copiar lista al portapapeles con feedback visual | ✅ Listo |
 | 💾 Guardar configuración + 📂 Historial (hasta 3 entradas, tiempo relativo) | ✅ Listo |
-| 🔗 Copiar link con estado completo (~337 chars, incluye precios y toggles) | ✅ Listo |
+| 🔗 Copiar link con estado completo (incluye precios, toggles y tipo de salsa) | ✅ Listo |
 | /privacidad: sección de localStorage explicada (renumeradas secciones) | ✅ Listo |
 | Google Search Console — reindexar URLs con redirect error | ⏳ Pendiente (acción manual de Yeyito) |
 | Aprobación de Google AdSense | ⏳ Pendiente (esperar indexación) |
@@ -174,6 +180,24 @@ public/
 ---
 
 ## Historial de sesiones
+
+### Sesión 13 (junio 2026) — Salsas, Google Translate fixes, guías y UX
+
+- **Fix Google Translate (doble sentido)** — Dos bugs distintos resueltos:
+  1. Página revertía a inglés sola: GT inicializaba aunque el usuario quisiera español. Fix: `window.__calcuasadaWantsEn` se setea en el primer script del `<head>` desde `localStorage`; `googleTranslateElementInit` es no-op si esa bandera es false. GT nunca corre cuando el usuario no lo pidió.
+  2. Inglés no persistía (revertía a español): el key `calcuasada_lang_en` estaba en `sessionStorage` que se borra en mobile al recargar. Fix: movido a `localStorage` en `TranslateButton.tsx` y en el script del `<head>`.
+- **"BBQ Calculator" en inglés** — GT traducía "Carne Asada" como "Roast Beef". Fix: clases CSS `es-only` y `en-only` en `globals.css` usando selector `html.translated-ltr` (que GT agrega al `<html>`). El `<h1>` de la home y el subtítulo del header ahora muestran "BBQ Calculator" / "Mexican BBQ Calculator" en inglés sin JS extra.
+- **Salsa casera: 3 tipos** — `tipoSalsa: 'verde' | 'roja' | 'piquin'` (antes era solo verde/roja). UI: botones [🟢 Verde] [🔴 Roja] [🌶️ Piquín limón] aparecen en fila debajo de [Comprada] [Casera]. Ingredientes y costo escalan por tipo:
+  - Verde/Roja: tomatillos o jitomates + chiles + cebolla + ajo (±cilantro)
+  - Piquín: cucharadas de chile piquín + limones extra + ajo tostado. Costo: `SALSA_PIQUIN_COSTO_RECETA = $25`.
+  - `tipoSalsa` se guarda en localStorage, historial y URL params (`salsat=verde|roja|piquin`).
+- **Guías de salsas** — 3 páginas de receta individuales:
+  - `/guias/salsa-verde-carne-asada` (ya existía)
+  - `/guias/salsa-roja-carne-asada` (nueva) — jitomates tatemados + chiles de árbol + cebolla + ajo
+  - `/guias/salsa-chile-piquin-limon` (nueva) — receta favorita de Yeyito, como le enseñó su abuelito. Piquines rojos preferidos. Sin agua, solo limón como base líquida.
+  - El índice `/guias` ahora tiene UN solo card "🫙 Salsas para carne asada — 3 recetas" con 3 botones en lugar de 3 cards separados.
+- **`app/error.tsx`** — Error boundary de Next.js App Router. Cuando un componente crasha (ej. conflicto React+Google Translate en navegación), muestra "🥩 Algo salió mal / Recargar página" en vez del error genérico del browser.
+- **`translate="no"` en `<nav>`** — Previene que Google Translate intercepte los clicks en los links de navegación (Calculadora, Guías, etc.) durante la navegación client-side, que causaba el error "This page couldn't load".
 
 ### Sesión 12 (junio 2026) — localStorage, bugs, UX y compartir link
 
