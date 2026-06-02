@@ -37,6 +37,7 @@ function readUrlParams(): Record<string, string> | null {
 function buildShareUrl(s: {
   adultos: number; ninos: number; sliderAdultos: number; tipo: EventType;
   proteinas: Proteinas; extras: Extras; tierRes: string; salsaCasera: boolean;
+  tipoSalsa: string;
   disabledRows: Set<string>; priceTab: string; customPrices: Record<string, number>;
 }): string {
   const p = new URLSearchParams();
@@ -53,6 +54,7 @@ function buildShareUrl(s: {
   if (s.extras.refrescos) p.set("refrescos", "1");
   if (s.extras.botanas)   p.set("botanas",   "1");
   if (s.salsaCasera)      p.set("casera",    "1");
+  if (s.salsaCasera && s.tipoSalsa !== "verde") p.set("salsat", s.tipoSalsa);
   const off = [...s.disabledRows];
   if (off.length) p.set("off", off.join(","));
   if (s.priceTab === "personalizado") {
@@ -73,6 +75,7 @@ interface HistorialEntry {
   extras: Extras;
   tierRes: string;
   salsaCasera: boolean;
+  tipoSalsa?: string;
   savedAt: number;
 }
 
@@ -333,6 +336,11 @@ export default function Calculadora({
     if (urlP) return urlP.casera === "1";
     return typeof saved.salsaCasera === "boolean" ? saved.salsaCasera : false;
   });
+  const [tipoSalsa, setTipoSalsa] = useState<"verde" | "roja">(() => {
+    if (urlP?.salsat === "roja") return "roja";
+    const s = saved.tipoSalsa;
+    return s === "roja" ? "roja" : "verde";
+  });
 
   const handleTierRes = (id: TierResId) => {
     setTierRes(id);
@@ -363,6 +371,7 @@ export default function Calculadora({
     setDisabledRows(new Set());
     setTierRes("confiable");
     setSalsaCasera(false);
+    setTipoSalsa("verde");
     setDistribuidorOpen(false);
     setPersonas([]);
     setAssignments({});
@@ -381,7 +390,7 @@ export default function Calculadora({
     if (!puedeCalcular) return;
     const entry: HistorialEntry = {
       adultos, ninos, sliderAdultos, tipo, proteinas, extras,
-      tierRes, salsaCasera, savedAt: Date.now(),
+      tierRes, salsaCasera, tipoSalsa, savedAt: Date.now(),
     };
     const prev = readHistorial().filter(e => Date.now() - e.savedAt > 60000);
     const updated = [entry, ...prev].slice(0, 3);
@@ -400,6 +409,7 @@ export default function Calculadora({
     setExtras(entry.extras);
     setTierRes(entry.tierRes as TierResId);
     setSalsaCasera(entry.salsaCasera);
+    setTipoSalsa(entry.tipoSalsa === "roja" ? "roja" : "verde");
     setHistorialOpen(false);
   };
 
@@ -423,7 +433,7 @@ export default function Calculadora({
     if (!puedeCalcular) return;
     const url = buildShareUrl({
       adultos, ninos, sliderAdultos, tipo, proteinas, extras,
-      tierRes, salsaCasera, disabledRows, priceTab, customPrices,
+      tierRes, salsaCasera, tipoSalsa, disabledRows, priceTab, customPrices,
     });
     try {
       await navigator.clipboard.writeText(url);
@@ -466,10 +476,10 @@ export default function Calculadora({
       localStorage.setItem(STORAGE_KEY, JSON.stringify({
         adultos, ninos, sliderAdultos, tipo, proteinas, extras,
         priceTab, customPrices, disabledRows: [...disabledRows],
-        tierRes, salsaCasera,
+        tierRes, salsaCasera, tipoSalsa,
       }));
     } catch {}
-  }, [persistState, adultos, ninos, sliderAdultos, tipo, proteinas, extras, priceTab, customPrices, disabledRows, tierRes, salsaCasera]);
+  }, [persistState, adultos, ninos, sliderAdultos, tipo, proteinas, extras, priceTab, customPrices, disabledRows, tierRes, salsaCasera, tipoSalsa]);
 
   // ── Derived values ──────────────────────────────────────────────────────────
 
@@ -493,14 +503,25 @@ export default function Calculadora({
   const salsaIngredientes = useMemo(() => {
     if (totalPersonas === 0) return null;
     const batches = totalPersonas / 7;
+    if (tipoSalsa === "roja") {
+      return {
+        tipo: "roja" as const,
+        tomates:  Math.max(4, Math.ceil(8 * batches)),   // jitomates
+        chiles:   Math.max(2, Math.ceil(3 * batches)),   // chiles de árbol
+        cebolla:  Math.max(1, Math.ceil(batches)),
+        ajo:      Math.max(1, Math.ceil(batches)),
+        cilantro: 0,
+      };
+    }
     return {
-      tomatillos: Math.max(4, Math.ceil(8 * batches)),
-      chiles:     Math.max(1, Math.ceil(2 * batches)),
-      cebolla:    Math.max(1, Math.ceil(batches)),
-      ajo:        Math.max(1, Math.ceil(batches)),
-      cilantro:   Math.max(1, Math.ceil(batches)),
+      tipo: "verde" as const,
+      tomates:  Math.max(4, Math.ceil(8 * batches)),   // tomatillos
+      chiles:   Math.max(1, Math.ceil(2 * batches)),   // chiles serranos
+      cebolla:  Math.max(1, Math.ceil(batches)),
+      ajo:      Math.max(1, Math.ceil(batches)),
+      cilantro: Math.max(1, Math.ceil(batches)),
     };
-  }, [totalPersonas]);
+  }, [totalPersonas, tipoSalsa]);
 
   const isRowEnabled = (key: string) => !disabledRows.has(key);
   const toggleRow    = (key: string) =>
@@ -551,10 +572,13 @@ export default function Calculadora({
     if (isRowEnabled("aguacate"))  items.push({ key: "aguacate",  displayLabel: "🥑 Aguacates", textLabel: "Aguacates", value: results.aguacate,  unit: "pzas" });
     if (isRowEnabled("salsa")) {
       if (salsaCasera && salsaIngredientes) {
-        items.push({ key: "tomatillos",     displayLabel: "🍅 Tomatillos",      textLabel: "Tomatillos",      value: salsaIngredientes.tomatillos, unit: "pzas"      });
-        items.push({ key: "chiles_serrano", displayLabel: "🌶️ Chiles serranos", textLabel: "Chiles serranos", value: salsaIngredientes.chiles,     unit: "pzas"      });
-        items.push({ key: "ajo_salsa",      displayLabel: "🧄 Ajo",             textLabel: "Ajo",             value: salsaIngredientes.ajo,        unit: "diente(s)" });
-        items.push({ key: "cilantro_salsa", displayLabel: "🌿 Cilantro",        textLabel: "Cilantro",        value: salsaIngredientes.cilantro,   unit: "puñito(s)" });
+        const tomLabel = salsaIngredientes.tipo === "roja" ? "Jitomates" : "Tomatillos";
+        const chileLabel = salsaIngredientes.tipo === "roja" ? "Chiles de árbol" : "Chiles serranos";
+        items.push({ key: "tomatillos",     displayLabel: `🍅 ${tomLabel}`,      textLabel: tomLabel,      value: salsaIngredientes.tomates, unit: "pzas"      });
+        items.push({ key: "chiles_serrano", displayLabel: `🌶️ ${chileLabel}`,    textLabel: chileLabel,    value: salsaIngredientes.chiles,  unit: "pzas"      });
+        items.push({ key: "ajo_salsa",      displayLabel: "🧄 Ajo",              textLabel: "Ajo",         value: salsaIngredientes.ajo,     unit: "diente(s)" });
+        if (salsaIngredientes.cilantro > 0)
+          items.push({ key: "cilantro_salsa", displayLabel: "🌿 Cilantro",       textLabel: "Cilantro",    value: salsaIngredientes.cilantro, unit: "puñito(s)" });
       } else {
         items.push({ key: "salsa", displayLabel: "🫙 Salsa", textLabel: "Salsa", value: results.salsa, unit: "ml" });
       }
@@ -1038,7 +1062,7 @@ export default function Calculadora({
                       <p className="text-xs text-gray-400 mt-0.5">{perPersonaHint("salsa", results.salsa, totalPersonas)}</p>
                     )}
                     {isRowEnabled("salsa") && (
-                      <div className="flex gap-1 mt-1.5">
+                      <div className="flex flex-wrap gap-1 mt-1.5">
                         <button
                           onClick={() => setSalsaCasera(false)}
                           className={`px-2.5 py-0.5 rounded-full text-xs font-semibold transition-all ${!salsaCasera ? "bg-brasa text-white" : "bg-gray-100 text-gray-500 hover:bg-gray-200"}`}
@@ -1051,6 +1075,23 @@ export default function Calculadora({
                         >
                           Casera
                         </button>
+                        {salsaCasera && (
+                          <>
+                            <span className="text-gray-300 self-center">·</span>
+                            <button
+                              onClick={() => setTipoSalsa("verde")}
+                              className={`px-2.5 py-0.5 rounded-full text-xs font-semibold transition-all ${tipoSalsa === "verde" ? "bg-green-600 text-white" : "bg-gray-100 text-gray-500 hover:bg-gray-200"}`}
+                            >
+                              🟢 Verde
+                            </button>
+                            <button
+                              onClick={() => setTipoSalsa("roja")}
+                              className={`px-2.5 py-0.5 rounded-full text-xs font-semibold transition-all ${tipoSalsa === "roja" ? "bg-red-600 text-white" : "bg-gray-100 text-gray-500 hover:bg-gray-200"}`}
+                            >
+                              🔴 Roja
+                            </button>
+                          </>
+                        )}
                       </div>
                     )}
                   </div>
@@ -1063,19 +1104,38 @@ export default function Calculadora({
                 </div>
                 {salsaCasera && isRowEnabled("salsa") && salsaIngredientes && (
                   <div className="ml-13 mt-2 pl-1 border-l-2 border-brasa/20 space-y-0.5">
-                    <p className="text-xs font-semibold text-gray-500 mb-1">Ingredientes para la salsa verde:</p>
+                    <p className="text-xs font-semibold text-gray-500 mb-1">
+                      Ingredientes para la salsa {tipoSalsa}:
+                    </p>
+                    {tipoSalsa === "verde" ? (
+                      <p className="text-xs text-gray-400 mb-1">
+                        Usa <span className="font-medium text-gray-600">tomatillos</span> (tomate verde, el chuerito con cascarita)
+                      </p>
+                    ) : (
+                      <p className="text-xs text-gray-400 mb-1">
+                        Usa <span className="font-medium text-gray-600">jitomates</span> (tomate rojo maduro)
+                      </p>
+                    )}
                     {[
-                      `🍅 ${salsaIngredientes.tomatillos} tomatillos`,
-                      `🌶️ ${salsaIngredientes.chiles} chile${salsaIngredientes.chiles > 1 ? "s" : ""} serrano`,
+                      tipoSalsa === "verde"
+                        ? `🍅 ${salsaIngredientes.tomates} tomatillo${salsaIngredientes.tomates > 1 ? "s" : ""}`
+                        : `🍅 ${salsaIngredientes.tomates} jitomate${salsaIngredientes.tomates > 1 ? "s" : ""}`,
+                      tipoSalsa === "verde"
+                        ? `🌶️ ${salsaIngredientes.chiles} chile${salsaIngredientes.chiles > 1 ? "s" : ""} serrano`
+                        : `🌶️ ${salsaIngredientes.chiles} chile${salsaIngredientes.chiles > 1 ? "s" : ""} de árbol`,
                       `🧅 ${salsaIngredientes.cebolla} pedazo${salsaIngredientes.cebolla > 1 ? "s" : ""} de cebolla blanca`,
                       `🧄 ${salsaIngredientes.ajo} diente${salsaIngredientes.ajo > 1 ? "s" : ""} de ajo`,
-                      `🌿 ${salsaIngredientes.cilantro} puñito${salsaIngredientes.cilantro > 1 ? "s" : ""} de cilantro`,
+                      ...(salsaIngredientes.cilantro > 0
+                        ? [`🌿 ${salsaIngredientes.cilantro} puñito${salsaIngredientes.cilantro > 1 ? "s" : ""} de cilantro`]
+                        : []),
                     ].map(line => (
                       <p key={line} className="text-xs text-gray-600">{line}</p>
                     ))}
-                    <a href="/guias/salsa-verde-carne-asada" className="inline-block mt-1.5 text-xs text-brasa font-semibold hover:underline">
-                      Ver receta completa →
-                    </a>
+                    {tipoSalsa === "verde" && (
+                      <a href="/guias/salsa-verde-carne-asada" className="inline-block mt-1.5 text-xs text-brasa font-semibold hover:underline">
+                        Ver receta completa →
+                      </a>
+                    )}
                   </div>
                 )}
               </div>
