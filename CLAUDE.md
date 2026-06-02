@@ -174,12 +174,29 @@ public/
 | 💾 Guardar configuración + 📂 Historial (hasta 3 entradas, tiempo relativo) | ✅ Listo |
 | 🔗 Copiar link con estado completo (incluye precios, toggles y tipo de salsa) | ✅ Listo |
 | /privacidad: sección de localStorage explicada (renumeradas secciones) | ✅ Listo |
-| Google Search Console — reindexar URLs con redirect error | ⏳ Pendiente (acción manual de Yeyito) |
+| Favicon explícito en metadata (`icons` en layout.tsx apuntando a /logo.png) | ✅ Listo |
+| Distribuidor siempre desplegado (sin botón para abrir) | ✅ Listo |
+| Botón ? en distribuidor con instrucciones de uso | ✅ Listo |
+| Chile piquín en chiles enteros (no cucharadas) — calculadora + guía | ✅ Listo |
+| Precios individuales por ingrediente de salsa casera (tomatillo, jitomate, etc.) | ✅ Listo |
+| Google Search Console — reindexar URLs nuevas (salsas y termómetro) | ⏳ Pendiente (acción manual de Yeyito) |
 | Aprobación de Google AdSense | ⏳ Pendiente (esperar indexación) |
 
 ---
 
 ## Historial de sesiones
+
+### Sesión 14 (junio 2026) — Favicon, distribuidor UX y precios de salsa casera
+
+- **Favicon explícito** — Se agregó `icons: { icon, shortcut, apple: "/logo.png" }` al metadata en `layout.tsx`. Antes Google Search Console mostraba el triángulo de Vercel; ahora el tag `<link rel="icon">` apunta directamente al logo.
+- **Distribuidor siempre abierto** — `distribuidorOpen` inicializa en `true`. Ya no se necesita picar un botón para ver el input de agregar personas. El wrapper condicional `{distribuidorOpen && (...)}` fue eliminado.
+- **Botón ? en distribuidor** — Reemplaza la flecha ▼/▲ del header. Es un círculo ámbar que despliega/colapsa un panel con 3 instrucciones: (1) agregar personas, (2) asignar ítems, (3) el mensaje de WhatsApp muestra todos los ingredientes con quién compra qué.
+- **Chile piquín en chiles enteros** — Cambiado de cucharadas a piezas individuales en toda la app:
+  - Fórmula: `Math.max(15, Math.round(30 * batches))` chiles (antes era cucharadas)
+  - Unidad en lista de compras: `"pzas"` (antes `"cdas"`)
+  - Texto inline en ingredientes caseros: "X chiles piquín" (antes "X cdas de chile piquín")
+  - Guía `/guias/salsa-chile-piquin-limon`: "25 a 35 pzas" en ingredientes; tabla de nivel de picante en chiles (suave: 10-15, medio: 25-35, picante: 40+)
+- **Precios individuales salsa casera** — `DEFAULT_PRICES` en `calcuasada-config.ts` ahora incluye 7 precios nuevos: `chile_piquin` $0.30/pza, `tomatillo` $3.00/pza, `jitomate` $4.00/pza, `chile_serrano` $2.00/pza, `chile_arbol` $1.50/pza, `ajo` $1.00/diente, `cilantro` $4.00/puñito. El total ya no usa constantes flat (`SALSA_PIQUIN_COSTO_RECETA` / `SALSA_CASERA_COSTO_RECETA`) — calcula multiplicando cantidad × precio unitario por cada ingrediente de la salsa activa.
 
 ### Sesión 13 (junio 2026) — Salsas, Google Translate fixes, guías y UX
 
