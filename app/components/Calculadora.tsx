@@ -447,7 +447,8 @@ export default function Calculadora({
   };
 
   // Distribuidor state
-  const [distribuidorOpen, setDistribuidorOpen] = useState(false);
+  const [distribuidorOpen, setDistribuidorOpen] = useState(true);
+  const [distribuidorHelpOpen, setDistribuidorHelpOpen] = useState(false);
   const [personaNombre, setPersonaNombre] = useState("");
   const [personas, setPersonas] = useState<string[]>([]);
   const [assignments, setAssignments] = useState<Record<string, string[]>>({});
@@ -1344,20 +1345,32 @@ export default function Calculadora({
               )}
             </div>
 
-            {/* Distribuidor colapsable */}
-            <button
-              onClick={() => setDistribuidorOpen(prev => !prev)}
-              className="w-full flex items-center gap-3 px-5 py-4 text-left bg-amber-50 hover:bg-amber-100 border-b border-amber-200 transition-colors"
-            >
+            {/* Distribuidor */}
+            <div className="w-full flex items-center gap-3 px-5 py-4 bg-amber-50 border-b border-amber-200">
               <span className="text-xl">👥</span>
               <span className="flex-1 font-bold text-amber-900 text-sm">
                 Distribuir compras entre tus amigos
               </span>
-              <span className="text-amber-600 text-xl font-black leading-none">{distribuidorOpen ? "▲" : "▼"}</span>
-            </button>
+              <button
+                onClick={() => setDistribuidorHelpOpen(prev => !prev)}
+                className="w-7 h-7 rounded-full bg-amber-200 hover:bg-amber-300 text-amber-800 font-black text-sm leading-none flex items-center justify-center transition-colors flex-shrink-0"
+                aria-label="¿Cómo usar el distribuidor?"
+              >
+                ?
+              </button>
+            </div>
+            {distribuidorHelpOpen && (
+              <div className="px-5 py-3 bg-amber-100 border-b border-amber-200 text-sm text-amber-900 space-y-1">
+                <p className="font-semibold">¿Cómo usar el distribuidor?</p>
+                <ol className="list-decimal list-inside space-y-1 text-amber-800">
+                  <li>Escribe el nombre de cada persona que va a cooperar y agrégala.</li>
+                  <li>Para cada ingrediente, selecciona quién lo va a comprar (puedes asignar varios).</li>
+                  <li>Cuando toda la lista esté asignada, el botón de WhatsApp manda a cada quien solo su parte.</li>
+                </ol>
+              </div>
+            )}
 
-            {distribuidorOpen && (
-              <div className="px-5 pb-5 space-y-4 border-b border-amber-100 bg-amber-50/40">
+            <div className="px-5 pb-5 space-y-4 border-b border-amber-100 bg-amber-50/40">
                 <div className="flex gap-2 mt-4">
                   <input
                     type="text"
@@ -1464,7 +1477,6 @@ export default function Calculadora({
                   </div>
                 )}
               </div>
-            )}
 
             {/* Botones de acción */}
             <div className="grid grid-cols-2 gap-3 p-4 border-b border-gray-100">

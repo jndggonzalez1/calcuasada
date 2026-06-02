@@ -12,6 +12,11 @@ export const metadata: Metadata = {
   description:
     "Calcula exactamente cuánta carne, tortillas, limones, carbón y más necesitas para tu carne asada. Gratis, en español, para México.",
   keywords: "carne asada, calculadora, cuánta carne, carne asada para 20 personas, México",
+  icons: {
+    icon: "/logo.png",
+    shortcut: "/logo.png",
+    apple: "/logo.png",
+  },
   openGraph: {
     title: "Calcuasada — Calculadora de Carne Asada",
     description:
