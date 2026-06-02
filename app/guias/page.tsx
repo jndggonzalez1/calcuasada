@@ -46,20 +46,12 @@ const guias: Guia[] = [
     desc: "Temperatura ideal, cuánto tiempo tarda, cómo envolver, cuándo está listo y cómo cortarlo. Todo lo que necesitas saber.",
     tiempo: "12 min de lectura",
   },
-  {
-    slug: "salsa-verde-carne-asada",
-    image: "/salsa.png",
-    titulo: "Salsa verde para carne asada — receta fácil y buenísima",
-    desc: "Tomatillo tatemado en el asador, chile serrano, ajo y cilantro. La salsa de la casa para que acompañe todo lo que salga de la parrilla.",
-    tiempo: "5 min de lectura",
-  },
-  {
-    slug: "salsa-chile-piquin-limon",
-    emoji: "🌶️",
-    titulo: "Salsa de chile piquín con limón — la favorita de Yeyito",
-    desc: "Chiles piquín enteros, limón, ajo tostado y sal. Sin licuadora, sin estufa. Picosita, ácida y perfecta para tacos de carne asada.",
-    tiempo: "5 min de lectura",
-  },
+];
+
+const salsas = [
+  { slug: "salsa-verde-carne-asada",   label: "🟢 Verde",        desc: "Tomatillo · serrano · cilantro" },
+  { slug: "salsa-roja-carne-asada",    label: "🔴 Roja",         desc: "Jitomate · chile de árbol" },
+  { slug: "salsa-chile-piquin-limon",  label: "🌶️ Piquín limón", desc: "La favorita de Yeyito" },
 ];
 
 export default function GuiasPage() {
@@ -98,6 +90,37 @@ export default function GuiasPage() {
             </div>
           </Link>
         ))}
+
+        {/* Card especial: Salsas para carne asada */}
+        <div className="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm">
+          <div className="flex gap-4 items-start">
+            <span className="text-3xl flex-shrink-0">🫙</span>
+            <div className="space-y-3 min-w-0 flex-1">
+              <div>
+                <h2 className="text-base font-black text-gray-900 leading-snug">
+                  Salsas para carne asada — 3 recetas
+                </h2>
+                <p className="text-sm text-gray-500 leading-relaxed mt-0.5">
+                  Las tres salsas que van con todo lo que sale del asador. Elige la que te late más.
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {salsas.map((s) => (
+                  <Link
+                    key={s.slug}
+                    href={`/guias/${s.slug}`}
+                    className="flex flex-col items-start bg-brasa-light border border-brasa/20 rounded-xl px-3 py-2 hover:bg-brasa/10 hover:border-brasa/40 transition-all group/btn"
+                  >
+                    <span className="text-sm font-bold text-gray-900 group-hover/btn:text-brasa transition-colors">
+                      {s.label}
+                    </span>
+                    <span className="text-xs text-gray-400 mt-0.5">{s.desc}</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <AdBanner />
