@@ -1095,43 +1095,31 @@ export default function Calculadora({
                         >
                           Casera
                         </button>
-                        {salsaCasera && (
-                          <>
-                            <span className="text-gray-300 self-center">·</span>
-                            <button
-                              onClick={() => { if (tipoSalsa === "piquin") setTipoSalsa("verde"); }}
-                              className={`px-2.5 py-0.5 rounded-full text-xs font-semibold transition-all ${tipoSalsa !== "piquin" ? "bg-brasa text-white" : "bg-gray-100 text-gray-500 hover:bg-gray-200"}`}
-                            >
-                              Tradicional
-                            </button>
-                            <button
-                              onClick={() => setTipoSalsa("piquin")}
-                              className={`px-2.5 py-0.5 rounded-full text-xs font-semibold transition-all ${tipoSalsa === "piquin" ? "bg-red-700 text-white" : "bg-gray-100 text-gray-500 hover:bg-gray-200"}`}
-                            >
-                              🌶️ Piquín limón
-                            </button>
-                            {tipoSalsa !== "piquin" && (
-                              <>
-                                <span className="text-gray-300 self-center">·</span>
-                                <button
-                                  onClick={() => setTipoSalsa("verde")}
-                                  className={`px-2.5 py-0.5 rounded-full text-xs font-semibold transition-all ${tipoSalsa === "verde" ? "bg-green-600 text-white" : "bg-gray-100 text-gray-500 hover:bg-gray-200"}`}
-                                >
-                                  🟢 Verde
-                                </button>
-                                <button
-                                  onClick={() => setTipoSalsa("roja")}
-                                  className={`px-2.5 py-0.5 rounded-full text-xs font-semibold transition-all ${tipoSalsa === "roja" ? "bg-red-600 text-white" : "bg-gray-100 text-gray-500 hover:bg-gray-200"}`}
-                                >
-                                  🔴 Roja
-                                </button>
-                              </>
-                            )}
-                          </>
-                        )}
                       </div>
                     )}
                   </div>
+                  {salsaCasera && (
+                    <div className="flex gap-1 mt-1 flex-wrap">
+                      <button
+                        onClick={() => setTipoSalsa("verde")}
+                        className={`px-2.5 py-0.5 rounded-full text-xs font-semibold transition-all ${tipoSalsa === "verde" ? "bg-green-600 text-white" : "bg-gray-100 text-gray-500 hover:bg-gray-200"}`}
+                      >
+                        🟢 Verde
+                      </button>
+                      <button
+                        onClick={() => setTipoSalsa("roja")}
+                        className={`px-2.5 py-0.5 rounded-full text-xs font-semibold transition-all ${tipoSalsa === "roja" ? "bg-red-600 text-white" : "bg-gray-100 text-gray-500 hover:bg-gray-200"}`}
+                      >
+                        🔴 Roja
+                      </button>
+                      <button
+                        onClick={() => setTipoSalsa("piquin")}
+                        className={`px-2.5 py-0.5 rounded-full text-xs font-semibold transition-all ${tipoSalsa === "piquin" ? "bg-red-700 text-white" : "bg-gray-100 text-gray-500 hover:bg-gray-200"}`}
+                      >
+                        🌶️ Piquín limón
+                      </button>
+                    </div>
+                  )}
                   {!salsaCasera && (
                     <span className="text-2xl font-black text-gray-900 tabular-nums flex-shrink-0">
                       {results.salsa >= 1000 ? results.salsa / 1000 : results.salsa}{" "}
