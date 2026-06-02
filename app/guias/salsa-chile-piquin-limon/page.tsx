@@ -58,7 +58,7 @@ export default function SalsaPiquinPage() {
 
         <div className="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm">
           {[
-            { emoji: "🌶️", cantidad: "3 a 4 cdas", ingrediente: "Chiles piquín enteros (preferentemente rojos)" },
+            { emoji: "🌶️", cantidad: "25 a 35 pzas", ingrediente: "Chiles piquín enteros (preferentemente rojos)" },
             { emoji: "🍋", cantidad: "5 a 6 pzas",  ingrediente: "Limones" },
             { emoji: "🧄", cantidad: "2 dientes",   ingrediente: "Ajo" },
             { emoji: "🧂", cantidad: "Al gusto",    ingrediente: "Sal" },
@@ -139,9 +139,9 @@ export default function SalsaPiquinPage() {
         <h2 className="text-lg font-black text-gray-900">Nivel de picante</h2>
         <div className="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm">
           {[
-            { nivel: "Suave",    cantidad: "1 a 2 cdas de chile piquín", color: "text-yellow-600" },
-            { nivel: "Medio",   cantidad: "3 a 4 cdas de chile piquín", color: "text-orange-500" },
-            { nivel: "Picante", cantidad: "5 cdas o más",               color: "text-red-600"    },
+            { nivel: "Suave",    cantidad: "10 a 15 chiles piquín",  color: "text-yellow-600" },
+            { nivel: "Medio",   cantidad: "25 a 35 chiles piquín",  color: "text-orange-500" },
+            { nivel: "Picante", cantidad: "40 chiles o más",         color: "text-red-600"    },
           ].map(({ nivel, cantidad, color }, i) => (
             <div key={i} className={`flex items-center gap-4 px-5 py-3 ${i % 2 === 0 ? "bg-white" : "bg-gray-50"}`}>
               <span className={`text-sm font-black w-16 flex-shrink-0 ${color}`}>{nivel}</span>

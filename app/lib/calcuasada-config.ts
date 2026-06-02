@@ -61,18 +61,26 @@ export const CERVEZA_LATAS: Record<EventType, { hombre: number; mujer: number; n
 
 // Precios de mercado en MXN (referencia, ajustables)
 export const DEFAULT_PRICES: Record<string, number> = {
-  res:       280, // $/kg
-  pollo:     120, // $/kg
-  salchicha: 120, // $/kg
-  queso:     190, // $/kg
-  tortillas:  25, // $/kg  (~30g por tortilla)
-  cebolla:     8, // $/pza
-  limon:       2, // $/pza
-  aguacate:   22, // $/pza
-  salsa:     100, // $/L  (~$1 cada 10g, bote 300g = $30)
-  carbon:     35, // $/kg
-  hielo:      15, // $/kg
-  frijoles:   28, // $/L de frijol de olla
-  cerveza:    20, // $/lata
-  refrescos:  40, // $/botella 2L
+  res:           280, // $/kg
+  pollo:         120, // $/kg
+  salchicha:     120, // $/kg
+  queso:         190, // $/kg
+  tortillas:      25, // $/kg  (~30g por tortilla)
+  cebolla:         8, // $/pza
+  limon:           2, // $/pza
+  aguacate:       22, // $/pza
+  salsa:         100, // $/L  (~$1 cada 10g, bote 300g = $30)
+  carbon:         35, // $/kg
+  hielo:          15, // $/kg
+  frijoles:       28, // $/L de frijol de olla
+  cerveza:        20, // $/lata
+  refrescos:      40, // $/botella 2L
+  // Ingredientes de salsa casera
+  chile_piquin:  0.30, // $/pza (chile seco entero, a granel en mercado)
+  tomatillo:     3.00, // $/pza (miltomate)
+  jitomate:      4.00, // $/pza (bola o roma)
+  chile_serrano: 2.00, // $/pza
+  chile_arbol:   1.50, // $/pza
+  ajo:           1.00, // $/diente
+  cilantro:      4.00, // $/puñito (manojo pequeño)
 };

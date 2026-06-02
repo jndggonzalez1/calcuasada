@@ -511,7 +511,7 @@ export default function Calculadora({
     if (tipoSalsa === "piquin") {
       return {
         tipo: "piquin" as const,
-        piquin:  Math.max(2, Math.round(3.5 * batches)),  // cucharadas
+        piquin:  Math.max(15, Math.round(30 * batches)),  // chiles piquín enteros (~30 por receta de 7 personas)
         limones: Math.max(3, Math.ceil(5.5 * batches)),   // extra para la salsa
         ajo:     Math.max(1, Math.ceil(2 * batches)),
         tomates: 0, chiles: 0, cebolla: 0, cilantro: 0,
@@ -556,9 +556,15 @@ export default function Calculadora({
       (isRowEnabled("limon")     ? results.limon     * prices.limon     : 0) +
       (isRowEnabled("aguacate")  ? results.aguacate  * prices.aguacate  : 0) +
       (isRowEnabled("salsa")
-        ? salsaCasera
-          ? (tipoSalsa === "piquin" ? SALSA_PIQUIN_COSTO_RECETA : SALSA_CASERA_COSTO_RECETA) * (totalPersonas / 7)
-          : (results.salsa / 1000) * prices.salsa
+        ? salsaCasera && salsaIngredientes
+          ? salsaIngredientes.tipo === "piquin"
+            ? salsaIngredientes.piquin * prices.chile_piquin + salsaIngredientes.limones * prices.limon + salsaIngredientes.ajo * prices.ajo
+            : salsaIngredientes.tomates * (salsaIngredientes.tipo === "roja" ? prices.jitomate : prices.tomatillo)
+              + salsaIngredientes.chiles * (salsaIngredientes.tipo === "roja" ? prices.chile_arbol : prices.chile_serrano)
+              + salsaIngredientes.cebolla * prices.cebolla
+              + salsaIngredientes.ajo * prices.ajo
+              + salsaIngredientes.cilantro * prices.cilantro
+          : !salsaCasera ? (results.salsa / 1000) * prices.salsa : 0
         : 0) +
       (isRowEnabled("carbon")    ? results.carbon    * prices.carbon    : 0) +
       (isRowEnabled("hielo")     ? results.hielo     * prices.hielo     : 0) +
@@ -588,7 +594,7 @@ export default function Calculadora({
     if (isRowEnabled("salsa")) {
       if (salsaCasera && salsaIngredientes) {
         if (salsaIngredientes.tipo === "piquin") {
-          items.push({ key: "chiles_piquin",  displayLabel: "🌶️ Chile piquín",    textLabel: "Chile piquín",    value: salsaIngredientes.piquin,  unit: "cdas"      });
+          items.push({ key: "chiles_piquin",  displayLabel: "🌶️ Chile piquín",    textLabel: "Chile piquín",    value: salsaIngredientes.piquin,  unit: "pzas"      });
           items.push({ key: "limones_salsa",  displayLabel: "🍋 Limones (salsa)",  textLabel: "Limones (salsa)", value: salsaIngredientes.limones, unit: "pzas"      });
           items.push({ key: "ajo_salsa",      displayLabel: "🧄 Ajo (salsa)",      textLabel: "Ajo (salsa)",     value: salsaIngredientes.ajo,     unit: "diente(s)" });
         } else {
@@ -1135,7 +1141,7 @@ export default function Calculadora({
                         <p className="text-xs font-semibold text-gray-500 mb-1">Ingredientes para la salsa de piquín:</p>
                         <p className="text-xs text-gray-400 mb-1">Ajo tostado en el asador, sin agua</p>
                         {[
-                          `🌶️ ${salsaIngredientes.piquin} cda${salsaIngredientes.piquin > 1 ? "s" : ""} de chile piquín`,
+                          `🌶️ ${salsaIngredientes.piquin} chile${salsaIngredientes.piquin > 1 ? "s" : ""} piquín`,
                           `🍋 ${salsaIngredientes.limones} limone${salsaIngredientes.limones > 1 ? "s" : ""} (extra para la salsa)`,
                           `🧄 ${salsaIngredientes.ajo} diente${salsaIngredientes.ajo > 1 ? "s" : ""} de ajo`,
                           `🧂 Sal al gusto`,
@@ -1365,7 +1371,7 @@ export default function Calculadora({
                 <ol className="list-decimal list-inside space-y-1 text-amber-800">
                   <li>Escribe el nombre de cada persona que va a cooperar y agrégala.</li>
                   <li>Para cada ingrediente, selecciona quién lo va a comprar (puedes asignar varios).</li>
-                  <li>Cuando toda la lista esté asignada, el botón de WhatsApp manda a cada quien solo su parte.</li>
+                  <li>Cuando toda la lista esté asignada, el mensaje de WhatsApp muestra todos los ingredientes con quién compra qué — para que todos vean el plan completo.</li>
                 </ol>
               </div>
             )}
