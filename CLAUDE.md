@@ -180,11 +180,17 @@ public/
 | Chile piquín en chiles enteros (no cucharadas) — calculadora + guía | ✅ Listo |
 | Precios individuales por ingrediente de salsa casera (tomatillo, jitomate, etc.) | ✅ Listo |
 | Google Search Console — reindexar URLs nuevas (salsas y termómetro) | ⏳ Pendiente (acción manual de Yeyito) |
-| Aprobación de Google AdSense | ⏳ Pendiente (esperar indexación) |
+| Fix AdSense: `async` en script de adsbygoogle | ✅ Listo |
+| Aprobación de Google AdSense | ✅ Aprobada — ads en proceso de activación (24-48h) |
 
 ---
 
 ## Historial de sesiones
+
+### Sesión 15 (junio 2026) — Fix AdSense async
+
+- **AdSense aprobado** — Google aprobó la cuenta de Yeyito.
+- **Fix `async` en script de AdSense** — El script de `adsbygoogle.js` en `layout.tsx` no tenía el atributo `async`, lo que impedía que Auto Ads funcionara. Se agregó `async` y se hizo push. Los anuncios pueden tardar 24-48h en aparecer después de la aprobación.
 
 ### Sesión 14 (junio 2026) — Favicon, distribuidor UX y precios de salsa casera
 
