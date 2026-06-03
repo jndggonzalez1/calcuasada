@@ -38,8 +38,7 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: `(function(){var w=false;try{w=!!localStorage.getItem('calcuasada_lang_en');}catch(e){}window.__calcuasadaWantsEn=w;if(!w){var ex='expires=Thu, 01 Jan 1970 00:00:00 GMT';document.cookie='googtrans=; '+ex+'; path=/';document.cookie='googtrans=; '+ex+'; domain=.'+location.hostname+'; path=/';}})();` }} />
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-G1VZBVG477" />
         <script dangerouslySetInnerHTML={{ __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-G1VZBVG477');` }} />
-        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
-        <script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1068311584605438" crossOrigin="anonymous" />
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1068311584605438" crossOrigin="anonymous" />
         <script dangerouslySetInnerHTML={{ __html: `function googleTranslateElementInit(){if(window.__calcuasadaWantsEn){new google.translate.TranslateElement({pageLanguage:'es',includedLanguages:'en',autoDisplay:false},'google_translate_element');}}` }} />
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
         <script src="https://translate.googleapis.com/translate_a/element.js?cb=googleTranslateElementInit" />
