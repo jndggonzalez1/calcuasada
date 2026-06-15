@@ -23,8 +23,8 @@ const tips = [
   },
   {
     emoji: "🌮",
-    titulo: "Tortillas de harina, siempre",
-    desc: "En Nuevo León no hay debate: tortillas de harina. Cómpralas frescas en la tortillería del barrio, hacen toda la diferencia.",
+    titulo: "¿Maíz o harina? El gran debate",
+    desc: "En el norte la tradición es de harina, pero hay quien jura por la de maíz tatemada directo en las brasas. Yeyito las prefiere de maíz. Lo mejor: compra de las dos y que tu gente decida.",
   },
   {
     emoji: "🍋",

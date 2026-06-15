@@ -13,7 +13,7 @@ export default function TortillasPage() {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     mainEntity: [
-      { "@type": "Question", name: "¿Cuál es mejor para carne asada, tortilla de maíz o de harina?", acceptedAnswer: { "@type": "Answer", text: "En el norte de México la respuesta es unánime: tortilla de harina. Es más suave, más flexible y aguanta mejor el peso de la carne, la salsa y el guacamole sin romperse. La tortilla de maíz es perfecta para tacos al pastor, carnitas o barbacoa, pero para carne asada norteña la de harina es la correcta." } },
+      { "@type": "Question", name: "¿Cuál es mejor para carne asada, tortilla de maíz o de harina?", acceptedAnswer: { "@type": "Answer", text: "Es uno de los debates más apasionados de la cocina mexicana y no tiene una sola respuesta. En el norte de México la tradición es la tortilla de harina. Pero hay quien prefiere la de maíz tatemada directamente en el asador — le da un sabor ahumado que complementa muy bien la carne. Lo mejor es probar las dos y decidir cuál te convence más." } },
       { "@type": "Question", name: "¿Por qué en el norte de México comen tortillas de harina y en el sur de maíz?", acceptedAnswer: { "@type": "Answer", text: "Por el clima y la historia. El norte de México tiene un clima más seco y frío que favorece el cultivo de trigo. Cuando los españoles llegaron en el siglo XVI trajeron el trigo, y las misiones franciscanas lo sembraron en el norte. El sur mantuvo el maíz porque el clima tropical lo favorece y la tradición prehispánica era más profunda ahí." } },
       { "@type": "Question", name: "¿Cuántas tortillas de harina necesito por persona en una carne asada?", acceptedAnswer: { "@type": "Answer", text: "Calcula entre 3 y 4 tortillas por adulto para una carne asada normal. La calculadora de Calcuasada te da la cantidad exacta ajustada al número de personas y al nivel de apetito de tu grupo." } },
       { "@type": "Question", name: "¿La tortilla de harina tiene más calorías que la de maíz?", acceptedAnswer: { "@type": "Answer", text: "Sí. Una tortilla de harina de 25 cm tiene aproximadamente 140-160 calorías. Una tortilla de maíz del mismo tamaño tiene alrededor de 60-70 calorías. La diferencia es la grasa (manteca o aceite) que lleva la masa de harina, que la tortilla de maíz no necesita." } },
@@ -35,12 +35,12 @@ export default function TortillasPage() {
         </div>
 
         <div className="bg-brasa-light border border-brasa/20 rounded-2xl p-5 space-y-2">
-          <p className="text-sm font-black text-gray-900">La respuesta corta:</p>
+          <p className="text-sm font-black text-gray-900">Lo que necesitas saber:</p>
           <ul className="text-sm space-y-1 list-disc list-inside text-gray-700">
-            <li>Para carne asada norteña: <strong>tortilla de harina</strong>, siempre</li>
-            <li>Para tacos al pastor, carnitas o barbacoa: <strong>tortilla de maíz</strong></li>
-            <li>No son rivales — cada una es perfecta para su comida</li>
-            <li>El norte eligió la harina por historia y clima, no por capricho</li>
+            <li>Son completamente diferentes en sabor, textura e historia</li>
+            <li>El norte de México tiene tradición de harina; el centro y sur, de maíz</li>
+            <li>El debate de cuál va mejor con la carne asada lleva décadas y nadie lo gana</li>
+            <li>La mejor forma de decidir es probar las dos — idealmente el mismo día</li>
           </ul>
         </div>
 
@@ -70,7 +70,7 @@ export default function TortillasPage() {
                 <tr><td className="py-2.5 px-3 font-bold">Calorías aprox.</td><td className="py-2.5 px-3">60–70 kcal (tamaño taquero)</td><td className="py-2.5 px-3">140–160 kcal (25 cm)</td></tr>
                 <tr className="bg-gray-50"><td className="py-2.5 px-3 font-bold">Proteína</td><td className="py-2.5 px-3">~1.5 g</td><td className="py-2.5 px-3">~4 g</td></tr>
                 <tr><td className="py-2.5 px-3 font-bold">Sin gluten</td><td className="py-2.5 px-3">✅ Sí (natural)</td><td className="py-2.5 px-3">❌ No</td></tr>
-                <tr className="bg-gray-50"><td className="py-2.5 px-3 font-bold">Mejor para</td><td className="py-2.5 px-3">Al pastor, carnitas, enchiladas, quesadillas</td><td className="py-2.5 px-3">Carne asada, burritos, machaca, fajitas</td></tr>
+                <tr className="bg-gray-50"><td className="py-2.5 px-3 font-bold">Típica para</td><td className="py-2.5 px-3">Al pastor, carnitas, enchiladas, quesadillas — y carne asada si la tatemeas en las brasas</td><td className="py-2.5 px-3">Burritos, machaca, fajitas — y carne asada en la tradición norteña</td></tr>
                 <tr><td className="py-2.5 px-3 font-bold">Región dominante</td><td className="py-2.5 px-3">Centro, sur y sureste de México</td><td className="py-2.5 px-3">Norte de México (NL, Sonora, Chihuahua, Coahuila)</td></tr>
               </tbody>
             </table>
@@ -83,11 +83,30 @@ export default function TortillasPage() {
             La tortilla de maíz tiene un sabor propio, intenso y particular — ese sabor a cal y maíz tostado que es inconfundible. No es un sabor neutro. Por eso las tortillas de maíz funcionan tan bien con rellenos de sabor fuerte: el chile guajillo de la barbacoa, la salsa de tomatillo del al pastor, el sabor profundo de la carnita sudada. El maíz compite con los rellenos y los complementa al mismo tiempo.
           </p>
           <p className="text-sm leading-relaxed">
-            La tortilla de harina, en cambio, tiene un sabor mucho más suave y neutro con un ligero toque mantecoso. No compite con el relleno — lo deja brillar. Por eso va tan bien con la carne asada: la arrachera tiene suficiente sabor propio y la tortilla de harina la acompaña sin interferir. Además, la textura suave y elástica de la harina aguanta mucho mejor el peso de la carne con salsa, guacamole y todo lo que le eches encima.
+            La tortilla de harina, en cambio, tiene un sabor mucho más suave y neutro con un ligero toque mantecoso. No compite con el relleno — lo deja brillar. La textura suave y elástica de la harina aguanta bien el peso de la carne con salsa, guacamole y todo lo que le eches encima sin romperse. Por eso la tradición norteña la prefiere para la carne asada.
+          </p>
+          <p className="text-sm leading-relaxed">
+            Pero aquí es donde entra el debate — y es un debate legítimo. La tortilla de maíz tatemada directamente en el asador, con las mismas brasas de la carne, agarra un ahumado natural que la tortilla de harina no tiene. Ese sabor ahumado del maíz con las brasas es algo que vale la pena experimentar, especialmente si creciste con la tortilla de maíz como tu referencia principal.
           </p>
           <div className="bg-brasa-light border border-brasa/20 rounded-xl p-4 space-y-1">
-            <p className="text-xs font-bold text-brasa">El veredicto de Yeyito:</p>
-            <p className="text-sm text-gray-700 italic">&ldquo;La tortilla de maíz tiene su lugar y lo respeto completamente. Pero para carne asada norteña, la de harina es la única opción. No hay debate.&rdquo;</p>
+            <p className="text-xs font-bold text-brasa">La preferencia de Yeyito:</p>
+            <p className="text-sm text-gray-700 italic">&ldquo;A mí personalmente me gusta la tortilla de maíz para la carne asada — y me gusta tatemar las tortillas directo en el asador con las brasas. El sabor ahumado que le da el carbón es increíble. Crecí en el norte donde la de harina es la norma, y la respeto, pero mi preferencia personal es el maíz. No digo que sea mejor — digo que a mí me convence más.&rdquo;</p>
+          </div>
+        </section>
+
+        <section className="space-y-4">
+          <h2 className="text-lg font-black text-gray-900">El debate que nadie gana — y por qué vale la pena probarlo tú mismo</h2>
+          <p className="text-sm leading-relaxed">
+            La discusión de tortilla de maíz vs tortilla de harina para carne asada es tan antigua como la carne asada misma, y no tiene una respuesta correcta. Depende de dónde creciste, qué tortilla pruebas más fresca, cómo la preparas y qué tan tatema la quieres.
+          </p>
+          <p className="text-sm leading-relaxed">
+            Lo que sí hay que reconocer es que muchos de los que declaran una ganadora nunca han probado la otra bien preparada. Si eres del norte y siempre has comido de harina, prueba tatemarla en el mismo asador junto a la carne — el maíz caliente con manchas de brasa tiene una textura y un sabor completamente distinto a la tortilla de maíz fría de bolsa de supermercado. Y al revés: si eres del centro y siempre has comido de maíz, prueba una tortilla de harina recién hecha en comal, caliente y con manchas doradas — no la de plástico que venden empaquetada.
+          </p>
+          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-2">
+            <p className="text-sm font-bold text-gray-900">La propuesta: ponlas a prueba en la misma carne asada</p>
+            <p className="text-sm text-gray-600 leading-relaxed">
+              Compra un paquete de tortillas de harina y otro de maíz para tu próxima carne asada. Tatemar ambas directamente en las brasas al momento de servir — 30 segundos por lado, hasta que tengan manchas oscuras. Sirve la misma carne con cada tipo de tortilla y deja que tu gente decida. La discusión que se va a armar en la mesa vale lo que cuestan las tortillas extra.
+            </p>
           </div>
         </section>
 
