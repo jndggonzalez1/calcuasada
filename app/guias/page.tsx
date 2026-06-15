@@ -40,6 +40,13 @@ const guias: Guia[] = [
     tiempo: "7 min de lectura",
   },
   {
+    slug: "tortillas-maiz-vs-harina",
+    emoji: "🫓",
+    titulo: "Tortillas de maíz vs tortillas de harina",
+    desc: "Diferencias de sabor, textura y uso. Más la historia completa: 10,000 años de maíz y 400 años de harina en el norte.",
+    tiempo: "12 min de lectura",
+  },
+  {
     slug: "cuanto-carbon-necesito-carne-asada",
     emoji: "🔥",
     titulo: "¿Cuánto carbón necesito para mi carne asada?",
