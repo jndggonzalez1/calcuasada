@@ -182,10 +182,44 @@ public/
 | Google Search Console — reindexar URLs nuevas (salsas y termómetro) | ⏳ Pendiente (acción manual de Yeyito) |
 | Fix AdSense: `async` en script de adsbygoogle | ✅ Listo |
 | Aprobación de Google AdSense | ✅ Aprobada — ads en proceso de activación (24-48h) |
+| Guía marinada para arrachera (/guias/como-marinar-arrachera) | ✅ Listo |
+| Guía guacamole para carne asada (/guias/guacamole-para-carne-asada) | ✅ Listo |
+| Expansión de salsas verde/roja/piquín (500→1100 palabras c/u) | ✅ Listo |
+| Re-submit a Google AdSense después de mejorar contenido | ⏳ Pendiente (acción manual de Yeyito) |
 
 ---
 
 ## Historial de sesiones
+
+### Sesión 17 (junio 2026) — Mejora de contenido para re-submit a AdSense
+
+- **Rechazo de AdSense por "Low value content"** — Google rechazó el sitio porque las páginas de salsa tenían ~500 palabras y el contenido no era suficientemente profundo.
+- **Expansión de las 3 páginas de salsa** (verde, roja, piquín) de ~550 → ~1,100 palabras cada una:
+  - Salsa verde: sección "por qué el asador cambia todo", variaciones (jalapeño, chipotle, aguacate, molcajete), troubleshooting completo (5 problemas + soluciones), cómo guardar, FAQ 5 preguntas
+  - Salsa roja: sección sobre el chile de árbol vs otros chiles (tabla comparativa), variaciones con guajillo/chipotle/mezcla, troubleshooting, cómo guardar, FAQ 4 preguntas
+  - Piquín: historia del chile piquín en el norte de México, dónde conseguirlo en Monterrey (con opciones), variaciones (naranja agria, sal de grano, ajo negro), troubleshooting, cómo guardar, FAQ 5 preguntas
+- **Nueva guía: `/guias/como-marinar-arrachera`** (~900 palabras):
+  - Cuándo marinar y cuándo NO (arrachera suavizada no necesita)
+  - 2 recetas: marinada clásica (soya + limón) y marinada norteña (naranja + limón)
+  - Tabla de tiempos de marinado con resultados
+  - La ciencia del ácido, sal, aceite y azúcar en la marinada
+  - Errores comunes (marinar en metal, reutilizar marinada, no secar antes de asar)
+  - Marinadas express con ingredientes comunes (Valentina, cerveza, balsámico)
+  - FAQ 5 preguntas
+- **Nueva guía: `/guias/guacamole-para-carne-asada`** (~900 palabras):
+  - Cómo elegir aguacates maduros (3 pruebas: tacto, rabo, color)
+  - Receta clásica norteña con ingredientes y proporciones
+  - El secreto para que no se oxide (plástico directo sobre la superficie)
+  - Tabla de cantidades por número de personas
+  - Variaciones (jitomate, granada, mango, versión tatemada del asador)
+  - FAQ 5 preguntas
+- **Actualización del índice `/guias`** — 2 nuevas tarjetas, ahora muestra 6 artículos + card de salsas
+- **Actualización del sitemap** — 2 URLs nuevas agregadas
+- Push a main, Vercel deployando automáticamente
+
+### Sesión 16 (junio 2026) — Diagnóstico ads.txt
+
+- **ads.txt "not found" en AdSense** — Google AdSense mostraba warning de ads.txt no encontrado. Se verificó que el archivo `/public/ads.txt` existe con el contenido correcto (`google.com, pub-1068311584605438, DIRECT, f08c47fec0942fa0`) y que la URL `calcuasada.com/ads.txt` carga correctamente en el browser. Conclusión: no hay problema técnico, AdSense simplemente no ha re-crawleado aún. El warning desaparecerá solo en unos días sin ningún cambio en el código.
 
 ### Sesión 15 (junio 2026) — Fix AdSense async
 
