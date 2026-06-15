@@ -14,6 +14,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/guias/salsa-verde-carne-asada`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/guias/salsa-chile-piquin-limon`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/guias/salsa-roja-carne-asada`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${base}/guias/como-marinar-arrachera`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${base}/guias/guacamole-para-carne-asada`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/calculadora/10`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/calculadora/15`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/calculadora/20`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },

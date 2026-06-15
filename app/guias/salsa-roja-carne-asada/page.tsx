@@ -5,7 +5,7 @@ import AdBanner from "../../components/AdBanner";
 export const metadata: Metadata = {
   title: "Salsa roja para carne asada — Receta con jitomate tatemado — Calcuasada",
   description:
-    "Receta de salsa roja casera para carne asada: jitomates tatemados en el asador, chiles de árbol, ajo y cebolla. Sencilla, picosita y con un ahumado natural que no tiene precio.",
+    "Receta de salsa roja casera para carne asada: jitomates tatemados en el asador, chiles de árbol, ajo y cebolla. Picosita, ahumada y con mucho carácter.",
 };
 
 export default function SalsaRojaPage() {
@@ -17,7 +17,7 @@ export default function SalsaRojaPage() {
         <h1 className="text-2xl font-black text-gray-900 leading-tight">
           Salsa roja para carne asada
         </h1>
-        <p className="text-sm text-gray-500">5 min de lectura · Actualizado junio 2026</p>
+        <p className="text-sm text-gray-500">8 min de lectura · Actualizado junio 2026</p>
       </div>
 
       <div className="bg-brasa-light border border-brasa/20 rounded-2xl p-5 space-y-2">
@@ -38,6 +38,25 @@ export default function SalsaRojaPage() {
         <p className="text-sm leading-relaxed">
           Es la salsa que va cuando quieres algo con más cuerpo que la verde. También aguanta bien al lado del guacamole — las dos se complementan perfecto en la mesa.
         </p>
+      </section>
+
+      <section className="space-y-3">
+        <h2 className="text-lg font-black text-gray-900">El chile de árbol y por qué es el correcto para esta salsa</h2>
+        <p className="text-sm leading-relaxed">
+          El chile de árbol es el protagonista de esta receta. Es un chile seco, delgado, de color rojo brillante que se consigue en cualquier mercado o supermercado. Su picante es intenso — se ubica entre 15,000 y 30,000 unidades Scoville, que es bastante más que el jalapeño y más que el serrano también.
+        </p>
+        <p className="text-sm leading-relaxed">
+          Lo que hace especial al chile de árbol para salsa de carne asada es que al tostarse en el asador desarrolla un aroma profundo y una ligera nota nuez que le da carácter a la salsa sin dominar el jitomate. Si se quema completamente, amarga — por eso la clave es tostarlo rápido y con cuidado.
+        </p>
+        <div className="bg-gray-50 rounded-xl p-4 space-y-2">
+          <p className="text-xs font-bold text-gray-700 mb-2">Comparación de chiles para salsa roja</p>
+          <div className="space-y-1.5 text-xs">
+            <div className="flex gap-3"><span className="font-bold w-28 flex-shrink-0">Chile de árbol</span><span className="text-gray-600">Picante intenso, aroma pronunciado, color rojo brillante — el clásico para carne asada</span></div>
+            <div className="flex gap-3"><span className="font-bold w-28 flex-shrink-0">Chile guajillo</span><span className="text-gray-600">Picante suave, sabor frutal y ligeramente dulce — ideal si quieres menos calor</span></div>
+            <div className="flex gap-3"><span className="font-bold w-28 flex-shrink-0">Chile ancho</span><span className="text-gray-600">Muy suave, sabor terroso y profundo — bueno para dar color sin mucho picante</span></div>
+            <div className="flex gap-3"><span className="font-bold w-28 flex-shrink-0">Chipotle</span><span className="text-gray-600">Jalapeño ahumado, picante medio — le da un sabor diferente y muy rico</span></div>
+          </div>
+        </div>
       </section>
 
       <AdBanner />
@@ -141,6 +160,60 @@ export default function SalsaRojaPage() {
       </section>
 
       <section className="space-y-3">
+        <h2 className="text-lg font-black text-gray-900">Variaciones con otros chiles</h2>
+        <p className="text-sm leading-relaxed">
+          Si quieres ajustar el picante o experimentar con otros perfiles de sabor, estas son las sustituciones que mejor funcionan:
+        </p>
+        <div className="space-y-3">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+            <p className="text-sm font-bold text-gray-900">Con chile guajillo — versión suave</p>
+            <p className="text-sm text-gray-600">Sustituye los chiles de árbol por 2 guajillos desvenados. El guajillo da un color rojo muy bonito, un sabor frutal y casi nada de picante. Buena opción cuando van niños o gente que no aguanta el picante del árbol.</p>
+          </div>
+          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+            <p className="text-sm font-bold text-gray-900">Con chipotle — versión ahumada</p>
+            <p className="text-sm text-gray-600">Agrega 1 chipotle en adobo (de lata) en lugar de uno de los chiles de árbol. El chipotle es jalapeño ahumado y da una profundidad diferente a la salsa. Queda riquísima con costilla de res porque complementa la grasa con el ahumado.</p>
+          </div>
+          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+            <p className="text-sm font-bold text-gray-900">Mezcla árbol + guajillo — la campechana de salsas</p>
+            <p className="text-sm text-gray-600">Usa 2 chiles de árbol y 1 guajillo. El árbol aporta el picante, el guajillo aporta el color y la profundidad de sabor. El resultado es más complejo y equilibrado que usando uno solo.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="space-y-3">
+        <h2 className="text-lg font-black text-gray-900">Qué hacer si la salsa no salió bien</h2>
+        <div className="space-y-3">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+            <p className="text-sm font-bold text-gray-900">Quedó amarga</p>
+            <p className="text-sm text-gray-600">El culpable casi siempre son los chiles quemados. Si los tostaste de más, el amargor no se puede quitar fácilmente. Lo más que puedes hacer es agregar más jitomate tatemado para diluir el sabor amargo. La próxima vez, mueve los chiles constantemente y retíralos en cuanto estén aromáticos — 30 a 60 segundos máximo.</p>
+          </div>
+          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+            <p className="text-sm font-bold text-gray-900">Quedó muy picante</p>
+            <p className="text-sm text-gray-600">Agrega más jitomate tatemado para diluir o incorpora un poco de aguacate al licuar — la grasa del aguacate atenúa el picante. La próxima vez, saca las semillas de los chiles de árbol antes de usarlos.</p>
+          </div>
+          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+            <p className="text-sm font-bold text-gray-900">No sabe a nada — quedó sosa</p>
+            <p className="text-sm text-gray-600">Primero revisa la sal — muchas veces es simplemente eso. Si ya tiene sal suficiente y sigue sosa, significa que el jitomate no se tatemó lo suficiente. Regresa algunos a la parrilla unos minutos más.</p>
+          </div>
+          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+            <p className="text-sm font-bold text-gray-900">Quedó muy espesa</p>
+            <p className="text-sm text-gray-600">Agrega de a poco agua purificada o el jugo que soltaron los jitomates al tatemarse y licúa de nuevo. Una salsa muy espesa es difícil de servir y de poner en el taco.</p>
+          </div>
+        </div>
+      </section>
+
+      <AdBanner />
+
+      <section className="space-y-3">
+        <h2 className="text-lg font-black text-gray-900">Cómo guardar la salsa roja</h2>
+        <ul className="text-sm space-y-2 list-disc list-inside leading-relaxed">
+          <li><strong>En el refrigerador:</strong> en frasco de vidrio tapado dura hasta 4 días. La salsa puede espesarse en el frío — está bien, se aligera de nuevo a temperatura ambiente.</li>
+          <li><strong>En el congelador:</strong> hasta 3 meses. Congela en porciones pequeñas para descongelar solo lo que vas a usar.</li>
+          <li><strong>No la dejes más de 2 horas a temperatura ambiente</strong> — el jitomate fermenta rápido, especialmente en días calurosos.</li>
+        </ul>
+      </section>
+
+      <section className="space-y-3">
         <h2 className="text-lg font-black text-gray-900">¿Con qué va esta salsa?</h2>
         <p className="text-sm leading-relaxed">
           Con todo. Arrachera, costilla, pollo, salchicha, quesadillas — la salsa roja aguanta todo lo que le pongas encima. Es especialmente buena con costilla de res porque el sabor fuerte de la carne y el picante del chile de árbol se complementan muy bien.
@@ -148,6 +221,35 @@ export default function SalsaRojaPage() {
         <p className="text-sm leading-relaxed">
           Si tienes salsa roja y salsa verde en la mesa, ya tienes las dos que necesita cualquier carne asada norteña completa.
         </p>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="text-lg font-black text-gray-900">Preguntas frecuentes sobre salsa roja para carne asada</h2>
+        <div className="space-y-3">
+          {[
+            {
+              q: "¿Cuántos chiles de árbol son demasiados?",
+              a: "La receta base usa 3 a 4 para 6-8 personas. Con 5 o más la salsa empieza a ser realmente picante — más de lo que la mayoría aguanta cómodamente. Si tu gente aguanta el picante, sube a 5. Si no sabes, empieza con 2 y sirve más chiles enteros aparte para quienes quieran más."
+            },
+            {
+              q: "¿Puedo hacerla sin chiles de árbol si no los consigo?",
+              a: "Sí. El sustituto más fácil es chile serrano seco (más difícil de conseguir) o jalapeño fresco tatemado junto con el jitomate. También puedes usar chile guajillo para una versión suave sin casi picante. La salsa no va a quedar idéntica pero sí sabrosa."
+            },
+            {
+              q: "¿Puedo preparar la salsa antes de que lleguen los invitados?",
+              a: "Sí, puedes hacerla hasta un día antes. Guárdala tapada en el refri. El sabor incluso mejora con el reposo porque los ingredientes se integran. Solo asegúrate de que esté completamente fría antes de tapar el frasco."
+            },
+            {
+              q: "¿Por qué la salsa de taquería y la de carne asada saben diferente si usan los mismos ingredientes?",
+              a: "Por el método de cocción. En taquería el jitomate se hierve o se tatema en comal seco. En carne asada se tatema sobre las brasas, donde agarra un ahumado real del carbón. Ese humo cambia completamente el perfil de sabor — es más profundo, más rústico y con un toque de amargo que equilibra el picante."
+            },
+          ].map(({ q, a }, i) => (
+            <div key={i} className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+              <p className="text-sm font-bold text-gray-900">{q}</p>
+              <p className="text-sm text-gray-600 leading-relaxed">{a}</p>
+            </div>
+          ))}
+        </div>
       </section>
 
       <div className="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm space-y-3">
@@ -164,6 +266,24 @@ export default function SalsaRojaPage() {
       </div>
 
       <AdBanner />
+
+      <section className="space-y-3">
+        <h2 className="text-base font-black text-gray-900">También te puede interesar</h2>
+        <div className="grid gap-3">
+          <Link href="/guias/salsa-verde-carne-asada" className="block bg-white border border-gray-100 rounded-xl p-4 shadow-sm hover:border-brasa/30 transition-all">
+            <p className="text-sm font-bold text-gray-900">🟢 Salsa verde para carne asada</p>
+            <p className="text-xs text-gray-500 mt-1">Tomatillo tatemado, serrano y el toque especial de grasa del asador</p>
+          </Link>
+          <Link href="/guias/salsa-chile-piquin-limon" className="block bg-white border border-gray-100 rounded-xl p-4 shadow-sm hover:border-brasa/30 transition-all">
+            <p className="text-sm font-bold text-gray-900">🌶️ Salsa de chile piquín con limón</p>
+            <p className="text-xs text-gray-500 mt-1">La favorita de Yeyito — sin agua, con molcajete y limón como base</p>
+          </Link>
+          <Link href="/guias/guacamole-para-carne-asada" className="block bg-white border border-gray-100 rounded-xl p-4 shadow-sm hover:border-brasa/30 transition-all">
+            <p className="text-sm font-bold text-gray-900">🥑 Guacamole para carne asada</p>
+            <p className="text-xs text-gray-500 mt-1">Receta clásica y el secreto para que no se ponga negro</p>
+          </Link>
+        </div>
+      </section>
 
     </article>
   );

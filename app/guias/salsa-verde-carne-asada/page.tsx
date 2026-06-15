@@ -5,7 +5,7 @@ import AdBanner from "../../components/AdBanner";
 export const metadata: Metadata = {
   title: "Salsa verde para carne asada — Receta fácil y buenísima — Calcuasada",
   description:
-    "Receta de salsa verde casera para carne asada: tomatillo, chile serrano, ajo y cilantro. Sencilla, rápida y con el toque especial de Yeyito para que quede de diez.",
+    "Receta de salsa verde casera para carne asada: tomatillo tatemado en el asador, chile serrano, ajo y cilantro. Con tips para que quede perfecta y sin fallar.",
 };
 
 export default function SalsaVerdePage() {
@@ -17,7 +17,7 @@ export default function SalsaVerdePage() {
         <h1 className="text-2xl font-black text-gray-900 leading-tight">
           Salsa verde para carne asada
         </h1>
-        <p className="text-sm text-gray-500">5 min de lectura · Actualizado mayo 2026</p>
+        <p className="text-sm text-gray-500">8 min de lectura · Actualizado junio 2026</p>
       </div>
 
       <div className="bg-brasa-light border border-brasa/20 rounded-2xl p-5 space-y-2">
@@ -37,6 +37,19 @@ export default function SalsaVerdePage() {
         </p>
         <p className="text-sm leading-relaxed">
           Esta receta es sencilla a propósito. No lleva crema, no lleva aguacate, no tiene ingredientes raros. Es la salsa de siempre, la que se hace en la mayoría de las casas del norte de México cuando hay carne asada — y que nunca falla.
+        </p>
+      </section>
+
+      <section className="space-y-3">
+        <h2 className="text-lg font-black text-gray-900">Por qué el asador cambia todo en una salsa verde</h2>
+        <p className="text-sm leading-relaxed">
+          Cuando tatemas el tomatillo directo en las brasas pasan dos cosas que no se pueden replicar en estufa. Primero, el calor seco concentra los azúcares naturales del tomatillo — esa acidez tan característica del tomate verde se suaviza y se vuelve más redonda, más compleja. Segundo, el humo del carbón se adhiere a la piel del tomatillo y penetra ligeramente hacia adentro, dando ese sabor ahumado que distingue una salsa de carne asada de una salsa de taquería.
+        </p>
+        <p className="text-sm leading-relaxed">
+          La clave es dejar que el tomatillo se tatemate de verdad — que tenga manchas negras visibles, que la piel se levante y que por dentro esté completamente suave. Un tomatillo a medias tatema da una salsa con sabor a cruda. Vale la pena esperar los 10 a 12 minutos que necesita.
+        </p>
+        <p className="text-sm leading-relaxed">
+          El ajo y la cebolla en el asador siguen el mismo principio: el calor directo les saca caramelización y suavidad que no consigues con ajo o cebolla crudos. La salsa queda más suave, menos agresiva, con más profundidad de sabor.
         </p>
       </section>
 
@@ -137,6 +150,75 @@ export default function SalsaVerdePage() {
       </section>
 
       <section className="space-y-3">
+        <h2 className="text-lg font-black text-gray-900">Variaciones que puedes probar</h2>
+        <p className="text-sm leading-relaxed">
+          La receta base es la que funciona para carne asada, pero hay variaciones que valen la pena conocer si quieres experimentar sin alejarte demasiado de lo clásico.
+        </p>
+        <div className="space-y-3">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+            <p className="text-sm font-bold text-gray-900">Con chile jalapeño</p>
+            <p className="text-sm text-gray-600">Sustituye los serranos por jalapeños para una salsa con picante más suave y un sabor ligeramente más vegetal. Buena opción si va a comer gente que no aguanta mucho picante.</p>
+          </div>
+          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+            <p className="text-sm font-bold text-gray-900">Con chipotle (versión ahumada)</p>
+            <p className="text-sm text-gray-600">Agrega uno o medio chipotle en adobo al momento de licuar junto con los demás ingredientes. Le da un sabor ahumado más profundo y un picante diferente, más suave y redondo. No es la receta tradicional, pero queda muy buena.</p>
+          </div>
+          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+            <p className="text-sm font-bold text-gray-900">Con aguacate (salsa verde cremosa)</p>
+            <p className="text-sm text-gray-600">Agrega medio aguacate maduro al momento de licuar. La salsa queda más espesa, con una textura sedosa y un sabor más suave. Esta versión va mejor para hacer tacos que para ponerla directo en la carne en la parrilla.</p>
+          </div>
+          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+            <p className="text-sm font-bold text-gray-900">Sin licuadora: versión martajada en molcajete</p>
+            <p className="text-sm text-gray-600">Muele todo a mano en el molcajete en lugar de la licuadora. La textura queda más rústica con pedacitos de chile y tomatillo que se sienten en el taco. El sabor cambia un poco — es más intenso y con más presencia de cada ingrediente por separado.</p>
+          </div>
+        </div>
+      </section>
+
+      <AdBanner />
+
+      <section className="space-y-3">
+        <h2 className="text-lg font-black text-gray-900">Qué hacer si la salsa no salió bien</h2>
+        <p className="text-sm leading-relaxed">
+          Estas son las situaciones más comunes cuando la salsa no queda como esperabas y cómo resolverlas.
+        </p>
+        <div className="space-y-3">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+            <p className="text-sm font-bold text-gray-900">Quedó demasiado ácida</p>
+            <p className="text-sm text-gray-600">Normalmente pasa cuando los tomatillos no estaban bien maduros o se tatemaron poco. Solución: agrega una pizca de azúcar o una bolita de cebolla cruda fresca al licuar — la cebolla cruda neutraliza la acidez sin cambiar el sabor principal.</p>
+          </div>
+          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+            <p className="text-sm font-bold text-gray-900">Quedó muy aguada</p>
+            <p className="text-sm text-gray-600">Los tomatillos sueltan mucho jugo al tatemarlos. Si quieres una salsa más espesa, escurre un poco del líquido antes de licuar o licúa a pulsos cortos sin agregar agua extra.</p>
+          </div>
+          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+            <p className="text-sm font-bold text-gray-900">Quedó muy picante</p>
+            <p className="text-sm text-gray-600">Agrega más tomatillos tatemados o un poco de aguacate para diluir el picante sin cambiar la base de la salsa. La próxima vez, quítale las semillas al chile antes de tatemas.</p>
+          </div>
+          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+            <p className="text-sm font-bold text-gray-900">Perdió el color verde (se puso café)</p>
+            <p className="text-sm text-gray-600">Es oxidación, pasa con el cilantro y el tomatillo. Es normal y no cambia el sabor. Para que tarde más en oscurecerse, guárdala en frasco bien tapado con el menor espacio de aire posible. También puedes exprimir unas gotas de limón encima.</p>
+          </div>
+          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+            <p className="text-sm font-bold text-gray-900">No sabe a nada — sabe sosa</p>
+            <p className="text-sm text-gray-600">La sal es lo que despierta todos los sabores de la salsa. Agrega más sal de a poco y vuelve a probar. También revisa que los tomatillos estuvieran bien tatemados — si quedaron a medias, la salsa pierde profundidad de sabor.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="space-y-3">
+        <h2 className="text-lg font-black text-gray-900">Cómo guardar la salsa verde</h2>
+        <p className="text-sm leading-relaxed">
+          Si sobró salsa o quieres prepararla con anticipación para la carne asada:
+        </p>
+        <ul className="text-sm space-y-2 list-disc list-inside leading-relaxed">
+          <li><strong>En el refrigerador:</strong> en frasco de vidrio con tapa hermética dura hasta 4 días. Mezcla antes de servir porque puede separarse.</li>
+          <li><strong>En el congelador:</strong> dura hasta 3 meses sin perder mucho sabor. Congela en bolsas o en recipientes pequeños con porciones listas para descongelar.</li>
+          <li><strong>Para calentar:</strong> directamente en el comal o sartén a fuego bajo, revolviendo, o en el microondas en intervalos de 30 segundos.</li>
+          <li><strong>No dejes la salsa a temperatura ambiente por más de 2 horas</strong> — el tomatillo fermente rápido y puede echarse a perder.</li>
+        </ul>
+      </section>
+
+      <section className="space-y-3">
         <h2 className="text-lg font-black text-gray-900">¿Con qué va esta salsa?</h2>
         <p className="text-sm leading-relaxed">
           Esta salsa verde va con todo lo que sale del asador. Arrachera, costilla, pollo, salchicha para asar, quesadillas de queso — no importa qué estés cocinando, esta salsa le queda bien a todo. También es perfecta para los tacos que armas con la carne sobrante al final de la tarde.
@@ -144,6 +226,39 @@ export default function SalsaVerdePage() {
         <p className="text-sm leading-relaxed">
           Si tienes guacamole y esta salsa verde, ya tienes las dos salsas que necesita cualquier carne asada. Con eso y las tortillas calientes, todos van a estar contentos.
         </p>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="text-lg font-black text-gray-900">Preguntas frecuentes sobre salsa verde para carne asada</h2>
+        <div className="space-y-3">
+          {[
+            {
+              q: "¿Puedo hacer la salsa el día anterior?",
+              a: "Sí, y de hecho muchas veces queda mejor porque los sabores se integran durante la noche. Guárdala en frasco tapado en el refri. Al día siguiente prueba y ajusta de sal si es necesario — la sal se suaviza un poco con el reposo."
+            },
+            {
+              q: "¿Se puede hacer sin licuadora?",
+              a: "Sí, en molcajete. El resultado es más rústico y con más textura — a muchos les gusta más así. Solo tatema bien todo primero y machaca a mano. Lleva más tiempo pero el sabor es diferente y muy bueno."
+            },
+            {
+              q: "¿Cuántos tomatillos necesito para más personas?",
+              a: "Para 6-8 personas: 8 tomatillos. Para 10-15: usa 16. Para 20 o más: haz dos tandas. La calculadora de Calcuasada ya incluye la cantidad exacta de ingredientes cuando activas la opción 'Casera' en la salsa."
+            },
+            {
+              q: "¿Por qué mi salsa verde quedó café y no verde?",
+              a: "Por oxidación del cilantro y el tomatillo — es completamente normal y no afecta el sabor. El color verde se mantiene mejor si la sirves recién hecha. Si necesitas que dure bonita, agrega un chorrito de limón justo antes de servir."
+            },
+            {
+              q: "¿La salsa de carne asada es diferente a la salsa de taquería?",
+              a: "Sí. La de taquería normalmente se hace con ingredientes hervidos o en seco en comal. La de carne asada se tatema directo en las brasas, lo que le da un ahumado natural que es imposible de replicar en estufa. Son completamente diferentes en sabor y textura."
+            },
+          ].map(({ q, a }, i) => (
+            <div key={i} className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+              <p className="text-sm font-bold text-gray-900">{q}</p>
+              <p className="text-sm text-gray-600 leading-relaxed">{a}</p>
+            </div>
+          ))}
+        </div>
       </section>
 
       <div className="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm space-y-3">
@@ -160,6 +275,24 @@ export default function SalsaVerdePage() {
       </div>
 
       <AdBanner />
+
+      <section className="space-y-3">
+        <h2 className="text-base font-black text-gray-900">También te puede interesar</h2>
+        <div className="grid gap-3">
+          <Link href="/guias/salsa-roja-carne-asada" className="block bg-white border border-gray-100 rounded-xl p-4 shadow-sm hover:border-brasa/30 transition-all">
+            <p className="text-sm font-bold text-gray-900">🔴 Salsa roja para carne asada</p>
+            <p className="text-xs text-gray-500 mt-1">Jitomates tatemados, chiles de árbol y ese ahumado del asador</p>
+          </Link>
+          <Link href="/guias/salsa-chile-piquin-limon" className="block bg-white border border-gray-100 rounded-xl p-4 shadow-sm hover:border-brasa/30 transition-all">
+            <p className="text-sm font-bold text-gray-900">🌶️ Salsa de chile piquín con limón</p>
+            <p className="text-xs text-gray-500 mt-1">La favorita de Yeyito — sin agua, con molcajete y limón como base</p>
+          </Link>
+          <Link href="/guias/guacamole-para-carne-asada" className="block bg-white border border-gray-100 rounded-xl p-4 shadow-sm hover:border-brasa/30 transition-all">
+            <p className="text-sm font-bold text-gray-900">🥑 Guacamole para carne asada</p>
+            <p className="text-xs text-gray-500 mt-1">Receta clásica y el secreto para que no se ponga negro</p>
+          </Link>
+        </div>
+      </section>
 
     </article>
   );

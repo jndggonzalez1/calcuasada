@@ -26,6 +26,20 @@ const guias: Guia[] = [
     tiempo: "10 min de lectura",
   },
   {
+    slug: "como-marinar-arrachera",
+    emoji: "🫙",
+    titulo: "Cómo marinar arrachera para carne asada",
+    desc: "La mejor marinada, cuánto tiempo dejar, cuándo no marinar y los errores que arruinan la textura.",
+    tiempo: "9 min de lectura",
+  },
+  {
+    slug: "guacamole-para-carne-asada",
+    emoji: "🥑",
+    titulo: "Guacamole para carne asada",
+    desc: "Receta clásica norteña, cuánto preparar por persona y el secreto para que no se ponga negro.",
+    tiempo: "7 min de lectura",
+  },
+  {
     slug: "cuanto-carbon-necesito-carne-asada",
     emoji: "🔥",
     titulo: "¿Cuánto carbón necesito para mi carne asada?",

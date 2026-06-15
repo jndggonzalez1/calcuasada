@@ -5,7 +5,7 @@ import AdBanner from "../../components/AdBanner";
 export const metadata: Metadata = {
   title: "Salsa de chile piquín con limón — Receta para carne asada — Calcuasada",
   description:
-    "Receta de salsa de chile piquín con limón y ajo tostado. Sencilla, picosita y perfecta para carne asada. La favorita de Yeyito, con piquines rojos como le enseñó su abuelito.",
+    "Receta de salsa de chile piquín con limón y ajo tostado. Sin agua, en molcajete, lista en 10 minutos. La favorita del norte de México para carne asada — como la hacía el abuelito.",
 };
 
 export default function SalsaPiquinPage() {
@@ -17,7 +17,7 @@ export default function SalsaPiquinPage() {
         <h1 className="text-2xl font-black text-gray-900 leading-tight">
           Salsa de chile piquín con limón
         </h1>
-        <p className="text-sm text-gray-500">5 min de lectura · Actualizado junio 2026</p>
+        <p className="text-sm text-gray-500">8 min de lectura · Actualizado junio 2026</p>
       </div>
 
       <div className="bg-brasa-light border border-brasa/20 rounded-2xl p-5 space-y-2">
@@ -41,6 +41,19 @@ export default function SalsaPiquinPage() {
       </section>
 
       <section className="space-y-3">
+        <h2 className="text-lg font-black text-gray-900">El chile piquín en el norte de México</h2>
+        <p className="text-sm leading-relaxed">
+          El chile piquín tiene una presencia muy particular en la gastronomía del norte de México. A diferencia de otros chiles que se trabajan más en la cocina del centro y sur del país, el piquín en el noreste se usa principalmente en salsas muy simples y directas — molido con sal y limón, o machacado en molcajete. No va en guisados ni en moles. Es una salsa de asador, de domingo, de familia.
+        </p>
+        <p className="text-sm leading-relaxed">
+          Lo que lo hace especial es su combinación de picante intenso con un sabor floral y ligeramente ahumado que no tiene ningún otro chile. No es el picante plano del jalapeño ni la intensidad herbácea del serrano — es algo completamente distinto, más sutil y más interesante.
+        </p>
+        <p className="text-sm leading-relaxed">
+          En Monterrey y en muchos hogares del noreste, esta salsa de piquín con limón se hace de generación en generación prácticamente sin cambiar la receta. La simplicidad es parte del punto: pocos ingredientes, técnica sencilla, resultado que no falla.
+        </p>
+      </section>
+
+      <section className="space-y-3">
         <h2 className="text-lg font-black text-gray-900">¿Piquines verdes o rojos?</h2>
         <p className="text-sm leading-relaxed">
           Los dos funcionan — es cuestión de gusto. Los <strong>verdes</strong> tienen un picante más fresco y un sabor ligeramente herbáceo. Los <strong>rojos</strong> están más secos, tienen un picante más concentrado y un sabor más intenso y terroso.
@@ -48,6 +61,15 @@ export default function SalsaPiquinPage() {
         <p className="text-sm leading-relaxed">
           Yeyito prefiere los rojos porque son los que usaba su abuelito. Si encuentras una mezcla de los dos, también funciona bien — le da complejidad al sabor.
         </p>
+        <div className="bg-gray-50 rounded-xl p-4 space-y-2">
+          <p className="text-xs font-bold text-gray-700">Dónde conseguir chile piquín en Monterrey</p>
+          <ul className="text-xs space-y-1.5 text-gray-600 list-disc list-inside">
+            <li><strong>Mercados de barrio:</strong> lo consigues por gramo o por bolsita — el más barato y fresco</li>
+            <li><strong>Supermercados (HEB, Walmart, Soriana):</strong> en el área de especias o chiles secos, en bolsas de 50 o 100g</li>
+            <li><strong>Tiendas de especias en el mercado de abastos:</strong> el mejor precio y más variedad (verde, rojo, molido)</li>
+            <li><strong>Online:</strong> fácil de pedir si vives fuera de Monterrey — busca &ldquo;chile piquín seco norteño&rdquo;</li>
+          </ul>
+        </div>
       </section>
 
       <AdBanner />
@@ -162,6 +184,58 @@ export default function SalsaPiquinPage() {
       </section>
 
       <section className="space-y-3">
+        <h2 className="text-lg font-black text-gray-900">Variaciones que puedes probar</h2>
+        <div className="space-y-3">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+            <p className="text-sm font-bold text-gray-900">Con naranja agria</p>
+            <p className="text-sm text-gray-600">Sustituye la mitad del limón por jugo de naranja agria. Le da un sabor más tropical y ligeramente más dulce que equilibra muy bien con el picante del piquín. Si no consigues naranja agria, una mezcla de naranja normal con un poco más de limón funciona de emergencia.</p>
+          </div>
+          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+            <p className="text-sm font-bold text-gray-900">Con sal de grano en lugar de sal fina</p>
+            <p className="text-sm text-gray-600">La textura de la sal de grano cambia la experiencia del molcajete — al moler los piquines junto con los cristales de sal gruesa el proceso es más eficiente y el resultado tiene más textura. Vale la pena si tienes sal de grano a la mano.</p>
+          </div>
+          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+            <p className="text-sm font-bold text-gray-900">Con un toque de ajo negro</p>
+            <p className="text-sm text-gray-600">El ajo negro (ajo fermentado, cada vez más fácil de conseguir en supermercados) tiene un sabor dulce, umami y muy diferente al ajo regular. Un solo diente de ajo negro en lugar del ajo tostado le da a esta salsa una profundidad completamente diferente.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="space-y-3">
+        <h2 className="text-lg font-black text-gray-900">Qué hacer si la salsa no salió bien</h2>
+        <div className="space-y-3">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+            <p className="text-sm font-bold text-gray-900">Quedó demasiado picante</p>
+            <p className="text-sm text-gray-600">Agrega más limón y más sal — el ácido y la sal atenúan la percepción del picante. También puedes agregar un poco más de ajo para suavizarlo. No hay forma de sacarle piquines una vez molidos, así que ajusta con limón.</p>
+          </div>
+          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+            <p className="text-sm font-bold text-gray-900">Quedó muy espesa y pastosa</p>
+            <p className="text-sm text-gray-600">Agrega más limón de a poco hasta que la consistencia sea la que buscas. Esta salsa no lleva agua — el limón es lo que la aligera. Si ya quedó ácida de más, un poquito de sal extra balancea.</p>
+          </div>
+          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+            <p className="text-sm font-bold text-gray-900">Sabe amargo</p>
+            <p className="text-sm text-gray-600">El ajo se tostó de más y se quemó — el ajo quemado tiene amargor intenso. Empieza de nuevo con el ajo. La próxima vez, tóstalo a fuego medio y vigílalo — se quema fácil.</p>
+          </div>
+          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+            <p className="text-sm font-bold text-gray-900">No sabe a nada — sabe plana</p>
+            <p className="text-sm text-gray-600">Revisa la sal primero. Después revisa la calidad del piquín — si es piquín muy viejo o almacenado mucho tiempo, pierde potencia. El piquín fresco del mercado siempre va a ser más intenso que el que lleva meses en una bolsita en la alacena.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="space-y-3">
+        <h2 className="text-lg font-black text-gray-900">Cómo guardar la salsa de piquín</h2>
+        <p className="text-sm leading-relaxed">
+          Esta salsa es la que menos dura de las tres porque no lleva base de tomate o tomatillo que funcione como conservador natural.
+        </p>
+        <ul className="text-sm space-y-2 list-disc list-inside leading-relaxed">
+          <li><strong>En el refrigerador:</strong> en frasco bien tapado dura 2 a 3 días. El sabor del limón se intensifica con el reposo.</li>
+          <li><strong>No se recomienda congelar:</strong> el limón cambia de sabor al congelarse y el molcajete pierde toda la textura.</li>
+          <li><strong>Lo ideal es hacerla el mismo día:</strong> es tan rápida (10 minutos) que no vale la pena guardarla mucho tiempo. Haz la cantidad exacta para el evento.</li>
+        </ul>
+      </section>
+
+      <section className="space-y-3">
         <h2 className="text-lg font-black text-gray-900">¿Con qué va esta salsa?</h2>
         <p className="text-sm leading-relaxed">
           Con todo lo que sale del asador. Tacos de arrachera, costilla, pollo, salchicha para asar, quesadillas de queso, cebollitas asadas — esta salsa le queda bien a todo. También es perfecta para ponerle directo a la carne recién salida de la parrilla, antes de armar el taco.
@@ -169,6 +243,41 @@ export default function SalsaPiquinPage() {
         <p className="text-sm leading-relaxed">
           Si tienes esta salsa de piquín y una salsa verde en la mesa, ya tienes las dos que necesita cualquier carne asada norteña.
         </p>
+      </section>
+
+      <AdBanner />
+
+      <section className="space-y-4">
+        <h2 className="text-lg font-black text-gray-900">Preguntas frecuentes sobre salsa de chile piquín</h2>
+        <div className="space-y-3">
+          {[
+            {
+              q: "¿Por qué no lleva agua esta salsa?",
+              a: "Porque el limón hace la función del líquido y además aporta acidez y sabor. El agua solo diluye sin agregar nada. Sin agua la salsa queda más concentrada, con los sabores más intensos. Esta es la forma tradicional en el norte."
+            },
+            {
+              q: "¿Se puede hacer en licuadora en lugar de molcajete?",
+              a: "Técnicamente sí, pero el resultado no es el mismo. En licuadora los chiles quedan muy molidos y la textura es diferente. El molcajete deja pedazos que se sienten al morderlos y eso es parte del carácter de la salsa. Si no tienes molcajete, un vaso mezclador o un mortero de cocina funciona mejor que la licuadora."
+            },
+            {
+              q: "¿El chile piquín fresco y el seco saben igual?",
+              a: "No. El piquín fresco tiene un sabor más vegetal y brillante, con picante limpio. El seco tiene más concentración de sabor, un toque más terroso y el picante puede ser más intenso. Esta receta usa piquín seco (entero), que es lo que normalmente se consigue en los mercados del norte."
+            },
+            {
+              q: "¿Es normal que la salsa quede un poco espesa?",
+              a: "Sí, es la textura correcta. No es una salsa líquida como la de botella — es más parecida a una pasta espesa con textura de molcajete. Se agrega con cuchara o con una bolita de chile del molcajete directo al taco."
+            },
+            {
+              q: "¿Dónde consigo chile piquín si no soy de Monterrey?",
+              a: "En casi cualquier mercado de abastos en México lo consigues. En el centro del país puede llamarse 'chile del monte' o simplemente 'piquín'. También está disponible online en tiendas de especias mexicanas. En el norte de México es más fácil — cualquier mercadito de barrio lo tiene."
+            },
+          ].map(({ q, a }, i) => (
+            <div key={i} className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+              <p className="text-sm font-bold text-gray-900">{q}</p>
+              <p className="text-sm text-gray-600 leading-relaxed">{a}</p>
+            </div>
+          ))}
+        </div>
       </section>
 
       <div className="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm space-y-3">
@@ -185,6 +294,24 @@ export default function SalsaPiquinPage() {
       </div>
 
       <AdBanner />
+
+      <section className="space-y-3">
+        <h2 className="text-base font-black text-gray-900">También te puede interesar</h2>
+        <div className="grid gap-3">
+          <Link href="/guias/salsa-verde-carne-asada" className="block bg-white border border-gray-100 rounded-xl p-4 shadow-sm hover:border-brasa/30 transition-all">
+            <p className="text-sm font-bold text-gray-900">🟢 Salsa verde para carne asada</p>
+            <p className="text-xs text-gray-500 mt-1">Tomatillo tatemado en el asador y el toque especial de grasa de carne</p>
+          </Link>
+          <Link href="/guias/salsa-roja-carne-asada" className="block bg-white border border-gray-100 rounded-xl p-4 shadow-sm hover:border-brasa/30 transition-all">
+            <p className="text-sm font-bold text-gray-900">🔴 Salsa roja para carne asada</p>
+            <p className="text-xs text-gray-500 mt-1">Jitomates tatemados con chile de árbol — más cuerpo y más picante</p>
+          </Link>
+          <Link href="/guias/guacamole-para-carne-asada" className="block bg-white border border-gray-100 rounded-xl p-4 shadow-sm hover:border-brasa/30 transition-all">
+            <p className="text-sm font-bold text-gray-900">🥑 Guacamole para carne asada</p>
+            <p className="text-xs text-gray-500 mt-1">Receta clásica y el secreto para que no se ponga negro</p>
+          </Link>
+        </div>
+      </section>
 
     </article>
   );
