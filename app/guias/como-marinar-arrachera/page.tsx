@@ -9,8 +9,46 @@ export const metadata: Metadata = {
 };
 
 export default function MarinarArracherapage() {
+  const howToSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'Cómo marinar arrachera para carne asada',
+    description: 'Aprende a marinar arrachera correctamente: la mejor marinada, cuánto tiempo dejar, errores comunes y cuándo no marinar.',
+    author: { '@type': 'Organization', name: 'Calcuasada', url: 'https://www.calcuasada.com' },
+    totalTime: 'PT4H10M',
+    supply: [
+      { '@type': 'HowToSupply', name: 'Arrachera sin suavizar (1 kg)' },
+      { '@type': 'HowToSupply', name: 'Jugo de 3 limones' },
+      { '@type': 'HowToSupply', name: '4 cucharadas de salsa de soya' },
+      { '@type': 'HowToSupply', name: '3 dientes de ajo picados' },
+      { '@type': 'HowToSupply', name: '¼ de cebolla blanca rallada' },
+      { '@type': 'HowToSupply', name: '2 cucharadas de aceite vegetal' },
+      { '@type': 'HowToSupply', name: 'Pimienta negra al gusto' },
+    ],
+    step: [
+      { '@type': 'HowToStep', name: 'Verifica si tu arrachera necesita marinada', text: 'Si compraste arrachera suavizada en carnicería del norte, no necesita marinada — solo sal de grano 20 minutos antes. Si es arrachera sin suavizar de supermercado, sí marinar.' },
+      { '@type': 'HowToStep', name: 'Prepara la marinada', text: 'Mezcla el jugo de limón, la salsa de soya, el ajo picado, la cebolla rallada, el aceite y la pimienta en un tazón de vidrio o bolsa zip.' },
+      { '@type': 'HowToStep', name: 'Sumerge la arrachera', text: 'Coloca la arrachera en la marinada. En bolsa zip asegúrate de que todo el contacto sea parejo. Cierra bien.' },
+      { '@type': 'HowToStep', name: 'Marina en refrigerador', text: 'Deja en el refrigerador entre 2 y 4 horas. No más de 8 horas con marinada ácida de limón.' },
+      { '@type': 'HowToStep', name: 'Seca antes de asar', text: 'Saca la arrachera de la marinada y sécala con papel absorbente antes de ponerla al asador. La carne húmeda no sella bien.' },
+    ],
+  };
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      { '@type': 'Question', name: '¿La arrachera suavizada de carnicería necesita marinada?', acceptedAnswer: { '@type': 'Answer', text: 'No. La arrachera suavizada ya fue trabajada mecánicamente para romper las fibras y está lista para asar solo con sal de grano aplicada 20 minutos antes. Agregarle ácido puede arruinar la textura que ya tenía.' } },
+      { '@type': 'Question', name: '¿Cuánto tiempo marinar la arrachera?', acceptedAnswer: { '@type': 'Answer', text: 'Entre 2 y 4 horas es el punto óptimo. Con marinada de limón no dejes más de 8 horas — el ácido empieza a descomponer la textura. Con marinada de naranja puedes dejar hasta toda la noche.' } },
+      { '@type': 'Question', name: '¿Se puede marinar arrachera congelada?', acceptedAnswer: { '@type': 'Answer', text: 'Sí. Descongela la arrachera parcialmente y sumérgela en la marinada. Mientras termina de descongelarse en el refrigerador, va absorbiendo la marinada al mismo tiempo.' } },
+      { '@type': 'Question', name: '¿Por qué hay que secar la arrachera antes de asar?', acceptedAnswer: { '@type': 'Answer', text: 'La carne húmeda de la marinada no sella bien en el asador — el exceso de líquido la hace cocer al vapor en lugar de sellar. Seca con papel absorbente antes de ponerla al fuego para obtener una buena costra.' } },
+      { '@type': 'Question', name: '¿Puedo reutilizar la marinada para bañar la carne en el asador?', acceptedAnswer: { '@type': 'Answer', text: 'No — la marinada tuvo carne cruda y puede tener bacterias. Si quieres bañar la carne mientras se asa, haz una porción fresca de marinada por separado.' } },
+    ],
+  };
   return (
-    <article className="space-y-6 text-gray-700">
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <article className="space-y-6 text-gray-700">
 
       <div className="text-center space-y-2">
         <p className="text-xs font-semibold text-brasa uppercase tracking-wider">Guía completa</p>
@@ -303,5 +341,6 @@ export default function MarinarArracherapage() {
       </section>
 
     </article>
+    </>
   );
 }

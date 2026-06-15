@@ -9,8 +9,51 @@ export const metadata: Metadata = {
 };
 
 export default function SalsaVerdePage() {
+  const recipeSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Recipe',
+    name: 'Salsa verde para carne asada',
+    description: 'Salsa verde casera tatemada directo en el asador con tomatillo, chile serrano, cebolla y cilantro. Lista en 15 minutos, rinde para 6 a 8 personas.',
+    author: { '@type': 'Organization', name: 'Calcuasada', url: 'https://www.calcuasada.com' },
+    datePublished: '2026-05-01',
+    prepTime: 'PT5M',
+    cookTime: 'PT15M',
+    totalTime: 'PT20M',
+    recipeYield: '6-8 porciones',
+    recipeCategory: 'Salsa',
+    recipeCuisine: 'Mexicana norteña',
+    keywords: 'salsa verde carne asada, salsa verde tomatillo, salsa tatemada, salsa para tacos',
+    recipeIngredient: [
+      '8 tomatillos (tomates verdes)',
+      '2 chiles serranos',
+      '1 pedazo de cebolla blanca',
+      '1 diente de ajo',
+      '1 puñito de cilantro fresco',
+      'Sal al gusto',
+    ],
+    recipeInstructions: [
+      { '@type': 'HowToStep', name: 'Tatema en el asador', text: 'Pon los tomatillos, los chiles serranos, la cebolla y el ajo directamente en la parrilla. Dales vuelta cada par de minutos hasta que estén bien tatemados con manchas negras y suaves por dentro, unos 10-12 minutos.' },
+      { '@type': 'HowToStep', name: 'Deja enfriar', text: 'Retíralos del fuego y deja que suelten el vapor un par de minutos antes de licuar.' },
+      { '@type': 'HowToStep', name: 'Licúa', text: 'Mete los tomatillos, los chiles, la cebolla y el ajo a la licuadora. Agrega el cilantro y sal al gusto. Licúa hasta que tenga la textura que prefieras.' },
+      { '@type': 'HowToStep', name: 'Prueba y ajusta', text: 'Prueba la salsa y ajusta de sal. Lista para servir.' },
+    ],
+  };
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      { '@type': 'Question', name: '¿Puedo hacer la salsa verde el día anterior?', acceptedAnswer: { '@type': 'Answer', text: 'Sí, y de hecho muchas veces queda mejor porque los sabores se integran durante la noche. Guárdala en frasco tapado en el refri hasta 4 días.' } },
+      { '@type': 'Question', name: '¿Se puede hacer salsa verde sin licuadora?', acceptedAnswer: { '@type': 'Answer', text: 'Sí, en molcajete. El resultado es más rústico y con más textura. Solo tatema bien todo primero y machaca a mano.' } },
+      { '@type': 'Question', name: '¿Por qué mi salsa verde quedó café y no verde?', acceptedAnswer: { '@type': 'Answer', text: 'Por oxidación del cilantro y el tomatillo — es completamente normal y no afecta el sabor. Agrega un chorrito de limón justo antes de servir para que tarde más en oscurecerse.' } },
+      { '@type': 'Question', name: '¿La salsa de carne asada es diferente a la salsa de taquería?', acceptedAnswer: { '@type': 'Answer', text: 'Sí. La de taquería se hace con ingredientes hervidos. La de carne asada se tatema sobre las brasas, donde agarra un ahumado real del carbón que cambia completamente el perfil de sabor.' } },
+      { '@type': 'Question', name: '¿Cuántos tomatillos necesito para más de 8 personas?', acceptedAnswer: { '@type': 'Answer', text: 'Para 6-8 personas usa 8 tomatillos. Para 10-15 usa 16. Para 20 o más haz dos tandas.' } },
+    ],
+  };
   return (
-    <article className="space-y-6 text-gray-700">
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(recipeSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <article className="space-y-6 text-gray-700">
 
       <div className="text-center space-y-2">
         <p className="text-xs font-semibold text-brasa uppercase tracking-wider">Receta de la casa</p>
@@ -295,5 +338,6 @@ export default function SalsaVerdePage() {
       </section>
 
     </article>
+    </>
   );
 }

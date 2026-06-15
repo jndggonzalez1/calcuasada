@@ -9,8 +9,49 @@ export const metadata: Metadata = {
 };
 
 export default function SalsaRojaPage() {
+  const recipeSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Recipe',
+    name: 'Salsa roja para carne asada',
+    description: 'Salsa roja casera con jitomates tatemados en el asador, chiles de árbol, cebolla y ajo. Picosita, ahumada y lista en 15 minutos.',
+    author: { '@type': 'Organization', name: 'Calcuasada', url: 'https://www.calcuasada.com' },
+    datePublished: '2026-06-01',
+    prepTime: 'PT5M',
+    cookTime: 'PT15M',
+    totalTime: 'PT20M',
+    recipeYield: '6-8 porciones',
+    recipeCategory: 'Salsa',
+    recipeCuisine: 'Mexicana norteña',
+    keywords: 'salsa roja carne asada, salsa jitomate tatemado, salsa chile de árbol, salsa para tacos',
+    recipeIngredient: [
+      '6 a 8 jitomates maduros',
+      '3 a 4 chiles de árbol secos',
+      '1 pedazo de cebolla blanca',
+      '1 diente de ajo',
+      'Sal al gusto',
+    ],
+    recipeInstructions: [
+      { '@type': 'HowToStep', name: 'Tatema en el asador', text: 'Pon los jitomates, la cebolla y el ajo directamente en la parrilla. Dales vuelta cada par de minutos hasta que estén bien tatemados con manchas negras y suaves por dentro, unos 10-12 minutos.' },
+      { '@type': 'HowToStep', name: 'Tuesta los chiles de árbol', text: 'Pon los chiles secos en la parrilla o comal a fuego medio. Muévelos constantemente — se tuestan en 30 a 60 segundos. Solo los quieres aromáticos, no quemados.' },
+      { '@type': 'HowToStep', name: 'Deja enfriar', text: 'Retira todo del fuego y deja enfriar un par de minutos antes de licuar.' },
+      { '@type': 'HowToStep', name: 'Licúa y prueba', text: 'Mete todo a la licuadora, agrega sal al gusto y licúa hasta obtener la textura deseada. Prueba y ajusta de sal.' },
+    ],
+  };
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      { '@type': 'Question', name: '¿Cuántos chiles de árbol son demasiados para la salsa roja?', acceptedAnswer: { '@type': 'Answer', text: 'La receta base usa 3 a 4 para 6-8 personas. Con 5 o más la salsa es realmente muy picante. Si no sabes cuánto aguanta tu gente, empieza con 2.' } },
+      { '@type': 'Question', name: '¿Puedo hacer salsa roja sin chiles de árbol?', acceptedAnswer: { '@type': 'Answer', text: 'Sí. El sustituto más fácil es chile guajillo para una versión suave, o jalapeño fresco tatemado junto con el jitomate.' } },
+      { '@type': 'Question', name: '¿Por qué la salsa roja quedó amarga?', acceptedAnswer: { '@type': 'Answer', text: 'El culpable casi siempre son los chiles quemados. Si los tostaste de más el amargor no se puede quitar. Agrégale más jitomate tatemado para diluirlo. La próxima vez, mueve los chiles constantemente y retíralos en 30-60 segundos.' } },
+      { '@type': 'Question', name: '¿Cuál es la diferencia entre la salsa roja de carne asada y la de taquería?', acceptedAnswer: { '@type': 'Answer', text: 'La de taquería se hace con jitomate hervido. La de carne asada se tatema sobre las brasas, lo que le da un ahumado real del carbón con un sabor mucho más profundo y rústico.' } },
+    ],
+  };
   return (
-    <article className="space-y-6 text-gray-700">
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(recipeSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <article className="space-y-6 text-gray-700">
 
       <div className="text-center space-y-2">
         <p className="text-xs font-semibold text-brasa uppercase tracking-wider">Receta de la casa</p>
@@ -286,5 +327,6 @@ export default function SalsaRojaPage() {
       </section>
 
     </article>
+    </>
   );
 }

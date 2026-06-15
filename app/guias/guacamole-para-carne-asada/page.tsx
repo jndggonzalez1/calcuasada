@@ -9,8 +9,51 @@ export const metadata: Metadata = {
 };
 
 export default function GuacamolePage() {
+  const recipeSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Recipe',
+    name: 'Guacamole para carne asada',
+    description: 'Receta clásica norteña de guacamole: aguacates Hass maduros, limón, cebolla, chile serrano y cilantro. Rinde para 6 a 8 personas.',
+    author: { '@type': 'Organization', name: 'Calcuasada', url: 'https://www.calcuasada.com' },
+    datePublished: '2026-06-01',
+    prepTime: 'PT10M',
+    totalTime: 'PT10M',
+    recipeYield: '6-8 porciones',
+    recipeCategory: 'Acompañante',
+    recipeCuisine: 'Mexicana',
+    keywords: 'guacamole carne asada, guacamole casero, guacamole receta, guacamole que no se ponga negro',
+    recipeIngredient: [
+      '3 aguacates Hass maduros',
+      'Jugo de 2 limones',
+      '¼ de cebolla blanca picada muy fina',
+      '1 a 2 chiles serranos picados',
+      '1 puñito de cilantro fresco picado',
+      'Sal al gusto',
+    ],
+    recipeInstructions: [
+      { '@type': 'HowToStep', name: 'Saca el aguacate', text: 'Parte cada aguacate por la mitad, retira el hueso y saca la pulpa con una cuchara directamente al tazón.' },
+      { '@type': 'HowToStep', name: 'Exprime el limón', text: 'Exprime los limones inmediatamente sobre el aguacate. El limón evita la oxidación — no lo dejes sin limón ni un minuto.' },
+      { '@type': 'HowToStep', name: 'Machaca con tenedor', text: 'Usa un tenedor para machacar el aguacate dejando textura rústica con algunos trozos visibles. No uses licuadora.' },
+      { '@type': 'HowToStep', name: 'Agrega los demás ingredientes', text: 'Incorpora la cebolla picada, el chile serrano, el cilantro y la sal. Mezcla bien.' },
+      { '@type': 'HowToStep', name: 'Prueba y ajusta', text: 'Prueba el guacamole y ajusta de sal, limón o chile según tu gusto.' },
+    ],
+  };
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      { '@type': 'Question', name: '¿Cómo evitar que el guacamole se ponga negro?', acceptedAnswer: { '@type': 'Answer', text: 'Exprime limón abundante inmediatamente al abrir el aguacate, y cubre el guacamole con plástico adherente puesto directamente sobre la superficie sin espacio de aire. Si ya se puso negro por encima, raspa la capa superficial — debajo estará verde y fresco.' } },
+      { '@type': 'Question', name: '¿Puedo preparar el guacamole con anticipación?', acceptedAnswer: { '@type': 'Answer', text: 'Sí, hasta 2 horas antes. Cubre con plástico adherente directo sobre la superficie y refrigera. Saca 15 minutos antes de servir.' } },
+      { '@type': 'Question', name: '¿Cuántos aguacates necesito para mi carne asada?', acceptedAnswer: { '@type': 'Answer', text: 'Para 6-8 personas: 3 aguacates. Para 10-12: 4-5 aguacates. Para 15-20: 7-8 aguacates. Para 25 o más: 10+ aguacates. Si a tu grupo le encanta el guacamole, sube las cantidades un 30%.' } },
+      { '@type': 'Question', name: '¿Por qué mi guacamole quedó aguado?', acceptedAnswer: { '@type': 'Answer', text: 'Normalmente porque el aguacate estaba muy maduro y soltó mucha agua, o porque le pusiste jitomate con semillas que sueltan jugo. Escurre el líquido antes de mezclar.' } },
+      { '@type': 'Question', name: '¿El guacamole se puede congelar?', acceptedAnswer: { '@type': 'Answer', text: 'No funciona bien — el aguacate cambia completamente de textura al descongelarse. El guacamole es para hacer y comer el mismo día.' } },
+    ],
+  };
   return (
-    <article className="space-y-6 text-gray-700">
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(recipeSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <article className="space-y-6 text-gray-700">
 
       <div className="text-center space-y-2">
         <p className="text-xs font-semibold text-brasa uppercase tracking-wider">Receta de la casa</p>
@@ -286,5 +329,6 @@ export default function GuacamolePage() {
       </section>
 
     </article>
+    </>
   );
 }

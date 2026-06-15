@@ -9,8 +9,49 @@ export const metadata: Metadata = {
 };
 
 export default function SalsaPiquinPage() {
+  const recipeSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Recipe',
+    name: 'Salsa de chile piquín con limón',
+    description: 'Salsa de chile piquín con limón y ajo tostado. Sin agua, en molcajete, lista en 10 minutos. La favorita del norte de México para carne asada.',
+    author: { '@type': 'Organization', name: 'Calcuasada', url: 'https://www.calcuasada.com' },
+    datePublished: '2026-06-01',
+    prepTime: 'PT2M',
+    cookTime: 'PT8M',
+    totalTime: 'PT10M',
+    recipeYield: '6-8 porciones',
+    recipeCategory: 'Salsa',
+    recipeCuisine: 'Mexicana norteña',
+    keywords: 'salsa chile piquín, salsa piquín limón, salsa norteña carne asada, salsa molcajete',
+    recipeIngredient: [
+      '25 a 35 chiles piquín enteros (preferentemente rojos)',
+      '5 a 6 limones',
+      '2 dientes de ajo',
+      'Sal al gusto',
+    ],
+    recipeInstructions: [
+      { '@type': 'HowToStep', name: 'Tuesta el ajo', text: 'Pon los dientes de ajo en el asador, comal o sartén a fuego medio-alto. Dales vuelta hasta que estén suaves por dentro y con manchas doradas por fuera, unos 6 a 8 minutos.' },
+      { '@type': 'HowToStep', name: 'Machaca los chiles con la sal', text: 'En un molcajete, muele los chiles piquín enteros junto con la sal dejando textura rústica con pedacitos de chile.' },
+      { '@type': 'HowToStep', name: 'Agrega el ajo', text: 'Añade los dientes de ajo al molcajete y machaca hasta integrarlos con el chile.' },
+      { '@type': 'HowToStep', name: 'Exprime los limones', text: 'Exprime los limones directamente sobre la mezcla — el limón es la base líquida, sin agua. Revuelve bien.' },
+      { '@type': 'HowToStep', name: 'Prueba y ajusta', text: 'Prueba la salsa. Ajusta con más sal, limón o chile según el picante y acidez deseados.' },
+    ],
+  };
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      { '@type': 'Question', name: '¿Por qué la salsa de piquín no lleva agua?', acceptedAnswer: { '@type': 'Answer', text: 'Porque el limón hace la función del líquido y además aporta acidez y sabor. El agua solo diluye sin agregar nada. Sin agua la salsa queda más concentrada con los sabores más intensos.' } },
+      { '@type': 'Question', name: '¿Se puede hacer salsa piquín sin molcajete?', acceptedAnswer: { '@type': 'Answer', text: 'Técnicamente sí en licuadora, pero el resultado no es el mismo. El molcajete deja pedazos que se sienten al morderlos, que es parte del carácter de la salsa. Un mortero de cocina funciona mejor que la licuadora.' } },
+      { '@type': 'Question', name: '¿Dónde consigo chile piquín si no soy de Monterrey?', acceptedAnswer: { '@type': 'Answer', text: 'En casi cualquier mercado de abastos en México. En el centro del país puede llamarse chile del monte. También está disponible online en tiendas de especias mexicanas.' } },
+      { '@type': 'Question', name: '¿Cuántos chiles piquín necesito para salsa suave, media y picante?', acceptedAnswer: { '@type': 'Answer', text: 'Para salsa suave: 10 a 15 chiles. Nivel medio: 25 a 35 chiles. Picante: 40 chiles o más.' } },
+    ],
+  };
   return (
-    <article className="space-y-6 text-gray-700">
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(recipeSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <article className="space-y-6 text-gray-700">
 
       <div className="text-center space-y-2">
         <p className="text-xs font-semibold text-brasa uppercase tracking-wider">La favorita de Yeyito</p>
@@ -314,5 +355,6 @@ export default function SalsaPiquinPage() {
       </section>
 
     </article>
+    </>
   );
 }
