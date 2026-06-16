@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdBanner from "../../components/AdBanner";
+import VotosTortilla from "./VotosTortilla";
 
 export const metadata: Metadata = {
   title: "Tortillas de maíz vs tortillas de harina — Diferencias e historia — Calcuasada",
@@ -109,6 +110,8 @@ export default function TortillasPage() {
             </p>
           </div>
         </section>
+
+        <VotosTortilla />
 
         <section className="space-y-4">
           <h2 className="text-lg font-black text-gray-900">¿Por qué el norte eligió la harina y el sur el maíz?</h2>
