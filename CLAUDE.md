@@ -24,7 +24,8 @@
 - **Estilos:** Tailwind CSS
 - **Hosting:** Vercel — auto-deploy desde la rama `main` de GitHub
 - **Dominio:** Namecheap → conectado a Vercel
-- **Sin backend:** No hay base de datos, no hay usuarios, no hay autenticación
+- **Sin usuarios/autenticación:** sigue sin haber cuentas de usuario ni login
+- **Backend mínimo (desde sesión 18):** Redis (Redis Cloud, plan Free, RAM-only) conectado vía Vercel Marketplace, usado solo para el contador de votos de la guía de tortillas. No es una base de datos de uso general — es el único feature con persistencia en servidor. Variable de entorno: `REDIS_URL` (inyectada automáticamente por Vercel en Production/Preview/Development)
 
 ---
 
@@ -42,8 +43,15 @@ app/
   lib/
     calculator.ts              # Lógica de cálculo (usa calcuasada-config.ts)
     calcuasada-config.ts       # Todas las constantes: proteínas, acompañantes, precios
+    redis.ts                   # Cliente singleton de ioredis (usa REDIS_URL)
+  api/
+    votar-tortilla/route.ts    # GET/POST del contador de votos maíz vs harina (Redis)
   calculadora/
     [personas]/page.tsx        # Páginas SEO estáticas: /calculadora/10, /15, /20...
+  guias/
+    tortillas-maiz-vs-harina/
+      page.tsx                 # Guía + JSON-LD schema
+      VotosTortilla.tsx        # Widget de votación interactiva (client component)
   acerca/
     page.tsx                   # Página "Acerca de" con nota personal de Yeyito
   privacidad/
@@ -186,10 +194,28 @@ public/
 | Guía guacamole para carne asada (/guias/guacamole-para-carne-asada) | ✅ Listo |
 | Expansión de salsas verde/roja/piquín (500→1100 palabras c/u) | ✅ Listo |
 | Re-submit a Google AdSense después de mejorar contenido | ⏳ Pendiente (acción manual de Yeyito) |
+| JSON-LD schema markup (Recipe/HowTo/FAQPage) en guías de salsas, marinada, guacamole y home | ✅ Listo |
+| Guía /guias/tortillas-maiz-vs-harina (historia maíz/harina, tono neutral sin declarar ganadora) | ✅ Listo |
+| Primer feature con backend: Redis (Redis Cloud vía Vercel Marketplace) conectado al proyecto | ✅ Listo |
+| Votación interactiva maíz vs harina en la guía de tortillas, con resultados en vivo (%) | ✅ Listo |
 
 ---
 
 ## Historial de sesiones
+
+### Sesión 18 (junio 2026) — Primer feature con backend: votación interactiva de tortillas
+
+- **Calcuasada ya no es 100% sin-backend** — esta sesión introdujo el primer feature que requiere persistencia en servidor. Se activó **Redis** (plan Free, RAM-only sin persistencia en disco) vía el **Vercel Marketplace** (Vercel descontinuó su KV nativo; ahora ofrece Redis de terceros como Redis Cloud). La base de datos se llama `calcuasada-votos`, conectada al proyecto en Production/Preview/Development — Vercel inyecta automáticamente la variable `REDIS_URL`.
+- **Setup local** — se usó `npx vercel login` → `npx vercel link` → `npx vercel env pull .env.local` para traer las credenciales a la máquina de desarrollo sin copiarlas a mano. `.env.local` y `.vercel/` ya estaban en `.gitignore` por defecto.
+- **`app/lib/redis.ts`** — cliente singleton de `ioredis` usando `process.env.REDIS_URL`.
+- **`app/api/votar-tortilla/route.ts`** — API route con `GET` (devuelve porcentajes) y `POST` (registra voto). Protecciones anti-bot:
+  - Honeypot field (`hp`) — si viene lleno, se rechaza
+  - Validación de User-Agent (rechaza UAs vacíos o muy cortos)
+  - Rate limit: 1 voto por IP cada 24h, usando hash SHA-256 de la IP como key en Redis con TTL
+  - **Los resultados solo se exponen en porcentaje, nunca en número de votos crudo** — decisión explícita de Yeyito para no revelar cuánta gente ha votado
+- **`app/guias/tortillas-maiz-vs-harina/VotosTortilla.tsx`** — client component con dos botones (🌽 De maíz / 🫓 De harina). Usa `localStorage` para que el usuario no pueda re-votar desde el mismo browser, y hace polling cada 30s al API para refrescar los porcentajes y dar sensación de "en vivo". Las barras de progreso usan los colores de marca (`brasa` / `carbon`).
+- **Posición del widget** — se colocó originalmente después de la sección "El debate que nadie gana", pero Yeyito pidió moverlo justo debajo del `<h1>`, antes de cualquier texto, para maximizar la probabilidad de voto antes de que el usuario pierda interés en seguir leyendo.
+- **Riesgo conocido y aceptado:** el plan Free de Redis es RAM-only sin persistencia a disco. Si la instancia se reinicia, los votos se resetean a 0. Yeyito lo aceptó como riesgo tolerable para un contador de votos no crítico.
 
 ### Sesión 17 (junio 2026) — Mejora de contenido para re-submit a AdSense
 
