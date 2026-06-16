@@ -35,6 +35,8 @@ export default function TortillasPage() {
           <p className="text-sm text-gray-500">12 min de lectura · Actualizado junio 2026</p>
         </div>
 
+        <VotosTortilla />
+
         <div className="bg-brasa-light border border-brasa/20 rounded-2xl p-5 space-y-2">
           <p className="text-sm font-black text-gray-900">Lo que necesitas saber:</p>
           <ul className="text-sm space-y-1 list-disc list-inside text-gray-700">
@@ -110,8 +112,6 @@ export default function TortillasPage() {
             </p>
           </div>
         </section>
-
-        <VotosTortilla />
 
         <section className="space-y-4">
           <h2 className="text-lg font-black text-gray-900">¿Por qué el norte eligió la harina y el sur el maíz?</h2>
