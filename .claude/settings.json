@@ -1,0 +1,34 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cp \"/Users/juandiegogzzvld/Downloads/calcuasada logo nopng.png\" /Users/juandiegogzzvld/Desktop/calcuasada/public/logo.png && ls /Users/juandiegogzzvld/Desktop/calcuasada/public/logo.png)",
+      "Bash(git commit -m ' *)",
+      "Bash(sips --getProperty pixelWidth /Users/juandiegogzzvld/Desktop/calcuasada/public/logo.png)",
+      "Bash(sips -z 32 32 /Users/juandiegogzzvld/Desktop/calcuasada/public/logo.png --out /tmp/favicon-32.png)",
+      "Bash(node -e ' *)",
+      "Bash(mkdir -p /Users/juandiegogzzvld/Desktop/calcuasada/app/guias/como-hacer-brisket-ahumado)",
+      "Bash(sips -g hasAlpha /Users/juandiegogzzvld/Desktop/calcuasada/public/logo.png)",
+      "Bash(python3 -c \"from PIL import Image; print\\('PIL ok'\\)\")",
+      "Bash(sips -g hasAlpha \"/Users/juandiegogzzvld/Downloads/calcuasada logo.png\")",
+      "Bash(sips -g hasAlpha \"/Users/juandiegogzzvld/Downloads/calcuasada logo nopng.png\")",
+      "Bash(git commit *)",
+      "Bash(npm install *)",
+      "Bash(npm run dev > /tmp/calcuasada-dev.log 2>&1 & *)",
+      "Bash(npx playwright *)",
+      "Bash(playwright install *)",
+      "Bash(python3 /tmp/verify_localstorage.py)",
+      "Bash(curl -s http://localhost:3000/)",
+      "Bash(curl -s http://localhost:3000/guias)",
+      "Bash(curl -s \"http://localhost:3000/guias/salsa-chile-piquin-limon\")",
+      "Bash(curl -s \"http://localhost:3000/__nextjs_original-stack-frame\")",
+      "Bash(kill %1)",
+      "Bash(xargs cat -n)",
+      "Bash(grep -n \"prices\\\\[item\\\\|prices\\\\[key\\\\|\\\\\\\\.key\\\\].*price\\\\|formatCost\\\\|\\\\$\" /Users/juandiegogzzvld/Desktop/calcuasada/app/components/Calculadora.tsx)"
+    ],
+    "additionalDirectories": [
+      "/Users/juandiegogzzvld/Downloads",
+      "/Users/juandiegogzzvld/Desktop/calcuasada/app/guias",
+      "/private/tmp"
+    ]
+  }
+}

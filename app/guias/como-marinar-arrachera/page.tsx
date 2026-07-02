@@ -316,7 +316,7 @@ export default function MarinarArracherapage() {
         <p className="text-xs text-gray-500">La calculadora te dice exactamente cuántos kilos por persona según el nivel de apetito de tu grupo.</p>
         <Link
           href="/"
-          className="inline-block bg-brasa text-white font-medium text-sm px-6 py-2.5 rounded-lg hover:opacity-90 transition-colors"
+          className="inline-block border border-brasa text-brasa font-medium text-sm px-6 py-2.5 rounded-lg hover:bg-brasa/5 transition-colors"
         >
           Calcular cuánta carne necesito →
         </Link>
