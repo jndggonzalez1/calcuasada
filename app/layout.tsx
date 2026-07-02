@@ -47,12 +47,12 @@ export default function RootLayout({
         <div id="google_translate_element" style={{ display: 'none' }} />
         <div className="sticky top-0 z-30 print:hidden">
           <header style={{ background: '#FAF7F2', borderBottom: '1px solid #E8E2D9' }}>
-            <div className="max-w-lg mx-auto px-4 h-13 flex items-center justify-between gap-3">
-              <Link href="/" className="flex items-center gap-2.5 py-2">
-                <div style={{ width: 36, height: 36, position: 'relative', flexShrink: 0 }}>
+            <div className="max-w-lg mx-auto px-4 h-16 flex items-center justify-between gap-3">
+              <Link href="/" className="flex items-center gap-3 py-2">
+                <div style={{ width: 52, height: 52, position: 'relative', flexShrink: 0 }}>
                   <Image src="/logo.png" alt="Calcuasada" fill style={{ objectFit: 'contain' }} priority />
                 </div>
-                <span className="font-bold text-[15px] tracking-tight" style={{ color: '#1A1A1A' }}>
+                <span className="font-bold text-xl tracking-tight" style={{ color: '#1A1A1A' }}>
                   Calcuasada
                 </span>
               </Link>

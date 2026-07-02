@@ -805,37 +805,38 @@ export default function Calculadora({
     <div className="space-y-6">
 
       {/* ── FORM ── */}
-      <section className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 print:shadow-none print:border-0">
-        <div className="flex items-center justify-between mb-3 gap-2">
-          <h2 className="flex-1 text-sm font-bold text-center bg-brasa-light border border-brasa/20 rounded-lg py-1.5 px-3 text-brasa">¿Cuántos van?</h2>
-          <div className="flex items-center gap-2 flex-shrink-0">
+      <section className="bg-white rounded-2xl border border-gray-100 p-6 print:border-0">
+        {/* Header */}
+        <div className="flex items-center justify-between mb-5">
+          <h2 className="text-base font-semibold text-gray-900">¿Cuántos van?</h2>
+          <div className="flex items-center gap-3">
             <button
               onClick={handleGuardar}
               disabled={!puedeCalcular}
-              className="text-xs text-gray-400 hover:text-brasa transition-colors whitespace-nowrap disabled:opacity-30"
+              className="text-xs text-gray-400 hover:text-brasa transition-colors disabled:opacity-30"
               title="Guardar esta configuración"
             >
-              {savedFeedback ? "✅ Guardado" : "💾 Guardar"}
+              {savedFeedback ? "✓ Guardado" : "Guardar"}
             </button>
-            <span className="text-gray-200">|</span>
+            <span className="text-gray-200">·</span>
             <button
               onClick={handleReset}
-              className={`text-xs whitespace-nowrap transition-all ${resetPending ? "text-red-500 font-semibold" : "text-gray-400 hover:text-brasa"}`}
+              className={`text-xs transition-all ${resetPending ? "text-red-500 font-medium" : "text-gray-400 hover:text-gray-700"}`}
               title="Limpiar todo y empezar de nuevo"
             >
-              {resetPending ? "¿Seguro? →" : "🗑 Limpiar"}
+              {resetPending ? "¿Seguro?" : "Limpiar"}
             </button>
           </div>
         </div>
 
         {/* Historial de configuraciones guardadas */}
         {historial.length > 0 && (
-          <div className="mb-3">
+          <div className="mb-4">
             <button
               onClick={() => setHistorialOpen(o => !o)}
-              className="w-full flex items-center justify-between text-xs text-gray-400 hover:text-gray-600 transition-colors px-1 py-1"
+              className="w-full flex items-center justify-between text-xs text-gray-400 hover:text-gray-600 transition-colors py-1"
             >
-              <span>📂 Configuraciones guardadas ({historial.length})</span>
+              <span>Configuraciones guardadas ({historial.length})</span>
               <span>{historialOpen ? "▲" : "▼"}</span>
             </button>
             {historialOpen && (
@@ -851,7 +852,7 @@ export default function Calculadora({
                     <button
                       key={i}
                       onClick={() => handleLoadHistorial(entry)}
-                      className="w-full text-left text-xs bg-gray-50 hover:bg-brasa-light border border-gray-200 hover:border-brasa/30 rounded-lg px-3 py-2 transition-all"
+                      className="w-full text-left text-xs bg-gray-50 hover:bg-brasa/5 border border-gray-100 hover:border-brasa/20 rounded-lg px-3 py-2 transition-all"
                     >
                       <span className="font-semibold text-gray-700">{totalP} personas</span>
                       <span className="text-gray-400"> · {tipoLabel} · {protNames}</span>
@@ -865,18 +866,18 @@ export default function Calculadora({
         )}
 
         {/* Adultos + Niños inputs */}
-        <div className="grid grid-cols-2 gap-4 mb-3">
-          <div className="flex flex-col gap-1">
-            <label htmlFor="adultos" className="text-sm font-medium text-gray-600">Adultos</label>
+        <div className="grid grid-cols-2 gap-4 mb-2">
+          <div>
+            <label htmlFor="adultos" className="block text-xs font-medium text-gray-500 uppercase tracking-wide mb-1.5">Adultos</label>
             <input
               id="adultos"
               type="number"
               min={0}
               value={adultos}
               onChange={e => setAdultos(Math.max(0, parseInt(e.target.value) || 0))}
-              className="border border-gray-300 rounded-xl px-4 py-3 text-xl font-bold text-center focus:outline-none focus:ring-2 focus:ring-brasa"
+              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-2xl font-bold text-center focus:outline-none focus:border-brasa focus:ring-1 focus:ring-brasa transition-colors"
             />
-            <div className="mt-1">
+            <div className="mt-2">
               <input
                 type="range"
                 min={0}
@@ -892,53 +893,48 @@ export default function Calculadora({
               </div>
             </div>
           </div>
-          <div className="flex flex-col gap-1">
-            <label htmlFor="ninos" className="text-sm font-medium text-gray-600">Niños/niñas</label>
+          <div>
+            <label htmlFor="ninos" className="block text-xs font-medium text-gray-500 uppercase tracking-wide mb-1.5">Niños/niñas</label>
             <input
               id="ninos"
               type="number"
               min={0}
               value={ninos}
               onChange={e => setNinos(Math.max(0, parseInt(e.target.value) || 0))}
-              className="border border-gray-300 rounded-xl px-4 py-3 text-xl font-bold text-center focus:outline-none focus:ring-2 focus:ring-brasa"
+              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-2xl font-bold text-center focus:outline-none focus:border-brasa focus:ring-1 focus:ring-brasa transition-colors"
             />
           </div>
         </div>
 
-        {/* Summary */}
-        <div className="bg-gray-50 rounded-xl px-4 py-3 mb-4 text-sm text-gray-500 text-center leading-relaxed">
-          <span className="font-semibold text-gray-700">
-            {hombres} hombres · {mujeres} mujeres · {ninos} niños/niñas
-          </span>
-          <br />
-          <span className="text-xs">
-            Total: <span className="font-bold text-gray-700">{totalPersonas}</span> personas
-          </span>
-        </div>
+        {/* Summary — una línea discreta */}
+        <p className="text-xs text-gray-400 text-center mb-5">
+          {hombres} hombres · {mujeres} mujeres{ninos > 0 ? ` · ${ninos} niños` : ""} —{" "}
+          <span className="font-medium text-gray-600">{totalPersonas} en total</span>
+        </p>
 
         {/* Appetite selector */}
-        <p className="text-sm font-bold text-gray-600 mb-2 text-center bg-brasa-light border border-brasa/20 rounded-lg py-1.5 px-3 text-brasa">Tipo de carne asada</p>
-        <div className="grid grid-cols-3 gap-2 mb-4">
+        <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2 pt-4 border-t border-gray-50">Tipo de carne asada</p>
+        <div className="grid grid-cols-3 gap-2 mb-5">
           {EVENT_TYPES.map(({ value, label, desc }) => (
             <button
               key={value}
               onClick={() => setTipo(value)}
-              className={`rounded-xl border-2 p-3 text-center transition-all ${
+              className={`rounded-lg border px-2 py-2.5 text-center transition-all ${
                 tipo === value
-                  ? "border-brasa bg-brasa-light text-brasa"
-                  : "border-gray-200 text-gray-600 hover:border-brasa/40"
+                  ? "border-brasa bg-brasa/5 text-brasa"
+                  : "border-gray-200 text-gray-600 hover:border-gray-300"
               }`}
             >
-              <div className="font-bold text-sm">{label}</div>
-              <div className="text-xs mt-0.5 opacity-75">{desc}</div>
+              <div className={`font-semibold text-sm ${tipo === value ? "text-brasa" : "text-gray-800"}`}>{label}</div>
+              <div className="text-xs mt-0.5 text-gray-400">{desc}</div>
             </button>
           ))}
         </div>
 
         {/* Tier de carne de res */}
         {proteinas.res && (
-          <div className="mb-4">
-            <p className="text-sm font-bold text-gray-600 mb-2 text-center bg-brasa-light border border-brasa/20 rounded-lg py-1.5 px-3 text-brasa">¿Qué tipo de carne asada es? <span className="font-normal text-gray-400 text-xs">(presupuesto)</span></p>
+          <div className="mb-5">
+            <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2 pt-4 border-t border-gray-50">Presupuesto</p>
             <div className="grid grid-cols-2 gap-2 items-start">
               {TIERS_RES.map((tier, idx) => {
                 const selected = tierRes === tier.id;
@@ -947,45 +943,40 @@ export default function Calculadora({
                 return (
                   <div
                     key={tier.id}
-                    className={`rounded-lg border-2 transition-all ${
-                      selected ? "border-brasa bg-brasa-light" : "border-gray-200 bg-white"
+                    className={`rounded-lg border transition-all ${
+                      selected ? "border-brasa bg-brasa/5" : "border-gray-200 bg-white"
                     }`}
                   >
                     <button
                       onClick={() => handleTierRes(tier.id)}
-                      className="w-full text-left px-2 py-1.5"
+                      className="w-full text-left px-3 py-2.5"
                     >
-                      <div className="flex items-center justify-between gap-1">
-                        <span className={`font-black leading-tight ${selected ? "text-brasa" : "text-gray-700"}`} style={{ fontSize: "11px" }}>
-                          {tier.emoji} {tier.label}
-                        </span>
-                        <div className="flex items-center gap-1 shrink-0">
-                          <span className={`font-bold ${selected ? "text-brasa" : "text-gray-400"}`} style={{ fontSize: "10px" }}>
+                      <div className="flex items-start justify-between gap-1">
+                        <div>
+                          <div className={`text-sm font-semibold leading-tight ${selected ? "text-brasa" : "text-gray-800"}`}>
+                            {tier.emoji} {tier.label}
+                          </div>
+                          <div className={`text-xs mt-0.5 ${selected ? "text-brasa/70" : "text-gray-400"}`}>
                             ~${tier.precioKg}/kg
-                          </span>
-                          <button
-                            onClick={e => { e.stopPropagation(); setTierDetail(open ? null : row); }}
-                            className={`w-4 h-4 rounded-full flex items-center justify-center transition-colors ${
-                              open
-                                ? selected ? "bg-brasa text-white" : "bg-gray-400 text-white"
-                                : selected ? "bg-brasa/20 text-brasa" : "bg-gray-200 text-gray-500"
-                            }`}
-                            style={{ fontSize: "9px", fontWeight: 900, lineHeight: 1 }}
-                            aria-label="Ver detalles"
-                          >
-                            {open ? "✕" : "?"}
-                          </button>
+                          </div>
                         </div>
+                        <button
+                          onClick={e => { e.stopPropagation(); setTierDetail(open ? null : row); }}
+                          className={`w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 transition-colors mt-0.5 ${
+                            open ? "bg-gray-200 text-gray-600" : "bg-gray-100 text-gray-400 hover:bg-gray-200"
+                          }`}
+                          aria-label="Ver detalles"
+                        >
+                          {open ? "✕" : "?"}
+                        </button>
                       </div>
                     </button>
                     {open && (
-                      <div className={`px-2 pb-2 pt-1.5 border-t text-center ${selected ? "border-brasa/20" : "border-gray-100"}`}>
-                        <div className={`leading-tight mb-1 ${selected ? "text-brasa/80" : "text-gray-500"}`} style={{ fontSize: "11px" }}>
-                          {tier.cortes.join(" · ")}
+                      <div className={`px-3 pb-2.5 pt-2 border-t text-xs ${selected ? "border-brasa/15" : "border-gray-100"}`}>
+                        <div className={`font-medium mb-0.5 ${selected ? "text-brasa/80" : "text-gray-600"}`}>
+                          {tier.cortes.join(", ")}
                         </div>
-                        <div className={`leading-tight italic ${selected ? "text-brasa/60" : "text-gray-400"}`} style={{ fontSize: "11px" }}>
-                          {tier.desc}
-                        </div>
+                        <div className="text-gray-400 italic">{tier.desc}</div>
                       </div>
                     )}
                   </div>
@@ -996,24 +987,24 @@ export default function Calculadora({
         )}
 
         {/* Protein toggles */}
-        <p className="text-sm font-bold text-gray-600 mb-2 text-center bg-brasa-light border border-brasa/20 rounded-lg py-1.5 px-3 text-brasa">Proteínas</p>
+        <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2 pt-4 border-t border-gray-50">Proteínas</p>
         <div className="grid grid-cols-2 gap-2">
           {PROTEIN_OPTIONS.map(({ key, label }) => (
             <label
               key={key}
-              className={`flex items-center gap-2 p-3 rounded-xl border-2 cursor-pointer transition-all ${
+              className={`flex items-center gap-2.5 px-3 py-2.5 rounded-lg border cursor-pointer transition-all ${
                 proteinas[key]
-                  ? "border-brasa bg-brasa-light"
-                  : "border-gray-200 hover:border-brasa/40"
+                  ? "border-brasa bg-brasa/5"
+                  : "border-gray-200 hover:border-gray-300"
               }`}
             >
               <input
                 type="checkbox"
                 checked={proteinas[key]}
                 onChange={() => setProteinas(prev => ({ ...prev, [key]: !prev[key] }))}
-                className="w-4 h-4 accent-brasa"
+                className="w-4 h-4 accent-brasa flex-shrink-0"
               />
-              <span className={`text-sm font-medium leading-tight ${proteinas[key] ? "text-brasa" : "text-gray-600"}`}>
+              <span className={`text-sm font-medium leading-tight ${proteinas[key] ? "text-brasa" : "text-gray-700"}`}>
                 {renderLabel(label, salchichaDataUrl, salsaDataUrl, refrescoDataUrl)}
               </span>
             </label>
@@ -1022,19 +1013,19 @@ export default function Calculadora({
 
         {/* Validation messages */}
         {sinPersonas && (
-          <div className="mt-4 bg-amber-50 border border-amber-200 rounded-xl p-3 text-sm text-amber-700 flex items-center gap-2">
+          <div className="mt-4 bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm text-amber-700 flex items-center gap-2">
             <span>⚠️</span>
             <span>Agrega al menos una persona para calcular.</span>
           </div>
         )}
         {!sinPersonas && sinProteinas && (
-          <div className="mt-4 bg-amber-50 border border-amber-200 rounded-xl p-3 text-sm text-amber-700 flex items-center gap-2">
+          <div className="mt-4 bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm text-amber-700 flex items-center gap-2">
             <span>⚠️</span>
             <span>Activa al menos una proteína para calcular.</span>
           </div>
         )}
         {!sinPersonas && soloQueso && (
-          <div className="mt-4 bg-blue-50 border border-blue-200 rounded-xl p-3 text-sm text-blue-700 flex items-start gap-2">
+          <div className="mt-4 bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm text-amber-700 flex items-start gap-2">
             <span className="flex-shrink-0">💡</span>
             <span>El queso para asar funciona mejor como complemento. Te recomendamos activar carne, pollo o salchicha también.</span>
           </div>
