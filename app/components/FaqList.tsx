@@ -13,35 +13,26 @@ export default function FaqList({ faqs }: { faqs: FaqItem[] }) {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <div className="space-y-2">
+    <div className="divide-y divide-gray-100">
       {faqs.map((faq, i) => {
         const isOpen = open === i;
         return (
-          <div
-            key={faq.pregunta}
-            className={`bg-white rounded-xl border overflow-hidden transition-colors ${
-              isOpen ? "border-gray-200" : "border-gray-100"
-            }`}
-          >
+          <div key={faq.pregunta}>
             <button
               onClick={() => setOpen(isOpen ? null : i)}
-              className="w-full flex items-start justify-between gap-3 px-4 py-4 text-left"
+              className="w-full flex items-start justify-between gap-4 py-4 text-left"
             >
               <span className="text-sm font-semibold text-gray-900 leading-snug">
                 {faq.pregunta}
               </span>
-              <span
-                className={`flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold mt-0.5 transition-colors ${
-                  isOpen ? "bg-brasa text-white" : "bg-gray-100 text-gray-400"
-                }`}
-              >
+              <span className="flex-shrink-0 text-xl text-gray-400 font-light leading-none mt-0.5">
                 {isOpen ? "−" : "+"}
               </span>
             </button>
 
             {isOpen && (
-              <div className="px-4 pb-4 border-t border-gray-50">
-                <p className="text-sm text-gray-500 mt-3 leading-relaxed">
+              <div className="pb-4 -mt-1">
+                <p className="text-sm text-gray-500 leading-relaxed">
                   {faq.respuesta}
                 </p>
                 {faq.links && (
