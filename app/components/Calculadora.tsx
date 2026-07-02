@@ -1048,14 +1048,17 @@ export default function Calculadora({
       {!sinPersonas && (
         <>
           {/* Lista de compras */}
-          <section className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 print:shadow-none print:border-0">
-            <h2 className="text-lg font-bold text-gray-800 mb-4">Lista de compras</h2>
+          <section className="bg-white rounded-2xl border border-gray-100 p-6 print:border-0">
+            <div className="flex items-baseline justify-between mb-5">
+              <h2 className="text-lg font-bold text-gray-900">Lista de compras</h2>
+              <span className="text-xs text-gray-400">{totalPersonas} {totalPersonas === 1 ? "persona" : "personas"}</span>
+            </div>
 
             {/* Proteins sub-section */}
             {!sinProteinas && (
               <>
-                <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">Proteínas</p>
-                <div className="divide-y divide-gray-50 mb-4">
+                <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-0.5">Proteínas</p>
+                <div className="divide-y divide-gray-50 mb-5">
                   {results.res       && <ProteinRow label="🥩 Carne de res"      value={results.res} />}
                   {results.pollo     && <ProteinRow label="🍗 Pollo"              value={results.pollo} />}
                   {results.salchicha && <ProteinRow label={renderLabel("🌭 Salchicha para asar", salchichaDataUrl, salsaDataUrl, refrescoDataUrl)} value={results.salchicha} />}
@@ -1065,24 +1068,24 @@ export default function Calculadora({
             )}
 
             {/* Accompaniments sub-section */}
-            <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">Acompañantes</p>
+            <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-0.5 pt-4 border-t border-gray-50">Acompañantes</p>
             <div className="divide-y divide-gray-50">
               <ResultRow label="🫓 Tortillas" perPerson={perPersonaHint("tortillas", results.tortillas, totalPersonas)} value={results.tortillas} unit="pzas" enabled={isRowEnabled("tortillas")} onToggle={() => toggleRow("tortillas")} />
               <ResultRow label="🧅 Cebolla"   perPerson={perPersonaHint("cebolla",   results.cebolla,   totalPersonas)} value={results.cebolla}   unit="pzas" enabled={isRowEnabled("cebolla")}   onToggle={() => toggleRow("cebolla")} />
               <ResultRow label="🍋 Limones"   perPerson={perPersonaHint("limon",     results.limon,     totalPersonas)} value={results.limon}     unit="pzas" enabled={isRowEnabled("limon")}     onToggle={() => toggleRow("limon")} />
               <ResultRow label="🥑 Aguacates" perPerson={perPersonaHint("aguacate",  results.aguacate,  totalPersonas)} value={results.aguacate}  unit="pzas" enabled={isRowEnabled("aguacate")}  onToggle={() => toggleRow("aguacate")} />
               {/* Salsa — con toggle Comprada / Casera */}
-              <div className={`py-3 transition-opacity ${!isRowEnabled("salsa") ? "opacity-35" : ""}`}>
+              <div className={`py-3.5 transition-opacity ${!isRowEnabled("salsa") ? "opacity-30" : ""}`}>
                 <div className="flex items-start gap-3">
                   <button
                     onClick={() => toggleRow("salsa")}
-                    className={`relative w-10 h-6 rounded-full transition-colors flex-shrink-0 mt-0.5 ${isRowEnabled("salsa") ? "bg-brasa" : "bg-gray-300"}`}
+                    className={`relative w-9 h-5 rounded-full transition-colors flex-shrink-0 mt-0.5 ${isRowEnabled("salsa") ? "bg-brasa" : "bg-gray-200"}`}
                     aria-label={isRowEnabled("salsa") ? "Desactivar" : "Activar"}
                   >
-                    <span className={`absolute top-1 left-1 w-4 h-4 rounded-full bg-white shadow-sm transition-transform ${isRowEnabled("salsa") ? "translate-x-4" : "translate-x-0"}`} />
+                    <span className={`absolute top-0.5 w-4 h-4 rounded-full bg-white shadow-sm transition-transform ${isRowEnabled("salsa") ? "left-4" : "left-0.5"}`} />
                   </button>
                   <div className="flex-1 min-w-0">
-                    <p className={`text-gray-700 text-sm leading-tight ${!isRowEnabled("salsa") ? "line-through" : ""}`}>
+                    <p className={`text-sm font-medium text-gray-800 leading-tight ${!isRowEnabled("salsa") ? "line-through" : ""}`}>
                       {renderLabel("🫙 Salsa", salchichaDataUrl, salsaDataUrl, refrescoDataUrl)}
                     </p>
                     {!salsaCasera && (
@@ -1128,9 +1131,9 @@ export default function Calculadora({
                     )}
                   </div>
                   {!salsaCasera && (
-                    <span className="text-2xl font-black text-gray-900 tabular-nums flex-shrink-0">
-                      {results.salsa >= 1000 ? results.salsa / 1000 : results.salsa}{" "}
-                      <span className="text-sm font-medium text-gray-500">{results.salsa >= 1000 ? "L" : "ml"}</span>
+                    <span className="tabular-nums flex-shrink-0 text-right">
+                      <span className="text-xl font-bold text-gray-900">{results.salsa >= 1000 ? results.salsa / 1000 : results.salsa}</span>
+                      <span className="text-xs font-medium text-gray-400 ml-1">{results.salsa >= 1000 ? "L" : "ml"}</span>
                     </span>
                   )}
                 </div>
@@ -1690,13 +1693,11 @@ export default function Calculadora({
 
 function ProteinRow({ label, value }: { label: React.ReactNode; value: number }) {
   return (
-    <div className="flex items-center gap-3 py-3">
-      <div className="flex-1">
-        <p className="text-gray-700 text-sm">{label}</p>
-      </div>
-      <span className="text-2xl font-black text-gray-900 tabular-nums">
-        {value}{" "}
-        <span className="text-sm font-medium text-gray-500">kg</span>
+    <div className="flex items-center justify-between py-3.5">
+      <span className="text-sm font-medium text-gray-800">{label}</span>
+      <span className="tabular-nums flex-shrink-0">
+        <span className="text-xl font-bold text-gray-900">{value}</span>
+        <span className="text-xs font-medium text-gray-400 ml-1">kg</span>
       </span>
     </div>
   );
@@ -1718,21 +1719,21 @@ function ResultRow({
   onToggle: () => void;
 }) {
   return (
-    <div className={`flex items-center gap-3 py-3 transition-opacity ${!enabled ? "opacity-35" : ""}`}>
+    <div className={`flex items-center gap-3 py-3.5 transition-opacity ${!enabled ? "opacity-30" : ""}`}>
       <button
         onClick={onToggle}
-        className={`relative w-10 h-6 rounded-full transition-colors flex-shrink-0 ${enabled ? "bg-brasa" : "bg-gray-300"}`}
+        className={`relative w-9 h-5 rounded-full transition-colors flex-shrink-0 ${enabled ? "bg-brasa" : "bg-gray-200"}`}
         aria-label={enabled ? "Desactivar" : "Activar"}
       >
-        <span className={`absolute top-1 left-1 w-4 h-4 rounded-full bg-white shadow-sm transition-transform ${enabled ? "translate-x-4" : "translate-x-0"}`} />
+        <span className={`absolute top-0.5 w-4 h-4 rounded-full bg-white shadow-sm transition-transform ${enabled ? "left-4" : "left-0.5"}`} />
       </button>
       <div className="flex-1 min-w-0">
-        <p className={`text-gray-700 text-sm leading-tight ${!enabled ? "line-through" : ""}`}>{label}</p>
-        <p className="text-xs text-gray-400 mt-0.5">{perPerson}</p>
+        <p className={`text-sm font-medium text-gray-800 leading-tight ${!enabled ? "line-through" : ""}`}>{label}</p>
+        {perPerson && enabled && <p className="text-xs text-gray-400 mt-0.5">{perPerson}</p>}
       </div>
-      <span className="text-2xl font-black text-gray-900 tabular-nums flex-shrink-0">
-        {value}{" "}
-        <span className="text-sm font-medium text-gray-500">{unit}</span>
+      <span className="tabular-nums flex-shrink-0 text-right">
+        <span className="text-xl font-bold text-gray-900">{value}</span>
+        <span className="text-xs font-medium text-gray-400 ml-1">{unit}</span>
       </span>
     </div>
   );

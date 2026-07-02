@@ -45,47 +45,29 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen">
         <div id="google_translate_element" style={{ display: 'none' }} />
-        <header
-          className="pb-4 pt-2 px-4 print:hidden relative"
-          style={{
-            background: '#FAF7F2',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
-          }}
-        >
-          <div className="absolute top-2 right-3">
-            <TranslateButton />
-          </div>
-          <div className="max-w-lg mx-auto flex flex-col items-center gap-2">
-            <Image
-              src="/logo.png"
-              alt="Calcuasada logo"
-              width={180}
-              height={180}
-              priority
-              className="-mt-4 -mb-9"
-            />
-            <p className="text-sm font-medium" style={{ color: '#1A1A1A', opacity: 0.55 }}>
-              <span className="es-only">Calculadora de carne asada para México</span>
-              <span className="en-only">Mexican BBQ Calculator</span>
-            </p>
-          </div>
-        </header>
-        <nav
-          translate="no"
-          className="border-b print:hidden"
-          style={{
-            background: '#2D2D2D',
-            borderColor: 'rgba(0,0,0,0.25)',
-            boxShadow: '0 2px 6px rgba(0,0,0,0.2)',
-          }}
-        >
-          <div className="max-w-lg mx-auto px-2 flex justify-center gap-1 py-2">
-            <NavLink href="/">Calculadora</NavLink>
-            <NavLink href="/guias">Guías</NavLink>
-            <NavLink href="/termometro">🌡️ Temps</NavLink>
-            <NavLink href="/acerca">Acerca</NavLink>
-          </div>
-        </nav>
+        <div className="sticky top-0 z-30 print:hidden">
+          <header style={{ background: '#FAF7F2', borderBottom: '1px solid #E8E2D9' }}>
+            <div className="max-w-lg mx-auto px-4 h-13 flex items-center justify-between gap-3">
+              <Link href="/" className="flex items-center gap-2.5 py-2">
+                <div style={{ width: 36, height: 36, position: 'relative', flexShrink: 0 }}>
+                  <Image src="/logo.png" alt="Calcuasada" fill style={{ objectFit: 'contain' }} priority />
+                </div>
+                <span className="font-bold text-[15px] tracking-tight" style={{ color: '#1A1A1A' }}>
+                  Calcuasada
+                </span>
+              </Link>
+              <TranslateButton />
+            </div>
+          </header>
+          <nav translate="no" style={{ background: '#FAF7F2', borderBottom: '1px solid #E8E2D9' }}>
+            <div className="max-w-lg mx-auto px-1 flex">
+              <NavLink href="/">Calculadora</NavLink>
+              <NavLink href="/guias">Guías</NavLink>
+              <NavLink href="/termometro">Temps</NavLink>
+              <NavLink href="/acerca">Acerca</NavLink>
+            </div>
+          </nav>
+        </div>
         <main className="max-w-lg mx-auto px-4 py-6 space-y-6">
           {children}
         </main>
