@@ -48,7 +48,7 @@ export default function RootLayout({
         <div className="sticky top-0 z-30 print:hidden">
           <header style={{ background: '#FAF7F2', borderBottom: '1px solid #E8E2D9' }}>
             <div className="max-w-lg mx-auto px-4 h-[80px] flex items-end pb-2 justify-between gap-3">
-              <Link href="/" className="flex items-end gap-3">
+              <Link href="/" className="flex items-center gap-3">
                 <div style={{ width: 72, height: 72, position: 'relative', flexShrink: 0 }}>
                   <Image src="/logo.png" alt="Calcuasada" fill style={{ objectFit: 'contain' }} priority />
                 </div>
