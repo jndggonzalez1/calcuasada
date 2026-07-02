@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function PrivacidadPage() {
   return (
     <div className="prose prose-sm max-w-none text-gray-700 space-y-6">
-      <h1 className="text-2xl font-black text-gray-900">Aviso de Privacidad</h1>
+      <h1 className="text-2xl font-bold text-gray-900">Aviso de Privacidad</h1>
       <p className="text-xs text-gray-400">Última actualización: mayo 2026</p>
 
       <section className="space-y-2">
