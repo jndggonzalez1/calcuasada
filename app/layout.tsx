@@ -72,14 +72,16 @@ export default function RootLayout({
           {children}
         </main>
         <CookieBanner />
-        <footer className="text-center text-xs py-8 print:hidden space-y-2" style={{ background: '#1A1A1A', color: 'rgba(255,255,255,0.55)' }}>
-          <div className="flex justify-center gap-4 flex-wrap">
-            <Link href="/guias" className="hover:text-white transition-colors">Guías</Link>
-            <Link href="/acerca" className="hover:text-white transition-colors">Acerca</Link>
-            <Link href="/contacto" className="hover:text-white transition-colors">Contacto</Link>
-            <Link href="/privacidad" className="hover:text-white transition-colors">Privacidad</Link>
+        <footer className="print:hidden" style={{ background: '#1A1A1A', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+          <div className="max-w-lg mx-auto px-4 py-8 flex flex-col items-center gap-4">
+            <div className="flex justify-center gap-6 flex-wrap" style={{ color: 'rgba(255,255,255,0.45)' }}>
+              <Link href="/guias" className="text-xs hover:text-white transition-colors">Guías</Link>
+              <Link href="/acerca" className="text-xs hover:text-white transition-colors">Acerca</Link>
+              <Link href="/contacto" className="text-xs hover:text-white transition-colors">Contacto</Link>
+              <Link href="/privacidad" className="text-xs hover:text-white transition-colors">Privacidad</Link>
+            </div>
+            <p className="text-xs" style={{ color: 'rgba(255,255,255,0.25)' }}>Hecho con 🥩 en México · Calcuasada 2026</p>
           </div>
-          <p>Hecho con 🥩 en México · Calcuasada 2026</p>
         </footer>
       </body>
     </html>

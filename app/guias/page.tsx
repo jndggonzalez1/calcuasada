@@ -78,50 +78,50 @@ const salsas = [
 export default function GuiasPage() {
   return (
     <div className="space-y-8 text-gray-700">
-      <div className="text-center space-y-3 py-2">
-        <h1 className="text-2xl font-black text-gray-900">Guías de Carne Asada</h1>
-        <p className="text-sm text-gray-500 max-w-sm mx-auto">
-          Todo lo que necesitas saber para organizar una carne asada perfecta — desde elegir los cortes hasta no quedarte sin carbón.
+      <div className="space-y-2 py-2">
+        <h1 className="text-2xl font-bold text-gray-900">Guías de Carne Asada</h1>
+        <p className="text-sm text-gray-400">
+          Todo lo que necesitas saber para organizar una carne asada perfecta.
         </p>
       </div>
 
       <AdBanner />
 
-      <div className="space-y-4">
+      <div className="space-y-3">
         {guias.map((g) => (
           <Link
             key={g.slug}
             href={`/guias/${g.slug}`}
-            className="block bg-white border border-gray-100 rounded-2xl p-5 shadow-sm hover:shadow-md hover:border-brasa/30 transition-all group"
+            className="block bg-white border border-gray-100 rounded-xl p-5 hover:border-gray-200 transition-colors group"
           >
             <div className="flex gap-4 items-start">
               {g.image ? (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={g.image} alt="" className="w-12 h-12 rounded-xl object-cover flex-shrink-0" />
+                <img src={g.image} alt="" className="w-11 h-11 rounded-lg object-cover flex-shrink-0" />
               ) : (
-                <span className="text-3xl flex-shrink-0">{g.emoji}</span>
+                <span className="text-2xl flex-shrink-0 mt-0.5">{g.emoji}</span>
               )}
-              <div className="space-y-1 min-w-0">
-                <h2 className="text-base font-black text-gray-900 group-hover:text-brasa transition-colors leading-snug">
+              <div className="min-w-0">
+                <h2 className="text-sm font-semibold text-gray-900 group-hover:text-brasa transition-colors leading-snug">
                   {g.titulo}
                 </h2>
-                <p className="text-sm text-gray-500 leading-relaxed">{g.desc}</p>
-                <p className="text-xs text-brasa font-semibold pt-1">{g.tiempo} →</p>
+                <p className="text-xs text-gray-500 mt-1 leading-relaxed">{g.desc}</p>
+                <p className="text-xs text-brasa font-medium mt-2">{g.tiempo} →</p>
               </div>
             </div>
           </Link>
         ))}
 
         {/* Card especial: Salsas para carne asada */}
-        <div className="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm">
+        <div className="bg-white border border-gray-100 rounded-xl p-5">
           <div className="flex gap-4 items-start">
-            <span className="text-3xl flex-shrink-0">🫙</span>
+            <span className="text-2xl flex-shrink-0 mt-0.5">🫙</span>
             <div className="space-y-3 min-w-0 flex-1">
               <div>
-                <h2 className="text-base font-black text-gray-900 leading-snug">
+                <h2 className="text-sm font-semibold text-gray-900 leading-snug">
                   Salsas para carne asada — 3 recetas
                 </h2>
-                <p className="text-sm text-gray-500 leading-relaxed mt-0.5">
+                <p className="text-xs text-gray-500 mt-1 leading-relaxed">
                   Las tres salsas que van con todo lo que sale del asador. Elige la que te late más.
                 </p>
               </div>
@@ -130,11 +130,9 @@ export default function GuiasPage() {
                   <Link
                     key={s.slug}
                     href={`/guias/${s.slug}`}
-                    className="flex flex-col items-start bg-brasa-light border border-brasa/20 rounded-xl px-3 py-2 hover:bg-brasa/10 hover:border-brasa/40 transition-all group/btn"
+                    className="flex flex-col bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 hover:border-gray-300 transition-colors"
                   >
-                    <span className="text-sm font-bold text-gray-900 group-hover/btn:text-brasa transition-colors">
-                      {s.label}
-                    </span>
+                    <span className="text-sm font-medium text-gray-800">{s.label}</span>
                     <span className="text-xs text-gray-400 mt-0.5">{s.desc}</span>
                   </Link>
                 ))}
@@ -146,12 +144,12 @@ export default function GuiasPage() {
 
       <AdBanner />
 
-      <div className="bg-brasa-light rounded-2xl p-5 text-center space-y-3">
-        <p className="text-sm font-bold text-gray-900">¿Ya sabes cuánta gente va?</p>
-        <p className="text-sm text-gray-600">Usa la calculadora y en segundos tienes la lista exacta de lo que necesitas comprar.</p>
+      <div className="bg-gray-50 border border-gray-100 rounded-xl p-5 text-center space-y-3">
+        <p className="text-sm font-semibold text-gray-900">¿Ya sabes cuánta gente va?</p>
+        <p className="text-xs text-gray-500">Usa la calculadora y en segundos tienes la lista exacta de lo que necesitas comprar.</p>
         <Link
           href="/"
-          className="inline-block bg-brasa text-white font-bold text-sm px-6 py-2.5 rounded-full hover:bg-brasa-hover transition-colors"
+          className="inline-block bg-brasa text-white font-medium text-sm px-6 py-2.5 rounded-lg hover:bg-brasa-hover transition-colors"
         >
           Ir a la calculadora →
         </Link>

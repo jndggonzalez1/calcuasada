@@ -117,11 +117,11 @@ export default function HomePage() {
       <AdBanner />
 
       <div className="text-center">
-        <h1 className="text-2xl font-black text-gray-900">
+        <h1 className="text-2xl font-bold text-gray-900">
           <span className="es-only">Calculadora de Carne Asada</span>
           <span className="en-only">BBQ Calculator</span>
         </h1>
-        <p className="text-gray-500 text-sm mt-1">
+        <p className="text-gray-400 text-sm mt-1">
           Ingresa cuántos van y te decimos exactamente qué comprar
         </p>
       </div>
@@ -134,16 +134,16 @@ export default function HomePage() {
 
       {/* Tips */}
       <section>
-        <h2 className="text-lg font-black text-gray-900 mb-4">
+        <h2 className="text-base font-semibold text-gray-900 mb-4">
           Tips para tu carne asada estilo Monterrey
         </h2>
-        <div className="grid grid-cols-1 gap-3">
+        <div className="grid grid-cols-1 gap-2">
           {tips.map((tip) => (
-            <div key={tip.titulo} className="bg-white border border-gray-100 rounded-xl p-4 flex gap-3 shadow-sm">
-              <span className="text-2xl">{tip.emoji}</span>
+            <div key={tip.titulo} className="bg-white border border-gray-100 rounded-xl p-4 flex gap-3">
+              <span className="text-xl flex-shrink-0">{tip.emoji}</span>
               <div>
-                <p className="font-bold text-gray-900 text-sm">{tip.titulo}</p>
-                <p className="text-gray-500 text-xs mt-0.5">{tip.desc}</p>
+                <p className="font-semibold text-gray-900 text-sm">{tip.titulo}</p>
+                <p className="text-gray-500 text-xs mt-0.5 leading-relaxed">{tip.desc}</p>
               </div>
             </div>
           ))}
@@ -154,21 +154,21 @@ export default function HomePage() {
 
       {/* FAQ */}
       <section>
-        <h2 className="text-lg font-black text-gray-900 mb-4">
+        <h2 className="text-base font-semibold text-gray-900 mb-4">
           Preguntas frecuentes
         </h2>
-        <div className="space-y-4">
+        <div className="space-y-5">
           {faqs.map((faq) => (
-            <div key={faq.pregunta} className="border-b border-gray-100 pb-4 last:border-0">
-              <p className="font-bold text-gray-900 text-sm">{faq.pregunta}</p>
-              <p className="text-gray-500 text-xs mt-1">{faq.respuesta}</p>
+            <div key={faq.pregunta} className="border-b border-gray-100 pb-5 last:border-0 last:pb-0">
+              <p className="font-semibold text-gray-900 text-sm">{faq.pregunta}</p>
+              <p className="text-gray-500 text-sm mt-1.5 leading-relaxed">{faq.respuesta}</p>
               {faq.links && (
-                <div className="flex flex-wrap gap-2 mt-2">
+                <div className="flex flex-wrap gap-3 mt-2">
                   {faq.links.map(link => (
                     <Link
                       key={link.href}
                       href={link.href}
-                      className="inline-flex items-center gap-1 text-xs font-semibold text-brasa bg-brasa-light border border-brasa/20 px-3 py-1.5 rounded-full hover:bg-brasa/10 transition-colors"
+                      className="text-xs font-medium text-brasa hover:underline"
                     >
                       {link.label} →
                     </Link>
