@@ -1192,64 +1192,70 @@ export default function Calculadora({
           </section>
 
           {/* ── EXTRAS ── */}
-          <section className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 print:shadow-none print:border-0">
-            <h2 className="text-lg font-bold text-gray-800 mb-4">Extras opcionales</h2>
-            <div className="space-y-2">
+          <section className="bg-white rounded-2xl border border-gray-100 p-6 print:border-0">
+            <h2 className="text-base font-semibold text-gray-900 mb-4">Extras opcionales</h2>
+            <div className="divide-y divide-gray-50">
 
               {/* Cerveza */}
               <div>
-                <label className="flex items-center gap-3 p-2 rounded-xl cursor-pointer hover:bg-gray-50">
-                  <input
-                    type="checkbox"
-                    checked={extras.cerveza}
-                    onChange={() => setExtras(prev => ({ ...prev, cerveza: !prev.cerveza }))}
-                    className="w-5 h-5 accent-brasa rounded"
-                  />
-                  <span className="text-sm text-gray-700">🍺 Cerveza</span>
+                <label className="flex items-center justify-between py-3 cursor-pointer">
+                  <div className="flex items-center gap-3">
+                    <input
+                      type="checkbox"
+                      checked={extras.cerveza}
+                      onChange={() => setExtras(prev => ({ ...prev, cerveza: !prev.cerveza }))}
+                      className="w-4 h-4 accent-brasa flex-shrink-0"
+                    />
+                    <span className="text-sm font-medium text-gray-800">🍺 Cerveza</span>
+                  </div>
                   {extras.cerveza && results.cerveza && (
-                    <span className="ml-auto font-bold text-brasa text-sm">
+                    <span className="text-sm font-semibold text-gray-900 tabular-nums">
                       {formatCerveza(results.cerveza)}
                     </span>
                   )}
                 </label>
                 {extras.cerveza && (
-                  <p className="text-xs text-gray-400 text-center italic px-2 pb-2">
-                    No puede haber carnita asada sin cervecita para acompañarla 🍻
+                  <p className="text-xs text-gray-400 pl-7 pb-2 italic">
+                    No puede haber carnita asada sin cervecita 🍻
                   </p>
                 )}
               </div>
 
               {/* Refrescos */}
-              <label className="flex items-center gap-3 p-2 rounded-xl cursor-pointer hover:bg-gray-50">
-                <input
-                  type="checkbox"
-                  checked={extras.refrescos}
-                  onChange={() => setExtras(prev => ({ ...prev, refrescos: !prev.refrescos }))}
-                  className="w-5 h-5 accent-brasa rounded"
-                />
-                <span className="text-sm text-gray-700">{renderLabel("🥤 Refrescos (botellas 2L)", salchichaDataUrl, salsaDataUrl, refrescoDataUrl)}</span>
+              <label className="flex items-center justify-between py-3 cursor-pointer">
+                <div className="flex items-center gap-3">
+                  <input
+                    type="checkbox"
+                    checked={extras.refrescos}
+                    onChange={() => setExtras(prev => ({ ...prev, refrescos: !prev.refrescos }))}
+                    className="w-4 h-4 accent-brasa flex-shrink-0"
+                  />
+                  <span className="text-sm font-medium text-gray-800">{renderLabel("🥤 Refrescos (botellas 2L)", salchichaDataUrl, salsaDataUrl, refrescoDataUrl)}</span>
+                </div>
                 {extras.refrescos && results.refrescos && (
-                  <span className="ml-auto font-bold text-brasa text-sm">{results.refrescos} botellas</span>
+                  <span className="text-sm font-semibold text-gray-900 tabular-nums">{results.refrescos} botellas</span>
                 )}
               </label>
 
               {/* Botanas */}
               <div>
-                <label className="flex items-center gap-3 p-2 rounded-xl cursor-pointer hover:bg-gray-50">
-                  <input
-                    type="checkbox"
-                    checked={extras.botanas}
-                    onChange={() => setExtras(prev => ({ ...prev, botanas: !prev.botanas }))}
-                    className="w-5 h-5 accent-brasa rounded"
-                  />
-                  <span className="text-sm text-gray-700">🍿 Botanas (bolsas de papas)</span>
+                <label className="flex items-center justify-between py-3 cursor-pointer">
+                  <div className="flex items-center gap-3">
+                    <input
+                      type="checkbox"
+                      checked={extras.botanas}
+                      onChange={() => setExtras(prev => ({ ...prev, botanas: !prev.botanas }))}
+                      className="w-4 h-4 accent-brasa flex-shrink-0"
+                    />
+                    <span className="text-sm font-medium text-gray-800">🍿 Botanas (bolsas de papas)</span>
+                  </div>
                   {extras.botanas && bolsas > 0 && (
-                    <span className="ml-auto font-bold text-brasa text-sm">{bolsas} bolsas</span>
+                    <span className="text-sm font-semibold text-gray-900 tabular-nums">{bolsas} bolsas</span>
                   )}
                 </label>
                 {extras.botanas && (
-                  <p className="text-xs text-gray-400 px-2 pb-1">
-                    Con botanas se calcula un poco menos de proteína — todos comen más seguido antes de la carne.
+                  <p className="text-xs text-gray-400 pl-7 pb-2">
+                    Con botanas se calcula un poco menos de proteína — todos llegan con más hambre a la carne.
                   </p>
                 )}
               </div>
@@ -1258,32 +1264,38 @@ export default function Calculadora({
           </section>
 
           {/* ── COST ESTIMATOR ── */}
-          <section className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 print:shadow-none print:border-0">
-            <h2 className="text-lg font-bold text-gray-800 mb-2">Estimador de costo</h2>
+          <section className="bg-white rounded-2xl border border-gray-100 p-6 print:border-0">
+            <div className="flex items-baseline justify-between mb-1">
+              <h2 className="text-base font-semibold text-gray-900">Estimador de costo</h2>
+            </div>
             <p className="text-xs text-gray-400 mb-4">
-              Recuerda que necesitas condimentos para tu cocinada — no olvides tener sal, pimienta o tu sazonador de preferencia.
+              No olvides tener sal, pimienta o tu sazonador de preferencia.
             </p>
-            <div className="flex gap-2 mb-4 print:hidden">
+
+            {/* Tab switcher — estilo underline, igual que el nav */}
+            <div className="flex border-b border-gray-100 mb-5 print:hidden">
               {(["promedio", "personalizado"] as const).map(tab => (
                 <button
                   key={tab}
                   onClick={() => setPriceTab(tab)}
-                  className={`flex-1 py-2 rounded-xl text-sm font-medium transition-all ${
-                    priceTab === tab ? "bg-brasa text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                  }`}
+                  className="flex-1 pb-2 text-sm font-medium transition-colors border-b-2 -mb-px"
+                  style={{
+                    color: priceTab === tab ? '#E8460A' : '#9CA3AF',
+                    borderBottomColor: priceTab === tab ? '#E8460A' : 'transparent',
+                  }}
                 >
-                  {tab === "promedio" ? "Precios promedio" : "Precios personalizados"}
+                  {tab === "promedio" ? "Promedio" : "Mis precios"}
                 </button>
               ))}
             </div>
 
             {priceTab === "personalizado" && (
-              <div className="grid grid-cols-2 gap-3 mb-4 print:hidden">
+              <div className="grid grid-cols-2 gap-3 mb-5 print:hidden">
                 {Object.entries(PRICE_LABELS).map(([key, label]) => (
                   <label key={key} className="flex flex-col gap-1">
-                    <span className="text-xs text-gray-500">{label}</span>
-                    <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden">
-                      <span className="px-2 text-gray-400 text-sm">$</span>
+                    <span className="text-xs text-gray-400">{label}</span>
+                    <div className="flex items-center border border-gray-200 rounded-lg overflow-hidden focus-within:border-brasa focus-within:ring-1 focus-within:ring-brasa transition-colors">
+                      <span className="px-2.5 text-gray-400 text-sm border-r border-gray-200 py-2">$</span>
                       <input
                         type="number"
                         min={0}
@@ -1291,7 +1303,7 @@ export default function Calculadora({
                         onChange={e =>
                           setCustomPrices(prev => ({ ...prev, [key]: parseFloat(e.target.value) || 0 }))
                         }
-                        className="flex-1 py-2 pr-2 text-sm focus:outline-none"
+                        className="flex-1 py-2 px-2 text-sm focus:outline-none"
                       />
                     </div>
                   </label>
@@ -1299,79 +1311,73 @@ export default function Calculadora({
               </div>
             )}
 
-            <div className="bg-brasa-light border border-brasa-mid rounded-xl p-4 text-center">
-              <p className="text-sm text-brasa mb-1">Tu carne asada costará aproximadamente</p>
-              <p className="text-4xl font-black text-brasa">
-                ${formatMXN(total)}{" "}
-                <span className="text-xl font-bold">MXN</span>
+            {/* Total — limpio, sin caja naranja */}
+            <div className="pt-5 border-t border-gray-50 text-center">
+              <p className="text-xs text-gray-400 mb-2">Costo estimado total</p>
+              <p className="tabular-nums leading-none">
+                <span className="text-lg font-medium text-gray-300 mr-1">$</span>
+                <span className="text-5xl font-bold text-gray-900">{formatMXN(total)}</span>
+                <span className="text-base font-medium text-gray-400 ml-2">MXN</span>
               </p>
-              <p className="text-xs text-brasa/70 mt-1">
-                ${formatMXN(total / Math.max(totalPersonas, 1))} por persona
+              <p className="text-xs text-gray-400 mt-3">
+                <span className="font-medium text-gray-600">${formatMXN(total / Math.max(totalPersonas, 1))}</span> por persona
               </p>
             </div>
           </section>
 
           {/* ── COMPARTIR Y DISTRIBUIR ── */}
-          <section className="bg-white rounded-2xl shadow-sm border border-brasa/20 overflow-hidden print:hidden">
-            {/* Header de la sección */}
-            <div className="bg-brasa-light px-5 py-3 border-b border-brasa/15 flex items-center gap-2">
-              <span className="text-lg">📤</span>
-              <div>
-                <p className="font-black text-gray-900 text-sm">Compartir y distribuir</p>
-                <p className="text-xs text-gray-500">Manda la lista o divide quién compra qué entre los cuates</p>
-              </div>
+          <section className="bg-white rounded-2xl border border-gray-100 overflow-hidden print:hidden">
+            {/* Header */}
+            <div className="px-6 py-4 border-b border-gray-50">
+              <h2 className="text-base font-semibold text-gray-900">Compartir lista</h2>
+              <p className="text-xs text-gray-400 mt-0.5">Manda la lista o divide quién compra qué entre los cuates</p>
             </div>
 
             {/* Botón compartir link */}
-            <div className="px-4 pt-3 pb-2 border-b border-gray-100">
+            <div className="px-6 py-4 border-b border-gray-50">
               <button
                 onClick={handleCopyLink}
                 disabled={!puedeCalcular}
-                className={`w-full flex items-center justify-center gap-2 font-semibold py-2.5 px-4 rounded-xl text-sm transition-all disabled:opacity-40 ${
+                className={`w-full flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-medium transition-all disabled:opacity-40 ${
                   linkCopied
-                    ? "bg-brasa-light text-brasa border border-brasa/30"
+                    ? "bg-gray-50 text-gray-600 border border-gray-200"
                     : "bg-brasa text-white hover:bg-brasa/90"
                 }`}
               >
-                <span>{linkCopied ? "✅" : "🔗"}</span>
-                {linkCopied
-                  ? "¡Link copiado! Mándalo a tus cuates"
-                  : "Copiar link con toda la configuración"}
+                {linkCopied ? "✓ Link copiado — mándalo a tus cuates" : "🔗 Copiar link con toda la configuración"}
               </button>
               {linkCopied && (
-                <p className="text-center text-xs text-gray-400 mt-1.5">
-                  Incluye personas, proteínas, presupuesto y todo lo que tienes configurado
+                <p className="text-center text-xs text-gray-400 mt-2">
+                  Incluye personas, proteínas, presupuesto y todo lo configurado
                 </p>
               )}
             </div>
 
             {/* Distribuidor */}
-            <div className="w-full flex items-center gap-3 px-5 py-4 bg-amber-50 border-b border-amber-200">
-              <span className="text-xl">👥</span>
-              <span className="flex-1 font-bold text-amber-900 text-sm">
-                Distribuir compras entre tus amigos
-              </span>
-              <button
-                onClick={() => setDistribuidorHelpOpen(prev => !prev)}
-                className="w-7 h-7 rounded-full bg-amber-200 hover:bg-amber-300 text-amber-800 font-black text-sm leading-none flex items-center justify-center transition-colors flex-shrink-0"
-                aria-label="¿Cómo usar el distribuidor?"
-              >
-                ?
-              </button>
-            </div>
-            {distribuidorHelpOpen && (
-              <div className="px-5 py-3 bg-amber-100 border-b border-amber-200 text-sm text-amber-900 space-y-1">
-                <p className="font-semibold">¿Cómo usar el distribuidor?</p>
-                <ol className="list-decimal list-inside space-y-1 text-amber-800">
-                  <li>Escribe el nombre de cada persona que va a cooperar y agrégala.</li>
-                  <li>Para cada ingrediente, selecciona quién lo va a comprar (puedes asignar varios).</li>
-                  <li>Cuando toda la lista esté asignada, el mensaje de WhatsApp muestra todos los ingredientes con quién compra qué — para que todos vean el plan completo.</li>
-                </ol>
+            <div className="px-6 py-4 border-b border-gray-50">
+              <div className="flex items-center justify-between mb-3">
+                <p className="text-sm font-medium text-gray-800">Distribuir entre amigos</p>
+                <button
+                  onClick={() => setDistribuidorHelpOpen(prev => !prev)}
+                  className="w-6 h-6 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-400 text-xs font-bold flex items-center justify-center transition-colors flex-shrink-0"
+                  aria-label="¿Cómo usar el distribuidor?"
+                >
+                  ?
+                </button>
               </div>
-            )}
+              {distribuidorHelpOpen && (
+                <div className="mb-3 p-3 bg-gray-50 rounded-lg text-xs text-gray-600 space-y-1">
+                  <p className="font-medium text-gray-700">¿Cómo funciona?</p>
+                  <ol className="list-decimal list-inside space-y-1">
+                    <li>Agrega el nombre de cada persona que va a cooperar.</li>
+                    <li>Para cada ingrediente, selecciona quién lo compra.</li>
+                    <li>El WhatsApp y el link muestran la lista dividida por persona.</li>
+                  </ol>
+                </div>
+              )}
 
-            <div className="px-5 pb-5 space-y-4 border-b border-amber-100 bg-amber-50/40">
-                <div className="flex gap-2 mt-4">
+              <div className="space-y-3">
+                <div className="flex gap-2">
                   <input
                     type="text"
                     value={personaNombre}
@@ -1379,25 +1385,25 @@ export default function Calculadora({
                     onKeyDown={e => e.key === "Enter" && addPersona()}
                     placeholder="Nombre de la persona"
                     maxLength={30}
-                    className="flex-1 border border-gray-300 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brasa"
+                    className="flex-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-brasa focus:ring-1 focus:ring-brasa transition-colors"
                   />
                   <button
                     onClick={addPersona}
                     disabled={personas.length >= 8}
-                    className="bg-brasa text-white px-4 py-2 rounded-xl text-sm font-medium hover:bg-brasa/90 disabled:opacity-40 transition-all"
+                    className="bg-brasa text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-brasa/90 disabled:opacity-40 transition-all whitespace-nowrap"
                   >
-                    Agregar persona
+                    Agregar
                   </button>
                 </div>
 
                 {personas.length > 0 && (
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1.5">
                     {personas.map(p => (
-                      <div key={p} className="flex items-center gap-1 bg-brasa-light border border-brasa-mid rounded-full px-3 py-1">
-                        <span className="text-sm text-brasa font-medium">{p}</span>
+                      <div key={p} className="flex items-center gap-1.5 bg-gray-100 rounded-full px-3 py-1">
+                        <span className="text-sm text-gray-700 font-medium">{p}</span>
                         <button
                           onClick={() => removePersona(p)}
-                          className="text-brasa/50 hover:text-brasa text-xs ml-1 font-bold leading-none"
+                          className="text-gray-400 hover:text-gray-700 text-xs font-bold leading-none transition-colors"
                           aria-label={`Quitar a ${p}`}
                         >
                           ✕
@@ -1415,21 +1421,21 @@ export default function Calculadora({
 
                 {personas.length >= 2 && (
                   <div className="space-y-3">
-                    <p className="text-sm font-medium text-gray-600">¿Quién compra qué?</p>
+                    <p className="text-xs font-medium text-gray-500 uppercase tracking-widest">¿Quién compra qué?</p>
                     <div className="divide-y divide-gray-50">
                       {activeItems.map(item => {
                         const assignedTo = assignments[item.key] ?? [];
                         return (
                           <div key={item.key} className="py-3">
                             <div className="flex items-center justify-between mb-2">
-                              <span className={`text-sm font-medium ${assignedTo.length > 0 ? "text-gray-700" : "text-gray-400"}`}>
+                              <span className={`text-sm font-medium ${assignedTo.length > 0 ? "text-gray-800" : "text-gray-400"}`}>
                                 {renderLabel(item.displayLabel, salchichaDataUrl, salsaDataUrl, refrescoDataUrl)}
                               </span>
-                              <span className="text-sm text-gray-400">
+                              <span className="text-xs text-gray-400 tabular-nums">
                                 {item.key === "salsa" ? formatSalsa(item.value) : `${item.value} ${item.unit}`}
                               </span>
                             </div>
-                            <div className="flex flex-wrap gap-2">
+                            <div className="flex flex-wrap gap-1.5">
                               {personas.map(p => {
                                 const checked = assignedTo.includes(p);
                                 return (
@@ -1438,7 +1444,7 @@ export default function Calculadora({
                                     className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border cursor-pointer text-sm transition-all ${
                                       checked
                                         ? "bg-brasa text-white border-brasa"
-                                        : "bg-white text-gray-600 border-gray-300 hover:border-brasa/50"
+                                        : "bg-white text-gray-600 border-gray-200 hover:border-gray-300"
                                     }`}
                                   >
                                     <input
@@ -1463,54 +1469,53 @@ export default function Calculadora({
                     </div>
 
                     {!todosAsignados && (
-                      <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 text-sm text-amber-700 flex items-start gap-2">
+                      <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 text-xs text-amber-700 flex items-start gap-2">
                         <span className="flex-shrink-0">⚠️</span>
                         <span>Faltan ingredientes por asignar. Asegúrate de que toda la lista esté cubierta.</span>
                       </div>
                     )}
                     {todosAsignados && (
-                      <div className="bg-green-50 border border-green-200 rounded-xl p-3 text-sm text-green-700 flex items-center gap-2">
-                        <span>✅</span>
+                      <div className="bg-green-50 border border-green-200 rounded-lg p-3 text-xs text-green-700 flex items-center gap-2">
+                        <span>✓</span>
                         <span>Lista completa. Ya puedes compartir o imprimir la distribución.</span>
                       </div>
                     )}
                   </div>
                 )}
               </div>
+            </div>
 
             {/* Botones de acción */}
-            <div className="grid grid-cols-2 gap-3 p-4 border-b border-gray-100">
+            <div className="grid grid-cols-2 gap-2 p-4">
               <button
                 onClick={handleWhatsApp}
                 disabled={!puedeCalcular}
-                className="flex flex-col items-center gap-1 bg-green-50 hover:bg-green-100 text-green-700 font-medium py-3 px-2 rounded-xl text-sm transition-all disabled:opacity-40"
+                className="flex items-center justify-center gap-2 py-2.5 rounded-lg border border-gray-200 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-40 transition-all"
               >
-                <span className="text-xl">💬</span>
-                WhatsApp
+                <span>💬</span> WhatsApp
               </button>
               <button
                 onClick={handleCopy}
                 disabled={!puedeCalcular}
-                className={`flex flex-col items-center gap-1 font-medium py-3 px-2 rounded-xl text-sm transition-all disabled:opacity-40 ${copied ? "bg-brasa-light text-brasa" : "bg-gray-100 hover:bg-gray-200 text-gray-700"}`}
+                className={`flex items-center justify-center gap-2 py-2.5 rounded-lg border text-sm font-medium transition-all disabled:opacity-40 ${
+                  copied ? "border-brasa/30 bg-brasa/5 text-brasa" : "border-gray-200 text-gray-700 hover:bg-gray-50"
+                }`}
               >
-                <span className="text-xl">{copied ? "✅" : "📋"}</span>
-                {copied ? "¡Copiado!" : "Copiar lista"}
+                <span>{copied ? "✓" : "📋"}</span> {copied ? "Copiado" : "Copiar lista"}
               </button>
               <button
                 onClick={handlePDF}
                 disabled={!puedeCalcular}
-                className="flex flex-col items-center gap-1 bg-orange-50 hover:bg-orange-100 text-orange-700 font-medium py-3 px-2 rounded-xl text-sm transition-all disabled:opacity-40"
+                className="flex items-center justify-center gap-2 py-2.5 rounded-lg border border-gray-200 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-40 transition-all"
               >
-                <span className="text-xl">🖼️</span>
-                Compartir imagen
+                <span>🖼️</span> Imagen
               </button>
               <button
                 onClick={handlePrint}
                 disabled={!puedeCalcular}
-                className="flex flex-col items-center gap-1 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-3 px-2 rounded-xl text-sm transition-all disabled:opacity-40"
+                className="flex items-center justify-center gap-2 py-2.5 rounded-lg border border-gray-200 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-40 transition-all"
               >
-                <span className="text-xl">🖨️</span>
-                Imprimir lista
+                <span>🖨️</span> Imprimir
               </button>
             </div>
 
