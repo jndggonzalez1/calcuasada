@@ -805,7 +805,7 @@ export default function Calculadora({
     <div className="space-y-6">
 
       {/* ── FORM ── */}
-      <section className="bg-white rounded-2xl border border-gray-100 p-6 print:border-0">
+      <section className="bg-white rounded-xl border border-gray-100 p-6 print:border-0">
         {/* Header */}
         <div className="flex items-center justify-between mb-5">
           <h2 className="text-base font-semibold text-gray-900">¿Cuántos van?</h2>
@@ -1039,7 +1039,7 @@ export default function Calculadora({
       {!sinPersonas && (
         <>
           {/* Lista de compras */}
-          <section className="bg-white rounded-2xl border border-gray-100 p-6 print:border-0">
+          <section className="bg-white rounded-xl border border-gray-100 p-6 print:border-0">
             <div className="flex items-baseline justify-between mb-5">
               <h2 className="text-lg font-bold text-gray-900">Lista de compras</h2>
               <span className="text-xs text-gray-400">{totalPersonas} {totalPersonas === 1 ? "persona" : "personas"}</span>
@@ -1192,7 +1192,7 @@ export default function Calculadora({
           </section>
 
           {/* ── EXTRAS ── */}
-          <section className="bg-white rounded-2xl border border-gray-100 p-6 print:border-0">
+          <section className="bg-white rounded-xl border border-gray-100 p-6 print:border-0">
             <h2 className="text-base font-semibold text-gray-900 mb-4">Extras opcionales</h2>
             <div className="divide-y divide-gray-50">
 
@@ -1264,7 +1264,7 @@ export default function Calculadora({
           </section>
 
           {/* ── COST ESTIMATOR ── */}
-          <section className="bg-white rounded-2xl border border-gray-100 p-6 print:border-0">
+          <section className="bg-white rounded-xl border border-gray-100 p-6 print:border-0">
             <div className="flex items-baseline justify-between mb-1">
               <h2 className="text-base font-semibold text-gray-900">Estimador de costo</h2>
             </div>
@@ -1326,7 +1326,7 @@ export default function Calculadora({
           </section>
 
           {/* ── COMPARTIR Y DISTRIBUIR ── */}
-          <section className="bg-white rounded-2xl border border-gray-100 overflow-hidden print:hidden">
+          <section className="bg-white rounded-xl border border-gray-100 overflow-hidden print:hidden">
             {/* Header */}
             <div className="px-6 py-4 border-b border-gray-50">
               <h2 className="text-base font-semibold text-gray-900">Compartir lista</h2>
