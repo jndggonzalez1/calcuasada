@@ -3,6 +3,7 @@ import Link from "next/link";
 import Calculadora from "./components/Calculadora";
 import AdBanner from "./components/AdBanner";
 import ComoUsarAccordion from "./components/ComoUsarAccordion";
+import FaqList from "./components/FaqList";
 
 export const metadata: Metadata = {
   title: "Calcuasada — Calculadora de Carne Asada para México",
@@ -157,27 +158,7 @@ export default function HomePage() {
         <h2 className="text-base font-semibold text-gray-900 mb-4">
           Preguntas frecuentes
         </h2>
-        <div className="space-y-5">
-          {faqs.map((faq) => (
-            <div key={faq.pregunta} className="border-b border-gray-100 pb-5 last:border-0 last:pb-0">
-              <p className="font-semibold text-gray-900 text-sm">{faq.pregunta}</p>
-              <p className="text-gray-500 text-sm mt-1.5 leading-relaxed">{faq.respuesta}</p>
-              {faq.links && (
-                <div className="flex flex-wrap gap-3 mt-2">
-                  {faq.links.map(link => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      className="text-xs font-medium text-brasa hover:underline"
-                    >
-                      {link.label} →
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
+        <FaqList faqs={faqs} />
       </section>
     </>
   );
