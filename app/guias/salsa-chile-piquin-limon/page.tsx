@@ -321,14 +321,14 @@ export default function SalsaPiquinPage() {
         </div>
       </section>
 
-      <div className="bg-white border border-gray-100 rounded-xl p-5 space-y-3">
-        <p className="text-sm font-bold text-gray-900">¿Ya sabes cuánta gente va?</p>
+      <div className="bg-gray-50 border border-gray-100 rounded-xl p-5 space-y-3">
+        <p className="text-sm font-semibold text-gray-900">¿Ya sabes cuánta gente va?</p>
         <p className="text-sm text-gray-600">
           La calculadora te dice exactamente cuánta carne, tortillas, limones y más necesitas — para que no te falte nada.
         </p>
         <Link
           href="/"
-          className="inline-block bg-brasa text-white font-bold text-sm px-6 py-2.5 rounded-full hover:opacity-90 transition-opacity"
+          className="inline-block bg-brasa text-white font-medium text-sm px-6 py-2.5 rounded-lg hover:opacity-90 transition-opacity"
         >
           Ir a la calculadora →
         </Link>
