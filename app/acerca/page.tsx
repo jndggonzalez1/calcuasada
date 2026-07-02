@@ -72,7 +72,7 @@ export default function AcercaPage() {
         <p className="text-xs text-gray-500">Usa la calculadora y en menos de 15 segundos tienes la lista completa.</p>
         <Link
           href="/"
-          className="inline-block bg-brasa text-white font-medium text-sm px-6 py-2.5 rounded-lg hover:opacity-90 transition-colors"
+          className="inline-block border border-brasa text-brasa font-medium text-sm px-6 py-2.5 rounded-lg hover:bg-brasa/5 transition-colors"
         >
           Ir a la calculadora →
         </Link>
