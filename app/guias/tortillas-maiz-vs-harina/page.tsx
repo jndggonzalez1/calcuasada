@@ -28,8 +28,8 @@ export default function TortillasPage() {
       <article className="space-y-8 text-gray-700">
 
         <div className="text-center space-y-2">
-          <p className="text-xs font-semibold text-brasa uppercase tracking-wider">Guía completa</p>
-          <h1 className="text-2xl font-black text-gray-900 leading-tight">
+          <p className="text-xs font-medium text-gray-400 uppercase tracking-widest">Guía completa</p>
+          <h1 className="text-2xl font-bold text-gray-900 leading-tight">
             Tortillas de maíz vs tortillas de harina
           </h1>
           <p className="text-sm text-gray-500">12 min de lectura · Actualizado junio 2026</p>
@@ -37,8 +37,8 @@ export default function TortillasPage() {
 
         <VotosTortilla />
 
-        <div className="bg-brasa-light border border-brasa/20 rounded-2xl p-5 space-y-2">
-          <p className="text-sm font-black text-gray-900">Lo que necesitas saber:</p>
+        <div className="bg-gray-50 border border-gray-100 rounded-xl p-5 space-y-2">
+          <p className="text-sm font-semibold text-gray-900">Lo que necesitas saber:</p>
           <ul className="text-sm space-y-1 list-disc list-inside text-gray-700">
             <li>Son completamente diferentes en sabor, textura e historia</li>
             <li>El norte de México tiene tradición de harina; el centro y sur, de maíz</li>
@@ -49,13 +49,13 @@ export default function TortillasPage() {
 
         {/* ── SECCIÓN 1: DIFERENCIAS ── */}
         <section className="space-y-4">
-          <h2 className="text-xl font-black text-gray-900">Maíz vs harina: las diferencias reales</h2>
+          <h2 className="text-xl font-bold text-gray-900">Maíz vs harina: las diferencias reales</h2>
           <p className="text-sm leading-relaxed">
             Son dos productos completamente distintos que comparten nombre y función básica — envolver comida — pero que en textura, sabor, historia y uso son mundos aparte. Entender las diferencias te ayuda a saber cuándo usar cada una y por qué.
           </p>
 
           <div className="overflow-x-auto">
-            <table className="w-full text-xs border-collapse bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100">
+            <table className="w-full text-xs border-collapse bg-white rounded-xl overflow-hidden border border-gray-100">
               <thead>
                 <tr className="bg-carbon text-white">
                   <th className="text-left py-3 px-3 font-bold">Característica</th>
@@ -81,7 +81,7 @@ export default function TortillasPage() {
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-lg font-black text-gray-900">En sabor y textura son completamente diferentes</h2>
+          <h2 className="text-base font-semibold text-gray-900">En sabor y textura son completamente diferentes</h2>
           <p className="text-sm leading-relaxed">
             La tortilla de maíz tiene un sabor propio, intenso y particular — ese sabor a cal y maíz tostado que es inconfundible. No es un sabor neutro. Por eso las tortillas de maíz funcionan tan bien con rellenos de sabor fuerte: el chile guajillo de la barbacoa, la salsa de tomatillo del al pastor, el sabor profundo de la carnita sudada. El maíz compite con los rellenos y los complementa al mismo tiempo.
           </p>
@@ -91,21 +91,21 @@ export default function TortillasPage() {
           <p className="text-sm leading-relaxed">
             Pero aquí es donde entra el debate — y es un debate legítimo. La tortilla de maíz tatemada directamente en el asador, con las mismas brasas de la carne, agarra un ahumado natural que la tortilla de harina no tiene. Ese sabor ahumado del maíz con las brasas es algo que vale la pena experimentar, especialmente si creciste con la tortilla de maíz como tu referencia principal.
           </p>
-          <div className="bg-brasa-light border border-brasa/20 rounded-xl p-4 space-y-1">
+          <div className="bg-gray-50 border border-gray-100 rounded-xl p-4 space-y-1">
             <p className="text-xs font-bold text-brasa">La preferencia de Yeyito:</p>
             <p className="text-sm text-gray-700 italic">&ldquo;A mí personalmente me gusta la tortilla de maíz para la carne asada — y me gusta tatemar las tortillas directo en el asador con las brasas. El sabor ahumado que le da el carbón es increíble. Crecí en el norte donde la de harina es la norma, y la respeto, pero mi preferencia personal es el maíz. No digo que sea mejor — digo que a mí me convence más.&rdquo;</p>
           </div>
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-lg font-black text-gray-900">El debate que nadie gana — y por qué vale la pena probarlo tú mismo</h2>
+          <h2 className="text-base font-semibold text-gray-900">El debate que nadie gana — y por qué vale la pena probarlo tú mismo</h2>
           <p className="text-sm leading-relaxed">
             La discusión de tortilla de maíz vs tortilla de harina para carne asada es tan antigua como la carne asada misma, y no tiene una respuesta correcta. Depende de dónde creciste, qué tortilla pruebas más fresca, cómo la preparas y qué tan tatema la quieres.
           </p>
           <p className="text-sm leading-relaxed">
             Lo que sí hay que reconocer es que muchos de los que declaran una ganadora nunca han probado la otra bien preparada. Si eres del norte y siempre has comido de harina, prueba tatemarla en el mismo asador junto a la carne — el maíz caliente con manchas de brasa tiene una textura y un sabor completamente distinto a la tortilla de maíz fría de bolsa de supermercado. Y al revés: si eres del centro y siempre has comido de maíz, prueba una tortilla de harina recién hecha en comal, caliente y con manchas doradas — no la de plástico que venden empaquetada.
           </p>
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-2">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-2">
             <p className="text-sm font-bold text-gray-900">La propuesta: ponlas a prueba en la misma carne asada</p>
             <p className="text-sm text-gray-600 leading-relaxed">
               Compra un paquete de tortillas de harina y otro de maíz para tu próxima carne asada. Tatemar ambas directamente en las brasas al momento de servir — 30 segundos por lado, hasta que tengan manchas oscuras. Sirve la misma carne con cada tipo de tortilla y deja que tu gente decida. La discusión que se va a armar en la mesa vale lo que cuestan las tortillas extra.
@@ -114,7 +114,7 @@ export default function TortillasPage() {
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-lg font-black text-gray-900">¿Por qué el norte eligió la harina y el sur el maíz?</h2>
+          <h2 className="text-base font-semibold text-gray-900">¿Por qué el norte eligió la harina y el sur el maíz?</h2>
           <p className="text-sm leading-relaxed">
             Esto no fue una decisión arbitraria ni una cuestión de gusto — fue resultado de geografía, historia y disponibilidad de ingredientes. El maíz prospera en climas húmedos y tropicales, que son precisamente las condiciones del centro y sur de México, donde las civilizaciones mesoamericanas lo desarrollaron durante miles de años. En esas regiones el maíz siempre abundó y se convirtió en el centro de la alimentación.
           </p>
@@ -131,7 +131,7 @@ export default function TortillasPage() {
         {/* ── SECCIÓN 2: HISTORIA GENERAL ── */}
         <section className="space-y-4">
           <div className="border-l-4 border-brasa pl-4">
-            <h2 className="text-xl font-black text-gray-900">La historia de las tortillas en México</h2>
+            <h2 className="text-xl font-bold text-gray-900">La historia de las tortillas en México</h2>
             <p className="text-xs text-brasa font-semibold mt-1">Más de 10,000 años de historia</p>
           </div>
 
@@ -142,8 +142,8 @@ export default function TortillasPage() {
             La palabra "tortilla" es española — es el diminutivo de "torta" y significa literalmente "tortita pequeña". Los conquistadores españoles la usaron para describir lo que veían hacer a las mujeres indígenas: una masa aplastada y cocida en comal. Pero el alimento en sí tiene un nombre en náhuatl mucho más antiguo: <em>tlaxcalli</em>. Era el alimento básico del Imperio Azteca y de decenas de culturas anteriores a él.
           </p>
 
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-3">
-            <p className="text-sm font-black text-gray-900">La nixtamalización: el descubrimiento que lo cambió todo</p>
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-3">
+            <p className="text-sm font-semibold text-gray-900">La nixtamalización: el descubrimiento que lo cambió todo</p>
             <p className="text-sm text-gray-600 leading-relaxed">
               El proceso que hace posible la tortilla de maíz se llama nixtamalización — una palabra que viene del náhuatl <em>nextli</em> (ceniza de cal) y <em>tamalli</em> (masa). Consiste en cocer el maíz seco en agua con cal viva (hidróxido de calcio) durante horas, luego dejarlo reposar toda la noche y finalmente molerlo para obtener masa.
             </p>
@@ -168,7 +168,7 @@ export default function TortillasPage() {
         {/* ── SECCIÓN 3: HISTORIA TORTILLA DE HARINA ── */}
         <section className="space-y-4">
           <div className="border-l-4 border-brasa pl-4">
-            <h2 className="text-xl font-black text-gray-900">La historia de la tortilla de harina</h2>
+            <h2 className="text-xl font-bold text-gray-900">La historia de la tortilla de harina</h2>
             <p className="text-xs text-brasa font-semibold mt-1">400 años de identidad norteña</p>
           </div>
 
@@ -176,8 +176,8 @@ export default function TortillasPage() {
             La tortilla de harina es mucho más joven que la de maíz — nació en el siglo XVI, directamente del encuentro entre la tradición indígena de cocinar en comal y el trigo que llegó con los conquistadores españoles. Es, en ese sentido, uno de los pocos alimentos del mundo que puede llamarse genuinamente mestizo: técnica indígena, ingrediente europeo, identidad completamente mexicana.
           </p>
 
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-2">
-            <p className="text-sm font-black text-gray-900">El trigo llega al norte de México</p>
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-2">
+            <p className="text-sm font-semibold text-gray-900">El trigo llega al norte de México</p>
             <p className="text-sm text-gray-600 leading-relaxed">
               Hernán Cortés fue el primero en sembrar trigo en México — según las crónicas, un esclavo negro llamado Juan Garrido encontró granos de trigo entre un cargamento de arroz y los sembró cerca de la capital en 1523. Pero fue en el norte donde el trigo realmente se asentó. Las misiones franciscanas y jesuitas que se extendieron por Sonora, Chihuahua, Coahuila y Nuevo León a lo largo del siglo XVI y XVII necesitaban harina para el pan eucarístico y comenzaron a cultivar trigo sistemáticamente.
             </p>
@@ -190,8 +190,8 @@ export default function TortillasPage() {
             Hay un detalle técnico fundamental que diferencia la masa de harina de la de maíz: la grasa. La harina de trigo por sí sola no forma una masa que se pueda trabajar fácilmente — necesita grasa para que el gluten se relaje y la masa sea suave y elástica. En el norte colonial esa grasa era la manteca de cerdo, que los españoles también trajeron consigo. La fórmula clásica — harina, manteca, agua tibia y sal — se estableció hace cuatro siglos y prácticamente no ha cambiado desde entonces.
           </p>
 
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-2">
-            <p className="text-sm font-black text-gray-900">Sonora y la tortilla sobaquera</p>
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-2">
+            <p className="text-sm font-semibold text-gray-900">Sonora y la tortilla sobaquera</p>
             <p className="text-sm text-gray-600 leading-relaxed">
               Si hay un estado en México que puede reclamar la tortilla de harina como símbolo de identidad más que ningún otro, ese es Sonora. La tortilla sobaquera sonorense es legendaria — puede medir hasta 50 o 60 centímetros de diámetro, del tamaño de una llanta de bicicleta. Se llama "sobaquera" porque para estirarla bien hay que apoyarla en el antebrazo (el sobaco, en lenguaje coloquial) mientras se le da la vuelta con las manos.
             </p>
@@ -213,7 +213,7 @@ export default function TortillasPage() {
         {/* ── SECCIÓN 4: HISTORIA TORTILLA DE MAÍZ ── */}
         <section className="space-y-4">
           <div className="border-l-4 border-brasa pl-4">
-            <h2 className="text-xl font-black text-gray-900">La historia de la tortilla de maíz</h2>
+            <h2 className="text-xl font-bold text-gray-900">La historia de la tortilla de maíz</h2>
             <p className="text-xs text-brasa font-semibold mt-1">10,000 años de civilización</p>
           </div>
 
@@ -221,8 +221,8 @@ export default function TortillasPage() {
             La historia de la tortilla de maíz es, en muchos sentidos, la historia de México. No hay otro alimento en el mundo que haya acompañado a una civilización de manera tan continua y tan central durante tanto tiempo. Antes de que existiera Teotihuacán, antes de que existieran los mayas, antes de que existiera el Imperio Azteca — ya había tortillas de maíz.
           </p>
 
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-2">
-            <p className="text-sm font-black text-gray-900">Los orígenes: el maíz como primer cultivo</p>
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-2">
+            <p className="text-sm font-semibold text-gray-900">Los orígenes: el maíz como primer cultivo</p>
             <p className="text-sm text-gray-600 leading-relaxed">
               El maíz no existía en la naturaleza tal como lo conocemos hoy — fue creado por los pueblos indígenas de Mesoamérica a través de un proceso de selección y domesticación que tardó miles de años. Su ancestro es el teocintle, una planta silvestre de tallos pequeños y espigas delgadas con apenas unos granos. A través de 9,000 a 10,000 años de selección intencional — escogiendo siempre las plantas con mejores granos, más grandes y más nutritivos — los agricultores mesoamericanos transformaron el teocintle en el maíz que conocemos hoy.
             </p>
@@ -235,8 +235,8 @@ export default function TortillasPage() {
             Para los aztecas y los pueblos que los precedieron, el maíz no era solo un cultivo — era sagrado. El maíz era Centeotl, dios del maíz, y la leyenda del Quinto Sol cuenta que los humanos fueron creados de masa de maíz por Quetzalcóatl. No es una metáfora menor: en la cosmología mesoamericana, el ser humano y el maíz son literalmente la misma cosa, hechos del mismo material. Ninguna otra cultura en la historia ha integrado un alimento a su cosmología de manera tan profunda y literal.
           </p>
 
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-2">
-            <p className="text-sm font-black text-gray-900">La tortilla en el mundo azteca</p>
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-2">
+            <p className="text-sm font-semibold text-gray-900">La tortilla en el mundo azteca</p>
             <p className="text-sm text-gray-600 leading-relaxed">
               En el Códice Mendoza — un documento azteca del siglo XVI — aparece una de las referencias más detalladas sobre las tortillas en el mundo prehispánico. A los niños de 3 años se les daba media tortilla al día. A los 13 años ya recibían una tortilla y media. Los adultos consumían entre 2 y 3 tortillas por comida. Las tortillas también funcionaban como moneda de intercambio en los tianguis (mercados): se vendían en pilas y eran una unidad de medida de valor.
             </p>
@@ -249,8 +249,8 @@ export default function TortillasPage() {
             La Conquista española intentó desplazar el maíz por el trigo — el pan era símbolo de civilización cristiana para los europeos, y el maíz era símbolo de lo "salvaje" que querían erradicar. No lo lograron. El maíz era demasiado productivo, demasiado adaptado al clima mexicano y demasiado central a la vida cotidiana para desaparecer. Los pueblos indígenas siguieron cultivándolo y comiéndolo. Las clases populares mestizas lo adoptaron. Y eventualmente, el maíz y la tortilla se convirtieron en símbolo de resistencia cultural e identidad nacional.
           </p>
 
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-2">
-            <p className="text-sm font-black text-gray-900">La tortilladora: la máquina que cambió México</p>
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-2">
+            <p className="text-sm font-semibold text-gray-900">La tortilladora: la máquina que cambió México</p>
             <p className="text-sm text-gray-600 leading-relaxed">
               Hasta mediados del siglo XX, todas las tortillas de México se hacían a mano — el proceso manual que llevaba horas cada día. La industrialización cambió eso con la invención de la máquina tortilladora. La primera patente de una máquina para hacer tortillas fue registrada en México en 1904 por Everardo Rodríguez Arce, aunque las máquinas industriales masivas llegaron en los años 1940s y 1950s.
             </p>
@@ -267,7 +267,7 @@ export default function TortillasPage() {
         <AdBanner />
 
         <section className="space-y-4">
-          <h2 className="text-lg font-black text-gray-900">Preguntas frecuentes sobre tortillas</h2>
+          <h2 className="text-base font-semibold text-gray-900">Preguntas frecuentes sobre tortillas</h2>
           <div className="space-y-3">
             {[
               {
@@ -291,7 +291,7 @@ export default function TortillasPage() {
                 a: "El proceso de cocinar el maíz seco en agua con cal (hidróxido de calcio). Ablanda el maíz, lo hace más fácil de moler, aumenta su valor nutritivo liberando la niacina, y le da el sabor característico a la tortilla. Tiene más de 10,000 años y es uno de los descubrimientos gastronómicos más importantes de la humanidad."
               },
             ].map(({ q, a }, i) => (
-              <div key={i} className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+              <div key={i} className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
                 <p className="text-sm font-bold text-gray-900">{q}</p>
                 <p className="text-sm text-gray-600 leading-relaxed">{a}</p>
               </div>
@@ -299,29 +299,29 @@ export default function TortillasPage() {
           </div>
         </section>
 
-        <div className="bg-brasa text-white rounded-2xl p-5 text-center space-y-3">
-          <p className="font-black text-base">¿Cuántas tortillas necesitas para tu carne asada?</p>
-          <p className="text-sm text-white/80">La calculadora te dice exactamente cuántas tortillas, cuánta carne y todo lo demás para tu número de personas.</p>
+        <div className="bg-gray-50 border border-gray-100 rounded-xl p-5 text-center space-y-3">
+          <p className="text-sm font-semibold text-gray-900">¿Cuántas tortillas necesitas para tu carne asada?</p>
+          <p className="text-xs text-gray-500">La calculadora te dice exactamente cuántas tortillas, cuánta carne y todo lo demás para tu número de personas.</p>
           <Link
             href="/"
-            className="inline-block bg-white text-brasa font-bold text-sm px-6 py-2.5 rounded-full hover:bg-brasa-light transition-colors"
+            className="inline-block bg-brasa text-white font-medium text-sm px-6 py-2.5 rounded-lg hover:opacity-90 transition-colors"
           >
             Calcular cuánto necesito →
           </Link>
         </div>
 
         <section className="space-y-3">
-          <h2 className="text-base font-black text-gray-900">También te puede interesar</h2>
+          <h2 className="text-sm font-semibold text-gray-900">También te puede interesar</h2>
           <div className="grid gap-3">
-            <Link href="/guias/carne-asada-perfecta-monterrey" className="block bg-white border border-gray-100 rounded-xl p-4 shadow-sm hover:border-brasa/30 transition-all">
+            <Link href="/guias/carne-asada-perfecta-monterrey" className="block bg-white border border-gray-100 rounded-xl p-4 hover:border-gray-200 transition-all">
               <p className="text-sm font-bold text-gray-900">🥩 Cómo hacer una carne asada perfecta al estilo Monterrey</p>
               <p className="text-xs text-gray-500 mt-1">Cortes, carbón mesquite, técnica de sellado y errores comunes</p>
             </Link>
-            <Link href="/guias/guacamole-para-carne-asada" className="block bg-white border border-gray-100 rounded-xl p-4 shadow-sm hover:border-brasa/30 transition-all">
+            <Link href="/guias/guacamole-para-carne-asada" className="block bg-white border border-gray-100 rounded-xl p-4 hover:border-gray-200 transition-all">
               <p className="text-sm font-bold text-gray-900">🥑 Guacamole para carne asada</p>
               <p className="text-xs text-gray-500 mt-1">Receta clásica y el secreto para que no se ponga negro</p>
             </Link>
-            <Link href="/guias/salsa-verde-carne-asada" className="block bg-white border border-gray-100 rounded-xl p-4 shadow-sm hover:border-brasa/30 transition-all">
+            <Link href="/guias/salsa-verde-carne-asada" className="block bg-white border border-gray-100 rounded-xl p-4 hover:border-gray-200 transition-all">
               <p className="text-sm font-bold text-gray-900">🟢 Salsa verde para carne asada</p>
               <p className="text-xs text-gray-500 mt-1">Tatemada directo en el asador, lista en 15 minutos</p>
             </Link>

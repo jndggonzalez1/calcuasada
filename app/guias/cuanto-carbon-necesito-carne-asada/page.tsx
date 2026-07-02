@@ -13,15 +13,15 @@ export default function CuantoCarbonPage() {
     <article className="space-y-6 text-gray-700">
 
       <div className="text-center space-y-2">
-        <p className="text-xs font-semibold text-brasa uppercase tracking-wider">Guía completa</p>
-        <h1 className="text-2xl font-black text-gray-900 leading-tight">
+        <p className="text-xs font-medium text-gray-400 uppercase tracking-widest">Guía completa</p>
+        <h1 className="text-2xl font-bold text-gray-900 leading-tight">
           ¿Cuánto carbón necesito para mi carne asada? Guía completa
         </h1>
         <p className="text-sm text-gray-500">8 min de lectura · Actualizado mayo 2026</p>
       </div>
 
-      <div className="bg-brasa-light border border-brasa/20 rounded-2xl p-5 space-y-2">
-        <p className="text-sm font-black text-gray-900">Regla rápida:</p>
+      <div className="bg-gray-50 border border-gray-100 rounded-xl p-5 space-y-2">
+        <p className="text-sm font-semibold text-gray-900">Regla rápida:</p>
         <ul className="text-sm space-y-1 list-disc list-inside text-gray-700">
           <li>Asador chico (hasta 8 personas): <strong>3–4 kg en total</strong></li>
           <li>Asador mediano (hasta 15 personas): <strong>4–6 kg en total</strong></li>
@@ -32,7 +32,7 @@ export default function CuantoCarbonPage() {
       </div>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">Por qué es difícil calcular el carbón exacto</h2>
+        <h2 className="text-base font-semibold text-gray-900">Por qué es difícil calcular el carbón exacto</h2>
         <p className="text-sm leading-relaxed">
           El carbón es de esas cosas que todos calculan "a ojo" y casi siempre calculan mal — o les sobra mucho o se quedan cortos a la mitad del evento. La cantidad correcta depende de varios factores que pocas guías explican bien: el tipo de carbón que usas, el tamaño del asador, cuánta carne vas a cocinar, cuántas horas va a durar la reunión y el clima (en días de viento el carbón se consume mucho más rápido).
         </p>
@@ -44,7 +44,7 @@ export default function CuantoCarbonPage() {
       <AdBanner />
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">El asador manda, no el número de personas</h2>
+        <h2 className="text-base font-semibold text-gray-900">El asador manda, no el número de personas</h2>
         <p className="text-sm leading-relaxed">
           El error más común al calcular carbón es pensar que se escala directamente con el número de personas. No funciona así. El carbón lo consume el asador — su tamaño determina cuánto necesitas para alcanzar y mantener temperatura. Si tienes 8 o 15 personas con el mismo asador mediano, el consumo de carbón es prácticamente igual porque la superficie que calentar es la misma.
         </p>
@@ -54,34 +54,34 @@ export default function CuantoCarbonPage() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-lg font-black text-gray-900">Cuánto carbón según el tamaño de tu asador</h2>
+        <h2 className="text-base font-semibold text-gray-900">Cuánto carbón según el tamaño de tu asador</h2>
         <p className="text-sm leading-relaxed">Con carbón mesquite de buena calidad, estos son los rangos reales:</p>
 
         <div className="space-y-3">
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-2">
-            <h3 className="text-sm font-black text-gray-900">Asador chico — hasta 8 personas</h3>
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-2">
+            <h3 className="text-sm font-semibold text-gray-900">Asador chico — hasta 8 personas</h3>
             <p className="text-sm text-gray-600">Una parrillada estándar de 2–3 horas consume <strong>3–4 kg</strong> de mesquite. Si van a seguir echando carne hasta la noche, sube a 5–6 kg.</p>
           </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-2">
-            <h3 className="text-sm font-black text-gray-900">Asador mediano — 8 a 15 personas</h3>
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-2">
+            <h3 className="text-sm font-semibold text-gray-900">Asador mediano — 8 a 15 personas</h3>
             <p className="text-sm text-gray-600">El más común en casas. Para una tarde de 3–4 horas necesitas <strong>4–6 kg</strong>. Si la reunión se extiende o hay muchos cortes gruesos como costilla, lleva 7–8 kg.</p>
           </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-2">
-            <h3 className="text-sm font-black text-gray-900">Asador grande — 15 a 25 personas</h3>
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-2">
+            <h3 className="text-sm font-semibold text-gray-900">Asador grande — 15 a 25 personas</h3>
             <p className="text-sm text-gray-600">Requiere más carbón para calentar toda la superficie. Calcula <strong>6–9 kg</strong> para una sesión normal. Ten un costal de respaldo.</p>
           </div>
-          <div className="bg-brasa-light border border-brasa/20 rounded-xl p-4 space-y-2">
-            <h3 className="text-sm font-black text-gray-900">Más de 25 personas — dos asadores</h3>
+          <div className="bg-gray-50 border border-gray-100 rounded-xl p-4 space-y-2">
+            <h3 className="text-sm font-semibold text-gray-900">Más de 25 personas — dos asadores</h3>
             <p className="text-sm text-gray-600">Con más de 25 personas un solo asador se convierte en un cuello de botella. Lo correcto es tener dos asadores medianos funcionando en paralelo. Cada uno consume lo suyo — suma los kilos de cada uno por separado.</p>
           </div>
         </div>
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-lg font-black text-gray-900">Tabla de referencia rápida</h2>
+        <h2 className="text-base font-semibold text-gray-900">Tabla de referencia rápida</h2>
 
         <div className="overflow-x-auto">
-          <table className="w-full text-xs border-collapse bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100">
+          <table className="w-full text-xs border-collapse bg-white rounded-xl overflow-hidden border border-gray-100">
             <thead>
               <tr className="bg-carbon text-white">
                 <th className="text-left py-3 px-3 font-bold">Personas</th>
@@ -124,26 +124,26 @@ export default function CuantoCarbonPage() {
       <AdBanner />
 
       <section className="space-y-4">
-        <h2 className="text-lg font-black text-gray-900">Carbón mesquite vs encino vs industrial</h2>
+        <h2 className="text-base font-semibold text-gray-900">Carbón mesquite vs encino vs industrial</h2>
 
         <div className="space-y-3">
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
-            <h3 className="text-sm font-black text-gray-900">🌵 Carbón de mezquite — el mejor</h3>
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
+            <h3 className="text-sm font-semibold text-gray-900">🌵 Carbón de mezquite — el mejor</h3>
             <p className="text-sm text-gray-600">Alta densidad, larga duración, temperatura superior y ese sabor ahumado característico del norte. Es más caro pero necesitas menos cantidad. Búscalo en mercados tradicionales, carnicerías del barrio o tiendas como Costco. En Monterrey lo encuentras en casi cualquier ferretería de colonia.</p>
           </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
-            <h3 className="text-sm font-black text-gray-900">🌳 Carbón de encino — segunda opción</h3>
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
+            <h3 className="text-sm font-semibold text-gray-900">🌳 Carbón de encino — segunda opción</h3>
             <p className="text-sm text-gray-600">Muy buena calidad, ligeramente menos denso que el mesquite. Más común en el centro del país. Si no consigues mesquite, el encino es perfectamente válido. Aumenta la cantidad calculada en un 15% porque se consume un poco más rápido.</p>
           </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
-            <h3 className="text-sm font-black text-gray-900">🏭 Carbón industrial o en briquetas — evítalo</h3>
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
+            <h3 className="text-sm font-semibold text-gray-900">🏭 Carbón industrial o en briquetas — evítalo</h3>
             <p className="text-sm text-gray-600">Menor temperatura, se consume más rápido y puede afectar el sabor de la carne. Si no tienes otra opción, aumenta la cantidad calculada en un 40%. Las briquetas tipo Kingsford son cómodas pero definitivamente no son la opción para una carne asada seria.</p>
           </div>
         </div>
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">Cómo encender el carbón correctamente paso a paso</h2>
+        <h2 className="text-base font-semibold text-gray-900">Cómo encender el carbón correctamente paso a paso</h2>
         <ol className="text-sm space-y-2.5 leading-relaxed list-decimal list-inside">
           <li><strong>Forma una pirámide.</strong> Apila el carbón en forma de cono en el centro del asador. Nunca lo extiendas plano desde el inicio — así no prende bien.</li>
           <li><strong>Coloca el encendedor.</strong> Pon 2 o 3 pastillas de parafina (combustible sólido) entre las piezas de carbón. También funciona papel periódico arrugado.</li>
@@ -155,7 +155,7 @@ export default function CuantoCarbonPage() {
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">Cómo mantener el calor sin desperdiciar carbón</h2>
+        <h2 className="text-base font-semibold text-gray-900">Cómo mantener el calor sin desperdiciar carbón</h2>
         <p className="text-sm leading-relaxed">
           Una vez que tienes las brasas, mantenerlas es más fácil de lo que parece. El error más común es agregar carbón nuevo directamente sobre las brasas viejas — el nuevo carbón baja la temperatura y tarda en encender.
         </p>
@@ -168,7 +168,7 @@ export default function CuantoCarbonPage() {
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">Señales de que te está faltando carbón</h2>
+        <h2 className="text-base font-semibold text-gray-900">Señales de que te está faltando carbón</h2>
         <ul className="text-sm space-y-2 list-disc list-inside leading-relaxed">
           <li>La carne ya no sella — queda gris en lugar de dorarse rápido</li>
           <li>El carbón se ve completamente gris sin partes naranjas visibles</li>
@@ -181,7 +181,7 @@ export default function CuantoCarbonPage() {
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">Dónde comprar carbón mesquite en Monterrey</h2>
+        <h2 className="text-base font-semibold text-gray-900">Dónde comprar carbón mesquite en Monterrey</h2>
         <p className="text-sm leading-relaxed">
           En Monterrey el carbón mesquite es fácil de conseguir. Los mejores lugares:
         </p>
@@ -196,25 +196,25 @@ export default function CuantoCarbonPage() {
 
       <AdBanner />
 
-      <div className="bg-brasa text-white rounded-2xl p-5 text-center space-y-3">
-        <p className="font-black text-base">¿Ya tienes el carbón listo? Ahora calcula la carne.</p>
-        <p className="text-sm text-white/80">La calculadora te dice exactamente cuántos kilos de cada corte necesitas para tu grupo.</p>
+      <div className="bg-gray-50 border border-gray-100 rounded-xl p-5 text-center space-y-3">
+        <p className="text-sm font-semibold text-gray-900">¿Ya tienes el carbón listo? Ahora calcula la carne.</p>
+        <p className="text-xs text-gray-500">La calculadora te dice exactamente cuántos kilos de cada corte necesitas para tu grupo.</p>
         <Link
           href="/"
-          className="inline-block bg-white text-brasa font-bold text-sm px-6 py-2.5 rounded-full hover:bg-brasa-light transition-colors"
+          className="inline-block bg-brasa text-white font-medium text-sm px-6 py-2.5 rounded-lg hover:opacity-90 transition-colors"
         >
           Calcular cuánta carne necesito →
         </Link>
       </div>
 
       <section className="space-y-3">
-        <h2 className="text-base font-black text-gray-900">También te puede interesar</h2>
+        <h2 className="text-sm font-semibold text-gray-900">También te puede interesar</h2>
         <div className="grid gap-3">
-          <Link href="/guias/carne-asada-perfecta-monterrey" className="block bg-white border border-gray-100 rounded-xl p-4 shadow-sm hover:border-brasa/30 transition-all">
+          <Link href="/guias/carne-asada-perfecta-monterrey" className="block bg-white border border-gray-100 rounded-xl p-4 hover:border-gray-200 transition-all">
             <p className="text-sm font-bold text-gray-900">🥩 Cómo hacer una carne asada perfecta al estilo Monterrey</p>
             <p className="text-xs text-gray-500 mt-1">Los mejores cortes, técnica y errores que debes evitar</p>
           </Link>
-          <Link href="/guias/lista-compras-carne-asada-completa" className="block bg-white border border-gray-100 rounded-xl p-4 shadow-sm hover:border-brasa/30 transition-all">
+          <Link href="/guias/lista-compras-carne-asada-completa" className="block bg-white border border-gray-100 rounded-xl p-4 hover:border-gray-200 transition-all">
             <p className="text-sm font-bold text-gray-900">🛒 Lista de compras completa para carne asada</p>
             <p className="text-xs text-gray-500 mt-1">Todo lo que necesitas comprar sin olvidar nada</p>
           </Link>

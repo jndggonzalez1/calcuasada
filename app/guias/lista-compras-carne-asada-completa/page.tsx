@@ -13,15 +13,15 @@ export default function ListaComprasPage() {
     <article className="space-y-6 text-gray-700">
 
       <div className="text-center space-y-2">
-        <p className="text-xs font-semibold text-brasa uppercase tracking-wider">Guía completa</p>
-        <h1 className="text-2xl font-black text-gray-900 leading-tight">
+        <p className="text-xs font-medium text-gray-400 uppercase tracking-widest">Guía completa</p>
+        <h1 className="text-2xl font-bold text-gray-900 leading-tight">
           Lista de compras completa para carne asada: no olvides nada
         </h1>
         <p className="text-sm text-gray-500">7 min de lectura · Actualizado mayo 2026</p>
       </div>
 
-      <div className="bg-brasa-light border border-brasa/20 rounded-2xl p-5 space-y-2">
-        <p className="text-sm font-black text-gray-900">Lo que más se olvida:</p>
+      <div className="bg-gray-50 border border-gray-100 rounded-xl p-5 space-y-2">
+        <p className="text-sm font-semibold text-gray-900">Lo que más se olvida:</p>
         <ul className="text-sm space-y-1 list-disc list-inside text-gray-700">
           <li>Servilletas — siempre faltan</li>
           <li>Bolsas de basura — nadie las piensa hasta que hacen falta</li>
@@ -32,22 +32,22 @@ export default function ListaComprasPage() {
       </div>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">Las carnes: cómo pedirlas en la carnicería</h2>
+        <h2 className="text-base font-semibold text-gray-900">Las carnes: cómo pedirlas en la carnicería</h2>
         <p className="text-sm leading-relaxed">
           La carnicería es la primera parada y la más importante. Llega con tiempo — los sábados por la mañana hay fila en cualquier carnicería buena. Si puedes, llama un día antes para apartar la carne y asegurarte de que tienen lo que necesitas.
         </p>
 
         <div className="space-y-3">
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
-            <h3 className="text-sm font-black text-gray-900">Arrachera</h3>
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
+            <h3 className="text-sm font-semibold text-gray-900">Arrachera</h3>
             <p className="text-sm text-gray-600">Pide "<strong>arrachera suavizada</strong>" — ya viene lista para la parrilla sin tener que marinar. Calcula 250–300g por adulto hombre, 180–230g por mujer. Si no sabes exactamente cuántos son, usa la calculadora de Calcuasada para el número exacto.</p>
           </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
-            <h3 className="text-sm font-black text-gray-900">Costilla de res</h3>
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
+            <h3 className="text-sm font-semibold text-gray-900">Costilla de res</h3>
             <p className="text-sm text-gray-600">Pide "<strong>costilla corta</strong>" o "short rib". Si la quieres más manejable en la parrilla, pide que la corten en trozos individuales. Agrega esta opción a la campechana para darle más sabor.</p>
           </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
-            <h3 className="text-sm font-black text-gray-900">Pollo, salchicha y queso</h3>
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
+            <h3 className="text-sm font-semibold text-gray-900">Pollo, salchicha y queso</h3>
             <p className="text-sm text-gray-600">Si vas a incluir más opciones: el pollo en piezas o en trozos marinados. La salchicha regular o de pavo en presentación de paquete. El queso: panela o Oaxaca para derretir en tortilla, queso para asar (tipo "asadero" o queso de parrilla).</p>
           </div>
         </div>
@@ -56,7 +56,7 @@ export default function ListaComprasPage() {
       <AdBanner />
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">Acompañantes esenciales</h2>
+        <h2 className="text-base font-semibold text-gray-900">Acompañantes esenciales</h2>
         <p className="text-sm leading-relaxed">
           Los acompañantes son lo que convierte la carne asada en una experiencia completa. Aquí no hay atajos — compra de buena calidad y en cantidad suficiente.
         </p>
@@ -95,12 +95,12 @@ export default function ListaComprasPage() {
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">Las bebidas: cuánto comprar según el grupo</h2>
+        <h2 className="text-base font-semibold text-gray-900">Las bebidas: cuánto comprar según el grupo</h2>
         <p className="text-sm leading-relaxed">
           Las bebidas son el segundo mayor gasto después de la carne. La regla general para bebidas alcohólicas es que los adultos consumen en promedio 2–3 cervezas en las primeras 2 horas y 1–2 más por cada hora adicional. Para grupos de trabajo o eventos mixtos, baja estas estimaciones.
         </p>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs border-collapse bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100">
+          <table className="w-full text-xs border-collapse bg-white rounded-xl overflow-hidden border border-gray-100">
             <thead>
               <tr className="bg-carbon text-white">
                 <th className="text-left py-3 px-3 font-bold">Bebida</th>
@@ -143,11 +143,11 @@ export default function ListaComprasPage() {
       <AdBanner />
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">Lo que siempre se olvida</h2>
+        <h2 className="text-base font-semibold text-gray-900">Lo que siempre se olvida</h2>
         <p className="text-sm leading-relaxed">
           Esta sección es la razón principal de esta guía. Todo el mundo recuerda la carne y las tortillas. Pero estas cosas siempre se olvidan y cuando hacen falta ya no hay tiempo de ir al super:
         </p>
-        <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-2">
+        <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-2">
           <div className="text-sm space-y-2">
             <div className="flex gap-2 items-start">
               <span className="text-brasa font-bold flex-shrink-0">!</span>
@@ -182,7 +182,7 @@ export default function ListaComprasPage() {
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">Condimentos que no pueden faltar</h2>
+        <h2 className="text-base font-semibold text-gray-900">Condimentos que no pueden faltar</h2>
         <ul className="text-sm space-y-1.5 list-disc list-inside leading-relaxed">
           <li><strong>Sal de grano</strong> — La estrella. No uses sal fina para la carne.</li>
           <li><strong>Pimienta negra molida</strong> — Complemento sencillo para la carne antes de parrilla.</li>
@@ -195,7 +195,7 @@ export default function ListaComprasPage() {
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">El carbón y el equipo de parrilla</h2>
+        <h2 className="text-base font-semibold text-gray-900">El carbón y el equipo de parrilla</h2>
         <ul className="text-sm space-y-1.5 list-disc list-inside leading-relaxed">
           <li><strong>Carbón mesquite</strong> — 1 a 1.5 kg por persona para un evento de 3–4 horas. Siempre compra 20% extra.</li>
           <li><strong>Pastillas de parafina o combustible sólido</strong> — Para encender sin químicos.</li>
@@ -210,10 +210,10 @@ export default function ListaComprasPage() {
       <AdBanner />
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">Qué comprar el día anterior vs el mismo día</h2>
+        <h2 className="text-base font-semibold text-gray-900">Qué comprar el día anterior vs el mismo día</h2>
         <div className="grid gap-3">
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-2">
-            <h3 className="text-sm font-black text-gray-900">📅 El día anterior</h3>
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-2">
+            <h3 className="text-sm font-semibold text-gray-900">📅 El día anterior</h3>
             <ul className="text-sm space-y-1 list-disc list-inside text-gray-600">
               <li>Carbón — no se echa a perder y es lo más pesado</li>
               <li>Bebidas — para que enfríen bien en hielo</li>
@@ -223,8 +223,8 @@ export default function ListaComprasPage() {
               <li>Frijoles (si los vas a hacer desde cero)</li>
             </ul>
           </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-2">
-            <h3 className="text-sm font-black text-gray-900">🌅 El mismo día (en la mañana)</h3>
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-2">
+            <h3 className="text-sm font-semibold text-gray-900">🌅 El mismo día (en la mañana)</h3>
             <ul className="text-sm space-y-1 list-disc list-inside text-gray-600">
               <li>La carne — para que esté fresca</li>
               <li>Tortillas de harina — cómpralas en la tortillería</li>
@@ -238,10 +238,10 @@ export default function ListaComprasPage() {
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">Checklist completo — para imprimir o guardar</h2>
+        <h2 className="text-base font-semibold text-gray-900">Checklist completo — para imprimir o guardar</h2>
         <div className="bg-gray-50 rounded-xl p-4 space-y-4 text-sm">
           <div>
-            <p className="font-black text-gray-900 mb-2">🥩 CARNES</p>
+            <p className="font-semibold text-gray-900 mb-2">🥩 CARNES</p>
             <div className="space-y-1 text-gray-700">
               <p>☐ Arrachera (suavizada)</p>
               <p>☐ Costilla de res (corta)</p>
@@ -252,7 +252,7 @@ export default function ListaComprasPage() {
             </div>
           </div>
           <div className="border-t border-gray-200 pt-3">
-            <p className="font-black text-gray-900 mb-2">🌮 ACOMPAÑANTES</p>
+            <p className="font-semibold text-gray-900 mb-2">🌮 ACOMPAÑANTES</p>
             <div className="space-y-1 text-gray-700">
               <p>☐ Tortillas de harina</p>
               <p>☐ Cebolla (blanca y cambray)</p>
@@ -265,7 +265,7 @@ export default function ListaComprasPage() {
             </div>
           </div>
           <div className="border-t border-gray-200 pt-3">
-            <p className="font-black text-gray-900 mb-2">🍺 BEBIDAS</p>
+            <p className="font-semibold text-gray-900 mb-2">🍺 BEBIDAS</p>
             <div className="space-y-1 text-gray-700">
               <p>☐ Cerveza</p>
               <p>☐ Agua natural</p>
@@ -274,7 +274,7 @@ export default function ListaComprasPage() {
             </div>
           </div>
           <div className="border-t border-gray-200 pt-3">
-            <p className="font-black text-gray-900 mb-2">🔥 PARRILLA Y CARBÓN</p>
+            <p className="font-semibold text-gray-900 mb-2">🔥 PARRILLA Y CARBÓN</p>
             <div className="space-y-1 text-gray-700">
               <p>☐ Carbón mesquite</p>
               <p>☐ Pastillas de parafina / combustible sólido</p>
@@ -285,7 +285,7 @@ export default function ListaComprasPage() {
             </div>
           </div>
           <div className="border-t border-gray-200 pt-3">
-            <p className="font-black text-gray-900 mb-2">🧂 CONDIMENTOS</p>
+            <p className="font-semibold text-gray-900 mb-2">🧂 CONDIMENTOS</p>
             <div className="space-y-1 text-gray-700">
               <p>☐ Sal de grano</p>
               <p>☐ Pimienta negra</p>
@@ -295,7 +295,7 @@ export default function ListaComprasPage() {
             </div>
           </div>
           <div className="border-t border-gray-200 pt-3">
-            <p className="font-black text-gray-900 mb-2">🗑️ LO QUE SE OLVIDA</p>
+            <p className="font-semibold text-gray-900 mb-2">🗑️ LO QUE SE OLVIDA</p>
             <div className="space-y-1 text-gray-700">
               <p>☐ Servilletas (muchas)</p>
               <p>☐ Platos desechables</p>
@@ -310,25 +310,25 @@ export default function ListaComprasPage() {
         </div>
       </section>
 
-      <div className="bg-brasa text-white rounded-2xl p-5 text-center space-y-3">
-        <p className="font-black text-base">¿Cuánta carne exactamente necesitas?</p>
-        <p className="text-sm text-white/80">Usa la calculadora para saber los kilos exactos según cuántos son y qué tan tragones son.</p>
+      <div className="bg-gray-50 border border-gray-100 rounded-xl p-5 text-center space-y-3">
+        <p className="text-sm font-semibold text-gray-900">¿Cuánta carne exactamente necesitas?</p>
+        <p className="text-xs text-gray-500">Usa la calculadora para saber los kilos exactos según cuántos son y qué tan tragones son.</p>
         <Link
           href="/"
-          className="inline-block bg-white text-brasa font-bold text-sm px-6 py-2.5 rounded-full hover:bg-brasa-light transition-colors"
+          className="inline-block bg-brasa text-white font-medium text-sm px-6 py-2.5 rounded-lg hover:opacity-90 transition-colors"
         >
           Calcular exactamente cuánto necesito →
         </Link>
       </div>
 
       <section className="space-y-3">
-        <h2 className="text-base font-black text-gray-900">También te puede interesar</h2>
+        <h2 className="text-sm font-semibold text-gray-900">También te puede interesar</h2>
         <div className="grid gap-3">
-          <Link href="/guias/carne-asada-perfecta-monterrey" className="block bg-white border border-gray-100 rounded-xl p-4 shadow-sm hover:border-brasa/30 transition-all">
+          <Link href="/guias/carne-asada-perfecta-monterrey" className="block bg-white border border-gray-100 rounded-xl p-4 hover:border-gray-200 transition-all">
             <p className="text-sm font-bold text-gray-900">🥩 Cómo hacer una carne asada perfecta al estilo Monterrey</p>
             <p className="text-xs text-gray-500 mt-1">Los mejores cortes, técnica y errores que debes evitar</p>
           </Link>
-          <Link href="/guias/cuanto-carbon-necesito-carne-asada" className="block bg-white border border-gray-100 rounded-xl p-4 shadow-sm hover:border-brasa/30 transition-all">
+          <Link href="/guias/cuanto-carbon-necesito-carne-asada" className="block bg-white border border-gray-100 rounded-xl p-4 hover:border-gray-200 transition-all">
             <p className="text-sm font-bold text-gray-900">🔥 ¿Cuánto carbón necesito para mi carne asada?</p>
             <p className="text-xs text-gray-500 mt-1">Fórmula exacta por número de personas y horas de evento</p>
           </Link>

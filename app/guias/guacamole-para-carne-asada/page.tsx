@@ -56,15 +56,15 @@ export default function GuacamolePage() {
       <article className="space-y-6 text-gray-700">
 
       <div className="text-center space-y-2">
-        <p className="text-xs font-semibold text-brasa uppercase tracking-wider">Receta de la casa</p>
-        <h1 className="text-2xl font-black text-gray-900 leading-tight">
+        <p className="text-xs font-medium text-gray-400 uppercase tracking-widest">Receta de la casa</p>
+        <h1 className="text-2xl font-bold text-gray-900 leading-tight">
           Guacamole para carne asada
         </h1>
         <p className="text-sm text-gray-500">7 min de lectura · Actualizado junio 2026</p>
       </div>
 
-      <div className="bg-brasa-light border border-brasa/20 rounded-2xl p-5 space-y-2">
-        <p className="text-sm font-black text-gray-900">Lo más importante:</p>
+      <div className="bg-gray-50 border border-gray-100 rounded-xl p-5 space-y-2">
+        <p className="text-sm font-semibold text-gray-900">Lo más importante:</p>
         <ul className="text-sm space-y-1 list-disc list-inside text-gray-700">
           <li>El aguacate tiene que estar maduro — si está duro, no hay receta que lo salve</li>
           <li>Limón abundante es el ingrediente más importante para el sabor Y para que no se oxide</li>
@@ -74,7 +74,7 @@ export default function GuacamolePage() {
       </div>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">El guacamole perfecto para carne asada</h2>
+        <h2 className="text-base font-semibold text-gray-900">El guacamole perfecto para carne asada</h2>
         <p className="text-sm leading-relaxed">
           El guacamole para carne asada no es igual al que sirven en los restaurantes de lujo — ese suele quedar muy fino, casi como una crema. El de carne asada tiene más personalidad: es más rústico, con pedazos de aguacate que se sienten, un toque generoso de limón y suficiente chile para que se note.
         </p>
@@ -87,20 +87,20 @@ export default function GuacamolePage() {
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">Cómo elegir aguacates para guacamole</h2>
+        <h2 className="text-base font-semibold text-gray-900">Cómo elegir aguacates para guacamole</h2>
         <p className="text-sm leading-relaxed">
           Este es el paso más importante de toda la receta. Un aguacate que no está maduro es imposible de convertir en buen guacamole — quedará duro, sin sabor y con textura de jabón. Un aguacate demasiado maduro huele raro y puede tener manchas negras por dentro.
         </p>
         <div className="space-y-3">
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
             <p className="text-sm font-bold text-gray-900">La prueba del tacto</p>
             <p className="text-sm text-gray-600">Presiona suavemente con el pulgar. Si cede ligeramente pero no se hunde, está perfecto. Si está duro como una pelota de beisbol, necesita más días. Si se hunde mucho y la piel se arruga, está pasado.</p>
           </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
             <p className="text-sm font-bold text-gray-900">La prueba del rabo</p>
             <p className="text-sm text-gray-600">Quita el pequeño rabo del aguacate (esa punta verde en la parte de arriba). Si debajo hay color verde brillante, está listo. Si está café oscuro, el aguacate está pasado o tiene manchas negras por dentro. Si está duro y no sale, necesita más días.</p>
           </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
             <p className="text-sm font-bold text-gray-900">El color de la piel</p>
             <p className="text-sm text-gray-600">El aguacate Hass (el más común en México para guacamole) está maduro cuando la piel se pone de un color verde muy oscuro, casi negro. Si la piel todavía está verde brillante, le faltan días.</p>
           </div>
@@ -114,10 +114,10 @@ export default function GuacamolePage() {
       <AdBanner />
 
       <section className="space-y-4">
-        <h2 className="text-lg font-black text-gray-900">Ingredientes</h2>
+        <h2 className="text-base font-semibold text-gray-900">Ingredientes</h2>
         <p className="text-sm text-gray-500">Para 6 a 8 personas (como acompañante de carne asada).</p>
 
-        <div className="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm">
+        <div className="bg-white border border-gray-100 rounded-xl overflow-hidden">
           {[
             { emoji: "🥑", cantidad: "3 aguacates",   ingrediente: "Hass maduros — la variedad que se pone negra cuando madura" },
             { emoji: "🍋", cantidad: "2 limones",      ingrediente: "Jugo abundante — sabor y antioxidante natural" },
@@ -138,7 +138,7 @@ export default function GuacamolePage() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-lg font-black text-gray-900">Preparación</h2>
+        <h2 className="text-base font-semibold text-gray-900">Preparación</h2>
 
         <div className="space-y-3">
           {[
@@ -169,7 +169,7 @@ export default function GuacamolePage() {
             },
           ].map(({ n, titulo, texto }) => (
             <div key={n} className="flex gap-4">
-              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brasa text-white font-black text-sm flex items-center justify-center mt-0.5">
+              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brasa text-white font-bold text-sm flex items-center justify-center mt-0.5">
                 {n}
               </div>
               <div className="space-y-1">
@@ -183,8 +183,8 @@ export default function GuacamolePage() {
 
       <AdBanner />
 
-      <section className="bg-brasa-light border border-brasa/20 rounded-2xl p-5 space-y-3">
-        <p className="text-sm font-black text-gray-900">El secreto para que no se ponga negro</p>
+      <section className="bg-gray-50 border border-gray-100 rounded-xl p-5 space-y-3">
+        <p className="text-sm font-semibold text-gray-900">El secreto para que no se ponga negro</p>
         <p className="text-sm leading-relaxed text-gray-700">
           El guacamole se pone negro por oxidación — el aguacate reacciona con el oxígeno del aire. El limón ralentiza este proceso, pero no lo detiene completamente.
         </p>
@@ -197,12 +197,12 @@ export default function GuacamolePage() {
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">Cuánto guacamole preparar por persona</h2>
+        <h2 className="text-base font-semibold text-gray-900">Cuánto guacamole preparar por persona</h2>
         <p className="text-sm leading-relaxed">
           Para carne asada, el guacamole es un acompañante — no el plato principal. Estas son las cantidades para que alcance sin desperdiciar:
         </p>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs border-collapse bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100">
+          <table className="w-full text-xs border-collapse bg-white rounded-xl overflow-hidden border border-gray-100">
             <thead>
               <tr className="bg-carbon text-white">
                 <th className="text-left py-3 px-3 font-bold">Personas</th>
@@ -218,7 +218,7 @@ export default function GuacamolePage() {
                 <td className="py-2.5 px-3">2 limones</td>
                 <td className="py-2.5 px-3">1 a 2</td>
               </tr>
-              <tr className="bg-brasa-light">
+              <tr className="bg-brasa/5">
                 <td className="py-2.5 px-3 font-bold">10 a 12</td>
                 <td className="py-2.5 px-3">4 a 5 aguacates</td>
                 <td className="py-2.5 px-3">3 limones</td>
@@ -243,21 +243,21 @@ export default function GuacamolePage() {
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">Variaciones clásicas</h2>
+        <h2 className="text-base font-semibold text-gray-900">Variaciones clásicas</h2>
         <div className="space-y-3">
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
             <p className="text-sm font-bold text-gray-900">Guacamole con jitomate</p>
             <p className="text-sm text-gray-600">Agrega 1 jitomate picado sin semillas (para que no suelten líquido). Le da color, textura y un sabor ligeramente más ácido y fresco. Es la versión que más se conoce en el centro del país.</p>
           </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
             <p className="text-sm font-bold text-gray-900">Guacamole con granada</p>
             <p className="text-sm text-gray-600">Agrega granos de granada al servir (no al mezclar). Le da un crujido y un toque dulce que contrasta muy bien con el picante del chile. Se ve muy bonito en el tazón también.</p>
           </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
             <p className="text-sm font-bold text-gray-900">Guacamole con mango</p>
             <p className="text-sm text-gray-600">Agrega ¼ de mango pelado y picado en cubos pequeños. El dulce del mango con el picante del chile es una combinación excelente, especialmente en carnes asadas de verano.</p>
           </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
             <p className="text-sm font-bold text-gray-900">Guacamole tatemado</p>
             <p className="text-sm text-gray-600">Tatema los chiles y la cebolla directamente en el asador antes de picar y agregar al guacamole. El ahumado del asador le da una dimensión completamente diferente — más profundo y con ese toque de carbón que va muy bien con la carne asada.</p>
           </div>
@@ -267,7 +267,7 @@ export default function GuacamolePage() {
       <AdBanner />
 
       <section className="space-y-4">
-        <h2 className="text-lg font-black text-gray-900">Preguntas frecuentes sobre guacamole</h2>
+        <h2 className="text-base font-semibold text-gray-900">Preguntas frecuentes sobre guacamole</h2>
         <div className="space-y-3">
           {[
             {
@@ -291,7 +291,7 @@ export default function GuacamolePage() {
               a: "El guacamole sin cilantro sigue estando bueno — el limón, la cebolla y el chile son los sabores principales. Si no tienes o no te gusta el cilantro, simplemente omítelo. No lo sustituyas por perejil — el sabor cambia completamente y no va bien con aguacate."
             },
           ].map(({ q, a }, i) => (
-            <div key={i} className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+            <div key={i} className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
               <p className="text-sm font-bold text-gray-900">{q}</p>
               <p className="text-sm text-gray-600 leading-relaxed">{a}</p>
             </div>
@@ -299,29 +299,29 @@ export default function GuacamolePage() {
         </div>
       </section>
 
-      <div className="bg-brasa text-white rounded-2xl p-5 text-center space-y-3">
-        <p className="font-black text-base">¿Ya tienes el guacamole? Ahora calcula todo lo demás.</p>
-        <p className="text-sm text-white/80">La calculadora te dice exactamente cuánta carne, tortillas, bebidas y más necesitas para tu grupo.</p>
+      <div className="bg-gray-50 border border-gray-100 rounded-xl p-5 text-center space-y-3">
+        <p className="text-sm font-semibold text-gray-900">¿Ya tienes el guacamole? Ahora calcula todo lo demás.</p>
+        <p className="text-xs text-gray-500">La calculadora te dice exactamente cuánta carne, tortillas, bebidas y más necesitas para tu grupo.</p>
         <Link
           href="/"
-          className="inline-block bg-white text-brasa font-bold text-sm px-6 py-2.5 rounded-full hover:bg-brasa-light transition-colors"
+          className="inline-block bg-brasa text-white font-medium text-sm px-6 py-2.5 rounded-lg hover:opacity-90 transition-colors"
         >
           Calcular cuánto necesito →
         </Link>
       </div>
 
       <section className="space-y-3">
-        <h2 className="text-base font-black text-gray-900">También te puede interesar</h2>
+        <h2 className="text-sm font-semibold text-gray-900">También te puede interesar</h2>
         <div className="grid gap-3">
-          <Link href="/guias/salsa-verde-carne-asada" className="block bg-white border border-gray-100 rounded-xl p-4 shadow-sm hover:border-brasa/30 transition-all">
+          <Link href="/guias/salsa-verde-carne-asada" className="block bg-white border border-gray-100 rounded-xl p-4 hover:border-gray-200 transition-all">
             <p className="text-sm font-bold text-gray-900">🟢 Salsa verde para carne asada</p>
             <p className="text-xs text-gray-500 mt-1">Tomatillo tatemado — el complemento perfecto para el guacamole</p>
           </Link>
-          <Link href="/guias/como-marinar-arrachera" className="block bg-white border border-gray-100 rounded-xl p-4 shadow-sm hover:border-brasa/30 transition-all">
+          <Link href="/guias/como-marinar-arrachera" className="block bg-white border border-gray-100 rounded-xl p-4 hover:border-gray-200 transition-all">
             <p className="text-sm font-bold text-gray-900">🥩 Cómo marinar arrachera</p>
             <p className="text-xs text-gray-500 mt-1">Marinada clásica, tiempo exacto y errores comunes</p>
           </Link>
-          <Link href="/guias/lista-compras-carne-asada-completa" className="block bg-white border border-gray-100 rounded-xl p-4 shadow-sm hover:border-brasa/30 transition-all">
+          <Link href="/guias/lista-compras-carne-asada-completa" className="block bg-white border border-gray-100 rounded-xl p-4 hover:border-gray-200 transition-all">
             <p className="text-sm font-bold text-gray-900">🛒 Lista de compras completa para carne asada</p>
             <p className="text-xs text-gray-500 mt-1">Todo lo que necesitas sin olvidar nada — incluyendo los aguacates</p>
           </Link>

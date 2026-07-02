@@ -51,15 +51,15 @@ export default function MarinarArracherapage() {
       <article className="space-y-6 text-gray-700">
 
       <div className="text-center space-y-2">
-        <p className="text-xs font-semibold text-brasa uppercase tracking-wider">Guía completa</p>
-        <h1 className="text-2xl font-black text-gray-900 leading-tight">
+        <p className="text-xs font-medium text-gray-400 uppercase tracking-widest">Guía completa</p>
+        <h1 className="text-2xl font-bold text-gray-900 leading-tight">
           Cómo marinar arrachera para carne asada
         </h1>
         <p className="text-sm text-gray-500">9 min de lectura · Actualizado junio 2026</p>
       </div>
 
-      <div className="bg-brasa-light border border-brasa/20 rounded-2xl p-5 space-y-2">
-        <p className="text-sm font-black text-gray-900">Lo más importante de esta guía:</p>
+      <div className="bg-gray-50 border border-gray-100 rounded-xl p-5 space-y-2">
+        <p className="text-sm font-semibold text-gray-900">Lo más importante de esta guía:</p>
         <ul className="text-sm space-y-1 list-disc list-inside text-gray-700">
           <li>La arrachera suavizada de carnicería ya no necesita marinada — la sal de grano basta</li>
           <li>Si vas a marinar, entre 2 y 4 horas es suficiente — más tiempo no mejora el resultado</li>
@@ -69,7 +69,7 @@ export default function MarinarArracherapage() {
       </div>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">¿Realmente necesita marinada la arrachera?</h2>
+        <h2 className="text-base font-semibold text-gray-900">¿Realmente necesita marinada la arrachera?</h2>
         <p className="text-sm leading-relaxed">
           Esta es la pregunta que más confunde a la gente. La respuesta honesta es: depende de qué arrachera compraste.
         </p>
@@ -93,12 +93,12 @@ export default function MarinarArracherapage() {
       <AdBanner />
 
       <section className="space-y-4">
-        <h2 className="text-lg font-black text-gray-900">Marinada clásica para arrachera</h2>
+        <h2 className="text-base font-semibold text-gray-900">Marinada clásica para arrachera</h2>
         <p className="text-sm leading-relaxed">
           Esta marinada funciona para arrachera que no fue suavizada. Es sencilla, con ingredientes que se consiguen en cualquier tienda, y el resultado es una carne con mucho sabor y buena textura.
         </p>
 
-        <div className="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm">
+        <div className="bg-white border border-gray-100 rounded-xl overflow-hidden">
           {[
             { emoji: "🍋", cantidad: "Jugo de 3 limones", ingrediente: "El ácido principal — ablanda y aporta frescura" },
             { emoji: "🫙", cantidad: "4 cdas",            ingrediente: "Salsa de soya — umami y profundidad de sabor" },
@@ -123,12 +123,12 @@ export default function MarinarArracherapage() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-lg font-black text-gray-900">Marinada estilo norteño (sin soya)</h2>
+        <h2 className="text-base font-semibold text-gray-900">Marinada estilo norteño (sin soya)</h2>
         <p className="text-sm leading-relaxed">
           Esta versión es más tradicional y más sencilla. No lleva soya ni ingredientes de cocina oriental — es puramente sabores del norte de México.
         </p>
 
-        <div className="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm">
+        <div className="bg-white border border-gray-100 rounded-xl overflow-hidden">
           {[
             { emoji: "🍊", cantidad: "Jugo de 2 naranjas", ingrediente: "El ácido que ablanda sin ser tan agresivo como el limón" },
             { emoji: "🍋", cantidad: "Jugo de 2 limones",  ingrediente: "Complementa la naranja y agrega frescura" },
@@ -155,13 +155,13 @@ export default function MarinarArracherapage() {
       <AdBanner />
 
       <section className="space-y-4">
-        <h2 className="text-lg font-black text-gray-900">Cuánto tiempo marinar la arrachera</h2>
+        <h2 className="text-base font-semibold text-gray-900">Cuánto tiempo marinar la arrachera</h2>
         <p className="text-sm leading-relaxed">
           El tiempo de marinada es el factor que más se exagera en la mayoría de las recetas. No es cierto que "más tiempo = más sabor". Hay un límite a partir del cual el ácido empieza a dañar la textura en lugar de mejorarla.
         </p>
 
         <div className="overflow-x-auto">
-          <table className="w-full text-xs border-collapse bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100">
+          <table className="w-full text-xs border-collapse bg-white rounded-xl overflow-hidden border border-gray-100">
             <thead>
               <tr className="bg-carbon text-white">
                 <th className="text-left py-3 px-3 font-bold">Tiempo</th>
@@ -173,7 +173,7 @@ export default function MarinarArracherapage() {
                 <td className="py-2.5 px-3 font-bold">30 minutos</td>
                 <td className="py-2.5 px-3">Sabor superficial. Sirve si no tienes más tiempo.</td>
               </tr>
-              <tr className="bg-brasa-light">
+              <tr className="bg-brasa/5">
                 <td className="py-2.5 px-3 font-bold text-brasa">2 a 4 horas ⭐</td>
                 <td className="py-2.5 px-3 font-medium">El punto óptimo. Sabor penetrado, textura correcta.</td>
               </tr>
@@ -193,31 +193,31 @@ export default function MarinarArracherapage() {
           </table>
         </div>
 
-        <div className="bg-brasa-light border border-brasa/20 rounded-xl p-4">
+        <div className="bg-gray-50 border border-gray-100 rounded-xl p-4">
           <p className="text-xs font-bold text-brasa mb-1">Regla práctica:</p>
           <p className="text-sm text-gray-700">Pon la arrachera a marinar en la mañana y ásala en la tarde. Eso son 4 a 6 horas — el punto perfecto para la mayoría de las marinadas.</p>
         </div>
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">La ciencia detrás de la marinada</h2>
+        <h2 className="text-base font-semibold text-gray-900">La ciencia detrás de la marinada</h2>
         <p className="text-sm leading-relaxed">
           Entender qué hace cada ingrediente te ayuda a crear tu propia versión o ajustar las recetas según lo que tienes disponible.
         </p>
         <div className="space-y-3">
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
             <p className="text-sm font-bold text-gray-900">El ácido (limón, naranja, vinagre)</p>
             <p className="text-sm text-gray-600">Desnaturaliza parcialmente las proteínas de la superficie, rompiendo la tensión de las fibras. El resultado es una textura más suave. Pero si el ácido actúa demasiado tiempo o en exceso, "cocina" la carne (como el ceviche) y la deja pastosa. Por eso el tiempo importa.</p>
           </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
             <p className="text-sm font-bold text-gray-900">La sal</p>
             <p className="text-sm text-gray-600">La sal de la marinada penetra más profundo que la que aplicas a la superficie. Le da sabor desde adentro y también ayuda a que la carne retenga más humedad durante la cocción. No temas usar sal en la marinada — es necesaria.</p>
           </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
             <p className="text-sm font-bold text-gray-900">El aceite</p>
             <p className="text-sm text-gray-600">El aceite no penetra la carne, pero ayuda a que los ingredientes con sabor (ajo, hierbas) se adhieran mejor a la superficie. También previene que la carne se pegue a la parrilla durante el sellado.</p>
           </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
             <p className="text-sm font-bold text-gray-900">El azúcar (naranja, refrescos, miel)</p>
             <p className="text-sm text-gray-600">Los azúcares naturales de la marinada caramilizan en contacto con el calor del asador, creando ese color oscuro y dorado en la superficie de la carne. La naranja es especialmente efectiva por esto. Si quieres más caramelización, agrega una cucharada de miel o piloncillo diluido.</p>
           </div>
@@ -227,7 +227,7 @@ export default function MarinarArracherapage() {
       <AdBanner />
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">Errores más comunes al marinar arrachera</h2>
+        <h2 className="text-base font-semibold text-gray-900">Errores más comunes al marinar arrachera</h2>
         <ul className="text-sm space-y-2.5 leading-relaxed">
           <li className="flex gap-2 items-start"><span className="text-brasa font-bold flex-shrink-0">✗</span><span><strong>Marinar arrachera suavizada de carnicería.</strong> Si la pediste suavizada, ya está lista. Agregarle ácido solo puede arruinar la textura que ya tenía.</span></li>
           <li className="flex gap-2 items-start"><span className="text-brasa font-bold flex-shrink-0">✗</span><span><strong>Dejarla más de 8 horas con marinada ácida.</strong> El ácido sigue trabajando y la textura empieza a volverse pastosa. Más no es mejor.</span></li>
@@ -239,7 +239,7 @@ export default function MarinarArracherapage() {
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">Cómo saber si tu arrachera quedó bien marinada</h2>
+        <h2 className="text-base font-semibold text-gray-900">Cómo saber si tu arrachera quedó bien marinada</h2>
         <p className="text-sm leading-relaxed">
           Antes de sacarla del refrigerador para asar, revisa estas señales:
         </p>
@@ -252,24 +252,24 @@ export default function MarinarArracherapage() {
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">Marinadas con ingredientes que quizás tienes en casa</h2>
+        <h2 className="text-base font-semibold text-gray-900">Marinadas con ingredientes que quizás tienes en casa</h2>
         <p className="text-sm leading-relaxed">
           Estas son combinaciones rápidas con ingredientes comunes que funcionan muy bien:
         </p>
         <div className="space-y-3">
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
             <p className="text-sm font-bold text-gray-900">La del refri vacío</p>
             <p className="text-sm text-gray-600">Jugo Maggi + jugo de limón + ajo en polvo + pimienta. Igual de efectiva que una marinada compleja para una noche express.</p>
           </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
             <p className="text-sm font-bold text-gray-900">La cervecera</p>
             <p className="text-sm text-gray-600">1 cerveza (clara o obscura) + ajo + sal + pimienta + un chorrito de limón. La cerveza ablanda suavemente con menos acidez que el limón y le da un sabor muy rico a malta. Buen recurso cuando tienes más cervezas que limones.</p>
           </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
             <p className="text-sm font-bold text-gray-900">La de Valentina</p>
             <p className="text-sm text-gray-600">Salsa Valentina + jugo de limón + ajo + aceite. El vinagre de la Valentina hace el trabajo del ácido y le agrega un toque de picante que queda muy bien a las brasas.</p>
           </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
             <p className="text-sm font-bold text-gray-900">La balsámica</p>
             <p className="text-sm text-gray-600">Vinagre balsámico + ajo + aceite de oliva + romero + pimienta negra gruesa. Esta versión es más europea que norteña, pero el resultado en la parrilla es increíble — la carne queda oscura y con un sabor agridulce muy especial.</p>
           </div>
@@ -279,7 +279,7 @@ export default function MarinarArracherapage() {
       <AdBanner />
 
       <section className="space-y-4">
-        <h2 className="text-lg font-black text-gray-900">Preguntas frecuentes sobre marinar arrachera</h2>
+        <h2 className="text-base font-semibold text-gray-900">Preguntas frecuentes sobre marinar arrachera</h2>
         <div className="space-y-3">
           {[
             {
@@ -303,7 +303,7 @@ export default function MarinarArracherapage() {
               a: "Si la marinada ya llevaba suficiente sal, no es necesario agregar más. Prueba una pequeña parte de la superficie antes de asar — si está bien sazonada, no agregues más sal. Si sientes que le falta, un poco de sal de grano encima justo antes del asador siempre ayuda."
             },
           ].map(({ q, a }, i) => (
-            <div key={i} className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+            <div key={i} className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
               <p className="text-sm font-bold text-gray-900">{q}</p>
               <p className="text-sm text-gray-600 leading-relaxed">{a}</p>
             </div>
@@ -311,29 +311,29 @@ export default function MarinarArracherapage() {
         </div>
       </section>
 
-      <div className="bg-brasa text-white rounded-2xl p-5 text-center space-y-3">
-        <p className="font-black text-base">¿Ya tienes la arrachera? Ahora calcula cuánta necesitas.</p>
-        <p className="text-sm text-white/80">La calculadora te dice exactamente cuántos kilos por persona según el nivel de apetito de tu grupo.</p>
+      <div className="bg-gray-50 border border-gray-100 rounded-xl p-5 text-center space-y-3">
+        <p className="text-sm font-semibold text-gray-900">¿Ya tienes la arrachera? Ahora calcula cuánta necesitas.</p>
+        <p className="text-xs text-gray-500">La calculadora te dice exactamente cuántos kilos por persona según el nivel de apetito de tu grupo.</p>
         <Link
           href="/"
-          className="inline-block bg-white text-brasa font-bold text-sm px-6 py-2.5 rounded-full hover:bg-brasa-light transition-colors"
+          className="inline-block bg-brasa text-white font-medium text-sm px-6 py-2.5 rounded-lg hover:opacity-90 transition-colors"
         >
           Calcular cuánta carne necesito →
         </Link>
       </div>
 
       <section className="space-y-3">
-        <h2 className="text-base font-black text-gray-900">También te puede interesar</h2>
+        <h2 className="text-sm font-semibold text-gray-900">También te puede interesar</h2>
         <div className="grid gap-3">
-          <Link href="/guias/carne-asada-perfecta-monterrey" className="block bg-white border border-gray-100 rounded-xl p-4 shadow-sm hover:border-brasa/30 transition-all">
+          <Link href="/guias/carne-asada-perfecta-monterrey" className="block bg-white border border-gray-100 rounded-xl p-4 hover:border-gray-200 transition-all">
             <p className="text-sm font-bold text-gray-900">🥩 Cómo hacer una carne asada perfecta al estilo Monterrey</p>
             <p className="text-xs text-gray-500 mt-1">Técnica de sellado, cortes, carbón mesquite y errores comunes</p>
           </Link>
-          <Link href="/guias/guacamole-para-carne-asada" className="block bg-white border border-gray-100 rounded-xl p-4 shadow-sm hover:border-brasa/30 transition-all">
+          <Link href="/guias/guacamole-para-carne-asada" className="block bg-white border border-gray-100 rounded-xl p-4 hover:border-gray-200 transition-all">
             <p className="text-sm font-bold text-gray-900">🥑 Guacamole para carne asada</p>
             <p className="text-xs text-gray-500 mt-1">Receta clásica y el secreto para que no se ponga negro</p>
           </Link>
-          <Link href="/guias/salsa-verde-carne-asada" className="block bg-white border border-gray-100 rounded-xl p-4 shadow-sm hover:border-brasa/30 transition-all">
+          <Link href="/guias/salsa-verde-carne-asada" className="block bg-white border border-gray-100 rounded-xl p-4 hover:border-gray-200 transition-all">
             <p className="text-sm font-bold text-gray-900">🟢 Salsa verde para carne asada</p>
             <p className="text-xs text-gray-500 mt-1">Tatemada directo en el asador — rápida y sin fallas</p>
           </Link>

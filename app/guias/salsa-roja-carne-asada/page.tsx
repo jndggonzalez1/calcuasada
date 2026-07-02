@@ -54,15 +54,15 @@ export default function SalsaRojaPage() {
       <article className="space-y-6 text-gray-700">
 
       <div className="text-center space-y-2">
-        <p className="text-xs font-semibold text-brasa uppercase tracking-wider">Receta de la casa</p>
-        <h1 className="text-2xl font-black text-gray-900 leading-tight">
+        <p className="text-xs font-medium text-gray-400 uppercase tracking-widest">Receta de la casa</p>
+        <h1 className="text-2xl font-bold text-gray-900 leading-tight">
           Salsa roja para carne asada
         </h1>
         <p className="text-sm text-gray-500">8 min de lectura · Actualizado junio 2026</p>
       </div>
 
-      <div className="bg-brasa-light border border-brasa/20 rounded-2xl p-5 space-y-2">
-        <p className="text-sm font-black text-gray-900">Lo que necesitas saber:</p>
+      <div className="bg-gray-50 border border-gray-100 rounded-xl p-5 space-y-2">
+        <p className="text-sm font-semibold text-gray-900">Lo que necesitas saber:</p>
         <ul className="text-sm space-y-1 list-disc list-inside text-gray-700">
           <li>Jitomates tatemados directo en el asador — el ahumado es la clave</li>
           <li>Lista en 15 minutos, antes de que llegue la carne</li>
@@ -72,7 +72,7 @@ export default function SalsaRojaPage() {
       </div>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">La salsa roja que va con la carne asada</h2>
+        <h2 className="text-base font-semibold text-gray-900">La salsa roja que va con la carne asada</h2>
         <p className="text-sm leading-relaxed">
           La salsa roja para carne asada no es la salsa de taquerías que conoces — esa va cocida y con jitomate hervido. Esta va tatemada directo en la parrilla, con las brasas del mismo asador. El jitomate agarra un sabor ahumado y ligeramente dulce que combinado con el chile de árbol da una salsa con carácter: picosita, sabrosa y con ese toque de carbón que solo se consigue en la parrilla.
         </p>
@@ -82,7 +82,7 @@ export default function SalsaRojaPage() {
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">El chile de árbol y por qué es el correcto para esta salsa</h2>
+        <h2 className="text-base font-semibold text-gray-900">El chile de árbol y por qué es el correcto para esta salsa</h2>
         <p className="text-sm leading-relaxed">
           El chile de árbol es el protagonista de esta receta. Es un chile seco, delgado, de color rojo brillante que se consigue en cualquier mercado o supermercado. Su picante es intenso — se ubica entre 15,000 y 30,000 unidades Scoville, que es bastante más que el jalapeño y más que el serrano también.
         </p>
@@ -103,10 +103,10 @@ export default function SalsaRojaPage() {
       <AdBanner />
 
       <section className="space-y-4">
-        <h2 className="text-lg font-black text-gray-900">Ingredientes</h2>
+        <h2 className="text-base font-semibold text-gray-900">Ingredientes</h2>
         <p className="text-sm text-gray-500">Rinde para 6 a 8 personas. Usa la calculadora para ajustar la cantidad.</p>
 
-        <div className="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm">
+        <div className="bg-white border border-gray-100 rounded-xl overflow-hidden">
           {[
             { emoji: "🍅", cantidad: "6 a 8",    ingrediente: "Jitomates (tomates rojos, maduros)" },
             { emoji: "🌶️", cantidad: "3 a 4",    ingrediente: "Chiles de árbol secos" },
@@ -128,7 +128,7 @@ export default function SalsaRojaPage() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-lg font-black text-gray-900">Preparación</h2>
+        <h2 className="text-base font-semibold text-gray-900">Preparación</h2>
 
         <div className="space-y-3">
           {[
@@ -159,7 +159,7 @@ export default function SalsaRojaPage() {
             },
           ].map(({ n, titulo, texto }) => (
             <div key={n} className="flex gap-4">
-              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brasa text-white font-black text-sm flex items-center justify-center mt-0.5">
+              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brasa text-white font-bold text-sm flex items-center justify-center mt-0.5">
                 {n}
               </div>
               <div className="space-y-1">
@@ -173,8 +173,8 @@ export default function SalsaRojaPage() {
 
       <AdBanner />
 
-      <section className="bg-brasa-light border border-brasa/20 rounded-2xl p-5 space-y-3">
-        <p className="text-sm font-black text-gray-900">⭐ Recomendación especial de Yeyito</p>
+      <section className="bg-gray-50 border border-gray-100 rounded-xl p-5 space-y-3">
+        <p className="text-sm font-semibold text-gray-900">⭐ Recomendación especial de Yeyito</p>
         <p className="text-sm leading-relaxed text-gray-700">
           Igual que con la salsa verde — si quieres darle más sabor, agrega un pedacito de grasa de la carne tatemada directo a la licuadora. Le da un sabor más profundo y ahumado que no tiene comparación.
         </p>
@@ -184,7 +184,7 @@ export default function SalsaRojaPage() {
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">Tips rápidos</h2>
+        <h2 className="text-base font-semibold text-gray-900">Tips rápidos</h2>
         <div className="space-y-2">
           {[
             { emoji: "🌶️", tip: "Los chiles de árbol son más picosos que los serranos. Si no sabes cuánto aguanta tu gente, empieza con 2 y ve subiendo." },
@@ -201,20 +201,20 @@ export default function SalsaRojaPage() {
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">Variaciones con otros chiles</h2>
+        <h2 className="text-base font-semibold text-gray-900">Variaciones con otros chiles</h2>
         <p className="text-sm leading-relaxed">
           Si quieres ajustar el picante o experimentar con otros perfiles de sabor, estas son las sustituciones que mejor funcionan:
         </p>
         <div className="space-y-3">
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
             <p className="text-sm font-bold text-gray-900">Con chile guajillo — versión suave</p>
             <p className="text-sm text-gray-600">Sustituye los chiles de árbol por 2 guajillos desvenados. El guajillo da un color rojo muy bonito, un sabor frutal y casi nada de picante. Buena opción cuando van niños o gente que no aguanta el picante del árbol.</p>
           </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
             <p className="text-sm font-bold text-gray-900">Con chipotle — versión ahumada</p>
             <p className="text-sm text-gray-600">Agrega 1 chipotle en adobo (de lata) en lugar de uno de los chiles de árbol. El chipotle es jalapeño ahumado y da una profundidad diferente a la salsa. Queda riquísima con costilla de res porque complementa la grasa con el ahumado.</p>
           </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
             <p className="text-sm font-bold text-gray-900">Mezcla árbol + guajillo — la campechana de salsas</p>
             <p className="text-sm text-gray-600">Usa 2 chiles de árbol y 1 guajillo. El árbol aporta el picante, el guajillo aporta el color y la profundidad de sabor. El resultado es más complejo y equilibrado que usando uno solo.</p>
           </div>
@@ -222,21 +222,21 @@ export default function SalsaRojaPage() {
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">Qué hacer si la salsa no salió bien</h2>
+        <h2 className="text-base font-semibold text-gray-900">Qué hacer si la salsa no salió bien</h2>
         <div className="space-y-3">
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
             <p className="text-sm font-bold text-gray-900">Quedó amarga</p>
             <p className="text-sm text-gray-600">El culpable casi siempre son los chiles quemados. Si los tostaste de más, el amargor no se puede quitar fácilmente. Lo más que puedes hacer es agregar más jitomate tatemado para diluir el sabor amargo. La próxima vez, mueve los chiles constantemente y retíralos en cuanto estén aromáticos — 30 a 60 segundos máximo.</p>
           </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
             <p className="text-sm font-bold text-gray-900">Quedó muy picante</p>
             <p className="text-sm text-gray-600">Agrega más jitomate tatemado para diluir o incorpora un poco de aguacate al licuar — la grasa del aguacate atenúa el picante. La próxima vez, saca las semillas de los chiles de árbol antes de usarlos.</p>
           </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
             <p className="text-sm font-bold text-gray-900">No sabe a nada — quedó sosa</p>
             <p className="text-sm text-gray-600">Primero revisa la sal — muchas veces es simplemente eso. Si ya tiene sal suficiente y sigue sosa, significa que el jitomate no se tatemó lo suficiente. Regresa algunos a la parrilla unos minutos más.</p>
           </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
             <p className="text-sm font-bold text-gray-900">Quedó muy espesa</p>
             <p className="text-sm text-gray-600">Agrega de a poco agua purificada o el jugo que soltaron los jitomates al tatemarse y licúa de nuevo. Una salsa muy espesa es difícil de servir y de poner en el taco.</p>
           </div>
@@ -246,7 +246,7 @@ export default function SalsaRojaPage() {
       <AdBanner />
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">Cómo guardar la salsa roja</h2>
+        <h2 className="text-base font-semibold text-gray-900">Cómo guardar la salsa roja</h2>
         <ul className="text-sm space-y-2 list-disc list-inside leading-relaxed">
           <li><strong>En el refrigerador:</strong> en frasco de vidrio tapado dura hasta 4 días. La salsa puede espesarse en el frío — está bien, se aligera de nuevo a temperatura ambiente.</li>
           <li><strong>En el congelador:</strong> hasta 3 meses. Congela en porciones pequeñas para descongelar solo lo que vas a usar.</li>
@@ -255,7 +255,7 @@ export default function SalsaRojaPage() {
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">¿Con qué va esta salsa?</h2>
+        <h2 className="text-base font-semibold text-gray-900">¿Con qué va esta salsa?</h2>
         <p className="text-sm leading-relaxed">
           Con todo. Arrachera, costilla, pollo, salchicha, quesadillas — la salsa roja aguanta todo lo que le pongas encima. Es especialmente buena con costilla de res porque el sabor fuerte de la carne y el picante del chile de árbol se complementan muy bien.
         </p>
@@ -265,7 +265,7 @@ export default function SalsaRojaPage() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-lg font-black text-gray-900">Preguntas frecuentes sobre salsa roja para carne asada</h2>
+        <h2 className="text-base font-semibold text-gray-900">Preguntas frecuentes sobre salsa roja para carne asada</h2>
         <div className="space-y-3">
           {[
             {
@@ -285,7 +285,7 @@ export default function SalsaRojaPage() {
               a: "Por el método de cocción. En taquería el jitomate se hierve o se tatema en comal seco. En carne asada se tatema sobre las brasas, donde agarra un ahumado real del carbón. Ese humo cambia completamente el perfil de sabor — es más profundo, más rústico y con un toque de amargo que equilibra el picante."
             },
           ].map(({ q, a }, i) => (
-            <div key={i} className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+            <div key={i} className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
               <p className="text-sm font-bold text-gray-900">{q}</p>
               <p className="text-sm text-gray-600 leading-relaxed">{a}</p>
             </div>
@@ -293,7 +293,7 @@ export default function SalsaRojaPage() {
         </div>
       </section>
 
-      <div className="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm space-y-3">
+      <div className="bg-white border border-gray-100 rounded-xl p-5 space-y-3">
         <p className="text-sm font-bold text-gray-900">¿Ya sabes cuánta gente va?</p>
         <p className="text-sm text-gray-600">
           La calculadora ya incluye los ingredientes de esta salsa ajustados al número de personas — activa la opción &ldquo;Casera&rdquo; en la fila de salsa y elige &ldquo;Roja&rdquo;.
@@ -309,17 +309,17 @@ export default function SalsaRojaPage() {
       <AdBanner />
 
       <section className="space-y-3">
-        <h2 className="text-base font-black text-gray-900">También te puede interesar</h2>
+        <h2 className="text-sm font-semibold text-gray-900">También te puede interesar</h2>
         <div className="grid gap-3">
-          <Link href="/guias/salsa-verde-carne-asada" className="block bg-white border border-gray-100 rounded-xl p-4 shadow-sm hover:border-brasa/30 transition-all">
+          <Link href="/guias/salsa-verde-carne-asada" className="block bg-white border border-gray-100 rounded-xl p-4 hover:border-gray-200 transition-all">
             <p className="text-sm font-bold text-gray-900">🟢 Salsa verde para carne asada</p>
             <p className="text-xs text-gray-500 mt-1">Tomatillo tatemado, serrano y el toque especial de grasa del asador</p>
           </Link>
-          <Link href="/guias/salsa-chile-piquin-limon" className="block bg-white border border-gray-100 rounded-xl p-4 shadow-sm hover:border-brasa/30 transition-all">
+          <Link href="/guias/salsa-chile-piquin-limon" className="block bg-white border border-gray-100 rounded-xl p-4 hover:border-gray-200 transition-all">
             <p className="text-sm font-bold text-gray-900">🌶️ Salsa de chile piquín con limón</p>
             <p className="text-xs text-gray-500 mt-1">La favorita de Yeyito — sin agua, con molcajete y limón como base</p>
           </Link>
-          <Link href="/guias/guacamole-para-carne-asada" className="block bg-white border border-gray-100 rounded-xl p-4 shadow-sm hover:border-brasa/30 transition-all">
+          <Link href="/guias/guacamole-para-carne-asada" className="block bg-white border border-gray-100 rounded-xl p-4 hover:border-gray-200 transition-all">
             <p className="text-sm font-bold text-gray-900">🥑 Guacamole para carne asada</p>
             <p className="text-xs text-gray-500 mt-1">Receta clásica y el secreto para que no se ponga negro</p>
           </Link>

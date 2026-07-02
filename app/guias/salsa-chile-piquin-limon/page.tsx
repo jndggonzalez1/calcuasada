@@ -54,15 +54,15 @@ export default function SalsaPiquinPage() {
       <article className="space-y-6 text-gray-700">
 
       <div className="text-center space-y-2">
-        <p className="text-xs font-semibold text-brasa uppercase tracking-wider">La favorita de Yeyito</p>
-        <h1 className="text-2xl font-black text-gray-900 leading-tight">
+        <p className="text-xs font-medium text-gray-400 uppercase tracking-widest">La favorita de Yeyito</p>
+        <h1 className="text-2xl font-bold text-gray-900 leading-tight">
           Salsa de chile piquín con limón
         </h1>
         <p className="text-sm text-gray-500">8 min de lectura · Actualizado junio 2026</p>
       </div>
 
-      <div className="bg-brasa-light border border-brasa/20 rounded-2xl p-5 space-y-2">
-        <p className="text-sm font-black text-gray-900">Lo que necesitas saber:</p>
+      <div className="bg-gray-50 border border-gray-100 rounded-xl p-5 space-y-2">
+        <p className="text-sm font-semibold text-gray-900">Lo que necesitas saber:</p>
         <ul className="text-sm space-y-1 list-disc list-inside text-gray-700">
           <li>Sin estufa ni licuadora — solo molcajete</li>
           <li>Lista en 10 minutos</li>
@@ -72,7 +72,7 @@ export default function SalsaPiquinPage() {
       </div>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">Una salsa sencilla, picosita y muy buena para carne asada</h2>
+        <h2 className="text-base font-semibold text-gray-900">Una salsa sencilla, picosita y muy buena para carne asada</h2>
         <p className="text-sm leading-relaxed">
           Esta salsa va con chiles piquín enteros, limón, sal y ajo tostado. Es la favorita de Yeyito — los piquines rojos, como le enseñó su abuelito. Queda perfecta para tacos de carne, salchicha, pollo, quesadillas, cebollitas asadas o para ponerle directo a la carne recién salida del asador.
         </p>
@@ -82,7 +82,7 @@ export default function SalsaPiquinPage() {
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">El chile piquín en el norte de México</h2>
+        <h2 className="text-base font-semibold text-gray-900">El chile piquín en el norte de México</h2>
         <p className="text-sm leading-relaxed">
           El chile piquín tiene una presencia muy particular en la gastronomía del norte de México. A diferencia de otros chiles que se trabajan más en la cocina del centro y sur del país, el piquín en el noreste se usa principalmente en salsas muy simples y directas — molido con sal y limón, o machacado en molcajete. No va en guisados ni en moles. Es una salsa de asador, de domingo, de familia.
         </p>
@@ -95,7 +95,7 @@ export default function SalsaPiquinPage() {
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">¿Piquines verdes o rojos?</h2>
+        <h2 className="text-base font-semibold text-gray-900">¿Piquines verdes o rojos?</h2>
         <p className="text-sm leading-relaxed">
           Los dos funcionan — es cuestión de gusto. Los <strong>verdes</strong> tienen un picante más fresco y un sabor ligeramente herbáceo. Los <strong>rojos</strong> están más secos, tienen un picante más concentrado y un sabor más intenso y terroso.
         </p>
@@ -116,10 +116,10 @@ export default function SalsaPiquinPage() {
       <AdBanner />
 
       <section className="space-y-4">
-        <h2 className="text-lg font-black text-gray-900">Ingredientes</h2>
+        <h2 className="text-base font-semibold text-gray-900">Ingredientes</h2>
         <p className="text-sm text-gray-500">Rinde para 6 a 8 personas.</p>
 
-        <div className="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm">
+        <div className="bg-white border border-gray-100 rounded-xl overflow-hidden">
           {[
             { emoji: "🌶️", cantidad: "25 a 35 pzas", ingrediente: "Chiles piquín enteros (preferentemente rojos)" },
             { emoji: "🍋", cantidad: "5 a 6 pzas",  ingrediente: "Limones" },
@@ -136,7 +136,7 @@ export default function SalsaPiquinPage() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-lg font-black text-gray-900">Preparación</h2>
+        <h2 className="text-base font-semibold text-gray-900">Preparación</h2>
 
         <div className="space-y-3">
           {[
@@ -167,7 +167,7 @@ export default function SalsaPiquinPage() {
             },
           ].map(({ n, titulo, texto }) => (
             <div key={n} className="flex gap-4">
-              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brasa text-white font-black text-sm flex items-center justify-center mt-0.5">
+              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brasa text-white font-bold text-sm flex items-center justify-center mt-0.5">
                 {n}
               </div>
               <div className="space-y-1">
@@ -182,11 +182,11 @@ export default function SalsaPiquinPage() {
       <AdBanner />
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">Alternativa rápida: sin ajo fresco</h2>
+        <h2 className="text-base font-semibold text-gray-900">Alternativa rápida: sin ajo fresco</h2>
         <p className="text-sm leading-relaxed">
           Si no tienes ajo fresco, puedes usar ajo en polvo. No sabe igual que el ajo tostado en el asador, pero funciona para salir del apuro.
         </p>
-        <div className="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm">
+        <div className="bg-white border border-gray-100 rounded-xl overflow-hidden">
           <div className="flex items-center gap-4 px-5 py-3">
             <span className="text-xl flex-shrink-0">🧄</span>
             <span className="text-sm font-bold text-gray-500 w-20 flex-shrink-0">½ cdita</span>
@@ -199,23 +199,23 @@ export default function SalsaPiquinPage() {
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">Nivel de picante</h2>
-        <div className="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm">
+        <h2 className="text-base font-semibold text-gray-900">Nivel de picante</h2>
+        <div className="bg-white border border-gray-100 rounded-xl overflow-hidden">
           {[
             { nivel: "Suave",    cantidad: "10 a 15 chiles piquín",  color: "text-yellow-600" },
             { nivel: "Medio",   cantidad: "25 a 35 chiles piquín",  color: "text-orange-500" },
             { nivel: "Picante", cantidad: "40 chiles o más",         color: "text-red-600"    },
           ].map(({ nivel, cantidad, color }, i) => (
             <div key={i} className={`flex items-center gap-4 px-5 py-3 ${i % 2 === 0 ? "bg-white" : "bg-gray-50"}`}>
-              <span className={`text-sm font-black w-16 flex-shrink-0 ${color}`}>{nivel}</span>
+              <span className={`text-sm font-semibold w-16 flex-shrink-0 ${color}`}>{nivel}</span>
               <span className="text-sm text-gray-700">{cantidad}</span>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="bg-brasa-light border border-brasa/20 rounded-2xl p-5 space-y-3">
-        <p className="text-sm font-black text-gray-900">⭐ Recomendación especial de Yeyito</p>
+      <section className="bg-gray-50 border border-gray-100 rounded-xl p-5 space-y-3">
+        <p className="text-sm font-semibold text-gray-900">⭐ Recomendación especial de Yeyito</p>
         <p className="text-sm leading-relaxed text-gray-700">
           Esta salsa queda mejor sin agua. La idea es que el limón sea la base líquida y que el sabor quede más intenso, ácido y picosito.
         </p>
@@ -225,17 +225,17 @@ export default function SalsaPiquinPage() {
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">Variaciones que puedes probar</h2>
+        <h2 className="text-base font-semibold text-gray-900">Variaciones que puedes probar</h2>
         <div className="space-y-3">
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
             <p className="text-sm font-bold text-gray-900">Con naranja agria</p>
             <p className="text-sm text-gray-600">Sustituye la mitad del limón por jugo de naranja agria. Le da un sabor más tropical y ligeramente más dulce que equilibra muy bien con el picante del piquín. Si no consigues naranja agria, una mezcla de naranja normal con un poco más de limón funciona de emergencia.</p>
           </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
             <p className="text-sm font-bold text-gray-900">Con sal de grano en lugar de sal fina</p>
             <p className="text-sm text-gray-600">La textura de la sal de grano cambia la experiencia del molcajete — al moler los piquines junto con los cristales de sal gruesa el proceso es más eficiente y el resultado tiene más textura. Vale la pena si tienes sal de grano a la mano.</p>
           </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
             <p className="text-sm font-bold text-gray-900">Con un toque de ajo negro</p>
             <p className="text-sm text-gray-600">El ajo negro (ajo fermentado, cada vez más fácil de conseguir en supermercados) tiene un sabor dulce, umami y muy diferente al ajo regular. Un solo diente de ajo negro en lugar del ajo tostado le da a esta salsa una profundidad completamente diferente.</p>
           </div>
@@ -243,21 +243,21 @@ export default function SalsaPiquinPage() {
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">Qué hacer si la salsa no salió bien</h2>
+        <h2 className="text-base font-semibold text-gray-900">Qué hacer si la salsa no salió bien</h2>
         <div className="space-y-3">
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
             <p className="text-sm font-bold text-gray-900">Quedó demasiado picante</p>
             <p className="text-sm text-gray-600">Agrega más limón y más sal — el ácido y la sal atenúan la percepción del picante. También puedes agregar un poco más de ajo para suavizarlo. No hay forma de sacarle piquines una vez molidos, así que ajusta con limón.</p>
           </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
             <p className="text-sm font-bold text-gray-900">Quedó muy espesa y pastosa</p>
             <p className="text-sm text-gray-600">Agrega más limón de a poco hasta que la consistencia sea la que buscas. Esta salsa no lleva agua — el limón es lo que la aligera. Si ya quedó ácida de más, un poquito de sal extra balancea.</p>
           </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
             <p className="text-sm font-bold text-gray-900">Sabe amargo</p>
             <p className="text-sm text-gray-600">El ajo se tostó de más y se quemó — el ajo quemado tiene amargor intenso. Empieza de nuevo con el ajo. La próxima vez, tóstalo a fuego medio y vigílalo — se quema fácil.</p>
           </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
             <p className="text-sm font-bold text-gray-900">No sabe a nada — sabe plana</p>
             <p className="text-sm text-gray-600">Revisa la sal primero. Después revisa la calidad del piquín — si es piquín muy viejo o almacenado mucho tiempo, pierde potencia. El piquín fresco del mercado siempre va a ser más intenso que el que lleva meses en una bolsita en la alacena.</p>
           </div>
@@ -265,7 +265,7 @@ export default function SalsaPiquinPage() {
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">Cómo guardar la salsa de piquín</h2>
+        <h2 className="text-base font-semibold text-gray-900">Cómo guardar la salsa de piquín</h2>
         <p className="text-sm leading-relaxed">
           Esta salsa es la que menos dura de las tres porque no lleva base de tomate o tomatillo que funcione como conservador natural.
         </p>
@@ -277,7 +277,7 @@ export default function SalsaPiquinPage() {
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">¿Con qué va esta salsa?</h2>
+        <h2 className="text-base font-semibold text-gray-900">¿Con qué va esta salsa?</h2>
         <p className="text-sm leading-relaxed">
           Con todo lo que sale del asador. Tacos de arrachera, costilla, pollo, salchicha para asar, quesadillas de queso, cebollitas asadas — esta salsa le queda bien a todo. También es perfecta para ponerle directo a la carne recién salida de la parrilla, antes de armar el taco.
         </p>
@@ -289,7 +289,7 @@ export default function SalsaPiquinPage() {
       <AdBanner />
 
       <section className="space-y-4">
-        <h2 className="text-lg font-black text-gray-900">Preguntas frecuentes sobre salsa de chile piquín</h2>
+        <h2 className="text-base font-semibold text-gray-900">Preguntas frecuentes sobre salsa de chile piquín</h2>
         <div className="space-y-3">
           {[
             {
@@ -313,7 +313,7 @@ export default function SalsaPiquinPage() {
               a: "En casi cualquier mercado de abastos en México lo consigues. En el centro del país puede llamarse 'chile del monte' o simplemente 'piquín'. También está disponible online en tiendas de especias mexicanas. En el norte de México es más fácil — cualquier mercadito de barrio lo tiene."
             },
           ].map(({ q, a }, i) => (
-            <div key={i} className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+            <div key={i} className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
               <p className="text-sm font-bold text-gray-900">{q}</p>
               <p className="text-sm text-gray-600 leading-relaxed">{a}</p>
             </div>
@@ -321,7 +321,7 @@ export default function SalsaPiquinPage() {
         </div>
       </section>
 
-      <div className="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm space-y-3">
+      <div className="bg-white border border-gray-100 rounded-xl p-5 space-y-3">
         <p className="text-sm font-bold text-gray-900">¿Ya sabes cuánta gente va?</p>
         <p className="text-sm text-gray-600">
           La calculadora te dice exactamente cuánta carne, tortillas, limones y más necesitas — para que no te falte nada.
@@ -337,17 +337,17 @@ export default function SalsaPiquinPage() {
       <AdBanner />
 
       <section className="space-y-3">
-        <h2 className="text-base font-black text-gray-900">También te puede interesar</h2>
+        <h2 className="text-sm font-semibold text-gray-900">También te puede interesar</h2>
         <div className="grid gap-3">
-          <Link href="/guias/salsa-verde-carne-asada" className="block bg-white border border-gray-100 rounded-xl p-4 shadow-sm hover:border-brasa/30 transition-all">
+          <Link href="/guias/salsa-verde-carne-asada" className="block bg-white border border-gray-100 rounded-xl p-4 hover:border-gray-200 transition-all">
             <p className="text-sm font-bold text-gray-900">🟢 Salsa verde para carne asada</p>
             <p className="text-xs text-gray-500 mt-1">Tomatillo tatemado en el asador y el toque especial de grasa de carne</p>
           </Link>
-          <Link href="/guias/salsa-roja-carne-asada" className="block bg-white border border-gray-100 rounded-xl p-4 shadow-sm hover:border-brasa/30 transition-all">
+          <Link href="/guias/salsa-roja-carne-asada" className="block bg-white border border-gray-100 rounded-xl p-4 hover:border-gray-200 transition-all">
             <p className="text-sm font-bold text-gray-900">🔴 Salsa roja para carne asada</p>
             <p className="text-xs text-gray-500 mt-1">Jitomates tatemados con chile de árbol — más cuerpo y más picante</p>
           </Link>
-          <Link href="/guias/guacamole-para-carne-asada" className="block bg-white border border-gray-100 rounded-xl p-4 shadow-sm hover:border-brasa/30 transition-all">
+          <Link href="/guias/guacamole-para-carne-asada" className="block bg-white border border-gray-100 rounded-xl p-4 hover:border-gray-200 transition-all">
             <p className="text-sm font-bold text-gray-900">🥑 Guacamole para carne asada</p>
             <p className="text-xs text-gray-500 mt-1">Receta clásica y el secreto para que no se ponga negro</p>
           </Link>

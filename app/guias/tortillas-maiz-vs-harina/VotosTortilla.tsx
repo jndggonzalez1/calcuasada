@@ -51,9 +51,9 @@ export default function VotosTortilla() {
   }
 
   return (
-    <div className="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm space-y-4">
+    <div className="bg-white border border-gray-100 rounded-xl p-5 space-y-4">
       <div className="text-center space-y-1">
-        <p className="text-sm font-black text-gray-900">¿Tú qué tortilla prefieres para la carne asada?</p>
+        <p className="text-sm font-semibold text-gray-900">¿Tú qué tortilla prefieres para la carne asada?</p>
         <p className="text-xs text-gray-500">Vota y mira qué prefiere la comunidad de Calcuasada</p>
       </div>
 
@@ -72,7 +72,7 @@ export default function VotosTortilla() {
           <button
             onClick={() => votar("maiz")}
             disabled={cargando}
-            className="flex flex-col items-center gap-1 bg-brasa-light border border-brasa/20 rounded-xl py-4 hover:bg-brasa/10 hover:border-brasa/40 transition-all disabled:opacity-50"
+            className="flex flex-col items-center gap-1 bg-gray-50 border border-gray-100 rounded-xl py-4 hover:bg-brasa/10 hover:border-brasa/40 transition-all disabled:opacity-50"
           >
             <span className="text-2xl">🌽</span>
             <span className="text-sm font-bold text-gray-900">De maíz</span>
@@ -80,7 +80,7 @@ export default function VotosTortilla() {
           <button
             onClick={() => votar("harina")}
             disabled={cargando}
-            className="flex flex-col items-center gap-1 bg-brasa-light border border-brasa/20 rounded-xl py-4 hover:bg-brasa/10 hover:border-brasa/40 transition-all disabled:opacity-50"
+            className="flex flex-col items-center gap-1 bg-gray-50 border border-gray-100 rounded-xl py-4 hover:bg-brasa/10 hover:border-brasa/40 transition-all disabled:opacity-50"
           >
             <span className="text-2xl">🫓</span>
             <span className="text-sm font-bold text-gray-900">De harina</span>

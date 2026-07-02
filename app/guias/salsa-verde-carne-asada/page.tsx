@@ -56,15 +56,15 @@ export default function SalsaVerdePage() {
       <article className="space-y-6 text-gray-700">
 
       <div className="text-center space-y-2">
-        <p className="text-xs font-semibold text-brasa uppercase tracking-wider">Receta de la casa</p>
-        <h1 className="text-2xl font-black text-gray-900 leading-tight">
+        <p className="text-xs font-medium text-gray-400 uppercase tracking-widest">Receta de la casa</p>
+        <h1 className="text-2xl font-bold text-gray-900 leading-tight">
           Salsa verde para carne asada
         </h1>
         <p className="text-sm text-gray-500">8 min de lectura · Actualizado junio 2026</p>
       </div>
 
-      <div className="bg-brasa-light border border-brasa/20 rounded-2xl p-5 space-y-2">
-        <p className="text-sm font-black text-gray-900">Lo que necesitas saber:</p>
+      <div className="bg-gray-50 border border-gray-100 rounded-xl p-5 space-y-2">
+        <p className="text-sm font-semibold text-gray-900">Lo que necesitas saber:</p>
         <ul className="text-sm space-y-1 list-disc list-inside text-gray-700">
           <li>Se hace directo en el asador — no necesitas estufa</li>
           <li>Lista en 15 minutos, antes de que llegue la carne</li>
@@ -74,7 +74,7 @@ export default function SalsaVerdePage() {
       </div>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">Por qué esta salsa es la que va con la carne asada</h2>
+        <h2 className="text-base font-semibold text-gray-900">Por qué esta salsa es la que va con la carne asada</h2>
         <p className="text-sm leading-relaxed">
           Hay salsas que se hacen para taquerías, otras para enchiladas, y luego está la salsa verde para carne asada — que es su propio mundo. La diferencia está en cómo se tatema: directo en el asador, con el calor de las brasas, el tomatillo agarra un ahumado natural que no se puede imitar en estufa. El resultado es una salsa más rústica, con un sabor más profundo y un pequeño toque de amargo que le va perfecto a la carne.
         </p>
@@ -84,7 +84,7 @@ export default function SalsaVerdePage() {
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">Por qué el asador cambia todo en una salsa verde</h2>
+        <h2 className="text-base font-semibold text-gray-900">Por qué el asador cambia todo en una salsa verde</h2>
         <p className="text-sm leading-relaxed">
           Cuando tatemas el tomatillo directo en las brasas pasan dos cosas que no se pueden replicar en estufa. Primero, el calor seco concentra los azúcares naturales del tomatillo — esa acidez tan característica del tomate verde se suaviza y se vuelve más redonda, más compleja. Segundo, el humo del carbón se adhiere a la piel del tomatillo y penetra ligeramente hacia adentro, dando ese sabor ahumado que distingue una salsa de carne asada de una salsa de taquería.
         </p>
@@ -99,10 +99,10 @@ export default function SalsaVerdePage() {
       <AdBanner />
 
       <section className="space-y-4">
-        <h2 className="text-lg font-black text-gray-900">Ingredientes</h2>
+        <h2 className="text-base font-semibold text-gray-900">Ingredientes</h2>
         <p className="text-sm text-gray-500">Rinde para 6 a 8 personas. Usa la calculadora para ajustar la cantidad.</p>
 
-        <div className="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm">
+        <div className="bg-white border border-gray-100 rounded-xl overflow-hidden">
           {[
             { emoji: "🍅", cantidad: "8", ingrediente: "Tomatillos (tomates verdes)" },
             { emoji: "🌶️", cantidad: "2", ingrediente: "Chiles serranos" },
@@ -124,7 +124,7 @@ export default function SalsaVerdePage() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-lg font-black text-gray-900">Preparación</h2>
+        <h2 className="text-base font-semibold text-gray-900">Preparación</h2>
 
         <div className="space-y-3">
           {[
@@ -150,7 +150,7 @@ export default function SalsaVerdePage() {
             },
           ].map(({ n, titulo, texto }) => (
             <div key={n} className="flex gap-4">
-              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brasa text-white font-black text-sm flex items-center justify-center mt-0.5">
+              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brasa text-white font-bold text-sm flex items-center justify-center mt-0.5">
                 {n}
               </div>
               <div className="space-y-1">
@@ -164,8 +164,8 @@ export default function SalsaVerdePage() {
 
       <AdBanner />
 
-      <section className="bg-brasa-light border border-brasa/20 rounded-2xl p-5 space-y-3">
-        <p className="text-sm font-black text-gray-900">⭐ Recomendación especial de Yeyito</p>
+      <section className="bg-gray-50 border border-gray-100 rounded-xl p-5 space-y-3">
+        <p className="text-sm font-semibold text-gray-900">⭐ Recomendación especial de Yeyito</p>
         <p className="text-sm leading-relaxed text-gray-700">
           Si quieres darle un toque más sabroso, corta un pedacito de grasa de la carne — como una esquinita que le quites a un corte — y dóralo en el asador hasta que quede bien cocido, suavecito y con sabor ahumado.
         </p>
@@ -175,7 +175,7 @@ export default function SalsaVerdePage() {
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">Tips rápidos</h2>
+        <h2 className="text-base font-semibold text-gray-900">Tips rápidos</h2>
         <div className="space-y-2">
           {[
             { emoji: "🌶️", tip: "¿Quieres más picante? Agrega otro chile serrano. ¿Menos? Usa solo uno o quítale las semillas antes de licuar." },
@@ -193,24 +193,24 @@ export default function SalsaVerdePage() {
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">Variaciones que puedes probar</h2>
+        <h2 className="text-base font-semibold text-gray-900">Variaciones que puedes probar</h2>
         <p className="text-sm leading-relaxed">
           La receta base es la que funciona para carne asada, pero hay variaciones que valen la pena conocer si quieres experimentar sin alejarte demasiado de lo clásico.
         </p>
         <div className="space-y-3">
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
             <p className="text-sm font-bold text-gray-900">Con chile jalapeño</p>
             <p className="text-sm text-gray-600">Sustituye los serranos por jalapeños para una salsa con picante más suave y un sabor ligeramente más vegetal. Buena opción si va a comer gente que no aguanta mucho picante.</p>
           </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
             <p className="text-sm font-bold text-gray-900">Con chipotle (versión ahumada)</p>
             <p className="text-sm text-gray-600">Agrega uno o medio chipotle en adobo al momento de licuar junto con los demás ingredientes. Le da un sabor ahumado más profundo y un picante diferente, más suave y redondo. No es la receta tradicional, pero queda muy buena.</p>
           </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
             <p className="text-sm font-bold text-gray-900">Con aguacate (salsa verde cremosa)</p>
             <p className="text-sm text-gray-600">Agrega medio aguacate maduro al momento de licuar. La salsa queda más espesa, con una textura sedosa y un sabor más suave. Esta versión va mejor para hacer tacos que para ponerla directo en la carne en la parrilla.</p>
           </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
             <p className="text-sm font-bold text-gray-900">Sin licuadora: versión martajada en molcajete</p>
             <p className="text-sm text-gray-600">Muele todo a mano en el molcajete en lugar de la licuadora. La textura queda más rústica con pedacitos de chile y tomatillo que se sienten en el taco. El sabor cambia un poco — es más intenso y con más presencia de cada ingrediente por separado.</p>
           </div>
@@ -220,28 +220,28 @@ export default function SalsaVerdePage() {
       <AdBanner />
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">Qué hacer si la salsa no salió bien</h2>
+        <h2 className="text-base font-semibold text-gray-900">Qué hacer si la salsa no salió bien</h2>
         <p className="text-sm leading-relaxed">
           Estas son las situaciones más comunes cuando la salsa no queda como esperabas y cómo resolverlas.
         </p>
         <div className="space-y-3">
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
             <p className="text-sm font-bold text-gray-900">Quedó demasiado ácida</p>
             <p className="text-sm text-gray-600">Normalmente pasa cuando los tomatillos no estaban bien maduros o se tatemaron poco. Solución: agrega una pizca de azúcar o una bolita de cebolla cruda fresca al licuar — la cebolla cruda neutraliza la acidez sin cambiar el sabor principal.</p>
           </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
             <p className="text-sm font-bold text-gray-900">Quedó muy aguada</p>
             <p className="text-sm text-gray-600">Los tomatillos sueltan mucho jugo al tatemarlos. Si quieres una salsa más espesa, escurre un poco del líquido antes de licuar o licúa a pulsos cortos sin agregar agua extra.</p>
           </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
             <p className="text-sm font-bold text-gray-900">Quedó muy picante</p>
             <p className="text-sm text-gray-600">Agrega más tomatillos tatemados o un poco de aguacate para diluir el picante sin cambiar la base de la salsa. La próxima vez, quítale las semillas al chile antes de tatemas.</p>
           </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
             <p className="text-sm font-bold text-gray-900">Perdió el color verde (se puso café)</p>
             <p className="text-sm text-gray-600">Es oxidación, pasa con el cilantro y el tomatillo. Es normal y no cambia el sabor. Para que tarde más en oscurecerse, guárdala en frasco bien tapado con el menor espacio de aire posible. También puedes exprimir unas gotas de limón encima.</p>
           </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+          <div className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
             <p className="text-sm font-bold text-gray-900">No sabe a nada — sabe sosa</p>
             <p className="text-sm text-gray-600">La sal es lo que despierta todos los sabores de la salsa. Agrega más sal de a poco y vuelve a probar. También revisa que los tomatillos estuvieran bien tatemados — si quedaron a medias, la salsa pierde profundidad de sabor.</p>
           </div>
@@ -249,7 +249,7 @@ export default function SalsaVerdePage() {
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">Cómo guardar la salsa verde</h2>
+        <h2 className="text-base font-semibold text-gray-900">Cómo guardar la salsa verde</h2>
         <p className="text-sm leading-relaxed">
           Si sobró salsa o quieres prepararla con anticipación para la carne asada:
         </p>
@@ -262,7 +262,7 @@ export default function SalsaVerdePage() {
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-black text-gray-900">¿Con qué va esta salsa?</h2>
+        <h2 className="text-base font-semibold text-gray-900">¿Con qué va esta salsa?</h2>
         <p className="text-sm leading-relaxed">
           Esta salsa verde va con todo lo que sale del asador. Arrachera, costilla, pollo, salchicha para asar, quesadillas de queso — no importa qué estés cocinando, esta salsa le queda bien a todo. También es perfecta para los tacos que armas con la carne sobrante al final de la tarde.
         </p>
@@ -272,7 +272,7 @@ export default function SalsaVerdePage() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-lg font-black text-gray-900">Preguntas frecuentes sobre salsa verde para carne asada</h2>
+        <h2 className="text-base font-semibold text-gray-900">Preguntas frecuentes sobre salsa verde para carne asada</h2>
         <div className="space-y-3">
           {[
             {
@@ -296,7 +296,7 @@ export default function SalsaVerdePage() {
               a: "Sí. La de taquería normalmente se hace con ingredientes hervidos o en seco en comal. La de carne asada se tatema directo en las brasas, lo que le da un ahumado natural que es imposible de replicar en estufa. Son completamente diferentes en sabor y textura."
             },
           ].map(({ q, a }, i) => (
-            <div key={i} className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm space-y-1.5">
+            <div key={i} className="bg-white border border-gray-100 rounded-xl p-4 space-y-1.5">
               <p className="text-sm font-bold text-gray-900">{q}</p>
               <p className="text-sm text-gray-600 leading-relaxed">{a}</p>
             </div>
@@ -304,7 +304,7 @@ export default function SalsaVerdePage() {
         </div>
       </section>
 
-      <div className="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm space-y-3">
+      <div className="bg-white border border-gray-100 rounded-xl p-5 space-y-3">
         <p className="text-sm font-bold text-gray-900">¿Ya sabes cuánta gente va?</p>
         <p className="text-sm text-gray-600">
           La calculadora ya incluye los ingredientes de esta salsa ajustados al número de personas — activa la opción &ldquo;Casera&rdquo; en la fila de salsa.
@@ -320,17 +320,17 @@ export default function SalsaVerdePage() {
       <AdBanner />
 
       <section className="space-y-3">
-        <h2 className="text-base font-black text-gray-900">También te puede interesar</h2>
+        <h2 className="text-sm font-semibold text-gray-900">También te puede interesar</h2>
         <div className="grid gap-3">
-          <Link href="/guias/salsa-roja-carne-asada" className="block bg-white border border-gray-100 rounded-xl p-4 shadow-sm hover:border-brasa/30 transition-all">
+          <Link href="/guias/salsa-roja-carne-asada" className="block bg-white border border-gray-100 rounded-xl p-4 hover:border-gray-200 transition-all">
             <p className="text-sm font-bold text-gray-900">🔴 Salsa roja para carne asada</p>
             <p className="text-xs text-gray-500 mt-1">Jitomates tatemados, chiles de árbol y ese ahumado del asador</p>
           </Link>
-          <Link href="/guias/salsa-chile-piquin-limon" className="block bg-white border border-gray-100 rounded-xl p-4 shadow-sm hover:border-brasa/30 transition-all">
+          <Link href="/guias/salsa-chile-piquin-limon" className="block bg-white border border-gray-100 rounded-xl p-4 hover:border-gray-200 transition-all">
             <p className="text-sm font-bold text-gray-900">🌶️ Salsa de chile piquín con limón</p>
             <p className="text-xs text-gray-500 mt-1">La favorita de Yeyito — sin agua, con molcajete y limón como base</p>
           </Link>
-          <Link href="/guias/guacamole-para-carne-asada" className="block bg-white border border-gray-100 rounded-xl p-4 shadow-sm hover:border-brasa/30 transition-all">
+          <Link href="/guias/guacamole-para-carne-asada" className="block bg-white border border-gray-100 rounded-xl p-4 hover:border-gray-200 transition-all">
             <p className="text-sm font-bold text-gray-900">🥑 Guacamole para carne asada</p>
             <p className="text-xs text-gray-500 mt-1">Receta clásica y el secreto para que no se ponga negro</p>
           </Link>
