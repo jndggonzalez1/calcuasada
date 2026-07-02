@@ -88,12 +88,23 @@ public/
 - `/calculadora/[personas]` — páginas SEO estáticas para búsquedas como "carne asada para 20 personas"
 
 ### Layout global
-- Header negro carbón (`#1E1A17`) con logo real de Calcuasada (PNG 56×56, fondo transparente) y nombre
-- Favicon del tab del browser: `app/icon.png` (detectado automáticamente por Next.js App Router)
-- Barra de navegación debajo del header (carbón profundo): links a Calculadora y Acerca como pills minimalistas
-- Footer con copyright 2026, links a Acerca y Privacidad
+- Header crema `#FAF7F2`, `h-[80px]`, logo 72px (BBQ grill + calculadora, sin texto), título `font-bold 1.9rem`
+- Favicon: `app/icon.png` (mismo logo, sin texto)
+- Nav con underline tab style (border-b-2, no pills), fondo crema, separado por línea `#E8E2D9`
+- Footer oscuro `#1A1A1A` con links discretos
 - AdSense: `<script>` directo en `<head>` para visibilidad del crawler de Google
 - Google Analytics: tag G-G1VZBVG477 en `<head>` directo, aplica a todas las páginas automáticamente
+
+### Sistema visual (vigente desde sesión 19)
+**Todo lo nuevo debe seguir el sistema visual documentado en `/memory/design-visual.md`.**
+- `font-black` eliminado de todo el proyecto → `font-bold` en H1, `font-semibold` en H2/H3
+- `shadow-sm` eliminado de cards → solo permitido en el knob del toggle switch
+- `rounded-2xl` eliminado → `rounded-xl` en todo
+- `bg-brasa-light` eliminado como fondo de sección → `bg-gray-50 border border-gray-100`
+- Botones CTA: **outlined** (`border border-brasa text-brasa rounded-lg hover:bg-brasa/5`), NO relleno sólido
+- Bloque CTA: `bg-gray-50 border border-gray-100 rounded-xl p-5 text-center`
+- TranslateButton: `border border-gray-300 text-gray-500 rounded-md hover:border-brasa hover:text-brasa`
+- Inspiración visual: konta.com — limpio, tipografía clara, mucho whitespace
 
 ### Anuncios
 - `AdBanner` colocado en: inicio de página, después de la calculadora, entre secciones, y en páginas /acerca y /privacidad
@@ -125,7 +136,7 @@ public/
 
 ---
 
-## Estado actual (junio 2026)
+## Estado actual (julio 2026)
 
 | Ítem | Estado |
 |------|--------|
@@ -198,10 +209,36 @@ public/
 | Guía /guias/tortillas-maiz-vs-harina (historia maíz/harina, tono neutral sin declarar ganadora) | ✅ Listo |
 | Primer feature con backend: Redis (Redis Cloud vía Vercel Marketplace) conectado al proyecto | ✅ Listo |
 | Votación interactiva maíz vs harina en la guía de tortillas, con resultados en vivo (%) | ✅ Listo |
+| Redesign UI completo (sesión 19): tipografía, cards, botones, header, todas las páginas | ✅ Listo |
+| Nuevo logo: BBQ grill + calculadora, sin texto "Calcuasada" al fondo | ✅ Listo |
+| Botones CTA outlined en todo el sitio (borde naranja, fondo transparente) | ✅ Listo |
+| TranslateButton rediseñado: borde gris sutil, hover naranja | ✅ Listo |
+| CookieBanner actualizado: rounded-xl, sin shadow, botón outlined | ✅ Listo |
+| Google Search Console — reindexar URLs nuevas | ⏳ Pendiente (acción manual de Yeyito) |
+| Re-submit a Google AdSense después de mejorar contenido | ⏳ Pendiente (acción manual de Yeyito) |
 
 ---
 
 ## Historial de sesiones
+
+### Sesión 19 (julio 2026) — Redesign UI completo: sistema visual konta.com
+
+- **Objetivo:** Que el sitio se vea profesional, limpio y que no parezca hecho con AI. Inspiración: konta.com.
+- **Alcance:** Todas las páginas y componentes del sitio. Se trabajó por partes: header → calculadora → extras/estimador/compartir → footer/home/guías → FAQ → páginas de guía individuales → /termómetro → /acerca, /contacto, /privacidad → componentes globales (CookieBanner, TranslateButton, error.tsx).
+- **Cambios al sistema visual (permanentes — aplicar a TODO lo nuevo):**
+  - `font-black` eliminado de todo el proyecto. Reemplazado por `font-bold` (H1) y `font-semibold` (H2/H3).
+  - `shadow-sm` eliminado de todas las cards. Solo permitido en el knob del toggle switch (profundidad del botón).
+  - `rounded-2xl` eliminado. Todo usa `rounded-xl` o menos.
+  - `bg-brasa-light border border-brasa/20` → `bg-gray-50 border border-gray-100` para bloques de resumen/info.
+  - Botones CTA: de relleno sólido naranja (`bg-brasa text-white`) → **outlined** (`border border-brasa text-brasa hover:bg-brasa/5`). Aprobado por Yeyito al ver el resultado.
+  - Bloque CTA estándar: `bg-gray-50 border border-gray-100 rounded-xl p-5 text-center` con botón outlined adentro.
+  - Etiquetas kicker ("Guía completa"): de `text-brasa uppercase` → `text-gray-400 uppercase tracking-widest`.
+  - Links "También te puede interesar": `hover:border-brasa/30` → `hover:border-gray-200`.
+- **Header:** Nuevo logo BBQ grill + calculadora (sin el texto "Calcuasada" que tenía abajo). Logo 72×72px. Título `font-bold 1.9rem`. Header `h-[80px] items-center`. TranslateButton rediseñado: borde gris sutil, hover naranja — sin el fondo oscuro `bg-carbon` anterior.
+- **FAQ:** Nuevo componente `FaqList.tsx` (client) con estilo konta.com: lista `divide-y`, símbolo `+`/`−` `font-light`, sin cards ni círculos.
+- **NavLink:** Cambiado de pills 3D a underline tab (`border-b-2 -mb-px`).
+- **ComoUsarAccordion, CookieBanner, error.tsx:** Actualizados con el nuevo sistema visual.
+- **Logo:** Reemplazado `public/logo.png` y `app/icon.png` con el nuevo diseño (BBQ grill + calculadora, fondo transparente, sin texto).
 
 ### Sesión 18 (junio 2026) — Primer feature con backend: votación interactiva de tortillas
 
