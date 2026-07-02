@@ -21,7 +21,7 @@ export default function ContactoPage() {
         </p>
         <a
           href="mailto:hola@calcuasada.com"
-          className="inline-block bg-brasa text-white font-medium text-sm px-6 py-3 rounded-lg hover:opacity-90 transition-colors"
+          className="inline-block border border-brasa text-brasa font-medium text-sm px-6 py-3 rounded-lg hover:bg-brasa/5 transition-colors"
         >
           hola@calcuasada.com
         </a>
